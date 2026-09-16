@@ -1,0 +1,1978 @@
+[
+  {
+    "id": "1784723477738",
+    "userId": 1778155500580,
+    "title": "Added to Project",
+    "message": "You have been added to the project: \"Smart HR\"",
+    "type": "info",
+    "read": false,
+    "createdAt": "2026-07-22T12:31:17.738Z"
+  },
+  {
+    "id": "1784723477739",
+    "userId": 1783502564400,
+    "title": "Added to Project",
+    "message": "You have been added to the project: \"Smart HR\"",
+    "type": "info",
+    "read": false,
+    "createdAt": "2026-07-22T12:31:17.739Z"
+  },
+  {
+    "id": "1784723477740",
+    "userId": 1784719952189,
+    "title": "Added to Project",
+    "message": "You have been added to the project: \"Smart HR\"",
+    "type": "info",
+    "read": false,
+    "createdAt": "2026-07-22T12:31:17.740Z"
+  },
+  {
+    "id": "1784723603185",
+    "userId": 1784719952190,
+    "title": "New Task Assigned",
+    "message": "You have been assigned a new task: \"Authentication\" by Jude Okaphor",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T12:33:23.185Z"
+  },
+  {
+    "id": "1784724983381",
+    "userId": 1778155500580,
+    "title": "Added to Project",
+    "message": "You have been added to the project: \"KOODI MAHONEY \"",
+    "type": "info",
+    "read": false,
+    "createdAt": "2026-07-22T12:56:23.381Z"
+  },
+  {
+    "id": "1784724983381",
+    "userId": 1783502180173,
+    "title": "Added to Project",
+    "message": "You have been added to the project: \"KOODI MAHONEY \"",
+    "type": "info",
+    "read": false,
+    "createdAt": "2026-07-22T12:56:23.381Z"
+  },
+  {
+    "id": "1784724983382",
+    "userId": 1764829943216,
+    "title": "Added to Project",
+    "message": "You have been added to the project: \"KOODI MAHONEY \"",
+    "type": "info",
+    "read": false,
+    "createdAt": "2026-07-22T12:56:23.382Z"
+  },
+  {
+    "id": "1784725786655",
+    "userId": 1778155500580,
+    "title": "Added to Project",
+    "message": "You have been added to the project: \"HARLLOGEEN FOREX\"",
+    "type": "info",
+    "read": false,
+    "createdAt": "2026-07-22T13:09:46.655Z"
+  },
+  {
+    "id": "1784725786656",
+    "userId": 1784719952189,
+    "title": "Added to Project",
+    "message": "You have been added to the project: \"HARLLOGEEN FOREX\"",
+    "type": "info",
+    "read": false,
+    "createdAt": "2026-07-22T13:09:46.656Z"
+  },
+  {
+    "id": "1784725786659",
+    "userId": 1784725264014,
+    "title": "Added to Project",
+    "message": "You have been added to the project: \"HARLLOGEEN FOREX\"",
+    "type": "info",
+    "read": false,
+    "createdAt": "2026-07-22T13:09:46.659Z"
+  },
+  {
+    "id": "1784725786660",
+    "userId": 1783718492654,
+    "title": "Added to Project",
+    "message": "You have been added to the project: \"HARLLOGEEN FOREX\"",
+    "type": "info",
+    "read": false,
+    "createdAt": "2026-07-22T13:09:46.660Z"
+  },
+  {
+    "id": "1784725786660",
+    "userId": 1764829943216,
+    "title": "Added to Project",
+    "message": "You have been added to the project: \"HARLLOGEEN FOREX\"",
+    "type": "info",
+    "read": false,
+    "createdAt": "2026-07-22T13:09:46.660Z"
+  },
+  {
+    "id": "1784726056177",
+    "userId": 1784719952190,
+    "title": "Task Status Changed",
+    "message": "akanmualugbin@gmail.com started working on: \"Authentication\"",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:14:16.177Z"
+  },
+  {
+    "id": "1784726060079",
+    "userId": 1784719952190,
+    "title": "Task Status Changed",
+    "message": "akanmualugbin@gmail.com submitted for review: \"Authentication\"",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:14:20.079Z"
+  },
+  {
+    "id": "1784726186675",
+    "userId": 1784719952190,
+    "title": "Task Status Changed",
+    "message": "akanmualugbin@gmail.com marked as Completed: \"Authentication\"",
+    "type": "success",
+    "read": true,
+    "createdAt": "2026-07-22T13:16:26.675Z"
+  },
+  {
+    "id": "1784726262846",
+    "userId": 1783502564401,
+    "title": "New Task Assigned",
+    "message": "You have been assigned a new task: \"Landing Page\" by Jude Okaphor",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:17:42.846Z"
+  },
+  {
+    "id": "1784726300758",
+    "userId": 1784719952190,
+    "title": "Task Status Changed",
+    "message": "harllogeen2020@gmail.com started working on: \"Landing Page\"",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:18:20.758Z"
+  },
+  {
+    "id": "1784726305652",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"Landing Page\" to 3%",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:18:25.652Z"
+  },
+  {
+    "id": "1784726305866",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"Landing Page\" to 3%",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:18:25.866Z"
+  },
+  {
+    "id": "1784726306611",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"Landing Page\" to 12%",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:18:26.611Z"
+  },
+  {
+    "id": "1784726306829",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"Landing Page\" to 12%",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:18:26.829Z"
+  },
+  {
+    "id": "1784726307535",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"Landing Page\" to 27%",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:18:27.535Z"
+  },
+  {
+    "id": "1784726307751",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"Landing Page\" to 27%",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:18:27.751Z"
+  },
+  {
+    "id": "1784726308548",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"Landing Page\" to 37%",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:18:28.548Z"
+  },
+  {
+    "id": "1784726308769",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"Landing Page\" to 37%",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:18:28.769Z"
+  },
+  {
+    "id": "1784726322797",
+    "userId": 1784719952190,
+    "title": "New Comment on Task",
+    "message": "harllogeen2020@gmail.com commented on \"Landing Page\": \"still in progress\"",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:18:42.797Z"
+  },
+  {
+    "id": "1784726325438",
+    "userId": 1784719952190,
+    "title": "Task Status Changed",
+    "message": "harllogeen2020@gmail.com submitted for review: \"Landing Page\"",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:18:45.438Z"
+  },
+  {
+    "id": "1784726984137",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"Landing Page\" to 38%",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:29:44.137Z"
+  },
+  {
+    "id": "1784726984152",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"Landing Page\" to 41%",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:29:44.152Z"
+  },
+  {
+    "id": "1784726984168",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"Landing Page\" to 44%",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:29:44.168Z"
+  },
+  {
+    "id": "1784726984188",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"Landing Page\" to 48%",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:29:44.188Z"
+  },
+  {
+    "id": "1784726984203",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"Landing Page\" to 50%",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:29:44.203Z"
+  },
+  {
+    "id": "1784726984234",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"Landing Page\" to 51%",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:29:44.234Z"
+  },
+  {
+    "id": "1784726984251",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"Landing Page\" to 52%",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:29:44.251Z"
+  },
+  {
+    "id": "1784726984267",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"Landing Page\" to 53%",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:29:44.267Z"
+  },
+  {
+    "id": "1784726984284",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"Landing Page\" to 54%",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:29:44.284Z"
+  },
+  {
+    "id": "1784726984299",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"Landing Page\" to 55%",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:29:44.299Z"
+  },
+  {
+    "id": "1784726984334",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"Landing Page\" to 56%",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:29:44.334Z"
+  },
+  {
+    "id": "1784726984367",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"Landing Page\" to 57%",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:29:44.367Z"
+  },
+  {
+    "id": "1784726984400",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"Landing Page\" to 58%",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:29:44.401Z"
+  },
+  {
+    "id": "1784726984434",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"Landing Page\" to 59%",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:29:44.434Z"
+  },
+  {
+    "id": "1784726984467",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"Landing Page\" to 60%",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:29:44.467Z"
+  },
+  {
+    "id": "1784726984517",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"Landing Page\" to 61%",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:29:44.517Z"
+  },
+  {
+    "id": "1784726984567",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"Landing Page\" to 62%",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:29:44.567Z"
+  },
+  {
+    "id": "1784726984951",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"Landing Page\" to 62%",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:29:44.951Z"
+  },
+  {
+    "id": "1784727316519",
+    "userId": 1783502564401,
+    "title": "New Task Assigned",
+    "message": "You have been assigned a new task: \"authentication issue\" by Jude Okaphor",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:35:16.519Z"
+  },
+  {
+    "id": "1784727360024",
+    "userId": 1783502564401,
+    "title": "Task Overdue",
+    "message": "Your task \"authentication issue\" is now overdue!",
+    "type": "warning",
+    "read": true,
+    "createdAt": "2026-07-22T13:36:00.024Z"
+  },
+  {
+    "id": "1784727360025",
+    "userId": 1784719952190,
+    "title": "Assigned Task Overdue",
+    "message": "Task \"authentication issue\" assigned to Austin Agbara is now overdue",
+    "type": "warning",
+    "read": true,
+    "createdAt": "2026-07-22T13:36:00.025Z"
+  },
+  {
+    "id": "1784727360027",
+    "userId": 1784719952190,
+    "title": "Assigned Task Overdue",
+    "message": "Task \"authentication issue\" assigned to Austin Agbara is now overdue",
+    "type": "warning",
+    "read": true,
+    "createdAt": "2026-07-22T13:36:00.027Z"
+  },
+  {
+    "id": "1784727775406",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"authentication issue\" to 7%",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:42:55.406Z"
+  },
+  {
+    "id": "1784727775550",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"authentication issue\" to 7%",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:42:55.550Z"
+  },
+  {
+    "id": "1784727776203",
+    "userId": 1784719952190,
+    "title": "Task Status Changed",
+    "message": "harllogeen2020@gmail.com submitted for review: \"authentication issue\"",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T13:42:56.203Z"
+  },
+  {
+    "id": "1784727780025",
+    "userId": 1783502564401,
+    "title": "Task Overdue",
+    "message": "Your task \"authentication issue\" is now overdue!",
+    "type": "warning",
+    "read": true,
+    "createdAt": "2026-07-22T13:43:00.025Z"
+  },
+  {
+    "id": "1784727780026",
+    "userId": 1784719952190,
+    "title": "Assigned Task Overdue",
+    "message": "Task \"authentication issue\" assigned to Austin Agbara is now overdue",
+    "type": "warning",
+    "read": true,
+    "createdAt": "2026-07-22T13:43:00.026Z"
+  },
+  {
+    "id": "1784729440887",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"authentication issue\" to 29%",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T14:10:40.887Z"
+  },
+  {
+    "id": "1784729441058",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"authentication issue\" to 29%",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T14:10:41.058Z"
+  },
+  {
+    "id": "1784729505782",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"authentication issue\" to 57%",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T14:11:45.782Z"
+  },
+  {
+    "id": "1784729506010",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"authentication issue\" to 57%",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T14:11:46.010Z"
+  },
+  {
+    "id": "1784729506787",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"authentication issue\" to 64%",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T14:11:46.787Z"
+  },
+  {
+    "id": "1784729507008",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"authentication issue\" to 64%",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T14:11:47.008Z"
+  },
+  {
+    "id": "1784729508290",
+    "userId": 1784719952190,
+    "title": "Task Status Changed",
+    "message": "harllogeen2020@gmail.com submitted for review: \"authentication issue\"",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T14:11:48.290Z"
+  },
+  {
+    "id": "1784729520031",
+    "userId": 1783502564401,
+    "title": "Task Overdue",
+    "message": "Your task \"authentication issue\" is now overdue!",
+    "type": "warning",
+    "read": true,
+    "createdAt": "2026-07-22T14:12:00.031Z"
+  },
+  {
+    "id": "1784729520033",
+    "userId": 1783502564401,
+    "title": "Task Overdue",
+    "message": "Your task \"authentication issue\" is now overdue!",
+    "type": "warning",
+    "read": true,
+    "createdAt": "2026-07-22T14:12:00.033Z"
+  },
+  {
+    "id": "1784730200511",
+    "userId": 1770640254746,
+    "title": "New Task Assigned",
+    "message": "You have been assigned a new task: \"TEST\" by Oluwaferanmi Praise",
+    "type": "info",
+    "read": false,
+    "createdAt": "2026-07-22T14:23:20.511Z"
+  },
+  {
+    "id": "1784730200512",
+    "userId": 1783502180174,
+    "title": "New Task Assigned",
+    "message": "You have been assigned a new task: \"TEST\" by Oluwaferanmi Praise",
+    "type": "info",
+    "read": false,
+    "createdAt": "2026-07-22T14:23:20.511Z"
+  },
+  {
+    "id": "1784730200513",
+    "userId": 1783502564401,
+    "title": "New Task Assigned",
+    "message": "You have been assigned a new task: \"TEST\" by Oluwaferanmi Praise",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T14:23:20.511Z"
+  },
+  {
+    "id": "1784730200514",
+    "userId": 1764829332445,
+    "title": "New Task Assigned",
+    "message": "You have been assigned a new task: \"TEST\" by Oluwaferanmi Praise",
+    "type": "info",
+    "read": false,
+    "createdAt": "2026-07-22T14:23:20.511Z"
+  },
+  {
+    "id": "1784730200515",
+    "userId": 1764829943217,
+    "title": "New Task Assigned",
+    "message": "You have been assigned a new task: \"TEST\" by Oluwaferanmi Praise",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T14:23:20.511Z"
+  },
+  {
+    "id": "1784730200516",
+    "userId": 1784719952190,
+    "title": "New Task Assigned",
+    "message": "You have been assigned a new task: \"TEST\" by Oluwaferanmi Praise",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T14:23:20.511Z"
+  },
+  {
+    "id": "1784730200517",
+    "userId": 1784725264015,
+    "title": "New Task Assigned",
+    "message": "You have been assigned a new task: \"TEST\" by Oluwaferanmi Praise",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T14:23:20.511Z"
+  },
+  {
+    "id": "1784730442660",
+    "userId": [
+      1770640254746,
+      1783502180174,
+      1783502564401,
+      1764829332445,
+      1764829943217,
+      1784719952190,
+      1784725264015
+    ],
+    "title": "Task Removed",
+    "message": "Task \"TEST\" has been removed by Oluwaferanmi Praise",
+    "type": "warning",
+    "read": false,
+    "createdAt": "2026-07-22T14:27:22.660Z"
+  },
+  {
+    "id": "1784730447671",
+    "userId": [
+      1770640254746,
+      1783502180174,
+      1783502564401,
+      1764829332445,
+      1764829943217,
+      1784719952190,
+      1784725264015
+    ],
+    "title": "Task Removed",
+    "message": "Task \"TEST\" has been removed by Oluwaferanmi Praise",
+    "type": "warning",
+    "read": false,
+    "createdAt": "2026-07-22T14:27:27.671Z"
+  },
+  {
+    "id": "1784730483602",
+    "userId": [
+      1770640254746,
+      1783502180174,
+      1783502564401,
+      1764829332445,
+      1764829943217,
+      1784719952190,
+      1784725264015
+    ],
+    "title": "Task Status Changed",
+    "message": "alugbinoluwaferanmi@gmail.com started working on: \"TEST\"",
+    "type": "info",
+    "read": false,
+    "createdAt": "2026-07-22T14:28:03.602Z"
+  },
+  {
+    "id": "1784730484856",
+    "userId": [
+      1770640254746,
+      1783502180174,
+      1783502564401,
+      1764829332445,
+      1764829943217,
+      1784719952190,
+      1784725264015
+    ],
+    "title": "Task Status Changed",
+    "message": "alugbinoluwaferanmi@gmail.com submitted for review: \"TEST\"",
+    "type": "info",
+    "read": false,
+    "createdAt": "2026-07-22T14:28:04.856Z"
+  },
+  {
+    "id": "1784731126238",
+    "userId": [
+      1770640254746,
+      1783502180174,
+      1783502564401,
+      1764829332445,
+      1764829943217,
+      1784719952190,
+      1784725264015
+    ],
+    "title": "Task Status Changed",
+    "message": "alugbinoluwaferanmi@gmail.com marked as Completed: \"TEST\"",
+    "type": "success",
+    "read": false,
+    "createdAt": "2026-07-22T14:38:46.238Z"
+  },
+  {
+    "id": "1784733591711",
+    "userId": 1784719952190,
+    "title": "Task Status Changed",
+    "message": "alugbinoluwaferanmi@gmail.com marked as Completed: \"Landing Page\"",
+    "type": "success",
+    "read": true,
+    "createdAt": "2026-07-22T15:19:51.711Z"
+  },
+  {
+    "id": "1784735469027",
+    "userId": 1764829332445,
+    "title": "Task Assigned to You",
+    "message": "You have been assigned task: \"Authentication\"",
+    "type": "info",
+    "read": true,
+    "createdAt": "2026-07-22T15:51:09.027Z"
+  },
+  {
+    "id": "1784735469027",
+    "userId": 1783502564401,
+    "title": "Task Assigned to You",
+    "message": "You have been assigned task: \"Authentication\"",
+    "type": "info",
+    "read": false,
+    "createdAt": "2026-07-22T15:51:09.027Z"
+  },
+  {
+    "id": "1784735489225",
+    "userId": [
+      1764829332445,
+      1783502564401
+    ],
+    "title": "Task Removed",
+    "message": "Task \"Authentication\" has been removed by Jude Okaphor",
+    "type": "warning",
+    "read": false,
+    "createdAt": "2026-07-22T15:51:29.225Z"
+  },
+  {
+    "id": "1784736449951",
+    "userId": 1764829332445,
+    "title": "Task Assigned to You",
+    "message": "You have been assigned task: \"authentication issue\"",
+    "type": "info",
+    "read": false,
+    "createdAt": "2026-07-22T16:07:29.951Z"
+  },
+  {
+    "id": "1785083122334",
+    "userId": 1784725264015,
+    "title": "Task Progress Updated",
+    "message": "Oluwaseyi Alugbin, Faith Clement, Austin Agbara, Admin User, Brian Susan, Jude Okaphor, Oluwaferanmi Praise updated progress on \"TEST\" to 0%",
+    "type": "info",
+    "read": false,
+    "createdAt": "2026-07-26T16:25:22.334Z"
+  },
+  {
+    "id": "1785083123056",
+    "userId": 1784725264015,
+    "title": "Task Progress Updated",
+    "message": "Oluwaseyi Alugbin, Faith Clement, Austin Agbara, Admin User, Brian Susan, Jude Okaphor, Oluwaferanmi Praise updated progress on \"TEST\" to 100%",
+    "type": "info",
+    "read": false,
+    "createdAt": "2026-07-26T16:25:23.056Z"
+  },
+  {
+    "id": "1788517025661",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Morning Shift on Wednesday, September 2 from 08:00 to 12:00",
+    "data": {
+      "scheduleId": "1788517025649",
+      "shiftName": "Morning Shift",
+      "date": "2026-09-02",
+      "startTime": "08:00",
+      "endTime": "12:00"
+    },
+    "read": true,
+    "createdAt": "2026-09-04T10:17:05.661Z"
+  },
+  {
+    "id": "1788517026647",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Morning Shift on Thursday, September 3 from 08:00 to 12:00",
+    "data": {
+      "scheduleId": "1788517026632",
+      "shiftName": "Morning Shift",
+      "date": "2026-09-03",
+      "startTime": "08:00",
+      "endTime": "12:00"
+    },
+    "read": true,
+    "createdAt": "2026-09-04T10:17:06.647Z"
+  },
+  {
+    "id": "1788517028160",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Morning Shift on Tuesday, September 1 from 08:00 to 12:00",
+    "data": {
+      "scheduleId": "1788517028143",
+      "shiftName": "Morning Shift",
+      "date": "2026-09-01",
+      "startTime": "08:00",
+      "endTime": "12:00"
+    },
+    "read": true,
+    "createdAt": "2026-09-04T10:17:08.160Z"
+  },
+  {
+    "id": "1788517029334",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Morning Shift on Monday, August 31 from 08:00 to 12:00",
+    "data": {
+      "scheduleId": "1788517029315",
+      "shiftName": "Morning Shift",
+      "date": "2026-08-31",
+      "startTime": "08:00",
+      "endTime": "12:00"
+    },
+    "read": true,
+    "createdAt": "2026-09-04T10:17:09.334Z"
+  },
+  {
+    "id": "1788517030060",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Morning Shift on Sunday, August 30 from 08:00 to 12:00",
+    "data": {
+      "scheduleId": "1788517030048",
+      "shiftName": "Morning Shift",
+      "date": "2026-08-30",
+      "startTime": "08:00",
+      "endTime": "12:00"
+    },
+    "read": true,
+    "createdAt": "2026-09-04T10:17:10.060Z"
+  },
+  {
+    "id": "1788551774932",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Night Shift on Monday, August 31 from 22:00 to 06:00",
+    "data": {
+      "scheduleId": "1788551774931",
+      "shiftName": "Night Shift",
+      "date": "2026-08-31",
+      "startTime": "22:00",
+      "endTime": "06:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-04T19:56:14.932Z"
+  },
+  {
+    "id": "1788551774940",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Night Shift on Tuesday, September 1 from 22:00 to 06:00",
+    "data": {
+      "scheduleId": "1788551774938",
+      "shiftName": "Night Shift",
+      "date": "2026-09-01",
+      "startTime": "22:00",
+      "endTime": "06:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-04T19:56:14.940Z"
+  },
+  {
+    "id": "1788551774948",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Night Shift on Wednesday, September 2 from 22:00 to 06:00",
+    "data": {
+      "scheduleId": "1788551774946",
+      "shiftName": "Night Shift",
+      "date": "2026-09-02",
+      "startTime": "22:00",
+      "endTime": "06:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-04T19:56:14.948Z"
+  },
+  {
+    "id": "1788551774956",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Night Shift on Thursday, September 3 from 22:00 to 06:00",
+    "data": {
+      "scheduleId": "1788551774953",
+      "shiftName": "Night Shift",
+      "date": "2026-09-03",
+      "startTime": "22:00",
+      "endTime": "06:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-04T19:56:14.956Z"
+  },
+  {
+    "id": "1788551774965",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Night Shift on Friday, September 4 from 22:00 to 06:00",
+    "data": {
+      "scheduleId": "1788551774964",
+      "shiftName": "Night Shift",
+      "date": "2026-09-04",
+      "startTime": "22:00",
+      "endTime": "06:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-04T19:56:14.965Z"
+  },
+  {
+    "id": "1788552426591",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Night Shift on Monday, August 31 from 22:00 to 06:00",
+    "data": {
+      "scheduleId": "1788552426556",
+      "shiftName": "Night Shift",
+      "date": "2026-08-31",
+      "startTime": "22:00",
+      "endTime": "06:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-04T20:07:06.591Z"
+  },
+  {
+    "id": "1788552426610",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Night Shift on Tuesday, September 1 from 22:00 to 06:00",
+    "data": {
+      "scheduleId": "1788552426607",
+      "shiftName": "Night Shift",
+      "date": "2026-09-01",
+      "startTime": "22:00",
+      "endTime": "06:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-04T20:07:06.610Z"
+  },
+  {
+    "id": "1788552426629",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Night Shift on Wednesday, September 2 from 22:00 to 06:00",
+    "data": {
+      "scheduleId": "1788552426625",
+      "shiftName": "Night Shift",
+      "date": "2026-09-02",
+      "startTime": "22:00",
+      "endTime": "06:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-04T20:07:06.629Z"
+  },
+  {
+    "id": "1788552426648",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Night Shift on Thursday, September 3 from 22:00 to 06:00",
+    "data": {
+      "scheduleId": "1788552426644",
+      "shiftName": "Night Shift",
+      "date": "2026-09-03",
+      "startTime": "22:00",
+      "endTime": "06:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-04T20:07:06.648Z"
+  },
+  {
+    "id": "1788552426667",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Night Shift on Friday, September 4 from 22:00 to 06:00",
+    "data": {
+      "scheduleId": "1788552426661",
+      "shiftName": "Night Shift",
+      "date": "2026-09-04",
+      "startTime": "22:00",
+      "endTime": "06:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-04T20:07:06.667Z"
+  },
+  {
+    "id": "1788552545244",
+    "userId": 1764829943217,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Night Shift on Monday, August 31 from 22:00 to 06:00",
+    "data": {
+      "scheduleId": "1788552545237",
+      "shiftName": "Night Shift",
+      "date": "2026-08-31",
+      "startTime": "22:00",
+      "endTime": "06:00"
+    },
+    "read": true,
+    "createdAt": "2026-09-04T20:09:05.244Z"
+  },
+  {
+    "id": "1788552545259",
+    "userId": 1764829943217,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Night Shift on Tuesday, September 1 from 22:00 to 06:00",
+    "data": {
+      "scheduleId": "1788552545255",
+      "shiftName": "Night Shift",
+      "date": "2026-09-01",
+      "startTime": "22:00",
+      "endTime": "06:00"
+    },
+    "read": true,
+    "createdAt": "2026-09-04T20:09:05.259Z"
+  },
+  {
+    "id": "1788552545277",
+    "userId": 1764829943217,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Night Shift on Wednesday, September 2 from 22:00 to 06:00",
+    "data": {
+      "scheduleId": "1788552545273",
+      "shiftName": "Night Shift",
+      "date": "2026-09-02",
+      "startTime": "22:00",
+      "endTime": "06:00"
+    },
+    "read": true,
+    "createdAt": "2026-09-04T20:09:05.277Z"
+  },
+  {
+    "id": "1788552545294",
+    "userId": 1764829943217,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Night Shift on Thursday, September 3 from 22:00 to 06:00",
+    "data": {
+      "scheduleId": "1788552545288",
+      "shiftName": "Night Shift",
+      "date": "2026-09-03",
+      "startTime": "22:00",
+      "endTime": "06:00"
+    },
+    "read": true,
+    "createdAt": "2026-09-04T20:09:05.294Z"
+  },
+  {
+    "id": "1788552545308",
+    "userId": 1764829943217,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Night Shift on Friday, September 4 from 22:00 to 06:00",
+    "data": {
+      "scheduleId": "1788552545304",
+      "shiftName": "Night Shift",
+      "date": "2026-09-04",
+      "startTime": "22:00",
+      "endTime": "06:00"
+    },
+    "read": true,
+    "createdAt": "2026-09-04T20:09:05.308Z"
+  },
+  {
+    "id": "1788552545318",
+    "userId": 1764829943217,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Weekend Day Shift on Saturday, September 5 from 09:00 to 17:00",
+    "data": {
+      "scheduleId": "1788552545315",
+      "shiftName": "Weekend Day Shift",
+      "date": "2026-09-05",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    "read": true,
+    "createdAt": "2026-09-04T20:09:05.318Z"
+  },
+  {
+    "id": "1788552864250",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Night Shift on Friday, September 4 from 22:00 to 06:00",
+    "data": {
+      "scheduleId": "1788552864247",
+      "shiftName": "Night Shift",
+      "date": "2026-09-04",
+      "startTime": "22:00",
+      "endTime": "06:00"
+    },
+    "read": true,
+    "createdAt": "2026-09-04T20:14:24.250Z"
+  },
+  {
+    "id": "1788552864255",
+    "userId": 1764829943217,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Weekend Day Shift on Saturday, September 5 from 09:00 to 17:00",
+    "data": {
+      "scheduleId": "1788552864253",
+      "shiftName": "Weekend Day Shift",
+      "date": "2026-09-05",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    "read": true,
+    "createdAt": "2026-09-04T20:14:24.255Z"
+  },
+  {
+    "id": "1788553436761",
+    "userId": 1764829943217,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Weekend Day Shift on Saturday, September 5 from 09:00 to 17:00",
+    "data": {
+      "scheduleId": "1788553436758",
+      "shiftName": "Weekend Day Shift",
+      "date": "2026-09-05",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    "read": true,
+    "createdAt": "2026-09-04T20:23:56.761Z"
+  },
+  {
+    "id": "1788553590487",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Weekend Day Shift on Sunday, September 6 from 09:00 to 17:00",
+    "data": {
+      "scheduleId": "1788553590485",
+      "shiftName": "Weekend Day Shift",
+      "date": "2026-09-06",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-04T20:26:30.487Z"
+  },
+  {
+    "id": "1788553636757",
+    "userId": 1764829943217,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Weekend Day Shift on Saturday, September 5 from 09:00 to 17:00",
+    "data": {
+      "scheduleId": "1788553636754",
+      "shiftName": "Weekend Day Shift",
+      "date": "2026-09-05",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    "read": true,
+    "createdAt": "2026-09-04T20:27:16.757Z"
+  },
+  {
+    "id": "1788553786608",
+    "userId": 1764829943217,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Weekend Day Shift on Saturday, September 5 from 09:00 to 17:00",
+    "data": {
+      "scheduleId": "1788553786605",
+      "shiftName": "Weekend Day Shift",
+      "date": "2026-09-05",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    "read": true,
+    "createdAt": "2026-09-04T20:29:46.608Z"
+  },
+  {
+    "id": "1788554350083",
+    "userId": 1764829943217,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Weekend Day Shift on Saturday, September 5 from 09:00 to 17:00",
+    "data": {
+      "scheduleId": "1788554350081",
+      "shiftName": "Weekend Day Shift",
+      "date": "2026-09-05",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    "read": true,
+    "createdAt": "2026-09-04T20:39:10.083Z"
+  },
+  {
+    "id": "1788554614699",
+    "userId": 1764829943217,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Weekend Day Shift on Saturday, September 5 from 09:00 to 17:00",
+    "data": {
+      "scheduleId": "1788554614696",
+      "shiftName": "Weekend Day Shift",
+      "date": "2026-09-05",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    "read": true,
+    "createdAt": "2026-09-04T20:43:34.699Z"
+  },
+  {
+    "id": "1788554883386",
+    "userId": 1764829943217,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Weekend Day Shift on Saturday, September 5 from 09:00 to 17:00",
+    "data": {
+      "scheduleId": "1788554883383",
+      "shiftName": "Weekend Day Shift",
+      "date": "2026-09-05",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    "read": true,
+    "createdAt": "2026-09-04T20:48:03.386Z"
+  },
+  {
+    "id": "1788555734269",
+    "userId": 1764829943217,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Weekend Day Shift on Saturday, September 5 from 09:00 to 17:00",
+    "data": {
+      "scheduleId": "1788555734266",
+      "shiftName": "Weekend Day Shift",
+      "date": "2026-09-05",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    "read": true,
+    "createdAt": "2026-09-04T21:02:14.269Z"
+  },
+  {
+    "id": "1788556846911",
+    "userId": 1764829943217,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Weekend Day Shift on Saturday, September 5 from 09:00 to 17:00",
+    "data": {
+      "scheduleId": "1788556846903",
+      "shiftName": "Weekend Day Shift",
+      "date": "2026-09-05",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    "read": true,
+    "createdAt": "2026-09-04T21:20:46.912Z"
+  },
+  {
+    "id": "1788557186701",
+    "userId": 1764829943217,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Weekend Day Shift on Saturday, September 5 from 09:00 to 17:00",
+    "data": {
+      "scheduleId": "1788557186693",
+      "shiftName": "Weekend Day Shift",
+      "date": "2026-09-05",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    "read": true,
+    "createdAt": "2026-09-04T21:26:26.701Z"
+  },
+  {
+    "id": "1788557186827",
+    "userId": 1764829943217,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Weekend Day Shift on Saturday, September 12 from 09:00 to 17:00",
+    "data": {
+      "scheduleId": "1788557186821",
+      "shiftName": "Weekend Day Shift",
+      "date": "2026-09-12",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    "read": true,
+    "createdAt": "2026-09-04T21:26:26.827Z"
+  },
+  {
+    "id": "1788557186836",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Morning Shift on Sunday, September 13 from 06:00 to 14:00",
+    "data": {
+      "scheduleId": "1788557186833",
+      "shiftName": "Morning Shift",
+      "date": "2026-09-13",
+      "startTime": "06:00",
+      "endTime": "14:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-04T21:26:26.836Z"
+  },
+  {
+    "id": "1788557402006",
+    "userId": 1783718492655,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Weekend Day Shift on Saturday, September 5 from 09:00 to 17:00",
+    "data": {
+      "scheduleId": "1788557402001",
+      "shiftName": "Weekend Day Shift",
+      "date": "2026-09-05",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-04T21:30:02.006Z"
+  },
+  {
+    "id": "1788558129945",
+    "userId": 1783718492655,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Weekend Day Shift on Saturday, September 5 from 09:00 to 17:00",
+    "data": {
+      "scheduleId": "1788558129940",
+      "shiftName": "Weekend Day Shift",
+      "date": "2026-09-05",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-04T21:42:09.945Z"
+  },
+  {
+    "id": "1788558129959",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Morning Shift on Sunday, September 6 from 06:00 to 14:00",
+    "data": {
+      "scheduleId": "1788558129953",
+      "shiftName": "Morning Shift",
+      "date": "2026-09-06",
+      "startTime": "06:00",
+      "endTime": "14:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-04T21:42:09.959Z"
+  },
+  {
+    "id": "1788558129969",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Afternoon Shift on Sunday, September 6 from 14:00 to 22:00",
+    "data": {
+      "scheduleId": "1788558129964",
+      "shiftName": "Afternoon Shift",
+      "date": "2026-09-06",
+      "startTime": "14:00",
+      "endTime": "22:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-04T21:42:09.969Z"
+  },
+  {
+    "id": "1788558392968",
+    "userId": 1783718492655,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Weekend Day Shift on Saturday, September 5 from 09:00 to 17:00",
+    "data": {
+      "scheduleId": "1788558392960",
+      "shiftName": "Weekend Day Shift",
+      "date": "2026-09-05",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-04T21:46:32.968Z"
+  },
+  {
+    "id": "1788558392981",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Morning Shift on Sunday, September 6 from 06:00 to 14:00",
+    "data": {
+      "scheduleId": "1788558392978",
+      "shiftName": "Morning Shift",
+      "date": "2026-09-06",
+      "startTime": "06:00",
+      "endTime": "14:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-04T21:46:32.981Z"
+  },
+  {
+    "id": "1788558392990",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Afternoon Shift on Sunday, September 6 from 14:00 to 22:00",
+    "data": {
+      "scheduleId": "1788558392986",
+      "shiftName": "Afternoon Shift",
+      "date": "2026-09-06",
+      "startTime": "14:00",
+      "endTime": "22:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-04T21:46:32.990Z"
+  },
+  {
+    "id": "1788558706486",
+    "userId": 1783718492655,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Weekend Day Shift on Saturday, September 5 from 09:00 to 17:00",
+    "data": {
+      "scheduleId": "1788558706481",
+      "shiftName": "Weekend Day Shift",
+      "date": "2026-09-05",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-04T21:51:46.486Z"
+  },
+  {
+    "id": "1788558706501",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Morning Shift on Sunday, September 6 from 06:00 to 14:00",
+    "data": {
+      "scheduleId": "1788558706497",
+      "shiftName": "Morning Shift",
+      "date": "2026-09-06",
+      "startTime": "06:00",
+      "endTime": "14:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-04T21:51:46.501Z"
+  },
+  {
+    "id": "1788558706517",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Afternoon Shift on Sunday, September 6 from 14:00 to 22:00",
+    "data": {
+      "scheduleId": "1788558706513",
+      "shiftName": "Afternoon Shift",
+      "date": "2026-09-06",
+      "startTime": "14:00",
+      "endTime": "22:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-04T21:51:46.517Z"
+  },
+  {
+    "id": "1788558820572",
+    "userId": 1783718492655,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Weekend Day Shift on Saturday, September 5 from 09:00 to 17:00",
+    "data": {
+      "scheduleId": "1788558820566",
+      "shiftName": "Weekend Day Shift",
+      "date": "2026-09-05",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-04T21:53:40.572Z"
+  },
+  {
+    "id": "1788559261687",
+    "userId": 1783718492655,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Weekend Day Shift on Saturday, September 5 from 09:00 to 17:00",
+    "data": {
+      "scheduleId": "1788559261683",
+      "shiftName": "Weekend Day Shift",
+      "date": "2026-09-05",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    "read": true,
+    "createdAt": "2026-09-04T22:01:01.687Z"
+  },
+  {
+    "id": "1788559715843",
+    "userId": 1783718492655,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Weekend Day Shift on Saturday, September 5 from 09:00 to 17:00",
+    "data": {
+      "scheduleId": "1788559715839",
+      "shiftName": "Weekend Day Shift",
+      "date": "2026-09-05",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    "read": true,
+    "createdAt": "2026-09-04T22:08:35.843Z"
+  },
+  {
+    "id": "1788559715861",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Morning Shift on Sunday, September 6 from 06:00 to 14:00",
+    "data": {
+      "scheduleId": "1788559715857",
+      "shiftName": "Morning Shift",
+      "date": "2026-09-06",
+      "startTime": "06:00",
+      "endTime": "14:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-04T22:08:35.861Z"
+  },
+  {
+    "id": "1788559715876",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Afternoon Shift on Sunday, September 6 from 14:00 to 22:00",
+    "data": {
+      "scheduleId": "1788559715873",
+      "shiftName": "Afternoon Shift",
+      "date": "2026-09-06",
+      "startTime": "14:00",
+      "endTime": "22:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-04T22:08:35.876Z"
+  },
+  {
+    "id": "1788560232220",
+    "userId": 1783718492655,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Weekend Day Shift on Saturday, September 5 from 09:00 to 17:00",
+    "data": {
+      "scheduleId": "1788560232213",
+      "shiftName": "Weekend Day Shift",
+      "date": "2026-09-05",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    "read": true,
+    "createdAt": "2026-09-04T22:17:12.220Z"
+  },
+  {
+    "id": "1788560232238",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Morning Shift on Sunday, September 6 from 06:00 to 14:00",
+    "data": {
+      "scheduleId": "1788560232234",
+      "shiftName": "Morning Shift",
+      "date": "2026-09-06",
+      "startTime": "06:00",
+      "endTime": "14:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-04T22:17:12.238Z"
+  },
+  {
+    "id": "1788560987646",
+    "userId": 1783718492655,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Weekend Day Shift on Saturday, September 5 from 09:00 to 17:00",
+    "data": {
+      "scheduleId": "1788560987641",
+      "shiftName": "Weekend Day Shift",
+      "date": "2026-09-05",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    "read": true,
+    "createdAt": "2026-09-04T22:29:47.646Z"
+  },
+  {
+    "id": "1788560987686",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Afternoon Shift on Sunday, September 6 from 14:00 to 22:00",
+    "data": {
+      "scheduleId": "1788560987682",
+      "shiftName": "Afternoon Shift",
+      "date": "2026-09-06",
+      "startTime": "14:00",
+      "endTime": "22:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-04T22:29:47.686Z"
+  },
+  {
+    "id": "1788564332174",
+    "userId": 1783718492655,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Weekend Day Shift on Saturday, September 5 from 09:00 to 17:00",
+    "data": {
+      "scheduleId": "1788564332168",
+      "shiftName": "Weekend Day Shift",
+      "date": "2026-09-05",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    "read": true,
+    "createdAt": "2026-09-04T23:25:32.174Z"
+  },
+  {
+    "id": "1788564332198",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Afternoon Shift on Sunday, September 6 from 14:00 to 22:00",
+    "data": {
+      "scheduleId": "1788564332196",
+      "shiftName": "Afternoon Shift",
+      "date": "2026-09-06",
+      "startTime": "14:00",
+      "endTime": "22:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-04T23:25:32.198Z"
+  },
+  {
+    "id": "1788564383652",
+    "userId": 1783718492655,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Weekend Day Shift on Saturday, September 5 from 09:00 to 17:00",
+    "data": {
+      "scheduleId": "1788564383646",
+      "shiftName": "Weekend Day Shift",
+      "date": "2026-09-05",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    "read": true,
+    "createdAt": "2026-09-04T23:26:23.652Z"
+  },
+  {
+    "id": "1788564383697",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Afternoon Shift on Sunday, September 6 from 14:00 to 22:00",
+    "data": {
+      "scheduleId": "1788564383693",
+      "shiftName": "Afternoon Shift",
+      "date": "2026-09-06",
+      "startTime": "14:00",
+      "endTime": "22:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-04T23:26:23.697Z"
+  },
+  {
+    "id": "1788564913665",
+    "userId": 1783718492655,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Afternoon Shift on Sunday, September 6 from 14:00 to 22:00",
+    "data": {
+      "scheduleId": "1788564913659",
+      "shiftName": "Afternoon Shift",
+      "date": "2026-09-06",
+      "startTime": "14:00",
+      "endTime": "22:00"
+    },
+    "read": true,
+    "createdAt": "2026-09-04T23:35:13.665Z"
+  },
+  {
+    "id": "1788564921896",
+    "userId": 1784761935594,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Afternoon Shift on Sunday, September 6 from 14:00 to 22:00",
+    "data": {
+      "scheduleId": "1788564921888",
+      "shiftName": "Afternoon Shift",
+      "date": "2026-09-06",
+      "startTime": "14:00",
+      "endTime": "22:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-04T23:35:21.896Z"
+  },
+  {
+    "id": "1788564933060",
+    "userId": 1784725264015,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Afternoon Shift on Sunday, September 6 from 14:00 to 22:00",
+    "data": {
+      "scheduleId": "1788564933053",
+      "shiftName": "Afternoon Shift",
+      "date": "2026-09-06",
+      "startTime": "14:00",
+      "endTime": "22:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-04T23:35:33.061Z"
+  },
+  {
+    "id": "1788564942776",
+    "userId": 1783502180174,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Afternoon Shift on Sunday, September 6 from 14:00 to 22:00",
+    "data": {
+      "scheduleId": "1788564942768",
+      "shiftName": "Afternoon Shift",
+      "date": "2026-09-06",
+      "startTime": "14:00",
+      "endTime": "22:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-04T23:35:42.776Z"
+  },
+  {
+    "id": "1788568689473",
+    "userId": 1783718492655,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Weekend Day Shift on Saturday, September 5 from 09:00 to 17:00",
+    "data": {
+      "scheduleId": "1788568689465",
+      "shiftName": "Weekend Day Shift",
+      "date": "2026-09-05",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    "read": true,
+    "createdAt": "2026-09-05T00:38:09.473Z"
+  },
+  {
+    "id": "1788568689494",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Afternoon Shift on Sunday, September 6 from 14:00 to 22:00",
+    "data": {
+      "scheduleId": "1788568689492",
+      "shiftName": "Afternoon Shift",
+      "date": "2026-09-06",
+      "startTime": "14:00",
+      "endTime": "22:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-05T00:38:09.494Z"
+  },
+  {
+    "id": "1788568819854",
+    "userId": 1783718492655,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Weekend Day Shift on Saturday, September 5 from 09:00 to 17:00",
+    "data": {
+      "scheduleId": "1788568819851",
+      "shiftName": "Weekend Day Shift",
+      "date": "2026-09-05",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    "read": true,
+    "createdAt": "2026-09-05T00:40:19.854Z"
+  },
+  {
+    "id": "1788568819871",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Afternoon Shift on Sunday, September 6 from 14:00 to 22:00",
+    "data": {
+      "scheduleId": "1788568819869",
+      "shiftName": "Afternoon Shift",
+      "date": "2026-09-06",
+      "startTime": "14:00",
+      "endTime": "22:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-05T00:40:19.871Z"
+  },
+  {
+    "id": "1788588547273",
+    "userId": 1783718492655,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Weekend Day Shift on Saturday, September 5 from 09:00 to 17:00",
+    "data": {
+      "scheduleId": "1788588547266",
+      "shiftName": "Weekend Day Shift",
+      "date": "2026-09-05",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    "read": true,
+    "createdAt": "2026-09-05T06:09:07.273Z"
+  },
+  {
+    "id": "1788588547312",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Afternoon Shift on Sunday, September 6 from 14:00 to 22:00",
+    "data": {
+      "scheduleId": "1788588547307",
+      "shiftName": "Afternoon Shift",
+      "date": "2026-09-06",
+      "startTime": "14:00",
+      "endTime": "22:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-05T06:09:07.312Z"
+  },
+  {
+    "id": "1788603897653",
+    "userId": 1784725264015,
+    "title": "New Comment on Task",
+    "message": "harllogeen2020@gmail.com commented on \"TEST\": \"I have completed this task\"",
+    "type": "info",
+    "read": false,
+    "createdAt": "2026-09-05T10:24:57.653Z"
+  },
+  {
+    "id": "1788603911932",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"Landing Page\" to 69%",
+    "type": "info",
+    "read": false,
+    "createdAt": "2026-09-05T10:25:11.932Z"
+  },
+  {
+    "id": "1788603912124",
+    "userId": 1784719952190,
+    "title": "Task Progress Updated",
+    "message": "Austin Agbara updated progress on \"Landing Page\" to 69%",
+    "type": "info",
+    "read": false,
+    "createdAt": "2026-09-05T10:25:12.124Z"
+  },
+  {
+    "id": "1788734683825",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Afternoon Shift on Sunday, September 13 from 14:00 to 22:00",
+    "data": {
+      "scheduleId": "1788734683821",
+      "shiftName": "Afternoon Shift",
+      "date": "2026-09-13",
+      "startTime": "14:00",
+      "endTime": "22:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-06T22:44:43.825Z"
+  },
+  {
+    "id": "1788877016630",
+    "userId": 1783718492655,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Weekend Day Shift on Saturday, September 12 from 09:00 to 17:00",
+    "data": {
+      "scheduleId": "1788877016620",
+      "shiftName": "Weekend Day Shift",
+      "date": "2026-09-12",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-08T14:16:56.630Z"
+  },
+  {
+    "id": "1788877016769",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Afternoon Shift on Sunday, September 13 from 14:00 to 22:00",
+    "data": {
+      "scheduleId": "1788877016751",
+      "shiftName": "Afternoon Shift",
+      "date": "2026-09-13",
+      "startTime": "14:00",
+      "endTime": "22:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-08T14:16:56.769Z"
+  },
+  {
+    "id": "1789388082137",
+    "userId": 1783718492655,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Weekend Day Shift on Saturday, September 19 from 09:00 to 17:00",
+    "data": {
+      "scheduleId": "1789388082131",
+      "shiftName": "Weekend Day Shift",
+      "date": "2026-09-19",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-14T12:14:42.137Z"
+  },
+  {
+    "id": "1789388082170",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Afternoon Shift on Sunday, September 20 from 14:00 to 22:00",
+    "data": {
+      "scheduleId": "1789388082166",
+      "shiftName": "Afternoon Shift",
+      "date": "2026-09-20",
+      "startTime": "14:00",
+      "endTime": "22:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-14T12:14:42.170Z"
+  }
+]

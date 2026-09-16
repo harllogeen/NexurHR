@@ -1,0 +1,537 @@
+<div class="schedule-builder-container">
+  <!-- Header -->
+  <div class="page-header">
+    <div class="header-content">
+      <div class="header-text">
+        <h1 class="page-title">Schedule Builder</h1>
+        <p class="page-subtitle">Assign employees to shifts and manage weekly schedules</p>
+      </div>
+      <div class="header-actions">
+        <button class="btn btn-secondary" (click)="toggleAvailabilityPanel()">
+          <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+          {{ showAvailabilityPanel ? 'Hide' : 'Show' }} Availability
+        </button>
+        <button class="btn btn-secondary" (click)="clearWeekSchedules()">
+          <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+          </svg>
+          Clear Week
+        </button>
+        <button class="btn btn-primary" (click)="openAutoGenerateModal()">
+          <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
+          Auto-Generate
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success/Error Messages -->
+  <div *ngIf="successMessage" class="alert alert-success">
+    <svg class="alert-icon" fill="currentColor" viewBox="0 0 20 20">
+      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+    </svg>
+    {{ successMessage }}
+  </div>
+
+  <div *ngIf="error" class="alert alert-error">
+    <svg class="alert-icon" fill="currentColor" viewBox="0 0 20 20">
+      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+    </svg>
+    {{ error }}
+  </div>
+
+  <!-- Filters & Navigation -->
+  <div class="controls-bar">
+    <!-- Week Navigation -->
+    <div class="week-navigation">
+      <button class="nav-btn" (click)="previousWeek()">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        </svg>
+      </button>
+      <div class="week-display">{{ getWeekDisplay() }}</div>
+      <button class="nav-btn" (click)="nextWeek()">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </button>
+      <button class="btn btn-sm btn-secondary" (click)="goToToday()">Today</button>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters">
+      <select [(ngModel)]="selectedDepartment" (change)="loadSchedules()" class="filter-select">
+        <option [value]="null">All Departments</option>
+        <option *ngFor="let dept of departments" [value]="dept.name">{{ dept.name }}</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="loading && schedules.length === 0" class="loading-state">
+    <div class="spinner"></div>
+    <p>Loading schedules...</p>
+  </div>
+
+  <!-- Employee Availability Panel -->
+  <div *ngIf="showAvailabilityPanel" class="card mb-6 overflow-hidden">
+    <div class="card-header bg-slate-50 dark:bg-slate-800/50">
+      <div class="flex flex-col gap-1">
+        <div class="flex items-center gap-3">
+          <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+          </svg>
+          <h3 class="text-lg font-semibold text-slate-900 dark:text-white m-0">Employee Availability & Leave Status</h3>
+        </div>
+        <p class="text-sm text-slate-500 dark:text-slate-400 m-0">View employee availability, preferences, and leave status for quick assignment decisions</p>
+      </div>
+    </div>
+
+    <div class="availability-grid-container">
+      <div class="availability-grid">
+        <!-- Header Row -->
+        <div class="availability-header">
+          <div class="employee-column-header">
+            <span>Employee</span>
+            <span class="header-subtitle">{{ getFilteredEmployeesForPanel().length }} total</span>
+          </div>
+          <div *ngFor="let day of weekDays" class="availability-day-header" [class.today]="isToday(day)">
+            <div class="day-name">{{ getDayName(day) }}</div>
+            <div class="day-date">{{ formatDateDisplay(day) }}</div>
+          </div>
+        </div>
+
+        <!-- Employee Rows -->
+        <div *ngFor="let employee of getFilteredEmployeesForPanel()" class="availability-row">
+          <!-- Employee Info -->
+          <div class="employee-info-cell">
+            <div class="employee-avatar-large">
+              {{ getEmployeeInitials(employee.id) }}
+            </div>
+            <div class="employee-details">
+              <div class="employee-full-name">{{ employee.firstName }} {{ employee.lastName }}</div>
+              <div class="employee-position">{{ employee.position }}</div>
+              <div class="employee-stats">
+                <span class="stat-badge">{{ getEmployeeScheduleCount(employee.id) }}/7 shifts</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Day Cells -->
+          <div 
+            *ngFor="let day of weekDays" 
+            class="availability-day-cell"
+            [class.today]="isToday(day)"
+            [class.available]="isEmployeeAvailable(employee.id, day) && !isEmployeeOnLeave(employee.id, day)"
+            [class.unavailable]="!isEmployeeAvailable(employee.id, day) && !isEmployeeOnLeave(employee.id, day)"
+            [class.on-leave]="isEmployeeOnLeave(employee.id, day)"
+            [class.scheduled]="isEmployeeScheduled(employee.id, day)"
+          >
+            <div class="cell-content-availability">
+              <!-- On Leave -->
+              <div *ngIf="isEmployeeOnLeave(employee.id, day)" class="status-indicator leave">
+                <svg class="status-icon" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"/>
+                </svg>
+                <span class="status-text">Leave</span>
+              </div>
+
+              <!-- Already Scheduled -->
+              <div *ngIf="!isEmployeeOnLeave(employee.id, day) && isEmployeeScheduled(employee.id, day)" class="status-indicator scheduled">
+                <svg class="status-icon" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span class="status-text">Scheduled</span>
+              </div>
+
+              <!-- Available -->
+              <div *ngIf="!isEmployeeOnLeave(employee.id, day) && !isEmployeeScheduled(employee.id, day) && isEmployeeAvailable(employee.id, day)" class="status-indicator available">
+                <svg class="status-icon" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <div class="availability-details">
+                  <span class="availability-time">{{ getEmployeeAvailableTime(employee.id, day) }}</span>
+                  <span class="availability-preference">{{ getEmployeePreferredShiftNames(employee.id, day) }}</span>
+                </div>
+                <button 
+                  class="quick-assign-btn" 
+                  (click)="quickAssignFromAvailability(employee, day)"
+                  title="Quick assign to preferred shift"
+                >
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                  </svg>
+                </button>
+              </div>
+
+              <!-- Not Available -->
+              <div *ngIf="!isEmployeeOnLeave(employee.id, day) && !isEmployeeScheduled(employee.id, day) && !isEmployeeAvailable(employee.id, day)" class="status-indicator unavailable">
+                <svg class="status-icon" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                </svg>
+                <span class="status-text">Not Available</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Empty State -->
+        <div *ngIf="getFilteredEmployeesForPanel().length === 0" class="empty-availability">
+          <svg class="empty-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+          <p>No employees found</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-legend">
+      <div class="legend-item">
+        <span class="legend-icon available">✓</span>
+        <span>Available</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-icon unavailable">✗</span>
+        <span>Not Available</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-icon leave">🏖️</span>
+        <span>On Leave</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-icon scheduled">✓</span>
+        <span>Already Scheduled</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-icon">🌅</span>
+        <span>Morning</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-icon">🌆</span>
+        <span>Afternoon</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-icon">🌙</span>
+        <span>Night</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Calendar Grid -->
+  <div *ngIf="!loading || schedules.length > 0" class="calendar-container">
+    <div class="calendar-grid">
+      <!-- Header Row -->
+      <div class="calendar-header">
+        <div class="shift-column-header">Shifts</div>
+        <div *ngFor="let day of weekDays" class="day-column-header" [class.today]="isToday(day)">
+          <div class="day-name">{{ getDayName(day) }}</div>
+          <div class="day-date">{{ formatDateDisplay(day) }}</div>
+        </div>
+      </div>
+
+      <!-- Shift Rows -->
+      <div *ngFor="let shift of getFilteredShifts()" class="shift-row">
+        <!-- Shift Info Column -->
+        <div class="shift-info-cell">
+          <div class="shift-indicator" [style.background-color]="shift.color"></div>
+          <div class="shift-details">
+            <div class="shift-name">{{ shift.name }}</div>
+            <div class="shift-time">{{ formatTime(shift.startTime) }} - {{ formatTime(shift.endTime) }}</div>
+            <div class="shift-required">{{ shift.requiredEmployees }} required</div>
+          </div>
+        </div>
+
+        <!-- Day Cells -->
+        <div 
+          *ngFor="let day of weekDays" 
+          class="day-cell"
+          [class.today]="isToday(day)"
+          [class.weekend]="day.getDay() === 0 || day.getDay() === 6"
+        >
+          <div class="cell-content">
+            <!-- Assigned Employees - Overlapping Avatars (show first 3) -->
+            <div class="assigned-employees-overlap">
+              <div class="avatar-group">
+                <div 
+                  *ngFor="let schedule of getSchedulesForDateAndShift(day, shift).slice(0, 3); let i = index"
+                  class="avatar-overlap-item"
+                  [style.background-color]="shift.color"
+                  [style.z-index]="10 - i"
+                  [title]="getEmployeeName(schedule.employeeId)"
+                >
+                  {{ getEmployeeInitials(schedule.employeeId) }}
+                  <button class="avatar-remove-overlap" (click)="removeSchedule(schedule); $event.stopPropagation()" title="Remove">
+                    ×
+                  </button>
+                </div>
+
+                <!-- "+X more" avatar -->
+                <div 
+                  *ngIf="getSchedulesForDateAndShift(day, shift).length > 3"
+                  class="avatar-more-overlap"
+                  [style.background-color]="shift.color + '40'"
+                  [style.border-color]="shift.color"
+                  [style.color]="shift.color"
+                  (click)="showEmployeeList(day, shift)"
+                  [title]="'View all ' + getSchedulesForDateAndShift(day, shift).length + ' employees'"
+                >
+                  +{{ getSchedulesForDateAndShift(day, shift).length - 3 }}
+                </div>
+              </div>
+            </div>
+
+            <!-- Add Button -->
+            <button class="add-assignment-btn" (click)="openAssignModal(day, shift)">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+              </svg>
+              <span>Assign</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Empty State -->
+      <div *ngIf="getFilteredShifts().length === 0" class="empty-calendar">
+        <svg class="empty-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        <p>No shifts configured. Create shifts first to start scheduling.</p>
+        <a routerLink="/shift-management" class="btn btn-primary">Go to Shift Management</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Manual Assign Modal -->
+  <div *ngIf="showAssignModal" class="modal-overlay" (click)="closeAssignModal()">
+    <div class="modal-content modal-sm" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2 class="modal-title">Assign Employee</h2>
+        <button class="modal-close" (click)="closeAssignModal()">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form (ngSubmit)="assignEmployee()" class="assign-form">
+          <div class="form-group">
+            <label class="form-label">Select Employee</label>
+            <select [(ngModel)]="assignForm.employeeId" name="employeeId" class="form-select" required>
+              <option value="">Choose an employee...</option>
+              <option *ngFor="let emp of getAvailableEmployees()" [value]="emp.id">
+                {{ emp.firstName }} {{ emp.lastName }} - {{ emp.position }}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-secondary" (click)="closeAssignModal()">Cancel</button>
+            <button type="submit" class="btn btn-primary" [disabled]="loading">
+              {{ loading ? 'Assigning...' : 'Assign' }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Auto-Generate Modal -->
+  <div *ngIf="showAutoGenerateModal" class="modal-overlay" (click)="closeAutoGenerateModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2 class="modal-title">Auto-Generate Schedules</h2>
+        <button class="modal-close" (click)="closeAutoGenerateModal()">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div *ngIf="!autoGenerateResult" class="auto-generate-form">
+          <p class="form-description">
+            Automatically assign employees to shifts based on availability, skills, and requirements.
+          </p>
+
+          <div class="form-group">
+            <label class="form-label">Date Range</label>
+            <div class="form-row">
+              <input 
+                type="date" 
+                [(ngModel)]="autoGenerateForm.startDate" 
+                class="form-input"
+              />
+              <span class="range-separator">to</span>
+              <input 
+                type="date" 
+                [(ngModel)]="autoGenerateForm.endDate" 
+                class="form-input"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Department (Optional)</label>
+            <select [(ngModel)]="autoGenerateForm.departmentId" class="form-select">
+              <option [value]="null">All Departments</option>
+              <option *ngFor="let dept of departments" [value]="dept.id">{{ dept.name }}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Select Shifts</label>
+            <div class="shifts-selector">
+              <label *ngFor="let shift of shifts" class="shift-checkbox">
+                <input 
+                  type="checkbox" 
+                  [checked]="isShiftSelected(shift.id)"
+                  (change)="toggleShiftSelection(shift.id)"
+                />
+                <span class="shift-indicator" [style.background-color]="shift.color"></span>
+                <span>{{ shift.name }}</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-secondary" (click)="closeAutoGenerateModal()">Cancel</button>
+            <button type="button" class="btn btn-primary" (click)="autoGenerateSchedules()" [disabled]="loading">
+              {{ loading ? 'Generating...' : 'Generate Schedules' }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Results -->
+        <div *ngIf="autoGenerateResult" class="auto-generate-results">
+          <div class="result-summary">
+            <div class="summary-card success">
+              <div class="summary-icon">
+                <svg fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+              </div>
+              <div class="summary-content">
+                <div class="summary-label">Schedules Created</div>
+                <div class="summary-value">{{ autoGenerateResult.summary.total }}</div>
+              </div>
+            </div>
+
+            <div *ngIf="autoGenerateResult.summary.errors > 0" class="summary-card warning">
+              <div class="summary-icon">
+                <svg fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                </svg>
+              </div>
+              <div class="summary-content">
+                <div class="summary-label">Warnings</div>
+                <div class="summary-value">{{ autoGenerateResult.summary.errors }}</div>
+              </div>
+            </div>
+
+            <div *ngIf="autoGenerateResult.summary.conflicts > 0" class="summary-card error">
+              <div class="summary-icon">
+                <svg fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                </svg>
+              </div>
+              <div class="summary-content">
+                <div class="summary-label">Conflicts</div>
+                <div class="summary-value">{{ autoGenerateResult.summary.conflicts }}</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Scheduling Warnings -->
+          <div *ngIf="autoGenerateResult.errors && autoGenerateResult.errors.length > 0" class="error-details">
+            <h4>Scheduling Warnings</h4>
+            <p class="warning-description">The following shifts could not be fully staffed due to insufficient available employees:</p>
+            <div *ngFor="let error of autoGenerateResult.errors" class="error-item">
+              <svg class="error-icon" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+              </svg>
+              <div class="error-text">
+                <strong>{{ error.date }} - {{ error.shift }}:</strong> {{ error.message }}
+              </div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-primary" (click)="closeAutoGenerateModal()">Done</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Employee List Modal -->
+  <div *ngIf="showEmployeeListModal" class="modal-overlay" (click)="closeEmployeeListModal()">
+    <div class="modal-content modal-md" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2 class="modal-title">
+          Assigned Employees
+          <span class="modal-subtitle">{{ employeeListModalData.shift?.name }} - {{ employeeListModalData.date | date:'EEE, MMM d' }}</span>
+        </h2>
+        <button class="modal-close" (click)="closeEmployeeListModal()">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="employee-list-grid">
+          <div 
+            *ngFor="let schedule of employeeListModalData.schedules" 
+            class="employee-list-item"
+          >
+            <div class="employee-list-avatar" [style.background-color]="employeeListModalData.shift?.color">
+              {{ getEmployeeInitials(schedule.employeeId) }}
+            </div>
+            <div class="employee-list-info">
+              <div class="employee-list-name">{{ getEmployeeName(schedule.employeeId) }}</div>
+              <div class="employee-list-meta">
+                {{ formatTime(schedule.startTime) }} - {{ formatTime(schedule.endTime) }}
+              </div>
+            </div>
+            <button 
+              class="employee-list-remove" 
+              (click)="removeSchedule(schedule)"
+              title="Remove assignment"
+            >
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div *ngIf="!employeeListModalData.schedules || employeeListModalData.schedules.length === 0" class="empty-state">
+          <svg class="empty-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+          </svg>
+          <p>No employees assigned</p>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="closeEmployeeListModal()">Close</button>
+        <button 
+          class="btn btn-primary" 
+          (click)="employeeListModalData.day && employeeListModalData.shift && openAssignModal(employeeListModalData.day, employeeListModalData.shift); closeEmployeeListModal()"
+          [disabled]="!employeeListModalData.day || !employeeListModalData.shift"
+        >
+          <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+          </svg>
+          Add More
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

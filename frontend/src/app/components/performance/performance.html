@@ -1,0 +1,508 @@
+<div class="space-y-5">
+
+  <!-- ── Page header ──────────────────────────────────── -->
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Performance &amp; Appraisals</h1>
+      <p class="page-subtitle">Set OKRs, track progress, and manage 360° feedback.</p>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       MY PERFORMANCE VIEW
+  ══════════════════════════════════════════════════ -->
+  <div *ngIf="isView('my')">
+
+    <!-- Rating trend bar chart -->
+    <div *ngIf="myPerformance.length > 0" class="card p-5 mb-5">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <p class="text-2xs font-bold text-slate-400 uppercase tracking-widest mb-0.5">Rating History</p>
+          <h2 class="text-sm font-bold text-slate-900 dark:text-white">Your Performance Trend</h2>
+        </div>
+        <span class="badge badge-blue text-[10px]">Last {{ myPerformance.slice(0,5).length }} goals</span>
+      </div>
+      <div class="flex items-end gap-3 h-28">
+        <div *ngFor="let goal of myPerformance.slice(0,5)"
+             class="flex flex-col items-center justify-end h-full flex-1 group relative">
+          <div class="w-full max-w-[36px] bg-indigo-500 hover:bg-indigo-600 rounded-t-lg transition-all duration-300 cursor-default"
+               [style.height]="(goal.rating ? (goal.rating / 5) * 100 : 8) + '%'"></div>
+          <span class="text-[10px] text-slate-400 dark:text-slate-500 mt-1.5 truncate w-full text-center">{{ goal.title | slice:0:8 }}…</span>
+          <!-- Tooltip -->
+          <div class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-xs py-1 px-2.5 rounded-lg whitespace-nowrap z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity shadow-card-md">
+            {{ goal.title }}: {{ goal.rating || 'No rating' }}/5
+          </div>
+        </div>
+      </div>
+      <!-- Y-axis labels -->
+      <div class="flex justify-between mt-3 border-t border-slate-100 dark:border-slate-800 pt-2">
+        <span class="text-2xs text-slate-400">0</span>
+        <span class="text-2xs text-slate-400">5</span>
+      </div>
+    </div>
+
+    <!-- Main grid: form left, goals right -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+      <!-- ── New Goal Form ── -->
+      <div class="lg:col-span-1">
+        <div class="card overflow-hidden sticky top-6">
+          <div class="card-header">
+            <h2 class="text-sm font-bold text-slate-900 dark:text-white">Set New Goal</h2>
+          </div>
+          <form (ngSubmit)="submitGoal()" class="p-5 space-y-4">
+            <div class="form-group">
+              <label class="label">Goal Title</label>
+              <input [(ngModel)]="newGoal.title" name="title" type="text" class="input"
+                     placeholder="What do you want to achieve?">
+            </div>
+            <div class="form-group">
+              <label class="label">Description</label>
+              <textarea [(ngModel)]="newGoal.description" name="description" rows="2" class="input resize-none"
+                        placeholder="Describe the goal in detail…"></textarea>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div class="form-group">
+                <label class="label">Deadline</label>
+                <input [(ngModel)]="newGoal.deadline" name="deadline" type="date" class="input">
+              </div>
+              <div class="form-group">
+                <label class="label">Review Cycle</label>
+                <select [(ngModel)]="newGoal.reviewCycle" name="reviewCycle" class="select">
+                  <option>Quarterly</option>
+                  <option>Biannual</option>
+                  <option>Annual</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="label">Self Review</label>
+              <textarea [(ngModel)]="newGoal.selfReview" name="selfReview" rows="2" class="input resize-none"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="label">Manager Review</label>
+              <textarea [(ngModel)]="newGoal.managerReview" name="managerReview" rows="2" class="input resize-none"></textarea>
+            </div>
+
+            <!-- Key Results -->
+            <div class="border-t border-slate-100 dark:border-slate-800 pt-4 space-y-2">
+              <label class="label">Key Results</label>
+              <div class="flex gap-2">
+                <input [(ngModel)]="newKrTitle" name="newKr" type="text" class="input-sm flex-1"
+                       placeholder="e.g. Increase sales by 15%">
+                <button type="button" (click)="addKeyResult()" class="btn-secondary btn-sm flex-shrink-0 px-3">Add</button>
+              </div>
+              <ul class="space-y-1">
+                <li *ngFor="let kr of newGoal.keyResults; let i = index"
+                    class="flex items-center justify-between text-xs bg-slate-50 dark:bg-slate-950 px-3 py-2 rounded-lg">
+                  <div class="flex items-center gap-2">
+                    <svg class="w-3 h-3 text-indigo-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    <span class="text-slate-700 dark:text-slate-300">{{ kr.title }}</span>
+                  </div>
+                  <button type="button" (click)="removeKeyResult(i)" class="text-slate-400 hover:text-red-500 transition-colors ml-2">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                  </button>
+                </li>
+              </ul>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div class="form-group">
+                <label class="label">Rating</label>
+                <select [(ngModel)]="newGoal.rating" name="rating" class="select">
+                  <option value="">Select…</option>
+                  <option value="1">1 — Below</option>
+                  <option value="2">2 — Developing</option>
+                  <option value="3">3 — Meets</option>
+                  <option value="4">4 — Exceeds</option>
+                  <option value="5">5 — Outstanding</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="label">Comments</label>
+                <textarea [(ngModel)]="newGoal.comments" name="comments" rows="2" class="input resize-none"></textarea>
+              </div>
+            </div>
+
+            <button type="submit" [disabled]="loading" class="btn-primary w-full justify-center">
+              {{ loading ? 'Saving…' : 'Set Goal' }}
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- ── My Goals List ── -->
+      <div class="lg:col-span-2">
+        <div class="card overflow-hidden">
+          <div class="card-header">
+            <h2 class="text-sm font-bold text-slate-900 dark:text-white">My Goals &amp; Objectives</h2>
+            <span class="badge badge-slate">{{ myPerformance.length }} goals</span>
+          </div>
+
+          <div class="divide-y divide-slate-50 dark:divide-slate-800/70">
+
+            <!-- Goal accordion rows -->
+            <div *ngFor="let goal of paginatedMyPerformance"
+                 class="transition-colors"
+                 [ngClass]="expandedGoalId === goal.id ? 'bg-indigo-50/30 dark:bg-indigo-900/10' : ''">
+
+              <!-- Summary row (always visible) -->
+              <div class="px-5 py-4 cursor-pointer hover:bg-slate-50/60 dark:hover:bg-slate-800/30 transition-colors"
+                   (click)="toggleGoalExpand(goal.id)">
+                <div class="flex items-start justify-between gap-4">
+                  <div class="flex-1 min-w-0">
+                    <div class="flex items-center gap-2 flex-wrap mb-1">
+                      <span class="badge badge-blue text-[9px] uppercase tracking-wider">{{ goal.type }}</span>
+                      <h3 class="text-sm font-semibold text-slate-900 dark:text-white truncate">{{ goal.title }}</h3>
+                    </div>
+                    <div class="flex items-center gap-3 text-2xs text-slate-400 dark:text-slate-500 flex-wrap">
+                      <span class="flex items-center gap-1">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                        {{ goal.deadline | date:'mediumDate' }}
+                      </span>
+                      <span>{{ goal.reviewCycle || 'Quarterly' }}</span>
+                      <span *ngIf="goal.keyResults?.length" class="text-indigo-500 dark:text-indigo-400">{{ goal.keyResults.length }} key results</span>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-2.5 flex-shrink-0">
+                    <!-- Mini progress bar -->
+                    <div class="hidden sm:flex items-center gap-1.5">
+                      <div class="progress-track w-16">
+                        <div class="progress-fill bg-indigo-500" [style.width]="(reviewDrafts[goal.id]?.progress || 0) + '%'"></div>
+                      </div>
+                      <span class="text-2xs font-bold text-indigo-600 dark:text-indigo-400 w-7 text-right">{{ reviewDrafts[goal.id]?.progress || 0 }}%</span>
+                    </div>
+                    <!-- Status badge -->
+                    <span class="badge text-[9px]"
+                          [ngClass]="{
+                            'badge-amber': goal.status === 'Proposed',
+                            'badge-blue':  goal.status === 'In Progress',
+                            'badge-green': goal.status === 'Completed'
+                          }">
+                      {{ goal.status }}
+                    </span>
+                    <!-- Rating badge -->
+                    <span *ngIf="goal.rating" class="badge badge-amber text-[9px]">★ {{ goal.rating }}/5</span>
+                    <!-- Chevron -->
+                    <svg class="w-4 h-4 text-slate-400 dark:text-slate-500 transition-transform duration-200 flex-shrink-0"
+                         [class.rotate-180]="expandedGoalId === goal.id"
+                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Expanded detail section -->
+              <div *ngIf="expandedGoalId === goal.id"
+                   class="px-5 pb-5 border-t border-slate-100 dark:border-slate-800 goal-detail-enter">
+                <div class="pt-4 space-y-4">
+
+                  <!-- Description -->
+                  <p *ngIf="goal.description" class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{{ goal.description }}</p>
+
+                  <!-- Progress slider -->
+                  <div>
+                    <div class="flex items-center justify-between mb-2">
+                      <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Overall Progress</span>
+                      <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400">{{ reviewDrafts[goal.id]?.progress || 0 }}%</span>
+                    </div>
+                    <input type="range" min="0" max="100"
+                           [ngModel]="reviewDrafts[goal.id]?.progress"
+                           (ngModelChange)="updateProgress(goal, $event)"
+                           [name]="goal.id + '-progress'">
+                  </div>
+
+                  <!-- Key Results -->
+                  <div *ngIf="goal.keyResults?.length > 0">
+                    <p class="text-2xs font-bold text-slate-400 uppercase tracking-widest mb-2">Key Results</p>
+                    <div class="space-y-1.5">
+                      <div *ngFor="let kr of goal.keyResults" class="flex items-center gap-2.5 text-sm">
+                        <div class="w-4 h-4 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-colors"
+                             [ngClass]="kr.completed ? 'border-emerald-500 bg-emerald-500' : 'border-slate-300 dark:border-slate-600'">
+                          <svg *ngIf="kr.completed" class="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                        </div>
+                        <span [ngClass]="kr.completed ? 'line-through text-slate-400 dark:text-slate-500' : 'text-slate-700 dark:text-slate-300'">{{ kr.title }}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Review panel -->
+                  <div class="rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-4 space-y-4">
+                    <div class="grid md:grid-cols-2 gap-4">
+                      <div class="form-group">
+                        <label class="label">Self Review</label>
+                        <textarea [ngModel]="reviewDrafts[goal.id]?.selfReview"
+                                  [name]="goal.id + '-selfReview'"
+                                  (ngModelChange)="reviewDrafts[goal.id].selfReview = $event"
+                                  rows="2" class="input resize-none text-sm"></textarea>
+                      </div>
+                      <div class="form-group">
+                        <label class="label">Manager Review</label>
+                        <textarea [ngModel]="reviewDrafts[goal.id]?.managerReview"
+                                  [name]="goal.id + '-managerReview'"
+                                  (ngModelChange)="reviewDrafts[goal.id].managerReview = $event"
+                                  rows="2" class="input resize-none text-sm"></textarea>
+                      </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-4">
+                      <div class="form-group">
+                        <label class="label">Rating</label>
+                        <select [ngModel]="reviewDrafts[goal.id]?.rating"
+                                [name]="goal.id + '-rating'"
+                                (ngModelChange)="reviewDrafts[goal.id].rating = $event"
+                                class="select">
+                          <option value="">Select…</option>
+                          <option value="1">1 — Below expectations</option>
+                          <option value="2">2 — Developing</option>
+                          <option value="3">3 — Meets expectations</option>
+                          <option value="4">4 — Exceeds expectations</option>
+                          <option value="5">5 — Outstanding</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label class="label">Comments</label>
+                        <textarea [ngModel]="reviewDrafts[goal.id]?.comments"
+                                  [name]="goal.id + '-comments'"
+                                  (ngModelChange)="reviewDrafts[goal.id].comments = $event"
+                                  rows="2" class="input resize-none text-sm"></textarea>
+                      </div>
+                    </div>
+                    <div class="flex items-center justify-between pt-1">
+                      <span *ngIf="goal.history?.length" class="text-2xs text-slate-400 dark:text-slate-500">
+                        Last updated: {{ goal.history[goal.history.length - 1].updatedAt | date:'short' }}
+                      </span>
+                      <span *ngIf="!goal.history?.length"></span>
+                      <button type="button" (click)="saveReview(goal)" class="btn-primary btn-sm">
+                        Save Review
+                      </button>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div><!-- end goal rows -->
+
+            <!-- Empty state -->
+            <div *ngIf="myPerformance.length === 0" class="empty-state">
+              <div class="empty-state-icon">
+                <svg class="w-7 h-7 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+              </div>
+              <p class="text-sm font-semibold text-slate-900 dark:text-white">No goals set yet</p>
+              <p class="text-xs text-slate-400 mt-1">Use the form on the left to set your first goal.</p>
+            </div>
+
+          </div><!-- end divide -->
+
+          <!-- Pagination -->
+          <div *ngIf="myPerformance.length > pageSize" class="card-footer flex flex-col sm:flex-row items-center justify-between gap-3">
+            <p class="text-xs text-slate-500 dark:text-slate-400">
+              {{ (myPerformancePage - 1) * pageSize + 1 }}–{{ myPerformancePage * pageSize > myPerformance.length ? myPerformance.length : myPerformancePage * pageSize }}
+              of {{ myPerformance.length }}
+            </p>
+            <div class="pagination">
+              <button (click)="goToPage('my', myPerformancePage - 1)" [disabled]="myPerformancePage === 1" class="page-btn">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+              </button>
+              <button *ngFor="let p of getPageNumbers(myPerformanceTotalPages)" (click)="goToPage('my', p)"
+                      [ngClass]="p === myPerformancePage ? 'page-btn-active' : 'page-btn'">{{ p }}</button>
+              <button (click)="goToPage('my', myPerformancePage + 1)" [disabled]="myPerformancePage === myPerformanceTotalPages" class="page-btn">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+
+        </div><!-- end card -->
+      </div><!-- end col-span-2 -->
+
+    </div><!-- end grid -->
+  </div><!-- end isView(my) -->
+
+  <!-- ══════════════════════════════════════════════════
+       TEAM VIEW (Peer Review)
+  ══════════════════════════════════════════════════ -->
+  <div *ngIf="isView('team')">
+    <div class="card overflow-hidden">
+      <div class="card-header">
+        <div>
+          <h2 class="text-sm font-bold text-slate-900 dark:text-white">Team OKRs</h2>
+          <p class="text-xs text-slate-400 dark:text-slate-500 mt-0.5">Provide anonymous peer feedback to your colleagues</p>
+        </div>
+        <span class="badge badge-blue">360° Feedback</span>
+      </div>
+
+      <div class="divide-y divide-slate-50 dark:divide-slate-800/70">
+
+        <div *ngFor="let goal of paginatedTeamPerformance"
+             class="px-5 py-4 hover:bg-slate-50/40 dark:hover:bg-slate-800/20 transition-colors">
+          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 flex-wrap mb-1">
+                <h3 class="text-sm font-semibold text-slate-900 dark:text-white">{{ goal.title }}</h3>
+                <span class="text-2xs text-slate-400 dark:text-slate-500 border-l border-slate-200 dark:border-slate-700 pl-2">Owner #{{ goal.userId }}</span>
+              </div>
+              <p class="text-sm text-slate-500 dark:text-slate-400 mb-3 leading-relaxed">{{ goal.description }}</p>
+              <div class="flex items-center gap-4 text-2xs text-slate-400 dark:text-slate-500 mb-3 flex-wrap">
+                <span>Due: {{ goal.deadline | date:'shortDate' }}</span>
+                <span>Status: <span class="font-semibold text-slate-700 dark:text-slate-300">{{ goal.status }}</span></span>
+                <span>Progress: <span class="font-bold text-indigo-600 dark:text-indigo-400">{{ goal.progress || 0 }}%</span></span>
+              </div>
+
+              <!-- Feedback trigger button -->
+              <button (click)="showFeedbackModalFor = goal.id"
+                      *ngIf="showFeedbackModalFor !== goal.id"
+                      class="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 px-3 py-1.5 rounded-lg transition-colors">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                Add Anonymous Peer Feedback
+              </button>
+
+              <!-- Feedback form (inline) -->
+              <div *ngIf="showFeedbackModalFor === goal.id"
+                   class="mt-3 rounded-xl bg-indigo-50/60 dark:bg-indigo-900/20 border border-indigo-100 dark:border-indigo-800/40 p-4">
+                <p class="text-xs font-bold text-indigo-700 dark:text-indigo-400 uppercase tracking-wider mb-2">Anonymous Peer Feedback</p>
+                <textarea [(ngModel)]="newFeedbackText[goal.id]" [name]="'fb-' + goal.id" rows="3"
+                          class="input text-sm resize-none mb-3"
+                          placeholder="Provide constructive feedback for your peer…"></textarea>
+                <div class="flex justify-end gap-2">
+                  <button type="button" (click)="showFeedbackModalFor = null" class="btn-secondary btn-sm">Cancel</button>
+                  <button type="button" (click)="submitFeedback(goal.id)" class="btn-primary btn-sm">Submit Feedback</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Empty -->
+        <div *ngIf="teamPerformance.length === 0" class="empty-state">
+          <div class="empty-state-icon">
+            <svg class="w-7 h-7 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <p class="text-sm font-semibold text-slate-900 dark:text-white">No team goals available</p>
+        </div>
+
+      </div><!-- end divide -->
+
+      <!-- Pagination -->
+      <div *ngIf="teamPerformance.length > pageSize" class="card-footer flex flex-col sm:flex-row items-center justify-between gap-3">
+        <p class="text-xs text-slate-500 dark:text-slate-400">
+          {{ (teamPerformancePage - 1) * pageSize + 1 }}–{{ teamPerformancePage * pageSize > teamPerformance.length ? teamPerformance.length : teamPerformancePage * pageSize }}
+          of {{ teamPerformance.length }}
+        </p>
+        <div class="pagination">
+          <button (click)="goToPage('team', teamPerformancePage - 1)" [disabled]="teamPerformancePage === 1" class="page-btn">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+          </button>
+          <button *ngFor="let p of getPageNumbers(teamPerformanceTotalPages)" (click)="goToPage('team', p)"
+                  [ngClass]="p === teamPerformancePage ? 'page-btn-active' : 'page-btn'">{{ p }}</button>
+          <button (click)="goToPage('team', teamPerformancePage + 1)" [disabled]="teamPerformancePage === teamPerformanceTotalPages" class="page-btn">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+    </div><!-- end card -->
+  </div><!-- end isView(team) -->
+
+  <!-- ══════════════════════════════════════════════════
+       ALL PERFORMANCE VIEW (HR / Manager)
+  ══════════════════════════════════════════════════ -->
+  <div *ngIf="(user?.role === 'hr' || user?.role === 'manager' || user?.role === 'super-admin') && isView('all')">
+    <div class="table-container overflow-hidden">
+      <div class="card-header">
+        <div>
+          <h2 class="text-sm font-bold text-slate-900 dark:text-white">Team Performance Reviews</h2>
+          <p class="text-xs text-slate-400 dark:text-slate-500 mt-0.5">Acknowledge and action all employee goals</p>
+        </div>
+        <span class="badge badge-slate">{{ allPerformance.length }} records</span>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="w-10">#</th>
+              <th>Employee ID</th>
+              <th>Employee</th>
+              <th>Goal / Review</th>
+              <th>Progress</th>
+              <th>Status</th>
+              <th class="text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let perf of paginatedAllPerformance; let i = index">
+              <td class="text-2xs text-slate-400 font-medium">{{ (allPerformancePage - 1) * pageSize + i + 1 }}</td>
+              <td class="text-sm font-medium text-slate-600 dark:text-slate-400">
+                {{ perf.userId }}
+              </td>
+              <td>
+                <div class="flex items-center gap-2.5">
+                  <div class="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
+                    {{ getEmployeeInitials(perf.userId) }}
+                  </div>
+                  <span class="text-sm font-medium text-slate-900 dark:text-white">{{ getEmployeeName(perf.userId) }}</span>
+                </div>
+              </td>
+              <td class="max-w-[280px]">
+                <p class="text-sm font-semibold text-slate-900 dark:text-white truncate">{{ perf.title }}</p>
+                <p class="text-2xs text-slate-400 dark:text-slate-500 mt-0.5">Due: {{ perf.deadline | date:'shortDate' }}</p>
+              </td>
+              <td>
+                <div class="flex items-center gap-2">
+                  <div class="progress-track w-20">
+                    <div class="progress-fill bg-indigo-500" [style.width]="(perf.progress || 0) + '%'"></div>
+                  </div>
+                  <span class="text-2xs font-bold text-slate-500 dark:text-slate-400 w-7">{{ perf.progress || 0 }}%</span>
+                </div>
+              </td>
+              <td>
+                <span class="badge"
+                      [ngClass]="{
+                        'badge-amber': perf.status === 'Proposed',
+                        'badge-blue':  perf.status === 'In Progress',
+                        'badge-green': perf.status === 'Completed'
+                      }">
+                  {{ perf.status }}
+                </span>
+              </td>
+              <td class="text-right">
+                <button (click)="updateGoalStatus(perf.id, 'In Progress')"
+                        class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors">
+                  Acknowledge →
+                </button>
+              </td>
+            </tr>
+            <tr *ngIf="allPerformance.length === 0">
+              <td colspan="6" class="py-0">
+                <div class="empty-state">
+                  <div class="empty-state-icon"><svg class="w-7 h-7 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div>
+                  <p class="text-sm font-semibold text-slate-900 dark:text-white">No performance records</p>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination -->
+      <div *ngIf="allPerformance.length > pageSize" class="card-footer flex flex-col sm:flex-row items-center justify-between gap-3">
+        <p class="text-xs text-slate-500 dark:text-slate-400">
+          {{ (allPerformancePage - 1) * pageSize + 1 }}–{{ allPerformancePage * pageSize > allPerformance.length ? allPerformance.length : allPerformancePage * pageSize }}
+          of {{ allPerformance.length }}
+        </p>
+        <div class="pagination">
+          <button (click)="goToPage('all', allPerformancePage - 1)" [disabled]="allPerformancePage === 1" class="page-btn">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+          </button>
+          <button *ngFor="let p of getPageNumbers(allPerformanceTotalPages)" (click)="goToPage('all', p)"
+                  [ngClass]="p === allPerformancePage ? 'page-btn-active' : 'page-btn'">{{ p }}</button>
+          <button (click)="goToPage('all', allPerformancePage + 1)" [disabled]="allPerformancePage === allPerformanceTotalPages" class="page-btn">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+    </div><!-- end table-container -->
+  </div><!-- end isView(all) -->
+
+</div>

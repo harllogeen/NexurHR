@@ -1,0 +1,117 @@
+[
+  {
+    "id": 1764829579586,
+    "username": "harllogeen2020",
+    "password": "$2b$08$KuOVHrB0ciYC.wqKNF8IJuL3dHKltV/VfTx8b01EKbvK8PNu8a5/e",
+    "role": "staff",
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTc2NDgyOTU3OTU4Niwicm9sZSI6InN0YWZmIiwiaWF0IjoxNzg4NDg1ODY4LCJleHAiOjE3ODkwOTA2Njh9.agxE3Cf_Y4maToqZ98guVtvhAP2ONYE7j5wdNvZki24",
+    "refreshTokenVersion": 1,
+    "lastLoginAt": "2026-09-04T01:37:48.301Z"
+  },
+  {
+    "id": 1764829943217,
+    "username": "briansusan306@gmail.com",
+    "password": "$2b$08$hW01UvvPSMCOb6eoXPtA3OOJx.DZJtQW.zCR6AFo/yZHYqf8g/X4W",
+    "role": "hr",
+    "employeeId": 1764829943216,
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTc2NDgyOTk0MzIxNywicm9sZSI6ImhyIiwiZW1wbG95ZWVJZCI6MTc2NDgyOTk0MzIxNiwiaWF0IjoxNzg5NDc1NjMyLCJleHAiOjE3OTAwODA0MzJ9.ZlMu1CeMPvUllK0hvX-J3YvEbDQb--deBybc1tc6ee0",
+    "refreshTokenVersion": 222,
+    "lastLoginAt": "2026-09-15T12:33:52.085Z"
+  },
+  {
+    "id": 1764830815579,
+    "username": "testuser_12345",
+    "password": "$2b$08$CZvI0zkkFVgdlAgSvajOZuvX.NqjE3QEo42raJ/RU1SfRRQj7rS4W",
+    "role": "staff"
+  },
+  {
+    "id": 1770202193316,
+    "username": "John Alamu",
+    "password": "$2b$08$VbvQ5dd4etLYbvncJpr4o.43hkwLT9gxsj6wkBd1/Gyfou3x6uLhS",
+    "role": "employee"
+  },
+  {
+    "id": 1770637858228,
+    "username": "Omolola",
+    "password": "$2b$08$5zPsre2uy9rbtEtpMZ4ahu368gbhv75cP43RcoQhEPt74RbtZ.zPG",
+    "role": "employee"
+  },
+  {
+    "id": 1783502180174,
+    "email": "johnalugbin@gmail.com",
+    "password": "$2b$10$12G3HpzoScs9z8SCsZ5HDeYN/m43BWE63.mT19je6NDpLYDPH6jLm",
+    "role": "employee",
+    "username": "johnalugbin@gmail.com",
+    "employeeId": 1783502180173,
+    "requirePasswordChange": true
+  },
+  {
+    "id": 1783502564401,
+    "email": "harllogeen2020@gmail.com",
+    "password": "$2b$08$CWCKDqj7OURfD/Tz.yuQCejDyWpdegRBpV11NeKOiILWG0bjL0g9O",
+    "role": "employee",
+    "username": "harllogeen2020@gmail.com",
+    "employeeId": 1783502564400,
+    "requirePasswordChange": true,
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTc4MzUwMjU2NDQwMSwicm9sZSI6ImVtcGxveWVlIiwiZW1wbG95ZWVJZCI6MTc4MzUwMjU2NDQwMCwiaWF0IjoxNzg4NzI0NDk2LCJleHAiOjE3ODkzMjkyOTZ9.FnZFHIRwa-1Dp66v2J5xZyl8XEZuBmmRWiOd6WNM2lo",
+    "refreshTokenVersion": 100,
+    "lastLoginAt": "2026-09-06T19:54:56.784Z"
+  },
+  {
+    "id": 1783718492655,
+    "email": "alugbin7@gmail.com",
+    "password": "$2b$10$tyDD6Zj/UAKzU6o6C/q95.5gKzZ6DOgsjp2tYvXjajasLb2BRe2aK",
+    "role": "manager",
+    "username": "alugbin7@gmail.com",
+    "employeeId": 1783718492654,
+    "requirePasswordChange": true,
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTc4MzcxODQ5MjY1NSwicm9sZSI6Im1hbmFnZXIiLCJlbXBsb3llZUlkIjoxNzgzNzE4NDkyNjU0LCJpYXQiOjE3ODg4NzY3MjMsImV4cCI6MTc4OTQ4MTUyM30.Vrn4tJeMYx48EQerUuuUR64ESAAcCRc9YZeggHUnqMo",
+    "refreshTokenVersion": 72,
+    "lastLoginAt": "2026-09-08T14:12:03.973Z"
+  },
+  {
+    "id": 1783749498192,
+    "username": "demoemployee123",
+    "password": "$2b$08$.ZYdhk7FD3V4MU5/VWyfhOZk9M/Kvk9Lj3WBQXxo5H/qSV/xIRAo.",
+    "role": "employee",
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTc4Mzc0OTQ5ODE5Miwicm9sZSI6ImVtcGxveWVlIiwiaWF0IjoxNzgzNzQ5NTcwLCJleHAiOjE3ODQzNTQzNzB9.OmHvpEcLWu4k0IF4r1uL-616PH8jaNdw0HAJ9VH4ZSY",
+    "refreshTokenVersion": 1,
+    "lastLoginAt": "2026-07-11T05:59:30.814Z"
+  },
+  {
+    "id": 1784719952190,
+    "email": "akanmualugbin@gmail.com",
+    "password": "$2b$10$0auWeR7/yi4KyszVxnTwe.Soez9K0u1OqhhmFsaHRE89IEAzITULK",
+    "role": "supervisor",
+    "username": "akanmualugbin@gmail.com",
+    "employeeId": 1784719952189,
+    "requirePasswordChange": true,
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTc4NDcxOTk1MjE5MCwicm9sZSI6InN1cGVydmlzb3IiLCJlbXBsb3llZUlkIjoxNzg0NzE5OTUyMTg5LCJpYXQiOjE3ODg2MzA0OTksImV4cCI6MTc4OTIzNTI5OX0.9ledJkja_LJjHQYOFCQ465cgAkJaj-bRTs0MKgFnC10",
+    "refreshTokenVersion": 16,
+    "lastLoginAt": "2026-09-05T17:48:19.028Z"
+  },
+  {
+    "id": 1784725264015,
+    "email": "alugbinoluwaferanmi@gmail.com",
+    "password": "$2b$08$mnPTMkTpOBTX4nuWAGzOBOMrUhGPXjRDU1Uo7ecNT6GJvi18dnHMC",
+    "role": "cto",
+    "username": "alugbinoluwaferanmi@gmail.com",
+    "employeeId": 1784725264014,
+    "requirePasswordChange": true,
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTc4NDcyNTI2NDAxNSwicm9sZSI6ImN0byIsImVtcGxveWVlSWQiOjE3ODQ3MjUyNjQwMTQsImlhdCI6MTc4ODUxNzMyNSwiZXhwIjoxNzg5MTIyMTI1fQ.2z50Nhg2ObT09Q2ZUM-ZfrJ9bxo-H3QP4MTyiWcJ87Y",
+    "refreshTokenVersion": 13,
+    "lastLoginAt": "2026-09-04T10:22:05.834Z"
+  },
+  {
+    "id": 1788725742264,
+    "email": "praiseoluwaferanmi5@gmail.com",
+    "password": "$2b$10$SwFE.yZ0wbnMqoFYeFT24OC/LEzVIbLKwQOntwLdpDMHme46Opmia",
+    "role": "employee",
+    "username": "praiseoluwaferanmi5@gmail.com",
+    "employeeId": 1788725742263,
+    "requirePasswordChange": true,
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTc4ODcyNTc0MjI2NCwicm9sZSI6ImVtcGxveWVlIiwiZW1wbG95ZWVJZCI6MTc4ODcyNTc0MjI2MywiaWF0IjoxNzg4NzI1NzczLCJleHAiOjE3ODkzMzA1NzN9.g0CdE9QVFsQz_nKoojj2axSTWHcJNvD8grV69KihEBI",
+    "refreshTokenVersion": 1,
+    "lastLoginAt": "2026-09-06T20:16:13.927Z"
+  }
+]

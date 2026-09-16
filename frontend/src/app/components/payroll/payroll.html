@@ -1,0 +1,363 @@
+<div class="space-y-6">
+ <!-- Header -->
+ <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+ <div>
+ <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Payroll Management</h1>
+ <p class="text-gray-500 dark:text-slate-400 mt-1">Manage salaries, allowances, deductions, and payslips.</p>
+ </div>
+
+ <div *ngIf="user?.role === 'hr' || user?.role === 'accountant'" class="flex items-center gap-3">
+ <button (click)="exportCSV()"
+ class="px-4 py-2.5 bg-white dark:bg-slate-900 transition-colors border border-gray-200 dark:border-slate-700 text-gray-700 dark:text-slate-300 rounded-xl font-medium hover:bg-gray-50 dark:hover:bg-slate-800/50 transition-all flex items-center gap-2 text-sm">
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+ <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+ d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+ </path>
+ </svg>
+ Export
+ </button>
+ <button *ngIf="user.role === 'accountant'" (click)="generatePayroll()" [disabled]="loading"
+ class="px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-medium shadow-lg shadow-blue-600/20 transition-all flex items-center gap-2 text-sm">
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+ <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+ d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+ </svg>
+ Generate
+ </button>
+ </div>
+ </div>
+
+ <!-- Filters -->
+ <div class="bg-white dark:bg-slate-900 transition-colors p-4 rounded-xl border border-gray-100 dark:border-slate-800 shadow-sm dark:shadow-none flex flex-wrap items-center gap-4">
+ <div class="flex items-center gap-2">
+ <label class="text-sm font-medium text-gray-600 dark:text-slate-400">Month:</label>
+ <select [(ngModel)]="selectedMonth" (change)="onFilterChange()"
+ class="bg-transparent dark:bg-slate-800/50 text-gray-900 dark:text-white border border-gray-200 dark:border-slate-700 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500">
+ <option *ngFor="let m of months" [ngValue]="m.value">{{ m.label }}</option>
+ </select>
+ </div>
+ <div class="flex items-center gap-2">
+ <label class="text-sm font-medium text-gray-600 dark:text-slate-400">Year:</label>
+ <select [(ngModel)]="selectedYear" (change)="onFilterChange()"
+ class="bg-transparent dark:bg-slate-800/50 text-gray-900 dark:text-white border border-gray-200 dark:border-slate-700 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500">
+ <option *ngFor="let y of years" [ngValue]="y">{{ y }}</option>
+ </select>
+ </div>
+ <div class="text-sm text-gray-500 dark:text-slate-400 ml-auto">
+ <span class="font-medium text-gray-700 dark:text-slate-300">{{ getMonthLabel(selectedMonth) }} {{ selectedYear }}</span>
+ </div>
+ </div>
+
+ <!-- HR/Accountant View -->
+ <div *ngIf="user?.role === 'hr' || user?.role === 'accountant'"
+ class="bg-white dark:bg-slate-900 transition-colors rounded-2xl shadow-sm dark:shadow-none border border-gray-100 dark:border-slate-800 overflow-hidden">
+ <div class="p-5 border-b border-gray-100 dark:border-slate-800 flex items-center justify-between">
+ <h2 class="text-lg font-bold text-gray-900 dark:text-white">Payroll Records</h2>
+ <span class="text-sm text-gray-500 dark:text-slate-400">{{ payrollData.length }} employees</span>
+ </div>
+ <div class="overflow-x-auto">
+ <table class="w-full text-left text-sm">
+ <thead class="bg-gray-50 dark:bg-slate-950 transition-colors text-gray-500 dark:text-slate-400 text-xs uppercase tracking-wider font-semibold">
+ <tr>
+ <th class="px-4 py-3">Employee ID</th>
+ <th class="px-4 py-3">Employee</th>
+ <th class="px-4 py-3">Hours</th>
+ <th class="px-4 py-3">Base</th>
+ <th class="px-4 py-3">Allowances</th>
+ <th class="px-4 py-3">Deduct</th>
+ <th class="px-4 py-3">Net Pay</th>
+ <th class="px-4 py-3">Status</th>
+ <th class="px-4 py-3 text-right">Actions</th>
+ </tr>
+ </thead>
+ <tbody class="divide-y divide-gray-100 dark:divide-slate-800">
+ <tr *ngFor="let item of paginatedPayrollData" class="hover:bg-gray-50 dark:hover:bg-slate-800/50 transition-colors">
+ <td class="px-4 py-3 text-gray-600 dark:text-slate-400 font-medium">
+ {{ item.employeeId || '-' }}
+ </td>
+ <td class="px-4 py-3">
+ <div class="flex items-center gap-2">
+ <div
+ class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 text-white flex items-center justify-center font-bold text-xs">
+ {{ item.name?.charAt(0) }}
+ </div>
+ <div>
+ <div class="font-medium text-gray-900 dark:text-white text-sm">{{ item.name }}</div>
+ <div class="text-xs text-gray-400 dark:text-slate-500">{{ item.department || '-' }}</div>
+ </div>
+ </div>
+ </td>
+ <td class="px-4 py-3 text-gray-600 dark:text-slate-400">{{ item.hoursWorked || 0 }}h</td>
+ <td class="px-4 py-3 text-gray-600 dark:text-slate-400">₦{{ item.baseSalary | number }}</td>
+ <td class="px-4 py-3 text-green-600">+₦{{ (item.allowances || 0) + (item.bonus || 0) | number }}
+ </td>
+ <td class="px-4 py-3 text-red-500">-₦{{ (item.loan || 0) + (item.deductions || 0) +
+ (item.latePenalty || 0) | number }}</td>
+ <td class="px-4 py-3 font-bold text-gray-900 dark:text-white">₦{{ item.netPay | number }}</td>
+ <td class="px-4 py-3">
+ <span [ngClass]="{
+ 'bg-green-50 text-green-700': item.status === 'Paid',
+ 'bg-yellow-50 text-yellow-700': item.status === 'Pending'
+ }" class="px-2 py-0.5 text-xs font-semibold rounded-full">
+ {{ item.status }}
+ </span>
+ </td>
+ <td class="px-4 py-3 text-right">
+ <div class="flex items-center justify-end gap-1">
+ <button (click)="openConfigModal(item)" title="Configure"
+ class="p-1.5 text-gray-500 dark:text-slate-400 hover:text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:bg-blue-900/30 transition-colors rounded-lg">
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+ <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+ d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
+ </path>
+ <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+ d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+ </svg>
+ </button>
+ <button *ngIf="item.status !== 'Paid' && user.role === 'accountant'"
+ (click)="markAsPaid(item)" title="Mark Paid"
+ class="p-1.5 text-gray-500 dark:text-slate-400 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors">
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+ <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+ d="M5 13l4 4L19 7"></path>
+ </svg>
+ </button>
+ <button (click)="downloadPayslipPDF(item)" title="Download PDF"
+ class="p-1.5 text-gray-500 dark:text-slate-400 hover:text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:bg-blue-900/30 transition-colors rounded-lg">
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+ <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+ d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+ </path>
+ </svg>
+ </button>
+ </div>
+ </td>
+ </tr>
+ <tr *ngIf="payrollData.length === 0 && !loading">
+ <td colspan="8" class="px-6 py-12 text-center text-gray-500 dark:text-slate-400">
+ No records for {{ getMonthLabel(selectedMonth) }} {{ selectedYear }}. Click "Generate" to
+ create.
+ </td>
+ </tr>
+ </tbody>
+ </table>
+ </div>
+ <!-- Pagination -->
+ <div *ngIf="payrollData.length > pageSize" class="px-6 py-4 border-t border-gray-100 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 bg-white dark:bg-slate-900 transition-colors">
+ <p class="text-sm text-gray-500 dark:text-slate-400">Showing <span class="font-semibold text-gray-700 dark:text-slate-300">{{ (payrollPage - 1) * pageSize + 1 }}</span> to <span class="font-semibold text-gray-700 dark:text-slate-300">{{ payrollPage * pageSize > payrollData.length ? payrollData.length : payrollPage * pageSize }}</span> of <span class="font-semibold text-gray-700 dark:text-slate-300">{{ payrollData.length }}</span></p>
+ <div class="flex items-center gap-1">
+ <button (click)="goToPage(payrollPage - 1)" [disabled]="payrollPage === 1" class="px-3 py-1.5 text-sm font-medium rounded-lg bg-transparent dark:bg-slate-800/50 text-gray-900 dark:text-white border border-gray-200 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-800/50 transition-colors disabled:opacity-40 disabled:cursor-not-allowed">Previous</button>
+ <button *ngFor="let p of getPageNumbers(payrollTotalPages)" (click)="goToPage(p)" class="w-9 h-9 text-sm font-bold rounded-lg transition-all" [ngClass]="{'bg-indigo-600 text-white shadow-sm dark:shadow-none': p === payrollPage, 'text-gray-600 dark:text-slate-400 hover:bg-gray-100 dark:bg-slate-800 transition-colors': p !== payrollPage}">{{ p }}</button>
+ <button (click)="goToPage(payrollPage + 1)" [disabled]="payrollPage === payrollTotalPages" class="px-3 py-1.5 text-sm font-medium rounded-lg bg-transparent dark:bg-slate-800/50 text-gray-900 dark:text-white border border-gray-200 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-800/50 transition-colors disabled:opacity-40 disabled:cursor-not-allowed">Next</button>
+ </div>
+ </div>
+ </div>
+
+ <!-- Employee View (Personal Payslip) -->
+ <div *ngIf="user?.role !== 'hr' && user?.role !== 'accountant'" class="space-y-6">
+ <div *ngIf="myPayslip" class="bg-white dark:bg-slate-900 transition-colors rounded-2xl shadow-xl border border-gray-100 dark:border-slate-800 overflow-hidden max-w-2xl">
+ <div class="p-6 bg-gradient-to-r from-slate-900 to-slate-800 text-white flex justify-between items-start">
+ <div>
+ <h2 class="text-xl font-bold">Payslip</h2>
+ <p class="text-slate-400 dark:text-slate-500 text-sm mt-1">{{ getMonthLabel(myPayslip.month) }} {{ myPayslip.year }}</p>
+ </div>
+ <div class="text-right">
+ <div class="text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 font-bold">Net Pay</div>
+ <div class="text-2xl font-black text-blue-400">₦{{ myPayslip.netPay | number }}</div>
+ </div>
+ </div>
+ <div class="p-6 space-y-4">
+ <div class="grid grid-cols-2 gap-4 text-sm">
+ <div>
+ <p class="text-gray-500 dark:text-slate-400">Base Salary</p>
+ <p class="font-bold">₦{{ myPayslip.baseSalary | number }}</p>
+ </div>
+ <div>
+ <p class="text-gray-500 dark:text-slate-400">Hours Worked</p>
+ <p class="font-bold">{{ myPayslip.hoursWorked || 0 }} hours</p>
+ </div>
+ <div>
+ <p class="text-gray-500 dark:text-slate-400">Allowances + Bonus</p>
+ <p class="font-bold text-green-600">+₦{{ (myPayslip.allowances || 0) + (myPayslip.bonus || 0) |
+ number }}</p>
+ </div>
+ <div>
+ <p class="text-gray-500 dark:text-slate-400">Deductions</p>
+ <p class="font-bold text-red-500">-₦{{ (myPayslip.loan || 0) + (myPayslip.deductions || 0) |
+ number }}</p>
+ </div>
+ </div>
+ <div class="pt-4 border-t flex justify-between items-center">
+ <span [ngClass]="{
+ 'bg-green-50 text-green-700': myPayslip.status === 'Paid',
+ 'bg-yellow-50 text-yellow-700': myPayslip.status === 'Pending'
+ }" class="px-3 py-1 text-xs font-semibold rounded-full">{{ myPayslip.status }}</span>
+ <button (click)="downloadPayslipPDF(myPayslip)"
+ class="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-all text-sm flex items-center gap-2">
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+ <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+ d="M12 10v6m0 0l-3-3m3 3l3-3"></path>
+ </svg>
+ Download PDF
+ </button>
+ </div>
+ </div>
+ </div>
+ <div *ngIf="!myPayslip && !loading" class="bg-blue-50 dark:bg-blue-900/30 transition-colors border border-blue-100 dark:border-blue-800/50 p-6 rounded-xl text-center">
+ <p class="text-blue-800 font-medium">No payslip for {{ getMonthLabel(selectedMonth) }} {{ selectedYear }}
+ </p>
+ </div>
+ </div>
+</div>
+
+<!-- Config Modal -->
+<div *ngIf="showConfigModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+ <div class="bg-white dark:bg-slate-900 transition-colors rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
+ <!-- Header -->
+ <div
+ class="p-5 border-b border-gray-100 dark:border-slate-800 flex items-center justify-between bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+ <div>
+ <h2 class="text-lg font-bold">Payroll Configuration</h2>
+ <p class="text-blue-100 text-sm">{{ selectedEmployee?.name || 'Employee' }}</p>
+ </div>
+ <button (click)="closeConfigModal()" class="p-2 hover:bg-white/20 dark:bg-slate-900/20 transition-colors rounded-lg transition-colors">
+ <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+ <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+ </path>
+ </svg>
+ </button>
+ </div>
+
+ <!-- Body -->
+ <div class="p-5 overflow-y-auto flex-1 space-y-6">
+ <!-- Loans Section -->
+ <div class="space-y-3">
+ <h3 class="font-bold text-gray-900 dark:text-white flex items-center gap-2">
+ <span
+ class="w-6 h-6 bg-red-100 text-red-600 rounded flex items-center justify-center text-xs">₦</span>
+ Loans
+ </h3>
+ <div *ngFor="let loan of employeeConfig.loans"
+ class="flex items-center justify-between bg-red-50 dark:bg-red-900/30 transition-colors p-3 rounded-lg">
+ <div>
+ <p class="font-medium text-gray-900 dark:text-white">{{ loan.description || 'Loan' }}</p>
+ <p class="text-xs text-gray-500 dark:text-slate-400">Balance: ₦{{ loan.balance | number }} | Monthly: ₦{{
+ loan.monthlyDeduction | number }}</p>
+ </div>
+ <button *ngIf="user.role === 'accountant'" (click)="removeItem('loan', loan.id)"
+ class="text-red-500 hover:text-red-700 p-1">
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+ <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+ d="M6 18L18 6M6 6l12 12"></path>
+ </svg>
+ </button>
+ </div>
+ <div *ngIf="user.role === 'accountant'" class="flex gap-2">
+ <input [(ngModel)]="newLoan.amount" type="number" placeholder="Amount"
+ class="flex-1 border rounded-lg px-3 py-2 text-sm">
+ <input [(ngModel)]="newLoan.monthlyDeduction" type="number" placeholder="Monthly"
+ class="w-24 border rounded-lg px-3 py-2 text-sm">
+ <input [(ngModel)]="newLoan.description" type="text" placeholder="Description"
+ class="flex-1 border rounded-lg px-3 py-2 text-sm">
+ <button (click)="addLoan()"
+ class="px-3 py-2 bg-red-600 text-white rounded-lg text-sm font-medium">Add</button>
+ </div>
+ </div>
+
+ <!-- Allowances Section -->
+ <div class="space-y-3">
+ <h3 class="font-bold text-gray-900 dark:text-white flex items-center gap-2">
+ <span
+ class="w-6 h-6 bg-green-100 text-green-600 rounded flex items-center justify-center text-xs">+</span>
+ Allowances
+ </h3>
+ <div *ngFor="let allowance of employeeConfig.allowances"
+ class="flex items-center justify-between bg-green-50 p-3 rounded-lg">
+ <div>
+ <p class="font-medium text-gray-900 dark:text-white">{{ allowance.type }}</p>
+ <p class="text-xs text-gray-500 dark:text-slate-400">₦{{ allowance.amount | number }}/month</p>
+ </div>
+ <button *ngIf="user.role === 'accountant'" (click)="removeItem('allowance', allowance.id)"
+ class="text-red-500 hover:text-red-700 p-1">
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+ <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+ d="M6 18L18 6M6 6l12 12"></path>
+ </svg>
+ </button>
+ </div>
+ <div *ngIf="user.role === 'accountant'" class="flex gap-2">
+ <select [(ngModel)]="newAllowance.type" class="border rounded-lg px-3 py-2 text-sm">
+ <option *ngFor="let t of allowanceTypes" [value]="t">{{ t }}</option>
+ </select>
+ <input [(ngModel)]="newAllowance.amount" type="number" placeholder="Amount"
+ class="flex-1 border rounded-lg px-3 py-2 text-sm">
+ <button (click)="addAllowance()"
+ class="px-3 py-2 bg-green-600 text-white rounded-lg text-sm font-medium">Add</button>
+ </div>
+ </div>
+
+ <!-- Deductions Section -->
+ <div class="space-y-3">
+ <h3 class="font-bold text-gray-900 dark:text-white flex items-center gap-2">
+ <span
+ class="w-6 h-6 bg-orange-100 text-orange-600 rounded flex items-center justify-center text-xs">-</span>
+ Deductions
+ </h3>
+ <div *ngFor="let deduction of employeeConfig.deductions"
+ class="flex items-center justify-between bg-orange-50 p-3 rounded-lg">
+ <div>
+ <p class="font-medium text-gray-900 dark:text-white">{{ deduction.type }}</p>
+ <p class="text-xs text-gray-500 dark:text-slate-400">{{ deduction.isPercentage ? deduction.amount + '%' : '₦' +
+ (deduction.amount | number) }}/month</p>
+ </div>
+ <button *ngIf="user.role === 'accountant'" (click)="removeItem('deduction', deduction.id)"
+ class="text-red-500 hover:text-red-700 p-1">
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+ <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+ d="M6 18L18 6M6 6l12 12"></path>
+ </svg>
+ </button>
+ </div>
+ <div *ngIf="user.role === 'accountant'" class="flex gap-2 items-center">
+ <select [(ngModel)]="newDeduction.type" class="border rounded-lg px-3 py-2 text-sm">
+ <option *ngFor="let t of deductionTypes" [value]="t">{{ t }}</option>
+ </select>
+ <input [(ngModel)]="newDeduction.amount" type="number" placeholder="Amount"
+ class="flex-1 border rounded-lg px-3 py-2 text-sm">
+ <label class="flex items-center gap-1 text-sm text-gray-600 dark:text-slate-400">
+ <input [(ngModel)]="newDeduction.isPercentage" type="checkbox" class="rounded">
+ %
+ </label>
+ <button (click)="addDeduction()"
+ class="px-3 py-2 bg-orange-600 text-white rounded-lg text-sm font-medium">Add</button>
+ </div>
+ </div>
+
+ <!-- Other Settings -->
+ <div class="grid grid-cols-2 gap-4">
+ <div>
+ <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">Bonus (₦)</label>
+ <input [(ngModel)]="employeeConfig.bonus" type="number" [disabled]="user.role !== 'accountant'"
+ class="w-full border rounded-lg px-3 py-2 text-sm disabled:bg-gray-50 dark:bg-slate-950 transition-colors disabled:text-gray-500 dark:text-slate-400">
+ </div>
+ <div>
+ <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">Late Penalty (₦/min)</label>
+ <input [(ngModel)]="employeeConfig.latePenaltyPerMinute" type="number"
+ [disabled]="user.role !== 'accountant'"
+ class="w-full border rounded-lg px-3 py-2 text-sm disabled:bg-gray-50 dark:bg-slate-950 transition-colors disabled:text-gray-500 dark:text-slate-400">
+ </div>
+ </div>
+ </div>
+
+ <!-- Footer -->
+ <div class="p-4 border-t border-gray-100 dark:border-slate-800 flex justify-end gap-3 bg-gray-50 dark:bg-slate-950 transition-colors">
+ <button (click)="closeConfigModal()"
+ class="px-4 py-2 text-gray-700 dark:text-slate-300 hover:bg-gray-100 dark:bg-slate-800 transition-colors rounded-lg font-medium text-sm">
+ {{ user.role === 'accountant' ? 'Cancel' : 'Close' }}
+ </button>
+ <button *ngIf="user.role === 'accountant'" (click)="saveConfig()"
+ class="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium text-sm hover:bg-blue-700">Save
+ Config</button>
+ </div>
+ </div>
+</div>

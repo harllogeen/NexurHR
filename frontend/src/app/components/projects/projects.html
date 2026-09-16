@@ -1,0 +1,330 @@
+<div class="h-full flex flex-col bg-slate-50 dark:bg-slate-950 transition-colors relative">
+ <!-- Header -->
+ <div class="px-8 py-6 bg-white dark:bg-slate-900 transition-colors border-b border-gray-200 dark:border-slate-700">
+ <div class="flex justify-between items-center">
+ <div>
+ <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Projects</h1>
+ <p class="text-sm text-gray-500 dark:text-slate-400 mt-1">Manage high-level projects and team assignments.</p>
+ </div>
+ <app-button
+   *ngIf="canCreateProject()"
+   variant="primary"
+   icon="plus"
+   (clicked)="openCreateModal()"
+ >
+   New Project
+ </app-button>
+ </div>
+ </div>
+
+ <!-- Content -->
+ <div class="flex-1 p-8 overflow-y-auto">
+ 
+ <div *ngIf="loading" class="flex justify-center items-center py-20">
+ <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-blue-600"></div>
+ </div>
+
+ <div *ngIf="!loading && projects.length === 0" class="text-center py-20 bg-white dark:bg-slate-900 transition-colors rounded-2xl border border-dashed border-gray-300 dark:border-slate-600">
+ <svg class="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+ <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+ </svg>
+ <h3 class="text-lg font-medium text-gray-900 dark:text-white">No projects found</h3>
+ <p class="text-gray-500 dark:text-slate-400 mt-1">Get started by creating a new project.</p>
+ <app-button
+   *ngIf="canCreateProject()"
+   customClass="mt-6 bg-blue-50 dark:bg-blue-900/30 text-blue-700 hover:bg-blue-100"
+   (clicked)="openCreateModal()"
+ >
+   Create Project
+ </app-button>
+ </div>
+
+ <div *ngIf="!loading && projects.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+ <!-- Project Cards -->
+ <div *ngFor="let p of projects" (click)="openDetails(p)" class="bg-white dark:bg-slate-900 transition-colors rounded-2xl border border-gray-200 dark:border-slate-700 p-6 hover:shadow-lg transition-all cursor-pointer group flex flex-col">
+ <div class="flex justify-between items-start mb-4">
+ <app-status-badge
+   [variant]="p.status === 'Planning' ? 'info' : p.status === 'Active' ? 'success' : p.status === 'Completed' ? 'purple' : 'warning'"
+ >
+   {{ p.status }}
+ </app-status-badge>
+ <button *ngIf="canCreateProject()" (click)="deleteProject(p.id); $event.stopPropagation()" class="text-gray-400 dark:text-slate-500 hover:text-red-500 transition-colors opacity-0 group-hover:opacity-100">
+ <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+ <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+ </svg>
+ </button>
+ </div>
+ 
+ <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1 line-clamp-1">{{ p.name }}</h3>
+ <p class="text-sm text-gray-500 dark:text-slate-400 line-clamp-2 mb-4 flex-1">{{ p.description || 'No description provided.' }}</p>
+
+ <div class="space-y-3">
+ <div class="flex items-center justify-between text-sm">
+ <span class="text-gray-500 dark:text-slate-400">Progress</span>
+ <span class="font-medium text-gray-900 dark:text-white">{{ p.progress || 0 }}%</span>
+ </div>
+ <div class="w-full bg-gray-100 dark:bg-slate-800 transition-colors rounded-full h-2 overflow-hidden">
+ <div class="bg-blue-500 h-2 rounded-full transition-all duration-500" [style.width.%]="p.progress || 0"></div>
+ </div>
+ </div>
+
+ <div class="mt-6 flex items-center justify-between pt-4 border-t border-gray-100 dark:border-slate-800">
+ <div class="flex items-center text-sm text-gray-500 dark:text-slate-400">
+ <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+ <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+ </svg>
+ {{ p.members?.length || 0 }} members
+ </div>
+ <div class="text-xs text-gray-400 dark:text-slate-500 font-medium">
+ Due {{ p.endDate | date:'MMM d' }}
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <!-- Create Modal -->
+ <div *ngIf="showModal" class="fixed inset-0 z-50 overflow-y-auto">
+ <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:p-0">
+ <div class="fixed inset-0 transition-opacity bg-gray-900/50 backdrop-blur-sm" (click)="closeModal()"></div>
+
+ <div class="relative inline-block w-full max-w-lg p-8 overflow-hidden text-left align-middle transition-all transform bg-white dark:bg-slate-900 transition-colors shadow-2xl rounded-2xl sm:my-8">
+ <div class="flex justify-between items-center mb-6">
+ <h3 class="text-xl font-bold text-gray-900 dark:text-white">{{ editingProject ? 'Edit Project' : 'Create New Project' }}</h3>
+ <app-button
+   variant="ghost"
+   icon="x"
+   [iconOnly]="true"
+   customClass="text-gray-400 dark:text-slate-500 hover:text-gray-500 dark:hover:text-slate-400"
+   (clicked)="closeModal()"
+ ></app-button>
+ </div>
+
+ <div class="space-y-5">
+ <div>
+ <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">Project Name *</label>
+ <app-form-input
+   [(ngModel)]="newProject.name"
+   placeholder="e.g. Website Redesign"
+   [required]="true"
+ ></app-form-input>
+ </div>
+
+ <div>
+ <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">Description</label>
+ <app-form-textarea
+   [(ngModel)]="newProject.description"
+   [rows]="3"
+   placeholder="Project goals and overview..."
+ ></app-form-textarea>
+ </div>
+
+ <div class="grid grid-cols-2 gap-4">
+ <div>
+ <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">Status</label>
+ <app-form-select
+   [(ngModel)]="newProject.status"
+   [options]="statusOptions"
+ ></app-form-select>
+ </div>
+ <div class="relative" (click)="$event.stopPropagation()">
+ <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">Departments</label>
+ 
+ <div class="w-full px-4 py-2.5 border border-gray-200 dark:border-slate-700 rounded-xl flex items-center justify-between cursor-pointer bg-white dark:bg-slate-900 transition-colors transition-all hover:border-gray-300 dark:border-slate-600"
+ [class.border-blue-500]="showDeptDropdown" [class.ring-2]="showDeptDropdown" [class.ring-blue-500.ring-opacity-20]="showDeptDropdown"
+ (click)="showDeptDropdown = !showDeptDropdown; showMemberDropdown = false;">
+ <span class="text-sm truncate" [class.text-gray-400]="newProject.department.length === 0" [class.dark:text-slate-500]="newProject.department.length === 0" [class.text-gray-900]="newProject.department.length > 0" [class.dark:text-white]="newProject.department.length > 0">
+ {{ selectedDepartmentsText }}
+ </span>
+ <svg class="w-4 h-4 text-gray-400 dark:text-slate-500 shrink-0 ml-2 transition-transform duration-200" [class.rotate-180]="showDeptDropdown" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+ </div>
+
+ <div *ngIf="showDeptDropdown" class="absolute z-10 w-full mt-1 bg-white dark:bg-slate-900 transition-colors border border-gray-200 dark:border-slate-700 rounded-xl shadow-lg max-h-48 overflow-y-auto p-2 space-y-1">
+ <div *ngFor="let dept of departments" 
+ class="flex items-center p-2 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors rounded-lg cursor-pointer"
+ (click)="toggleDepartment(dept.name); $event.stopPropagation()">
+ <div class="w-5 h-5 border rounded border-gray-300 dark:border-slate-600 flex items-center justify-center mr-3 transition-colors shrink-0"
+ [class.bg-blue-600]="hasDepartment(dept.name)" [class.border-blue-600]="hasDepartment(dept.name)">
+ <svg *ngIf="hasDepartment(dept.name)" class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+ <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+ </svg>
+ </div>
+ <span class="text-sm font-medium text-gray-900 dark:text-white">{{ dept.name }}</span>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <div class="grid grid-cols-2 gap-4">
+ <div>
+ <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">Start Date</label>
+ <app-form-input
+   type="date"
+   [(ngModel)]="newProject.startDate"
+ ></app-form-input>
+ </div>
+ <div>
+ <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">Target End Date</label>
+ <app-form-input
+   type="date"
+   [(ngModel)]="newProject.endDate"
+ ></app-form-input>
+ </div>
+ </div>
+
+ <!-- Team Members Selection -->
+ <div class="relative" (click)="$event.stopPropagation()">
+ <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">Team Members</label>
+ 
+ <div class="w-full px-4 py-2.5 border border-gray-200 dark:border-slate-700 rounded-xl flex items-center justify-between cursor-pointer bg-white dark:bg-slate-900 transition-colors transition-all hover:border-gray-300 dark:border-slate-600"
+ [class.border-blue-500]="showMemberDropdown" [class.ring-2]="showMemberDropdown" [class.ring-blue-500.ring-opacity-20]="showMemberDropdown"
+ (click)="showMemberDropdown = !showMemberDropdown; showDeptDropdown = false;">
+ <span class="text-sm truncate" [class.text-gray-400]="newProject.members.length === 0" [class.dark:text-slate-500]="newProject.members.length === 0" [class.text-gray-900]="newProject.members.length > 0" [class.dark:text-white]="newProject.members.length > 0">
+ {{ selectedMembersText }}
+ </span>
+ <svg class="w-4 h-4 text-gray-400 dark:text-slate-500 shrink-0 ml-2 transition-transform duration-200" [class.rotate-180]="showMemberDropdown" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+ </div>
+
+ <div *ngIf="showMemberDropdown" class="absolute z-10 w-full bottom-full mb-1 bg-white dark:bg-slate-900 transition-colors border border-gray-200 dark:border-slate-700 rounded-xl shadow-lg max-h-48 overflow-y-auto p-2 space-y-1">
+ <div *ngFor="let emp of employees" 
+ class="flex items-center p-2 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors rounded-lg cursor-pointer"
+ (click)="toggleMember(emp.id); $event.stopPropagation()">
+ <div class="w-5 h-5 border rounded border-gray-300 dark:border-slate-600 flex items-center justify-center mr-3 transition-colors shrink-0"
+ [class.bg-blue-600]="hasMember(emp.id)" [class.border-blue-600]="hasMember(emp.id)">
+ <svg *ngIf="hasMember(emp.id)" class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+ <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+ </svg>
+ </div>
+ <div class="truncate">
+ <p class="text-sm font-medium text-gray-900 dark:text-white truncate">{{ emp.firstName }} {{ emp.lastName }}</p>
+ <p class="text-xs text-gray-500 dark:text-slate-400 truncate">{{ emp.designation || emp.role }}</p>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <div class="mt-8 flex justify-end space-x-3">
+ <app-button
+   variant="secondary"
+   (clicked)="closeModal()"
+ >
+   Cancel
+ </app-button>
+ <app-button
+   variant="primary"
+   [disabled]="!newProject.name"
+   (clicked)="saveProject()"
+ >
+   {{ editingProject ? 'Save Changes' : 'Create Project' }}
+ </app-button>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <!-- Details Slide-over -->
+ <div *ngIf="showDetailSlideOver" class="fixed inset-0 overflow-hidden z-50">
+ <div class="absolute inset-0 overflow-hidden">
+ <div class="absolute inset-0 bg-gray-900/50 backdrop-blur-sm transition-opacity" (click)="closeDetails()"></div>
+ 
+ <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+ <div class="pointer-events-auto w-screen max-w-xl transform transition-transform duration-500 ease-in-out bg-white dark:bg-slate-900 transition-colors shadow-2xl flex flex-col">
+ <!-- Slide-over Header -->
+ <div class="px-6 py-6 border-b border-gray-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 transition-colors/50">
+ <div class="flex items-center justify-between mb-4">
+ <span [ngClass]="{
+ 'bg-blue-100 text-blue-700': selectedProject.status === 'Planning',
+ 'bg-green-100 text-green-700': selectedProject.status === 'Active',
+ 'bg-purple-100 text-purple-700': selectedProject.status === 'Completed',
+ 'bg-orange-100 text-orange-700': selectedProject.status === 'On-Hold'
+ }" class="px-3 py-1 rounded-full text-xs font-medium">
+ {{ selectedProject.status }}
+ </span>
+ <div class="flex items-center space-x-2">
+ <button (click)="closeDetails()" class="p-2 text-gray-400 dark:text-slate-500 hover:text-gray-500 dark:text-slate-400 hover:bg-gray-100 dark:bg-slate-800 transition-colors rounded-full">
+ <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+ <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+ </svg>
+ </button>
+ </div>
+ </div>
+ <h2 class="text-2xl font-bold text-gray-900 dark:text-white">{{ selectedProject.name }}</h2>
+ <p class="text-gray-500 dark:text-slate-400 mt-2 text-sm leading-relaxed">{{ selectedProject.description || 'No description provided.' }}</p>
+ </div>
+
+ <!-- Slide-over Content -->
+ <div class="flex-1 overflow-y-auto p-6 space-y-8">
+ 
+ <!-- Timeline -->
+ <div>
+ <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-3 uppercase tracking-wider">Project Timeline</h3>
+ <div class="flex gap-8 p-4 bg-slate-50 dark:bg-slate-950 transition-colors rounded-xl border border-slate-100 dark:border-slate-800">
+ <div>
+ <p class="text-xs text-gray-500 dark:text-slate-400 mb-1">Start Date</p>
+ <p class="font-medium text-gray-900 dark:text-white">{{ selectedProject.startDate ? (selectedProject.startDate | date:'mediumDate') : 'Not set' }}</p>
+ </div>
+ <div>
+ <p class="text-xs text-gray-500 dark:text-slate-400 mb-1">End Date</p>
+ <p class="font-medium text-gray-900 dark:text-white">{{ selectedProject.endDate ? (selectedProject.endDate | date:'mediumDate') : 'Not set' }}</p>
+ </div>
+ </div>
+ </div>
+
+ <!-- Team Members -->
+ <div>
+ <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-3 uppercase tracking-wider">Team Members ({{ selectedProject.members?.length || 0 }})</h3>
+ <div class="space-y-2">
+ <div *ngIf="!selectedProject.members?.length" class="text-sm text-gray-500 dark:text-slate-400 italic">No members assigned to this project yet.</div>
+ <div *ngFor="let memberId of selectedProject.members" class="flex items-center p-3 bg-white dark:bg-slate-900 transition-colors border border-gray-100 dark:border-slate-800 rounded-xl shadow-sm dark:shadow-none">
+ <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 dark:text-blue-400 flex items-center justify-center font-medium text-sm mr-3">
+ {{ getEmployeeName(memberId).charAt(0) }}
+ </div>
+ <span class="text-sm font-medium text-gray-900 dark:text-white">{{ getEmployeeName(memberId) }}</span>
+ </div>
+ </div>
+ </div>
+
+ <!-- Associated Tasks -->
+ <div>
+ <div class="flex items-center justify-between mb-3">
+ <h3 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider">Project Tasks</h3>
+ <span class="text-xs font-medium text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 transition-colors px-2 py-1 rounded-md">{{ getProjectTasks(selectedProject.id).length }} Tasks</span>
+ </div>
+ 
+ <div class="space-y-3">
+ <div *ngIf="getProjectTasks(selectedProject.id).length === 0" class="text-sm text-gray-500 dark:text-slate-400 italic p-4 text-center border border-dashed border-gray-200 dark:border-slate-700 rounded-xl">
+ No tasks are linked to this project.
+ </div>
+ <div *ngFor="let task of getProjectTasks(selectedProject.id)" class="p-4 bg-white dark:bg-slate-900 transition-colors border border-gray-200 dark:border-slate-700 rounded-xl shadow-sm dark:shadow-none">
+ <div class="flex justify-between items-start mb-2">
+ <h4 class="font-medium text-gray-900 dark:text-white text-sm">{{ task.title }}</h4>
+ <span [ngClass]="{
+ 'bg-yellow-100 text-yellow-700': task.status === 'Pending',
+ 'bg-blue-100 text-blue-700': task.status === 'In Progress',
+ 'bg-purple-100 text-purple-700': task.status === 'Under Review',
+ 'bg-green-100 text-green-700': task.status === 'Completed'
+ }" class="px-2.5 py-0.5 rounded text-[10px] font-semibold tracking-wide uppercase">
+ {{ task.status }}
+ </span>
+ </div>
+ <div class="flex items-center justify-between mt-3">
+ <span class="text-xs text-gray-500 dark:text-slate-400">Assigned to: <span class="font-medium text-gray-700 dark:text-slate-300">{{ task.assignedToName }}</span></span>
+ <div class="flex items-center">
+ <div class="w-16 bg-gray-200 rounded-full h-1.5 mr-2">
+ <div class="bg-blue-600 h-1.5 rounded-full" [style.width.%]="task.progress || 0"></div>
+ </div>
+ <span class="text-xs font-medium text-gray-600 dark:text-slate-400">{{ task.progress || 0 }}%</span>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ </div>
+ 
+ </div>
+ </div>
+ </div>
+ </div>
+</div>

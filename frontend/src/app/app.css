@@ -1,0 +1,12 @@
+body {
+  background: linear-gradient(135deg, #f8fbff 0%, #f4f7fb 100%);
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(59, 130, 246, 0.25);
+}

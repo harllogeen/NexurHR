@@ -1,0 +1,46 @@
+<!-- email-template.component.html -->
+<div class="email-wrapper">
+  
+    <!-- Logo & Company Header -->
+   <!-- Logo & Company Header -->
+  <div class="header-section">
+    <div class="logo-container">
+      <div class="logo-icon" [style.background]="logoColor">
+        <span class="logo-symbol">{{ logoSymbol }}</span>
+      </div>
+      <div class="logo-text">
+        <span class="company-name" [style.color]="primaryColor">{{ companyName }}</span>
+        <span class="company-tagline">{{ companyTagline }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Subject -->
+  <!-- <div class="subject">
+    {{ subject }}
+  </div> -->
+
+  <!-- Salutation -->
+  <div class="salutation">
+    {{ salutation }}
+  </div>
+
+  <!-- Body -->
+  <div class="body">
+    <p *ngFor="let paragraph of bodyParagraphs">
+      {{ paragraph }}
+    </p>
+  </div>
+
+  <!-- Signature -->
+  <div class="signature">
+    <p>{{ closing }}</p>
+    <p class="sender-name">{{ senderName }}</p>
+  </div>
+
+
+  <!-- Footer -->
+  <div class="footer">
+    {{ footerText }}
+  </div>
+</div>

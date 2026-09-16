@@ -1,0 +1,38 @@
+[
+  {
+    "id": "rule_001",
+    "name": "Standard Late Policy",
+    "ruleType": "late",
+    "department": "all",
+    "lateThreshold": 15,
+    "earlyCloseThreshold": 15,
+    "gracePeriod": 5,
+    "overtimeThreshold": 30,
+    "autoApproveOvertime": false,
+    "requireApproval": true,
+    "isActive": true,
+    "priority": 1,
+    "description": "Standard attendance rule: 5 min grace period, late after 15 min, early close before 15 min of scheduled end",
+    "createdAt": "2026-09-01T00:00:00.000Z",
+    "updatedAt": "2026-09-01T00:00:00.000Z",
+    "createdBy": "user_admin"
+  },
+  {
+    "id": "rule_002",
+    "name": "Flexible Hours Policy",
+    "ruleType": "grace_period",
+    "department": "all",
+    "lateThreshold": 30,
+    "earlyCloseThreshold": 30,
+    "gracePeriod": 15,
+    "overtimeThreshold": 60,
+    "autoApproveOvertime": true,
+    "requireApproval": false,
+    "isActive": false,
+    "priority": 2,
+    "description": "More flexible policy with 15 min grace period and 30 min late threshold",
+    "createdAt": "2026-09-01T00:00:00.000Z",
+    "updatedAt": "2026-09-01T00:00:00.000Z",
+    "createdBy": "user_admin"
+  }
+]

@@ -1,0 +1,165 @@
+<div class="space-y-6">
+ <!-- Header -->
+ <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+ <div>
+ <h1 class="text-2xl font-bold text-gray-900 dark:text-white">System Settings</h1>
+ <p class="text-gray-500 dark:text-slate-400 mt-1">Configure your company profile and work policies.</p>
+ </div>
+
+ <button (click)="saveSettings()" [disabled]="loading"
+ class="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all shadow-lg shadow-blue-600/20">
+ {{ loading ? 'Saving...' : 'Save Changes' }}
+ </button>
+ </div>
+
+ <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+ <!-- Sidebar Navigation -->
+ <div class="lg:col-span-1 space-y-4">
+ <div class="bg-white dark:bg-slate-900 transition-colors p-2 rounded-2xl shadow-sm dark:shadow-none border border-gray-100 dark:border-slate-800">
+ <button
+ class="w-full flex items-center gap-3 px-4 py-3 bg-blue-50 dark:bg-blue-900/30 transition-colors text-blue-700 rounded-xl font-semibold">
+ <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+ <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+ d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
+ </path>
+ </svg>
+ Company Profile
+ </button>
+ <button
+ class="w-full flex items-center gap-3 px-4 py-3 text-gray-600 dark:text-slate-400 hover:bg-gray-50 dark:hover:bg-slate-800/50 transition-colors rounded-xl transition-all">
+ <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+ <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+ d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+ </svg>
+ Work Policies
+ </button>
+ <button
+ class="w-full flex items-center gap-3 px-4 py-3 text-gray-600 dark:text-slate-400 hover:bg-gray-50 dark:hover:bg-slate-800/50 transition-colors rounded-xl transition-all">
+ <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+ <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+ d="M15 7a2 2 0 012 2m-2-2a2 2 0 00-2 2m2-2V7m0 8a2 2 0 012 2m-2-2a2 2 0 00-2 2m2-2v1m-1-4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
+ </path>
+ </svg>
+ Notification Rules
+ </button>
+ </div>
+ </div>
+
+ <!-- Main Content Area -->
+ <div class="lg:col-span-2 space-y-8">
+ <!-- Company Details -->
+ <div class="bg-white dark:bg-slate-900 transition-colors p-8 rounded-2xl shadow-sm dark:shadow-none border border-gray-100 dark:border-slate-800">
+ <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+ <span class="w-1.5 h-6 bg-blue-600 rounded-full"></span>
+ Company Information
+ </h3>
+ <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+ <div class="md:col-span-2">
+ <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">Company Legal Name</label>
+ <input [(ngModel)]="company.name" type="text"
+ class="w-full px-4 py-2 bg-transparent dark:bg-slate-800/50 text-gray-900 dark:text-white border border-gray-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all">
+ </div>
+ <div>
+ <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">Company Email</label>
+ <input [(ngModel)]="company.email" type="email"
+ class="w-full px-4 py-2 bg-transparent dark:bg-slate-800/50 text-gray-900 dark:text-white border border-gray-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all">
+ </div>
+ <div>
+ <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">Phone Number</label>
+ <input [(ngModel)]="company.phone" type="text"
+ class="w-full px-4 py-2 bg-transparent dark:bg-slate-800/50 text-gray-900 dark:text-white border border-gray-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all">
+ </div>
+ <div class="md:col-span-2">
+ <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">Office Address</label>
+ <textarea [(ngModel)]="company.address" rows="2"
+ class="w-full px-4 py-2 bg-transparent dark:bg-slate-800/50 text-gray-900 dark:text-white border border-gray-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all"></textarea>
+ </div>
+ </div>
+ </div>
+
+ <!-- Work Policies -->
+ <div class="bg-white dark:bg-slate-900 transition-colors p-8 rounded-2xl shadow-sm dark:shadow-none border border-gray-100 dark:border-slate-800">
+ <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+ <span class="w-1.5 h-6 bg-green-600 rounded-full"></span>
+ Work Policies & Attendance
+ </h3>
+ <div class="space-y-6">
+ <div>
+ <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-3">Official Working Days</label>
+ <div class="flex flex-wrap gap-2">
+ <button *ngFor="let day of daysOfWeek" (click)="toggleDay(day)"
+ [ngClass]="isDaySelected(day) ? 'bg-blue-600 text-white border-blue-600 shadow-lg shadow-blue-600/20' : 'bg-white dark:bg-slate-900 transition-colors text-gray-600 dark:text-slate-400 border-gray-200 dark:border-slate-700 hover:border-blue-500'"
+ class="px-4 py-2 text-sm font-medium border rounded-xl transition-all">
+ {{ day }}
+ </button>
+ </div>
+ </div>
+
+ <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+ <div>
+ <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">Shift Starts At</label>
+ <input [(ngModel)]="company.policies.workingHours.start" type="time"
+ class="w-full px-4 py-2 bg-transparent dark:bg-slate-800/50 text-gray-900 dark:text-white border border-gray-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all">
+ </div>
+ <div>
+ <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">Shift Ends At</label>
+ <input [(ngModel)]="company.policies.workingHours.end" type="time"
+ class="w-full px-4 py-2 bg-transparent dark:bg-slate-800/50 text-gray-900 dark:text-white border border-gray-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all">
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <!-- Integrations -->
+ <div class="bg-white dark:bg-slate-900 transition-colors p-8 rounded-2xl shadow-sm dark:shadow-none border border-gray-100 dark:border-slate-800">
+ <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+ <span class="w-1.5 h-6 bg-purple-600 rounded-full"></span>
+ Integrations & Webhooks
+ </h3>
+ <div class="space-y-6">
+ <div class="rounded-2xl border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-950 transition-colors p-4">
+ <div class="grid md:grid-cols-2 gap-4">
+ <div>
+ <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">Webhook URL</label>
+ <input [(ngModel)]="newWebhook.url" type="url"
+ class="w-full px-4 py-2 bg-transparent dark:bg-slate-800/50 text-gray-900 dark:text-white border border-gray-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 outline-none transition-all"
+ placeholder="https://example.com/hook">
+ </div>
+ <div>
+ <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">Event Name</label>
+ <input [(ngModel)]="newWebhook.event" type="text"
+ class="w-full px-4 py-2 bg-transparent dark:bg-slate-800/50 text-gray-900 dark:text-white border border-gray-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 outline-none transition-all"
+ placeholder="employee.created">
+ </div>
+ </div>
+ <div class="mt-4 flex items-center gap-3">
+ <button (click)="addWebhook()" [disabled]="integrationLoading"
+ class="px-4 py-2 bg-purple-600 text-white rounded-xl font-semibold">
+ {{ integrationLoading ? 'Saving...' : 'Add Webhook' }}
+ </button>
+ <span class="text-sm text-gray-500 dark:text-slate-400">Use this to notify Slack, Teams, or custom apps.</span>
+ </div>
+ </div>
+
+ <div class="rounded-2xl bg-transparent dark:bg-slate-800/50 text-gray-900 dark:text-white border border-gray-200 dark:border-slate-700 p-4">
+ <div class="flex items-center justify-between mb-4">
+ <h4 class="font-semibold text-gray-900 dark:text-white">Active subscriptions</h4>
+ <button (click)="dispatchDemoEvent()" [disabled]="integrationLoading"
+ class="px-3 py-2 text-sm bg-slate-800 text-white rounded-xl">
+ Send test event
+ </button>
+ </div>
+ <div *ngIf="integrations.length === 0" class="text-sm text-gray-500 dark:text-slate-400">No webhooks configured yet.</div>
+ <div *ngFor="let hook of integrations" class="flex items-center justify-between rounded-xl bg-transparent dark:bg-slate-800/50 text-gray-900 dark:text-white border border-gray-100 dark:border-slate-800 px-3 py-2 mb-2">
+ <div>
+ <div class="font-medium text-gray-900 dark:text-white">{{ hook.event }}</div>
+ <div class="text-xs text-gray-500 dark:text-slate-400 break-all">{{ hook.url }}</div>
+ </div>
+ <span class="text-xs rounded-full bg-gray-100 dark:bg-slate-800 transition-colors px-2 py-1 text-gray-600 dark:text-slate-400">{{ hook.provider || 'custom' }}</span>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+</div>

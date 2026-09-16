@@ -1,0 +1,305 @@
+<div class="shift-management-container">
+  <!-- Header -->
+  <div class="page-header">
+    <div class="header-content">
+      <div class="header-text">
+        <h1 class="page-title">Shift Management</h1>
+        <p class="page-subtitle">Create and manage shift types for your organization</p>
+      </div>
+      <button class="btn btn-primary" (click)="openCreateModal()">
+        <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+        </svg>
+        Create Shift
+      </button>
+    </div>
+  </div>
+
+  <!-- Success/Error Messages -->
+  <div *ngIf="successMessage" class="alert alert-success">
+    <svg class="alert-icon" fill="currentColor" viewBox="0 0 20 20">
+      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+    </svg>
+    {{ successMessage }}
+  </div>
+
+  <div *ngIf="error" class="alert alert-error">
+    <svg class="alert-icon" fill="currentColor" viewBox="0 0 20 20">
+      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+    </svg>
+    {{ error }}
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="loading && shifts.length === 0" class="loading-state">
+    <div class="spinner"></div>
+    <p>Loading shifts...</p>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="!loading && shifts.length === 0" class="empty-state">
+    <svg class="empty-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+    </svg>
+    <h3>No shifts configured</h3>
+    <p>Get started by creating your first shift type</p>
+    <button class="btn btn-primary" (click)="openCreateModal()">Create First Shift</button>
+  </div>
+
+  <!-- Shifts Grid -->
+  <div *ngIf="!loading && shifts.length > 0" class="shifts-grid">
+    <div *ngFor="let shift of shifts" class="shift-card" [class.inactive]="!shift.isActive">
+      <!-- Color Indicator -->
+      <div class="shift-color" [style.background-color]="shift.color"></div>
+
+      <!-- Card Content -->
+      <div class="shift-content">
+        <!-- Header -->
+        <div class="shift-header">
+          <div class="shift-title-section">
+            <h3 class="shift-name">{{ shift.name }}</h3>
+            <span class="shift-badge" [style.background-color]="shift.color + '20'" [style.color]="shift.color">
+              {{ getShiftTypeLabel(shift.shiftType) }}
+            </span>
+            <span *ngIf="!shift.isActive" class="status-badge inactive">Inactive</span>
+            <span *ngIf="shift.isActive" class="status-badge active">Active</span>
+          </div>
+        </div>
+
+        <!-- Details Grid -->
+        <div class="shift-details">
+          <div class="detail-item">
+            <svg class="detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <div class="detail-text">
+              <span class="detail-label">Time</span>
+              <span class="detail-value">{{ formatTime(shift.startTime) }} - {{ formatTime(shift.endTime) }}</span>
+            </div>
+          </div>
+
+          <div class="detail-item">
+            <svg class="detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+            <div class="detail-text">
+              <span class="detail-label">Working Days</span>
+              <span class="detail-value">{{ getWorkingDaysDisplay(shift.workingDays) }}</span>
+            </div>
+          </div>
+
+          <div class="detail-item">
+            <svg class="detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+            </svg>
+            <div class="detail-text">
+              <span class="detail-label">Department</span>
+              <span class="detail-value">{{ getDepartmentName(shift.department) }}</span>
+            </div>
+          </div>
+
+          <div class="detail-item">
+            <svg class="detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+            </svg>
+            <div class="detail-text">
+              <span class="detail-label">Required</span>
+              <span class="detail-value">{{ shift.requiredEmployees }} employee{{ shift.requiredEmployees !== 1 ? 's' : '' }}</span>
+            </div>
+          </div>
+
+          <div class="detail-item">
+            <svg class="detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+            </svg>
+            <div class="detail-text">
+              <span class="detail-label">Break</span>
+              <span class="detail-value">{{ shift.breakDuration }} minutes</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <p *ngIf="shift.description" class="shift-description">{{ shift.description }}</p>
+
+        <!-- Actions -->
+        <div class="shift-actions">
+          <button class="btn btn-sm btn-secondary" (click)="openEditModal(shift)">
+            <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+            </svg>
+            Edit
+          </button>
+          <button class="btn btn-sm btn-secondary" (click)="toggleShiftStatus(shift)">
+            <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243 2.829a4.978 4.978 0 01-1.414-2.83m-1.414 5.658a9 9 0 01-2.167-9.238m7.824 2.167a1 1 0 111.414 1.414m-1.414-1.414L3 3m8.293 8.293l1.414 1.414"/>
+            </svg>
+            {{ shift.isActive ? 'Deactivate' : 'Activate' }}
+          </button>
+          <button class="btn btn-sm btn-danger" (click)="deleteShift(shift)">
+            <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+            </svg>
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div *ngIf="showModal" class="modal-overlay" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2 class="modal-title">{{ modalMode === 'create' ? 'Create New Shift' : 'Edit Shift' }}</h2>
+        <button class="modal-close" (click)="closeModal()">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form (ngSubmit)="saveShift()" class="shift-form">
+          <!-- Shift Name -->
+          <div class="form-group">
+            <label class="form-label">Shift Name *</label>
+            <input 
+              type="text" 
+              [(ngModel)]="shiftForm.name" 
+              name="name"
+              class="form-input" 
+              placeholder="e.g., Morning Shift"
+              required
+            />
+          </div>
+
+          <!-- Shift Type & Color -->
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Shift Type *</label>
+              <select [(ngModel)]="shiftForm.shiftType" name="shiftType" class="form-select">
+                <option *ngFor="let type of shiftTypes" [value]="type.value">{{ type.label }}</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Color</label>
+              <select [(ngModel)]="shiftForm.color" name="color" class="form-select">
+                <option *ngFor="let color of colorOptions" [value]="color.value">{{ color.label }}</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Time Range -->
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Start Time *</label>
+              <input 
+                type="time" 
+                [(ngModel)]="shiftForm.startTime" 
+                name="startTime"
+                class="form-input"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">End Time *</label>
+              <input 
+                type="time" 
+                [(ngModel)]="shiftForm.endTime" 
+                name="endTime"
+                class="form-input"
+                required
+              />
+            </div>
+          </div>
+
+          <!-- Break Duration & Required Employees -->
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Break Duration (minutes)</label>
+              <input 
+                type="number" 
+                [(ngModel)]="shiftForm.breakDuration" 
+                name="breakDuration"
+                class="form-input"
+                min="0"
+                step="15"
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Required Employees</label>
+              <input 
+                type="number" 
+                [(ngModel)]="shiftForm.requiredEmployees" 
+                name="requiredEmployees"
+                class="form-input"
+                min="1"
+              />
+            </div>
+          </div>
+
+          <!-- Department -->
+          <div class="form-group">
+            <label class="form-label">Department</label>
+            <select [(ngModel)]="shiftForm.department" name="department" class="form-select">
+              <option value="all">All Departments</option>
+              <option *ngFor="let dept of departments" [value]="dept.id">{{ dept.name }}</option>
+            </select>
+          </div>
+
+          <!-- Working Days -->
+          <div class="form-group">
+            <label class="form-label">Working Days *</label>
+            <div class="days-selector">
+              <button 
+                *ngFor="let day of dayNames; let i = index"
+                type="button"
+                class="day-btn"
+                [class.selected]="isWorkingDay(i)"
+                (click)="toggleWorkingDay(i)"
+              >
+                {{ day }}
+              </button>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="form-group">
+            <label class="form-label">Description</label>
+            <textarea 
+              [(ngModel)]="shiftForm.description" 
+              name="description"
+              class="form-textarea"
+              rows="3"
+              placeholder="Optional description for this shift"
+            ></textarea>
+          </div>
+
+          <!-- Active Status -->
+          <div class="form-group">
+            <label class="form-checkbox">
+              <input 
+                type="checkbox" 
+                [(ngModel)]="shiftForm.isActive" 
+                name="isActive"
+              />
+              <span>Active (shift is available for scheduling)</span>
+            </label>
+          </div>
+
+          <!-- Form Actions -->
+          <div class="form-actions">
+            <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancel</button>
+            <button type="submit" class="btn btn-primary" [disabled]="loading">
+              {{ loading ? 'Saving...' : (modalMode === 'create' ? 'Create Shift' : 'Save Changes') }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

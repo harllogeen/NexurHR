@@ -1,0 +1,278 @@
+<div class="space-y-5">
+
+  <!-- ── Page header ──────────────────────────────────── -->
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Leave Request</h1>
+      <p class="page-subtitle">Submit a new leave request and track your applications.</p>
+    </div>
+    <app-button
+      variant="primary"
+      icon="plus"
+      (clicked)="isModalOpen = true"
+    >
+      Request Leave
+    </app-button>
+  </div>
+
+  <!-- ── Leave balance cards ───────────────────────────── -->
+  <div *ngIf="leaveBalance" class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+
+    <div class="card p-5 flex items-center gap-4 hover:-translate-y-0.5 hover:shadow-card-md transition-all duration-200 group">
+      <div class="stat-icon-box bg-indigo-50 dark:bg-indigo-900/30 group-hover:bg-indigo-600 transition-colors duration-200">
+        <svg class="w-5 h-5 text-indigo-600 dark:text-indigo-400 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+        </svg>
+      </div>
+      <div>
+        <p class="text-2xs font-bold text-slate-400 uppercase tracking-widest mb-0.5">Annual Leave</p>
+        <p class="text-2xl font-bold text-slate-900 dark:text-white">{{ leaveBalance.annual }} <span class="text-sm font-normal text-slate-400">days</span></p>
+      </div>
+    </div>
+
+    <div class="card p-5 flex items-center gap-4 hover:-translate-y-0.5 hover:shadow-card-md transition-all duration-200 group">
+      <div class="stat-icon-box bg-emerald-50 dark:bg-emerald-900/30 group-hover:bg-emerald-600 transition-colors duration-200">
+        <svg class="w-5 h-5 text-emerald-600 dark:text-emerald-400 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+        </svg>
+      </div>
+      <div>
+        <p class="text-2xs font-bold text-slate-400 uppercase tracking-widest mb-0.5">Sick Leave</p>
+        <p class="text-2xl font-bold text-slate-900 dark:text-white">{{ leaveBalance.sick }} <span class="text-sm font-normal text-slate-400">days</span></p>
+      </div>
+    </div>
+
+    <div class="card p-5 flex items-center gap-4 hover:-translate-y-0.5 hover:shadow-card-md transition-all duration-200 group">
+      <div class="stat-icon-box bg-violet-50 dark:bg-violet-900/30 group-hover:bg-violet-600 transition-colors duration-200">
+        <svg class="w-5 h-5 text-violet-600 dark:text-violet-400 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+      </div>
+      <div>
+        <p class="text-2xs font-bold text-slate-400 uppercase tracking-widest mb-0.5">Casual Leave</p>
+        <p class="text-2xl font-bold text-slate-900 dark:text-white">{{ leaveBalance.casual }} <span class="text-sm font-normal text-slate-400">days</span></p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── My Leave Applications table ──────────────────── -->
+  <div class="table-container overflow-hidden">
+    <div class="card-header">
+      <div>
+        <h2 class="text-sm font-bold text-slate-900 dark:text-white">My Leave Applications</h2>
+        <p class="text-xs text-slate-400 dark:text-slate-500 mt-0.5">Your submitted leave requests</p>
+      </div>
+      <app-form-input
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="onSearch()"
+        placeholder="Search applications…"
+        prefixIcon="search"
+        
+      ></app-form-input>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="w-10">#</th>
+            <th>Leave Type</th>
+            <th>Duration</th>
+            <th>Applied</th>
+            <th>Status</th>
+            <th class="text-right">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let leave of paginatedMyLeaves; let i = index">
+            <td class="text-xs text-slate-400 font-medium">{{ (myLeavesPage - 1) * pageSize + i + 1 }}</td>
+            <td>
+              <app-status-badge variant="info" size="sm">
+                {{ leave.leaveType }}
+              </app-status-badge>
+            </td>
+            <td class="text-sm">
+              <p class="text-slate-900 dark:text-white font-medium">{{ leave.startDate | date:'mediumDate' }}</p>
+              <p class="text-xs text-slate-400 dark:text-slate-500">to {{ leave.endDate | date:'mediumDate' }}</p>
+            </td>
+            <td class="text-xs text-slate-400 dark:text-slate-500">{{ leave.appliedAt | date:'mediumDate' }}</td>
+            <td>
+              <app-status-badge
+                [variant]="leave.status === 'Approved' ? 'success' : leave.status === 'Rejected' ? 'danger' : 'warning'"
+                [dot]="true"
+              >
+                {{ leave.status }}
+              </app-status-badge>
+            </td>
+            <td class="text-right">
+              <app-button
+                *ngIf="leave.status === 'Pending'"
+                variant="ghost"
+                icon="delete"
+                [iconOnly]="true"
+                
+                (clicked)="openDeleteModal(leave.id)"
+                title="Delete"
+              ></app-button>
+            </td>
+          </tr>
+          <tr *ngIf="filteredMyLeaves.length === 0">
+            <td colspan="6" class="py-0">
+              <div class="empty-state">
+                <div class="empty-state-icon">
+                  <svg class="w-7 h-7 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                </div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-white">No leave applications yet</p>
+                <p class="text-xs text-slate-400 mt-1">Submit a leave request to get started.</p>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div *ngIf="filteredMyLeaves.length > pageSize"
+         class="card-footer flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-xs text-slate-500 dark:text-slate-400">
+        {{ (myLeavesPage - 1) * pageSize + 1 }}–{{ myLeavesPage * pageSize > filteredMyLeaves.length ? filteredMyLeaves.length : myLeavesPage * pageSize }}
+        of {{ filteredMyLeaves.length }}
+      </p>
+      <div class="pagination">
+        <button (click)="goToPage(myLeavesPage - 1)" [disabled]="myLeavesPage === 1" class="page-btn">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <button *ngFor="let p of getPageNumbers(myLeavesTotalPages)" (click)="goToPage(p)"
+                [ngClass]="p === myLeavesPage ? 'page-btn-active' : 'page-btn'">{{ p }}</button>
+        <button (click)="goToPage(myLeavesPage + 1)" [disabled]="myLeavesPage === myLeavesTotalPages" class="page-btn">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     REQUEST LEAVE MODAL
+════════════════════════════════════════════════════ -->
+<div *ngIf="isModalOpen" class="modal-overlay" (click)="isModalOpen = false">
+  <div class="modal-md" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <div>
+          <h3 class="text-base font-bold text-slate-900 dark:text-white">Request Time Off</h3>
+          <p class="text-xs text-slate-400 dark:text-slate-500">Fill in the details to submit your leave request.</p>
+        </div>
+      </div>
+      <app-button
+        variant="ghost"
+        icon="x"
+        [iconOnly]="true"
+        
+        (clicked)="isModalOpen = false"
+      ></app-button>
+    </div>
+
+    <form (ngSubmit)="submitLeave()" #leaveForm="ngForm" class="modal-body">
+      <div class="form-group">
+        <label class="label">Leave Type</label>
+        <app-form-select
+          [(ngModel)]="newLeave.leaveType"
+          name="leaveType"
+          [options]="leaveTypeOptions"
+          [required]="true"
+        ></app-form-select>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="form-group">
+          <label class="label">Start Date</label>
+          <app-form-input
+            type="date"
+            [(ngModel)]="newLeave.startDate"
+            name="startDate"
+            [required]="true"
+          ></app-form-input>
+        </div>
+        <div class="form-group">
+          <label class="label">End Date</label>
+          <app-form-input
+            type="date"
+            [(ngModel)]="newLeave.endDate"
+            name="endDate"
+            [required]="true"
+          ></app-form-input>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="label">Reason <span class="text-slate-400 normal-case font-normal">(Optional)</span></label>
+        <app-form-textarea
+          [(ngModel)]="newLeave.reason"
+          name="reason"
+          [rows]="3"
+          placeholder="Briefly explain your request…"
+        ></app-form-textarea>
+      </div>
+    </form>
+
+    <div class="modal-footer">
+      <app-button
+        variant="secondary"
+        (clicked)="isModalOpen = false"
+      >
+        Cancel
+      </app-button>
+      <app-button
+        variant="primary"
+        [loading]="loading"
+        (clicked)="submitLeave()"
+      >
+        Submit Request
+      </app-button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     CONFIRMATION MODAL
+════════════════════════════════════════════════════ -->
+<app-confirmation-modal
+  [isOpen]="showDeleteConfirmModal"
+  [title]="deleteConfirmConfig.title"
+  [message]="deleteConfirmConfig.message"
+  type="danger"
+  (onConfirm)="deleteConfirmConfig.onConfirm()"
+  (onCancel)="showDeleteConfirmModal = false"
+></app-confirmation-modal>
+
+<!-- ═══════════════════════════════════════════════════
+     SUCCESS MODAL
+════════════════════════════════════════════════════ -->
+<div *ngIf="isSuccessModalOpen" class="modal-overlay">
+  <div class="modal-sm animate-scale-in" (click)="$event.stopPropagation()">
+    <div class="p-6 text-center space-y-4">
+      <div class="w-14 h-14 rounded-2xl bg-emerald-50 dark:bg-emerald-900/30 flex items-center justify-center mx-auto">
+        <svg class="w-7 h-7 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+        </svg>
+      </div>
+      <div>
+        <h3 class="text-base font-bold text-slate-900 dark:text-white">Done!</h3>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">{{ successMessage }}</p>
+      </div>
+      <app-button
+        variant="primary"
+        
+        (clicked)="isSuccessModalOpen = false"
+      >
+        Got it
+      </app-button>
+    </div>
+  </div>
+</div>

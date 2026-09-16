@@ -1,0 +1,575 @@
+<div class="space-y-5">
+
+  <!-- ── Page header ──────────────────────────────────── -->
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Task Management</h1>
+      <p class="page-subtitle">Assign, monitor, and track tasks across your team.</p>
+    </div>
+    <button (click)="showCreateModal = true" class="btn-primary flex items-center gap-2">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+      </svg>
+      Assign Task
+    </button>
+  </div>
+
+  <!-- ── Stat cards ────────────────────────────────────── -->
+  <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+    <div class="stat-card">
+      <div class="stat-icon-box bg-slate-100 dark:bg-slate-800">
+        <svg class="w-5 h-5 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+      </div>
+      <div>
+        <p class="text-2xs font-semibold text-slate-400 uppercase tracking-widest mb-0.5">Total</p>
+        <p class="text-2xl font-bold text-slate-900 dark:text-white">{{ totalCount }}</p>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon-box bg-amber-50 dark:bg-amber-900/30">
+        <svg class="w-5 h-5 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      </div>
+      <div>
+        <p class="text-2xs font-semibold text-slate-400 uppercase tracking-widest mb-0.5">Pending</p>
+        <p class="text-2xl font-bold text-amber-600 dark:text-amber-400">{{ pendingCount }}</p>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon-box bg-indigo-50 dark:bg-indigo-900/30">
+        <svg class="w-5 h-5 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      </div>
+      <div>
+        <p class="text-2xs font-semibold text-slate-400 uppercase tracking-widest mb-0.5">In Progress</p>
+        <p class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">{{ inProgressCount }}</p>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon-box bg-emerald-50 dark:bg-emerald-900/30">
+        <svg class="w-5 h-5 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+      </div>
+      <div>
+        <p class="text-2xs font-semibold text-slate-400 uppercase tracking-widest mb-0.5">Completed</p>
+        <p class="text-2xl font-bold text-emerald-600 dark:text-emerald-400">{{ completedCount }}</p>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon-box bg-red-50 dark:bg-red-900/30">
+        <svg class="w-5 h-5 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
+      </div>
+      <div>
+        <p class="text-2xs font-semibold text-slate-400 uppercase tracking-widest mb-0.5">Overdue</p>
+        <p class="text-2xl font-bold text-red-600 dark:text-red-400">{{ overdueCount }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Main table card ───────────────────────────────── -->
+  <div class="table-container">
+
+    <!-- Toolbar -->
+    <div class="px-5 py-4 border-b border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <!-- Tab switcher -->
+      <div class="tab-bar flex-shrink-0">
+        <button (click)="activeTab = 'assigned'; currentPage = 1"
+                [ngClass]="activeTab === 'assigned' ? 'tab-btn-active' : 'tab-btn'">
+          My Assigned Tasks
+        </button>
+        <button *ngIf="user?.role === 'hr' || user?.role === 'cto'"
+                (click)="activeTab = 'all'; currentPage = 1"
+                [ngClass]="activeTab === 'all' ? 'tab-btn-active' : 'tab-btn'">
+          All Tasks
+        </button>
+      </div>
+      <!-- Filters -->
+      <div class="flex flex-wrap items-center gap-2">
+        <div class="relative">
+          <svg class="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          <input [(ngModel)]="searchQuery" type="text" placeholder="Search tasks…"
+                 class="input-sm pl-8 w-48">
+        </div>
+        <select [(ngModel)]="filterStatus" (ngModelChange)="currentPage = 1" class="select input-sm w-auto min-w-[130px]">
+          <option value="">All Statuses</option>
+          <option value="pending">Pending</option>
+          <option value="in-progress">In Progress</option>
+          <option value="under-review">Under Review</option>
+          <option value="completed">Completed</option>
+          <option value="overdue">Overdue</option>
+          <option value="cancelled">Cancelled</option>
+        </select>
+        <select [(ngModel)]="filterPriority" (ngModelChange)="currentPage = 1" class="select input-sm w-auto min-w-[120px]">
+          <option value="">All Priorities</option>
+          <option value="urgent">Urgent</option>
+          <option value="high">High</option>
+          <option value="medium">Medium</option>
+          <option value="low">Low</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="overflow-x-auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="w-10">#</th>
+            <th>Task</th>
+            <th>Assigned To</th>
+            <th>Priority</th>
+            <th>Progress</th>
+            <th>Due Date</th>
+            <th>Status</th>
+            <th *ngIf="activeTab !== 'all'" class="text-right">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of paginatedTasks; let i = index"
+              class="cursor-pointer" (click)="openTaskDetail(task)">
+            <td class="text-xs text-slate-400 dark:text-slate-500 font-medium">
+              {{ (currentPage - 1) * pageSize + i + 1 }}
+            </td>
+            <td class="max-w-[240px]">
+              <p class="text-sm font-semibold text-slate-900 dark:text-white truncate">{{ task.title }}</p>
+              <div class="flex items-center gap-1.5 mt-0.5">
+                <span class="text-2xs text-slate-400 dark:text-slate-500">{{ task.category }}</span>
+                <span *ngIf="task.projectName" class="badge badge-blue text-[9px] py-0">{{ task.projectName }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="flex items-center gap-2">
+                <div class="w-7 h-7 rounded-full bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center text-white text-[10px] font-bold flex-shrink-0">
+                  {{ (task.assignedToName || '?').charAt(0).toUpperCase() }}
+                </div>
+                <span class="text-sm text-slate-700 dark:text-slate-300 truncate max-w-[120px]">{{ task.assignedToName }}</span>
+              </div>
+            </td>
+            <td>
+              <span class="badge capitalize" [ngClass]="getPriorityClass(task.priority)">{{ task.priority }}</span>
+            </td>
+            <td>
+              <div class="flex items-center gap-2">
+                <div class="progress-track w-20">
+                  <div class="progress-fill" [ngClass]="getProgressColor(task.progress)" [style.width.%]="task.progress"></div>
+                </div>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium w-8">{{ task.progress }}%</span>
+              </div>
+            </td>
+            <td class="text-sm text-slate-500 dark:text-slate-400 whitespace-nowrap">{{ formatDate(task.dueDate) }}</td>
+            <td>
+              <span class="badge capitalize" [ngClass]="getStatusClass(task.status)">{{ task.status }}</span>
+            </td>
+            <td *ngIf="activeTab !== 'all'" (click)="$event.stopPropagation()">
+              <div class="flex items-center justify-end gap-1">
+                <button (click)="openEditModal(task)" class="btn-icon btn-ghost text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400" title="Edit">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                </button>
+                <button *ngIf="task.status === 'under-review'" (click)="updateTaskStatus(task.id, 'completed')"
+                        class="btn-icon btn-ghost text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400" title="Approve">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                </button>
+                <button (click)="deleteTask(task.id)" class="btn-icon btn-ghost text-slate-400 hover:text-red-500" title="Delete">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                </button>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Empty state -->
+          <tr *ngIf="paginatedTasks.length === 0">
+            <td colspan="100%" class="py-0">
+              <div class="empty-state">
+                <div class="empty-state-icon">
+                  <svg class="w-7 h-7 text-slate-400 dark:text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                </div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-white">No tasks found</p>
+                <p class="text-xs text-slate-400 dark:text-slate-500 mt-1">Assign a new task to get started</p>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div *ngIf="totalPages > 1"
+         class="card-footer flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-xs text-slate-500 dark:text-slate-400">
+        Showing {{ (currentPage - 1) * pageSize + 1 }}–{{ currentPage * pageSize > currentTasks.length ? currentTasks.length : currentPage * pageSize }}
+        of {{ currentTasks.length }}
+      </p>
+      <div class="pagination">
+        <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1" class="page-btn">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <button *ngFor="let p of getPageNumbers()" (click)="goToPage(p)"
+                [ngClass]="p === currentPage ? 'page-btn-active' : 'page-btn'">{{ p }}</button>
+        <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages" class="page-btn">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     CREATE TASK MODAL
+════════════════════════════════════════════════════ -->
+<div *ngIf="showCreateModal" class="modal-overlay" (click)="showCreateModal = false">
+  <div class="modal-lg" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3 class="text-base font-bold text-slate-900 dark:text-white">Assign New Task</h3>
+      <button (click)="showCreateModal = false" class="btn-icon btn-ghost text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <form (ngSubmit)="submitTask()" class="modal-body">
+      <div class="form-group">
+        <label class="label">Task Title *</label>
+        <input [(ngModel)]="newTask.title" name="title" type="text" class="input" placeholder="e.g. Complete Q3 Sales Report">
+      </div>
+      <div class="form-group">
+        <label class="label">Description</label>
+        <textarea [(ngModel)]="newTask.description" name="description" rows="3" class="input resize-none" placeholder="Detailed description of what needs to be done…"></textarea>
+      </div>
+
+      <!-- Assignee multi-select -->
+      <div class="form-group relative">
+        <label class="label">Assign To *</label>
+        <button type="button" (click)="showAssignDropdown = !showAssignDropdown"
+                class="input text-left flex items-center justify-between">
+          <span class="text-sm truncate" [ngClass]="selectedAssignees.length === 0 ? 'text-slate-400 dark:text-slate-500' : 'text-slate-900 dark:text-white'">
+            {{ selectedAssignees.length === 0 ? 'Select employees…' : getAssigneeNames() }}
+          </span>
+          <div class="flex items-center gap-1.5 ml-2 flex-shrink-0">
+            <span *ngIf="selectedAssignees.length > 0" class="badge badge-blue text-[10px]">{{ selectedAssignees.length }}</span>
+            <svg [class.rotate-180]="showAssignDropdown" class="w-4 h-4 text-slate-400 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </div>
+        </button>
+        <div *ngIf="showAssignDropdown"
+             class="absolute z-20 mt-1 w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl shadow-card-lg overflow-hidden">
+          <div class="p-2 border-b border-slate-100 dark:border-slate-800">
+            <input [(ngModel)]="assignSearchQuery" name="assignSearch" type="text" placeholder="Search employees…"
+                   class="input-sm w-full" (click)="$event.stopPropagation()">
+          </div>
+          <div class="overflow-y-auto max-h-48">
+            <label *ngFor="let emp of filteredEmployees"
+                   class="flex items-center gap-3 px-4 py-2.5 hover:bg-indigo-50/50 dark:hover:bg-indigo-900/20 cursor-pointer transition-colors">
+              <input type="checkbox" [checked]="isAssigneeSelected(emp.id)" (change)="toggleAssignee(emp.id)"
+                     class="w-4 h-4 rounded text-indigo-600 border-slate-300 dark:border-slate-600 focus:ring-indigo-500">
+              <div class="w-7 h-7 rounded-full bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center text-white text-[10px] font-bold flex-shrink-0">
+                {{ emp.firstName.charAt(0) }}
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-sm font-medium text-slate-900 dark:text-white truncate">{{ emp.firstName }} {{ emp.lastName }}</p>
+                <p class="text-xs text-slate-400 dark:text-slate-500 truncate">{{ emp.designation || emp.role }}</p>
+              </div>
+            </label>
+            <p *ngIf="filteredEmployees.length === 0" class="text-center text-xs text-slate-400 py-4">No employees found</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <div class="form-group">
+          <label class="label">Priority</label>
+          <select [(ngModel)]="newTask.priority" name="priority" class="select">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+            <option value="urgent">Urgent</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="label">Due Date</label>
+          <input [(ngModel)]="newTask.dueDate" name="dueDate" type="date" class="input">
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="form-group">
+          <label class="label">Category</label>
+          <select [(ngModel)]="newTask.category" name="category" class="select">
+            <option>General</option><option>Report</option><option>Development</option>
+            <option>Design</option><option>Research</option><option>Documentation</option>
+            <option>Meeting</option><option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="label">Project (Optional)</label>
+          <select [(ngModel)]="newTask.projectId" name="projectId" (change)="onProjectChange()" class="select">
+            <option value="">No Project</option>
+            <option *ngFor="let proj of projects" [value]="proj.id">{{ proj.name }}</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Subtasks -->
+      <div class="form-group">
+        <label class="label">Subtasks</label>
+        <div class="space-y-1.5 mb-2">
+          <div *ngFor="let sub of newTask.subtasks; let i = index"
+               class="flex items-center gap-2 bg-slate-50 dark:bg-slate-950 rounded-lg px-3 py-2">
+            <svg class="w-3.5 h-3.5 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            <span class="text-sm text-slate-700 dark:text-slate-300 flex-1">{{ sub.title }}</span>
+            <button type="button" (click)="removeSubtask(i)" class="text-slate-400 hover:text-red-500 transition-colors">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="flex gap-2">
+          <input [(ngModel)]="newSubtaskTitle" name="newSubtask" type="text" placeholder="Add a subtask…"
+                 (keydown.enter)="$event.preventDefault(); addSubtask()"
+                 class="input-sm flex-1">
+          <button type="button" (click)="addSubtask()" class="btn-secondary btn-sm px-3">Add</button>
+        </div>
+      </div>
+    </form>
+    <div class="modal-footer">
+      <button type="button" (click)="showCreateModal = false" class="btn-secondary">Cancel</button>
+      <button type="submit" (click)="submitTask()" [disabled]="loading" class="btn-primary">
+        {{ loading ? 'Assigning…' : 'Assign Task' }}
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     TASK DETAIL SLIDE-OVER
+════════════════════════════════════════════════════ -->
+<div *ngIf="showDetailPanel && selectedTask"
+     class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex justify-end"
+     (click)="closeDetailPanel()">
+  <div class="slideover animate-slide-in" (click)="$event.stopPropagation()">
+
+    <!-- Header -->
+    <div class="slideover-header">
+      <div class="flex-1 min-w-0 pr-4">
+        <h2 class="text-base font-bold text-slate-900 dark:text-white truncate">{{ selectedTask.title }}</h2>
+        <div class="flex items-center gap-2 mt-1.5">
+          <span class="badge capitalize" [ngClass]="getStatusClass(selectedTask.status)">{{ selectedTask.status }}</span>
+          <span class="badge capitalize" [ngClass]="getPriorityClass(selectedTask.priority)">{{ selectedTask.priority }}</span>
+        </div>
+      </div>
+      <button (click)="closeDetailPanel()" class="btn-icon btn-ghost text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 flex-shrink-0">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <!-- Body -->
+    <div class="slideover-body">
+
+      <!-- Info grid -->
+      <div class="grid grid-cols-2 gap-3">
+        <div class="rounded-xl bg-slate-50 dark:bg-slate-950 p-3">
+          <p class="text-2xs font-semibold text-slate-400 uppercase tracking-widest mb-1">Assigned To</p>
+          <p class="text-sm font-semibold text-slate-900 dark:text-white">{{ selectedTask.assignedToName }}</p>
+        </div>
+        <div class="rounded-xl bg-slate-50 dark:bg-slate-950 p-3">
+          <p class="text-2xs font-semibold text-slate-400 uppercase tracking-widest mb-1">Assigned By</p>
+          <p class="text-sm font-semibold text-slate-900 dark:text-white">{{ selectedTask.assignedByName }}</p>
+        </div>
+        <div class="rounded-xl bg-slate-50 dark:bg-slate-950 p-3">
+          <p class="text-2xs font-semibold text-slate-400 uppercase tracking-widest mb-1">Due Date</p>
+          <p class="text-sm font-semibold text-slate-900 dark:text-white">{{ formatDate(selectedTask.dueDate) }}</p>
+        </div>
+        <div class="rounded-xl bg-slate-50 dark:bg-slate-950 p-3">
+          <p class="text-2xs font-semibold text-slate-400 uppercase tracking-widest mb-1">Category</p>
+          <p class="text-sm font-semibold text-slate-900 dark:text-white">{{ selectedTask.category }}</p>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div *ngIf="selectedTask.description">
+        <p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-2">Description</p>
+        <p class="text-sm text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-slate-950 rounded-xl p-4 leading-relaxed">{{ selectedTask.description }}</p>
+      </div>
+
+      <!-- Progress -->
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">Progress</p>
+          <span class="text-sm font-bold text-slate-900 dark:text-white">{{ selectedTask.progress }}%</span>
+        </div>
+        <div class="progress-track h-2.5">
+          <div class="progress-fill" [ngClass]="getProgressColor(selectedTask.progress)" [style.width.%]="selectedTask.progress"></div>
+        </div>
+      </div>
+
+      <!-- Subtasks -->
+      <div *ngIf="selectedTask.subtasks?.length > 0">
+        <p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-2">
+          Subtasks ({{ getCompletedSubtasksCount(selectedTask.subtasks) }}/{{ selectedTask.subtasks.length }})
+        </p>
+        <div class="space-y-1.5">
+          <div *ngFor="let sub of selectedTask.subtasks"
+               class="flex items-center gap-3 bg-slate-50 dark:bg-slate-950 rounded-lg px-3 py-2.5">
+            <div class="w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-colors"
+                 [ngClass]="sub.completed ? 'border-emerald-500 bg-emerald-500' : 'border-slate-300 dark:border-slate-600'">
+              <svg *ngIf="sub.completed" class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <span class="text-sm flex-1" [ngClass]="sub.completed ? 'text-slate-400 dark:text-slate-500 line-through' : 'text-slate-700 dark:text-slate-300'">{{ sub.title }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div>
+        <p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-3">Actions</p>
+        <div class="flex flex-wrap gap-2">
+          <button *ngIf="selectedTask.status === 'under-review'"
+                  (click)="updateTaskStatus(selectedTask.id, 'completed')"
+                  class="btn-sm bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg px-3 py-1.5 text-xs font-semibold transition-colors">
+            ✓ Approve &amp; Complete
+          </button>
+          <button *ngIf="selectedTask.status !== 'cancelled' && selectedTask.status !== 'completed'"
+                  (click)="updateTaskStatus(selectedTask.id, 'cancelled')"
+                  class="btn-sm btn-ghost bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-lg px-3 py-1.5 text-xs font-semibold transition-colors">
+            Cancel Task
+          </button>
+          <button *ngIf="selectedTask.status === 'completed' || selectedTask.status === 'cancelled'"
+                  (click)="updateTaskStatus(selectedTask.id, 'pending')"
+                  class="btn-sm bg-indigo-50 dark:bg-indigo-900/30 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 rounded-lg px-3 py-1.5 text-xs font-semibold transition-colors">
+            Reopen
+          </button>
+          <button (click)="openEditModal(selectedTask)"
+                  class="btn-sm bg-indigo-50 dark:bg-indigo-900/30 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 rounded-lg px-3 py-1.5 text-xs font-semibold transition-colors">
+            Edit Task
+          </button>
+          <button (click)="deleteTask(selectedTask.id)"
+                  class="btn-sm bg-red-50 dark:bg-red-900/30 hover:bg-red-100 dark:hover:bg-red-900/50 text-red-600 dark:text-red-400 rounded-lg px-3 py-1.5 text-xs font-semibold transition-colors">
+            Delete
+          </button>
+        </div>
+      </div>
+
+      <!-- Comments -->
+      <div>
+        <p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-3">
+          Comments ({{ selectedTask.comments?.length || 0 }})
+        </p>
+        <div class="space-y-2 mb-3 max-h-56 overflow-y-auto">
+          <div *ngFor="let comment of selectedTask.comments"
+               class="bg-slate-50 dark:bg-slate-950 rounded-xl p-3">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs font-semibold text-slate-900 dark:text-white">{{ comment.username }}</span>
+              <span class="text-2xs text-slate-400 dark:text-slate-500">{{ formatDate(comment.createdAt) }} · {{ formatTime(comment.createdAt) }}</span>
+            </div>
+            <p class="text-sm text-slate-600 dark:text-slate-400">{{ comment.message }}</p>
+          </div>
+          <p *ngIf="!selectedTask.comments?.length" class="text-xs text-slate-400 dark:text-slate-500 text-center py-4">No comments yet.</p>
+        </div>
+        <div class="flex gap-2">
+          <input [(ngModel)]="newComment" type="text" placeholder="Write a comment…"
+                 (keydown.enter)="submitComment()" class="input-sm flex-1">
+          <button (click)="submitComment()" [disabled]="!newComment.trim()" class="btn-primary btn-sm flex-shrink-0">Send</button>
+        </div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="rounded-xl bg-slate-50 dark:bg-slate-950 p-4 space-y-1.5">
+        <p class="text-2xs font-bold text-slate-400 uppercase tracking-widest mb-2">Timeline</p>
+        <p class="text-xs text-slate-500 dark:text-slate-400">Created: {{ formatDate(selectedTask.createdAt) }} · {{ formatTime(selectedTask.createdAt) }}</p>
+        <p class="text-xs text-slate-500 dark:text-slate-400">Updated: {{ formatDate(selectedTask.updatedAt) }} · {{ formatTime(selectedTask.updatedAt) }}</p>
+        <p *ngIf="selectedTask.completedAt" class="text-xs text-emerald-600 dark:text-emerald-400">Completed: {{ formatDate(selectedTask.completedAt) }} · {{ formatTime(selectedTask.completedAt) }}</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     EDIT TASK MODAL
+════════════════════════════════════════════════════ -->
+<div *ngIf="showEditModal" class="modal-overlay" (click)="showEditModal = false">
+  <div class="modal-lg" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3 class="text-base font-bold text-slate-900 dark:text-white">Edit Task</h3>
+      <button (click)="showEditModal = false" class="btn-icon btn-ghost text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <form (ngSubmit)="submitEditTask()" class="modal-body">
+      <div class="form-group">
+        <label class="label">Task Title *</label>
+        <input [(ngModel)]="editTask_data.title" name="editTitle" type="text" class="input" placeholder="Task title">
+      </div>
+      <div class="form-group">
+        <label class="label">Description</label>
+        <textarea [(ngModel)]="editTask_data.description" name="editDescription" rows="3" class="input resize-none" placeholder="Description…"></textarea>
+      </div>
+
+      <!-- Edit assignee multi-select -->
+      <div class="form-group relative">
+        <label class="label">Assign To *</label>
+        <button type="button" (click)="showEditAssignDropdown = !showEditAssignDropdown"
+                class="input text-left flex items-center justify-between">
+          <span class="text-sm truncate" [ngClass]="editSelectedAssignees.length === 0 ? 'text-slate-400 dark:text-slate-500' : 'text-slate-900 dark:text-white'">
+            {{ editSelectedAssignees.length === 0 ? 'Select employees…' : getEditAssigneeNames() }}
+          </span>
+          <div class="flex items-center gap-1.5 ml-2 flex-shrink-0">
+            <span *ngIf="editSelectedAssignees.length > 0" class="badge badge-blue text-[10px]">{{ editSelectedAssignees.length }}</span>
+            <svg [class.rotate-180]="showEditAssignDropdown" class="w-4 h-4 text-slate-400 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </div>
+        </button>
+        <div *ngIf="showEditAssignDropdown"
+             class="absolute z-20 mt-1 w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl shadow-card-lg overflow-hidden">
+          <div class="p-2 border-b border-slate-100 dark:border-slate-800">
+            <input [(ngModel)]="editAssignSearchQuery" name="editAssignSearch" type="text" placeholder="Search employees…"
+                   class="input-sm w-full" (click)="$event.stopPropagation()">
+          </div>
+          <div class="overflow-y-auto max-h-48">
+            <label *ngFor="let emp of filteredEditEmployees"
+                   class="flex items-center gap-3 px-4 py-2.5 hover:bg-indigo-50/50 dark:hover:bg-indigo-900/20 cursor-pointer transition-colors">
+              <input type="checkbox" [checked]="isEditAssigneeSelected(emp.id)" (change)="toggleEditAssignee(emp.id)"
+                     class="w-4 h-4 rounded text-indigo-600 border-slate-300 dark:border-slate-600 focus:ring-indigo-500">
+              <div class="w-7 h-7 rounded-full bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center text-white text-[10px] font-bold flex-shrink-0">
+                {{ emp.firstName.charAt(0) }}
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-sm font-medium text-slate-900 dark:text-white truncate">{{ emp.firstName }} {{ emp.lastName }}</p>
+                <p class="text-xs text-slate-400 dark:text-slate-500 truncate">{{ emp.designation || emp.role }}</p>
+              </div>
+            </label>
+            <p *ngIf="filteredEditEmployees.length === 0" class="text-center text-xs text-slate-400 py-4">No employees found</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <div class="form-group">
+          <label class="label">Priority</label>
+          <select [(ngModel)]="editTask_data.priority" name="editPriority" class="select">
+            <option value="low">Low</option><option value="medium">Medium</option>
+            <option value="high">High</option><option value="urgent">Urgent</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="label">Due Date</label>
+          <input [(ngModel)]="editTask_data.dueDate" name="editDueDate" type="date" class="input">
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="form-group">
+          <label class="label">Category</label>
+          <select [(ngModel)]="editTask_data.category" name="editCategory" class="select">
+            <option>General</option><option>Report</option><option>Development</option>
+            <option>Design</option><option>Research</option><option>Documentation</option>
+            <option>Meeting</option><option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="label">Project (Optional)</label>
+          <select [(ngModel)]="editTask_data.projectId" name="editProjectId" (change)="onEditProjectChange()" class="select">
+            <option value="">No Project</option>
+            <option *ngFor="let proj of projects" [value]="proj.id">{{ proj.name }}</option>
+          </select>
+        </div>
+      </div>
+    </form>
+    <div class="modal-footer">
+      <button type="button" (click)="showEditModal = false" class="btn-secondary">Cancel</button>
+      <button type="submit" (click)="submitEditTask()" [disabled]="loading" class="btn-primary">
+        {{ loading ? 'Saving…' : 'Save Changes' }}
+      </button>
+    </div>
+  </div>
+</div>

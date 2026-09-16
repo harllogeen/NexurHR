@@ -1,0 +1,25 @@
+/* employees.css — scoped styles */
+
+/* Department card hover accent border */
+.dept-card {
+  position: relative;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.dept-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #4f46e5, #7c3aed);
+  border-radius: 1rem 1rem 0 0;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.dept-card:hover::before { opacity: 1; }
+.dept-card:hover {
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+.dark .dept-card:hover {
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}

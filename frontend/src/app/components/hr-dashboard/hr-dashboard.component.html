@@ -1,0 +1,347 @@
+<!-- ═══════════════════════════════════════════════════
+     LOADING STATE
+════════════════════════════════════════════════════ -->
+<div *ngIf="isLoading" class="space-y-6 animate-pulse">
+  <!-- Header skeleton -->
+  <div class="h-36 rounded-2xl skeleton"></div>
+  <!-- Stat cards skeleton -->
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+    <div *ngFor="let _ of [1,2,3,4]" class="h-28 rounded-2xl skeleton"></div>
+  </div>
+  <!-- Content skeleton -->
+  <div class="grid lg:grid-cols-3 gap-4">
+    <div class="lg:col-span-2 h-72 rounded-2xl skeleton"></div>
+    <div class="h-72 rounded-2xl skeleton"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     DASHBOARD CONTENT
+════════════════════════════════════════════════════ -->
+<div *ngIf="!isLoading" class="space-y-6">
+
+  <!-- ── Page header ─────────────────────────────────── -->
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div>
+      <p class="text-2xs font-bold uppercase tracking-widest text-indigo-500 dark:text-indigo-400 mb-1">HR Command Centre</p>
+      <h1 class="text-xl font-bold text-slate-900 dark:text-white">Good morning 👋</h1>
+      <p class="text-sm text-slate-500 dark:text-slate-400 mt-0.5">Here's what's happening with your workforce today.</p>
+    </div>
+    <div class="flex items-center gap-2">
+      <button class="btn-secondary btn-sm flex items-center gap-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+        </svg>
+        Export Report
+      </button>
+      <button class="btn-primary btn-sm flex items-center gap-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+        </svg>
+        Add Employee
+      </button>
+    </div>
+  </div>
+
+  <!-- ── 4 KPI stat cards ────────────────────────────── -->
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+
+    <!-- Total Employees -->
+    <div class="card p-5">
+      <div class="flex items-start justify-between mb-3">
+        <div class="stat-icon-box bg-indigo-50 dark:bg-indigo-900/30">
+          <svg class="w-5 h-5 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+          </svg>
+        </div>
+        <span class="badge badge-green text-[10px]">
+          <span class="status-dot bg-emerald-500"></span>
+          +{{ stats.newHires }} new
+        </span>
+      </div>
+      <p class="text-2xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1">Total Employees</p>
+      <p class="text-3xl font-bold text-slate-900 dark:text-white">{{ stats.totalEmployees }}</p>
+      <p class="text-xs text-slate-400 dark:text-slate-500 mt-2">{{ stats.newHires }} hired this month</p>
+    </div>
+
+    <!-- On Leave -->
+    <div class="card p-5">
+      <div class="flex items-start justify-between mb-3">
+        <div class="stat-icon-box bg-amber-50 dark:bg-amber-900/30">
+          <svg class="w-5 h-5 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <span *ngIf="stats.pendingLeave > 0" class="badge badge-amber text-[10px]">
+          {{ stats.pendingLeave }} pending
+        </span>
+      </div>
+      <p class="text-2xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1">On Leave Today</p>
+      <p class="text-3xl font-bold text-slate-900 dark:text-white">{{ stats.onLeave }}</p>
+      <p class="text-xs text-slate-400 dark:text-slate-500 mt-2">{{ stats.pendingLeave }} awaiting approval</p>
+    </div>
+
+    <!-- Open Positions -->
+    <div class="card p-5">
+      <div class="flex items-start justify-between mb-3">
+        <div class="stat-icon-box bg-violet-50 dark:bg-violet-900/30">
+          <svg class="w-5 h-5 text-violet-600 dark:text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <span class="badge badge-purple text-[10px]">{{ stats.activeApplications }} applicants</span>
+      </div>
+      <p class="text-2xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1">Open Positions</p>
+      <p class="text-3xl font-bold text-slate-900 dark:text-white">{{ stats.openPositions }}</p>
+      <p class="text-xs text-slate-400 dark:text-slate-500 mt-2">{{ stats.activeApplications }} active applications</p>
+    </div>
+
+    <!-- Next Payroll -->
+    <div class="card p-5">
+      <div class="flex items-start justify-between mb-3">
+        <div class="stat-icon-box bg-emerald-50 dark:bg-emerald-900/30">
+          <svg class="w-5 h-5 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+        </div>
+      </div>
+      <p class="text-2xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1">Next Payroll</p>
+      <p class="text-3xl font-bold text-slate-900 dark:text-white">{{ stats.nextPayrollDate | date:'MMM d' }}</p>
+      <p class="text-xs text-slate-400 dark:text-slate-500 mt-2">In {{ stats.daysToPayroll }} days</p>
+    </div>
+
+  </div>
+
+  <!-- ── Workstream snapshot (condensed) ────────────── -->
+  <div class="grid sm:grid-cols-3 gap-4">
+    <div *ngFor="let hl of highlights; let i = index"
+         class="card p-4 flex items-start gap-3">
+      <div class="w-2 h-2 mt-1.5 rounded-full flex-shrink-0"
+           [ngClass]="['bg-indigo-500','bg-emerald-500','bg-amber-500'][i % 3]"></div>
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{{ hl }}</p>
+    </div>
+  </div>
+
+  <!-- ── Main grid: left 2/3 + right 1/3 ──────────────── -->
+  <div class="grid lg:grid-cols-3 gap-6">
+
+    <!-- LEFT COLUMN ─── -->
+    <div class="lg:col-span-2 space-y-6">
+
+      <!-- Recruitment pipeline -->
+      <div class="card overflow-hidden">
+        <div class="card-header">
+          <div>
+            <h2 class="text-sm font-bold text-slate-900 dark:text-white">Recruitment Pipeline</h2>
+            <p class="text-xs text-slate-400 dark:text-slate-500 mt-0.5">Active candidates by stage</p>
+          </div>
+          <a routerLink="/dashboard/hr/recruitment" class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 transition-colors">
+            View all →
+          </a>
+        </div>
+        <div class="p-5">
+          <div class="grid grid-cols-4 gap-3">
+
+            <div *ngFor="let stage of [
+              {label:'Applied',    count: recruitment.applied,    color:'slate',   bg:'bg-slate-50 dark:bg-slate-950',   border:'border-slate-200 dark:border-slate-800',   text:'text-slate-700 dark:text-slate-300',   num:'text-slate-900 dark:text-white'},
+              {label:'Screening',  count: recruitment.screening,  color:'blue',    bg:'bg-sky-50 dark:bg-sky-900/20',    border:'border-sky-200 dark:border-sky-800/40',    text:'text-sky-700 dark:text-sky-400',      num:'text-sky-900 dark:text-sky-200'},
+              {label:'Interview',  count: recruitment.interview,  color:'violet',  bg:'bg-violet-50 dark:bg-violet-900/20', border:'border-violet-200 dark:border-violet-800/40', text:'text-violet-700 dark:text-violet-400', num:'text-violet-900 dark:text-violet-200'},
+              {label:'Offer',      count: recruitment.offer,      color:'emerald', bg:'bg-emerald-50 dark:bg-emerald-900/20', border:'border-emerald-200 dark:border-emerald-800/40', text:'text-emerald-700 dark:text-emerald-400', num:'text-emerald-900 dark:text-emerald-200'}
+            ]"
+            class="rounded-xl border p-4 text-center {{ stage.bg }} {{ stage.border }}">
+              <p class="text-2xl font-bold mb-1" [ngClass]="stage.num">{{ stage.count }}</p>
+              <p class="text-2xs font-bold uppercase tracking-widest" [ngClass]="stage.text">{{ stage.label }}</p>
+            </div>
+
+          </div>
+
+          <!-- Mini funnel bar -->
+          <div class="mt-5 h-2 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden flex gap-px">
+            <div class="h-full bg-slate-400 dark:bg-slate-500 transition-all duration-700 rounded-l-full"
+                 [style.width.%]="(recruitment.applied / (recruitment.applied + recruitment.screening + recruitment.interview + recruitment.offer || 1)) * 100"></div>
+            <div class="h-full bg-sky-500 transition-all duration-700"
+                 [style.width.%]="(recruitment.screening / (recruitment.applied + recruitment.screening + recruitment.interview + recruitment.offer || 1)) * 100"></div>
+            <div class="h-full bg-violet-500 transition-all duration-700"
+                 [style.width.%]="(recruitment.interview / (recruitment.applied + recruitment.screening + recruitment.interview + recruitment.offer || 1)) * 100"></div>
+            <div class="h-full bg-emerald-500 transition-all duration-700 rounded-r-full"
+                 [style.width.%]="(recruitment.offer / (recruitment.applied + recruitment.screening + recruitment.interview + recruitment.offer || 1)) * 100"></div>
+          </div>
+          <div class="mt-2 flex items-center justify-between text-2xs text-slate-400 dark:text-slate-500 font-medium">
+            <span>Applied</span><span>→</span><span>Screening</span><span>→</span><span>Interview</span><span>→</span><span>Offer</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pending Actions table -->
+      <div class="card overflow-hidden">
+        <div class="card-header">
+          <div>
+            <h2 class="text-sm font-bold text-slate-900 dark:text-white">Pending Actions</h2>
+            <p class="text-xs text-slate-400 dark:text-slate-500 mt-0.5">Items requiring your attention</p>
+          </div>
+          <span *ngIf="actions.length > 0" class="badge badge-red">{{ actions.length }} new</span>
+        </div>
+
+        <!-- Actions list -->
+        <div *ngIf="actions.length > 0" class="divide-y divide-slate-50 dark:divide-slate-800/70">
+          <div *ngFor="let action of actions"
+               class="px-5 py-3.5 flex items-center gap-4 hover:bg-slate-50/60 dark:hover:bg-slate-800/30 transition-colors">
+            <!-- Type badge -->
+            <span class="flex-shrink-0 w-28"
+                  [ngClass]="{
+                    'badge badge-amber': action.type === 'Leave Request',
+                    'badge badge-blue':  action.type === 'Timesheet',
+                    'badge badge-purple':action.type === 'Expense'
+                  }">
+              {{ action.type }}
+            </span>
+            <!-- Employee -->
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-medium text-slate-900 dark:text-white truncate">{{ action.employee }}</p>
+              <p class="text-xs text-slate-400 dark:text-slate-500">{{ action.date }}</p>
+            </div>
+            <!-- Actions -->
+            <div class="flex items-center gap-1.5 flex-shrink-0">
+              <button class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 transition-colors">
+                Approve
+              </button>
+              <button class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/50 transition-colors">
+                Reject
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Empty state -->
+        <div *ngIf="actions.length === 0" class="empty-state py-12">
+          <div class="empty-state-icon">
+            <svg class="w-7 h-7 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <p class="text-sm font-semibold text-slate-900 dark:text-white">All caught up</p>
+          <p class="text-xs text-slate-400 mt-1">No pending actions right now.</p>
+        </div>
+
+        <div *ngIf="actions.length > 0" class="card-footer">
+          <a href="#" class="text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            View all pending requests →
+          </a>
+        </div>
+      </div>
+
+      <!-- Module cards -->
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div *ngFor="let card of moduleCards"
+             class="card p-5 hover:shadow-card-md transition-shadow duration-200 cursor-pointer group">
+          <div class="flex items-start justify-between mb-3">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center text-lg bg-gradient-to-br"
+                 [ngClass]="card.accent">
+              {{ card.icon }}
+            </div>
+            <span class="badge badge-slate text-[10px]">Live</span>
+          </div>
+          <h3 class="text-sm font-bold text-slate-900 dark:text-white mb-1 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">{{ card.title }}</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">{{ card.description }}</p>
+        </div>
+      </div>
+
+    </div><!-- end left column -->
+
+    <!-- RIGHT COLUMN ─── -->
+    <div class="space-y-6">
+
+      <!-- Department distribution (visual placeholder) -->
+      <div class="card overflow-hidden">
+        <div class="card-header">
+          <h2 class="text-sm font-bold text-slate-900 dark:text-white">Department Split</h2>
+          <span class="text-2xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Est.</span>
+        </div>
+        <div class="p-5">
+          <!-- Stacked bar visual -->
+          <div class="h-3 rounded-full overflow-hidden flex gap-px mb-5">
+            <div class="bg-indigo-500 h-full" style="width:45%"></div>
+            <div class="bg-violet-500 h-full" style="width:30%"></div>
+            <div class="bg-emerald-500 h-full" style="width:15%"></div>
+            <div class="bg-amber-500 h-full" style="width:10%"></div>
+          </div>
+          <div class="space-y-2.5">
+            <div *ngFor="let dept of [
+              {label:'Engineering', pct:'45%', color:'bg-indigo-500'},
+              {label:'Sales',       pct:'30%', color:'bg-violet-500'},
+              {label:'Marketing',   pct:'15%', color:'bg-emerald-500'},
+              {label:'Operations',  pct:'10%', color:'bg-amber-500'}
+            ]" class="flex items-center justify-between text-xs">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full flex-shrink-0" [ngClass]="dept.color"></span>
+                <span class="text-slate-600 dark:text-slate-400 font-medium">{{ dept.label }}</span>
+              </div>
+              <span class="font-bold text-slate-900 dark:text-white">{{ dept.pct }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upcoming events -->
+      <div class="card overflow-hidden">
+        <div class="card-header">
+          <h2 class="text-sm font-bold text-slate-900 dark:text-white">Upcoming Events</h2>
+        </div>
+        <div class="p-4 space-y-1">
+
+          <!-- Events from API -->
+          <div *ngFor="let event of events"
+               class="flex items-center gap-3 px-2 py-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors group">
+            <div class="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-lg flex-shrink-0 group-hover:scale-110 transition-transform">
+              {{ event.emoji }}
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-medium text-slate-900 dark:text-white truncate">{{ event.title }}</p>
+              <p class="text-xs text-slate-400 dark:text-slate-500">{{ event.date }}</p>
+            </div>
+          </div>
+
+          <!-- Empty state -->
+          <div *ngIf="events.length === 0" class="text-center py-8">
+            <p class="text-xs text-slate-400 dark:text-slate-500">No upcoming events</p>
+          </div>
+
+        </div>
+        <div class="card-footer">
+          <button class="w-full text-center text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors py-0.5">
+            View calendar →
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick links -->
+      <div class="card overflow-hidden">
+        <div class="card-header">
+          <h2 class="text-sm font-bold text-slate-900 dark:text-white">Quick Actions</h2>
+        </div>
+        <div class="p-3 grid grid-cols-2 gap-2">
+          <a *ngFor="let qa of [
+            {label:'Add Employee', icon:'user-plus', route:'/dashboard/employees/all'},
+            {label:'Approve Leave', icon:'calendar', route:'/dashboard/leave/all-applications'},
+            {label:'Run Payroll',   icon:'currency',  route:'/dashboard/my-payroll'},
+            {label:'View Reports',  icon:'chart',     route:'/dashboard/hr/reports'}
+          ]" [routerLink]="qa.route"
+             class="flex flex-col items-center gap-2 p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-colors group">
+            <!-- user-plus -->
+            <svg *ngIf="qa.icon === 'user-plus'" class="w-5 h-5 text-slate-400 dark:text-slate-500 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
+            <!-- calendar -->
+            <svg *ngIf="qa.icon === 'calendar'" class="w-5 h-5 text-slate-400 dark:text-slate-500 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <!-- currency -->
+            <svg *ngIf="qa.icon === 'currency'" class="w-5 h-5 text-slate-400 dark:text-slate-500 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <!-- chart -->
+            <svg *ngIf="qa.icon === 'chart'" class="w-5 h-5 text-slate-400 dark:text-slate-500 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+            <span class="text-2xs font-semibold text-slate-500 dark:text-slate-400 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors text-center">{{ qa.label }}</span>
+          </a>
+        </div>
+      </div>
+
+    </div><!-- end right column -->
+
+  </div><!-- end main grid -->
+
+</div><!-- end !isLoading -->

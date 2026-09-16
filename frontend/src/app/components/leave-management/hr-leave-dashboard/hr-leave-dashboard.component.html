@@ -1,0 +1,261 @@
+<div class="hr-dashboard-container">
+  <!-- Header Section -->
+  <div class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">Leave Management Dashboard</h1>
+      <p class="page-subtitle">Overview of all leave activities and analytics</p>
+    </div>
+    <div class="header-actions">
+      <app-button  
+        variant="secondary"
+        (click)="navigateTo('/dashboard/leave/all-applications')">View All Leaves</app-button>
+    </div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="quick-actions">
+    <button class="action-card" (click)="navigateTo('/dashboard/leave/policies')">
+      <div class="action-icon policies">📋</div>
+      <div class="action-content">
+        <h3 class="action-title">Leave Policies</h3>
+        <p class="action-description">Manage leave types and rules</p>
+      </div>
+    </button>
+
+    <button class="action-card" (click)="navigateTo('/dashboard/leave/work-calendar')">
+      <div class="action-icon calendar">📅</div>
+      <div class="action-content">
+        <h3 class="action-title">Work Calendar</h3>
+        <p class="action-description">Holidays and working days</p>
+      </div>
+    </button>
+
+    <button class="action-card" (click)="navigateTo('/dashboard/leave/approval-workflows')">
+      <div class="action-icon workflows">🔄</div>
+      <div class="action-content">
+        <h3 class="action-title">Workflows</h3>
+        <p class="action-description">Approval routing rules</p>
+      </div>
+    </button>
+
+    <button class="action-card" (click)="navigateTo('/dashboard/leave/balance-management')">
+      <div class="action-icon balance">💰</div>
+      <div class="action-content">
+        <h3 class="action-title">Balance Management</h3>
+        <p class="action-description">Adjust employee balances</p>
+      </div>
+    </button>
+  </div>
+
+  <!-- Dashboard Stats Cards -->
+  <div class="stats-grid" *ngIf="!loadingStats">
+    <div class="stat-card">
+      <div class="stat-icon pending">⏳</div>
+      <div class="stat-content">
+        <span class="stat-label">Pending Approval</span>
+        <span class="stat-value">{{ dashboardStats?.pendingCount || dashboardStats?.pending || 0 }}</span>
+        <span class="stat-trend" [ngClass]="getTrendClass(dashboardStats?.pendingTrend || 'neutral')">
+          {{ getTrendIcon(dashboardStats?.pendingTrend || 'neutral') }} 
+          {{ dashboardStats?.pendingChange || 0 }}%
+        </span>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon approved">✅</div>
+      <div class="stat-content">
+        <span class="stat-label">Approved This Month</span>
+        <span class="stat-value">{{ dashboardStats?.approvedThisMonth || 0 }}</span>
+        <span class="stat-trend" [ngClass]="getTrendClass(dashboardStats?.approvedTrend || 'neutral')">
+          {{ getTrendIcon(dashboardStats?.approvedTrend || 'neutral') }} 
+          {{ dashboardStats?.approvedChange || 0 }}%
+        </span>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon employees">👥</div>
+      <div class="stat-content">
+        <span class="stat-label">On Leave Today</span>
+        <span class="stat-value">{{ dashboardStats?.onLeaveToday || 0 }}</span>
+        <span class="stat-detail">{{ dashboardStats?.totalEmployees || 0 }} total employees</span>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon upcoming">📆</div>
+      <div class="stat-content">
+        <span class="stat-label">Upcoming (30 days)</span>
+        <span class="stat-value">{{ dashboardStats?.upcomingCount || dashboardStats?.upcomingLeaves || 0 }}</span>
+        <span class="stat-detail">{{ dashboardStats?.upcomingDays || 0 }} total days</span>
+      </div>
+    </div>
+  </div>
+
+  <app-spinner *ngIf="loadingStats"></app-spinner>
+
+  <!-- Main Content Grid -->
+  <div class="content-grid">
+    <!-- Leave Utilization -->
+    <div class="dashboard-card">
+      <div class="card-header">
+        <h2 class="card-title">Leave Utilization by Type</h2>
+        <span class="card-subtitle">Year {{ selectedYear }}</span>
+      </div>
+      <div class="card-body">
+        <div class="utilization-list">
+          <div class="utilization-item" *ngFor="let item of leaveUtilization">
+            <div class="utilization-header">
+              <span class="utilization-type">{{ item.name || item.leaveType }}</span>
+              <span class="utilization-percentage">
+                {{ item.totalDays || 0 }} days
+              </span>
+            </div>
+            <div class="utilization-stats">
+              <span class="stat-small">{{ item.totalRequests || 0 }} requests • Avg: {{ item.averageDays || 0 }} days</span>
+            </div>
+            <div class="utilization-bar">
+              <div 
+                class="utilization-bar-fill" 
+                [style.width.%]="(item.totalRequests || 0) * 10"
+                [style.background-color]="item.color || '#3b82f6'">
+              </div>
+            </div>
+          </div>
+
+          <div class="empty-state-small" *ngIf="leaveUtilization.length === 0">
+            <p>No utilization data available</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Department Statistics -->
+    <div class="dashboard-card">
+      <div class="card-header">
+        <h2 class="card-title">Department Statistics</h2>
+        <span class="card-subtitle">Current year</span>
+      </div>
+      <div class="card-body">
+        <div class="department-list">
+          <div class="department-item" *ngFor="let dept of departmentStats">
+            <div class="department-info">
+              <span class="department-name">{{ dept.department }}</span>
+              <span class="department-count">{{ dept.employeeCount }} employees</span>
+            </div>
+            <div class="department-stats">
+              <div class="stat-chip">
+                <span class="chip-label">Pending</span>
+                <span class="chip-value">{{ dept.pendingLeaves || 0 }}</span>
+              </div>
+              <div class="stat-chip">
+                <span class="chip-label">On Leave</span>
+                <span class="chip-value">{{ dept.onLeave || 0 }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="empty-state-small" *ngIf="departmentStats.length === 0">
+            <p>No department data available</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Upcoming Leaves -->
+    <div class="dashboard-card full-width">
+      <div class="card-header">
+        <h2 class="card-title">Upcoming Leaves (Next 30 Days)</h2>
+        <app-button  
+          variant="secondary" 
+          size="sm"
+          (click)="navigateTo('/dashboard/leave/all-applications')">View All</app-button>
+      </div>
+      <div class="card-body">
+        <app-spinner *ngIf="loadingUpcoming"></app-spinner>
+
+        <div class="upcoming-list" *ngIf="!loadingUpcoming">
+          <div class="upcoming-item" *ngFor="let leave of upcomingLeaves">
+            <div class="upcoming-date">
+              <span class="date-day">{{ formatDate(leave.startDate).split(' ')[1] }}</span>
+              <span class="date-month">{{ formatDate(leave.startDate).split(' ')[0] }}</span>
+            </div>
+            <div class="upcoming-info">
+              <div class="upcoming-employee">
+                <span class="employee-name">{{ leave.employeeName || leave.employee?.name }}</span>
+                <span class="employee-dept">{{ leave.department }}</span>
+              </div>
+              <div class="upcoming-details">
+                <span class="leave-type-tag">{{ leave.leaveType }}</span>
+                <span class="leave-duration">{{ leave.days || 0 }} days</span>
+                <span class="leave-dates">
+                  {{ formatDate(leave.startDate) }} → {{ formatDate(leave.endDate) }}
+                </span>
+              </div>
+            </div>
+            <div class="upcoming-status">
+              <app-status-badge [variant]="getStatusBadgeType(leave.status)">{{ leave.status }}</app-status-badge>
+            </div>
+          </div>
+
+          <div class="empty-state-small" *ngIf="upcomingLeaves.length === 0">
+            <p>No upcoming leaves in the next 30 days</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Balance Overview -->
+    <div class="dashboard-card full-width">
+      <div class="card-header">
+        <h2 class="card-title">Critical Balance Overview</h2>
+        <span class="card-subtitle">Employees with low or negative balance</span>
+      </div>
+      <div class="card-body">
+        <div class="balance-table">
+          <table class="table-compact">
+            <thead>
+              <tr>
+                <th>Employee</th>
+                <th>Department</th>
+                <th>Leave Type</th>
+                <th>Available</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of balanceOverview">
+                <td>
+                  <span class="employee-name-cell">{{ item.employeeName }}</span>
+                </td>
+                <td>
+                  <span class="dept-cell">{{ item.department }}</span>
+                </td>
+                <td>
+                  <span class="type-cell">{{ item.leaveType }}</span>
+                </td>
+                <td>
+                  <span class="balance-cell" [class.negative]="item.available < 0">
+                    {{ item.available }} days
+                  </span>
+                </td>
+                <td>
+                  <span 
+                    class="status-indicator"
+                    [class.critical]="item.available < 0"
+                    [class.low]="item.available >= 0 && item.available < 3">
+                    {{ item.available < 0 ? 'Negative' : 'Low' }}
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="empty-state-small" *ngIf="balanceOverview.length === 0">
+            <p>All employee balances are healthy</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

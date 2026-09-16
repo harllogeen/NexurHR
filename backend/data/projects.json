@@ -1,0 +1,68 @@
+[
+  {
+    "id": "proj-1784723477737",
+    "createdAt": "2026-07-22T12:31:17.737Z",
+    "updatedAt": "2026-07-22T12:31:17.737Z",
+    "name": "Smart HR",
+    "description": "",
+    "status": "Active",
+    "startDate": "2026-07-22",
+    "endDate": "2026-07-29",
+    "department": "",
+    "managerId": 1764829943217,
+    "createdBy": 1764829943217,
+    "members": [
+      1778155500580,
+      1783502564400,
+      1784719952189
+    ]
+  },
+  {
+    "id": "proj-1784724983380",
+    "createdAt": "2026-07-22T12:56:23.380Z",
+    "updatedAt": "2026-07-22T12:56:23.380Z",
+    "name": "KOODI MAHONEY ",
+    "description": "A financial loan application",
+    "status": "Active",
+    "startDate": "2026-07-22",
+    "endDate": "2026-08-22",
+    "department": [
+      "Technology",
+      "Human Resources",
+      "Business Management",
+      "Account Department"
+    ],
+    "managerId": 1783718492655,
+    "createdBy": 1783718492655,
+    "members": [
+      1778155500580,
+      1783502180173,
+      1764829943216
+    ]
+  },
+  {
+    "id": "proj-1784725786654",
+    "createdAt": "2026-07-22T13:09:46.654Z",
+    "updatedAt": "2026-07-22T13:09:46.654Z",
+    "name": "HARLLOGEEN FOREX",
+    "description": "Trading Robot",
+    "status": "Planning",
+    "startDate": "2026-07-22",
+    "endDate": "2026-07-29",
+    "department": [
+      "Technology",
+      "Human Resources",
+      "Manager",
+      "Business Management"
+    ],
+    "managerId": 1764829943217,
+    "createdBy": 1764829943217,
+    "members": [
+      1778155500580,
+      1784719952189,
+      1784725264014,
+      1783718492654,
+      1764829943216
+    ]
+  }
+]

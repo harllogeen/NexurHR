@@ -1,0 +1,302 @@
+const fs = require("fs");
+const path = require("path");
+const { getLeaves, saveLeaves } = require("../models/leaveModel");
+const LeaveBalance = require("../models/leaveBalanceModel");
+const { getUsers } = require("../models/userModel");
+const { getEmployees } = require("../models/employeeModel");
+const notificationController = require("./notificationController");
+const { hasPermission } = require("../utils/permissions");
+const { recordAuditLog } = require("../models/auditLogModel");
+
+const leaveTypesPath = path.join(__dirname, "../data/leaveTypes.json");
+const defaultLeaveTypes = [
+  { code: "annual", name: "Annual", defaultDays: 20, color: "#2563eb" },
+  { code: "sick", name: "Sick", defaultDays: 10, color: "#dc2626" },
+  { code: "casual", name: "Casual", defaultDays: 5, color: "#16a34a" },
+];
+
+const getLeaveTypes = () => {
+  if (!fs.existsSync(leaveTypesPath)) {
+    fs.writeFileSync(leaveTypesPath, JSON.stringify(defaultLeaveTypes, null, 2));
+  }
+  return JSON.parse(fs.readFileSync(leaveTypesPath, "utf8"));
+};
+
+const saveLeaveTypes = (types) => fs.writeFileSync(leaveTypesPath, JSON.stringify(types, null, 2));
+
+const enrichLeaves = (leaves) => {
+  const users = getUsers();
+  const employees = getEmployees();
+
+  return leaves.map((leave) => {
+    const user = users.find((u) => u.id === leave.userId);
+    let userName = `Staff #${String(leave.userId).slice(-6)}`;
+    let department = "N/A";
+    let employeeId = null;
+
+    if (user && user.employeeId) {
+      const employee = employees.find((e) => e.id === user.employeeId);
+      if (employee) {
+        userName = `${employee.firstName} ${employee.lastName}`;
+        department = employee.department || "N/A";
+        employeeId = employee.id;
+      } else {
+        userName = user.username || userName;
+      }
+    } else if (user && user.username) {
+      userName = user.username;
+    }
+
+    return { ...leave, userName, department, employeeId, requesterRole: user ? user.role || "employee" : "employee" };
+  });
+};
+
+const requestLeave = (req, res) => {
+  const { userId } = req;
+  const { leaveType, startDate, endDate, reason, attachment } = req.body;
+
+  if (!leaveType || !startDate || !endDate) {
+    return res.status(400).json({ message: "Missing required fields" });
+  }
+
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+  const diffDays = Math.ceil(Math.abs(end - start) / (1000 * 60 * 60 * 24)) + 1;
+
+  const balance = LeaveBalance.findByUserId(userId);
+  const typeKey = String(leaveType).toLowerCase();
+  const availableBalance = balance[typeKey] ?? 0;
+
+  if (availableBalance < diffDays) {
+    return res.status(400).json({ message: "Insufficient leave balance" });
+  }
+
+  const leaves = getLeaves();
+  const newRequest = {
+    id: Date.now(),
+    userId,
+    leaveType,
+    startDate,
+    endDate,
+    days: diffDays,
+    reason,
+    attachment: attachment || null,
+    status: "Pending",
+    appliedAt: new Date().toISOString(),
+  };
+
+  leaves.push(newRequest);
+  saveLeaves(leaves);
+  recordAuditLog({ actorId: userId, action: "request-leave", targetId: newRequest.id, details: `Requested ${leaveType} leave` });
+
+  res.status(201).json({ message: "Leave request submitted", request: newRequest });
+};
+
+const getMyLeaves = (req, res) => {
+  const { userId } = req;
+  const leaves = getLeaves();
+  const myLeaves = leaves.filter((l) => l.userId === userId);
+  res.status(200).json(enrichLeaves(myLeaves));
+};
+
+const getAllLeaves = (req, res) => {
+  const leaves = getLeaves();
+  const { status, userId, startDate, endDate } = req.query;
+  let results = enrichLeaves(leaves);
+
+  if (status) {
+    results = results.filter((leave) => (leave.status || "").toLowerCase() === status.toLowerCase());
+  }
+
+  if (userId) {
+    results = results.filter((leave) => String(leave.userId) === String(userId));
+  }
+
+  // Filter by date range if provided
+  if (startDate && endDate) {
+    results = results.filter((leave) => {
+      // Check if leave overlaps with the date range
+      return leave.startDate <= endDate && leave.endDate >= startDate;
+    });
+  }
+
+  res.status(200).json(results);
+};
+
+const updateLeaveStatus = (req, res) => {
+  const actor = { id: req.userId, role: req.userRole || "employee" };
+  if (!hasPermission(actor, "approve", "leave") && !hasPermission(actor, "reject", "leave")) {
+    return res.status(403).json({ message: "Permission denied" });
+  }
+
+  const { id } = req.params;
+  const { status } = req.body;
+
+  const leaves = getLeaves();
+  const index = leaves.findIndex((l) => l.id == id);
+
+  if (index === -1) {
+    return res.status(404).json({ message: "Leave request not found" });
+  }
+
+  if (status === "Approved" && leaves[index].status !== "Approved") {
+    const typeKey = String(leaves[index].leaveType).toLowerCase();
+    LeaveBalance.updateBalance(leaves[index].userId, typeKey, leaves[index].days);
+  }
+
+  leaves[index].status = status;
+  leaves[index].updatedAt = new Date().toISOString();
+  saveLeaves(leaves);
+  recordAuditLog({ actorId: actor.id, action: "update-leave-status", targetId: id, details: `Marked leave as ${status}` });
+
+  res.status(200).json({ message: `Leave status updated to ${status}`, request: leaves[index] });
+};
+
+const getMyBalance = (req, res) => {
+  const balance = LeaveBalance.findByUserId(req.userId);
+  res.json({ balance, leaveTypes: getLeaveTypes() });
+};
+
+const getLeaveTypesHandler = (req, res) => {
+  res.json(getLeaveTypes());
+};
+
+const createLeaveType = (req, res) => {
+  const actor = { id: req.userId, role: req.userRole || "employee" };
+  if (!hasPermission(actor, "manage-types", "leave")) {
+    return res.status(403).json({ message: "Permission denied" });
+  }
+
+  const { code, name, defaultDays, color } = req.body;
+  if (!code || !name) return res.status(400).json({ message: "Leave type code and name are required" });
+
+  const types = getLeaveTypes();
+  const existing = types.find((type) => type.code === code);
+  if (existing) {
+    existing.name = name;
+    existing.defaultDays = defaultDays || existing.defaultDays;
+    existing.color = color || existing.color;
+  } else {
+    types.push({ code, name, defaultDays: defaultDays || 10, color: color || "#64748b" });
+  }
+
+  saveLeaveTypes(types);
+  res.status(200).json(types);
+};
+
+const getLeaveCalendar = (req, res) => {
+  const leaves = getLeaves();
+  const year = Number(req.query.year || new Date().getFullYear());
+  const month = Number(req.query.month || new Date().getMonth() + 1);
+  const approvedLeaves = leaves.filter((leave) => leave.status === "Approved" && leave.startDate && leave.endDate);
+
+  const calendar = approvedLeaves.flatMap((leave) => {
+    const start = new Date(leave.startDate);
+    const end = new Date(leave.endDate);
+    const dates = [];
+    const current = new Date(start);
+    while (current <= end) {
+      if (current.getFullYear() === year && current.getMonth() + 1 === month) {
+        dates.push({ date: current.toISOString().split("T")[0], leaveType: leave.leaveType, userId: leave.userId });
+      }
+      current.setDate(current.getDate() + 1);
+    }
+    return dates;
+  });
+
+  res.status(200).json(calendar);
+};
+
+const getLeaveSummary = (req, res) => {
+  const leaves = getLeaves();
+  const year = Number(req.query.year || new Date().getFullYear());
+  const summary = leaves.filter((leave) => new Date(leave.startDate).getFullYear() === year).map((leave) => ({ ...leave, days: leave.days || 1 }));
+  res.status(200).json(summary);
+};
+
+const bulkUpdateLeaveStatus = (req, res) => {
+  const actor = { id: req.userId, role: req.userRole || "employee" };
+  if (!hasPermission(actor, "bulk-approve", "leave")) {
+    return res.status(403).json({ message: "Permission denied" });
+  }
+
+  const { ids, status } = req.body;
+  if (!Array.isArray(ids) || !status) return res.status(400).json({ message: "Leave IDs and status are required" });
+
+  const leaves = getLeaves();
+  const updated = [];
+
+  ids.forEach((id) => {
+    const index = leaves.findIndex((leave) => leave.id == id);
+    if (index === -1) return;
+    leaves[index].status = status;
+    leaves[index].updatedAt = new Date().toISOString();
+    updated.push(leaves[index]);
+  });
+
+  saveLeaves(leaves);
+  res.status(200).json({ message: "Leave requests updated", updated });
+};
+
+const checkStaleLeaves = () => {
+  const leaves = getLeaves();
+  const users = getUsers();
+  const hrUsers = users.filter((u) => u.role === "hr" || u.role === "super-admin");
+  const now = new Date();
+  let updated = false;
+
+  leaves.forEach((leave) => {
+    if (leave.status === "Pending" && !leave.escalated && leave.appliedAt) {
+      const applied = new Date(leave.appliedAt);
+      const diffDays = (now - applied) / (1000 * 60 * 60 * 24);
+
+      if (diffDays > 3) {
+        leave.escalated = true;
+        updated = true;
+        console.log(`[Cron] Escalating leave request ${leave.id} to HR.`);
+
+        hrUsers.forEach((hr) => {
+          notificationController.createInternal(hr.id, "Leave Request Escalated", `A leave request from User ID ${leave.userId} has been pending for over 3 days.`, "warning");
+        });
+      }
+    }
+  });
+
+  if (updated) saveLeaves(leaves);
+};
+
+const deleteLeaveRequest = (req, res) => {
+  const { userId } = req;
+  const { id } = req.params;
+  const leaves = getLeaves();
+  const index = leaves.findIndex((l) => String(l.id) === String(id) && String(l.userId) === String(userId));
+  
+  if (index === -1) {
+    return res.status(404).json({ message: "Leave request not found or unauthorized" });
+  }
+  
+  if (leaves[index].status !== "Pending") {
+    return res.status(400).json({ message: "Only pending leave requests can be deleted" });
+  }
+  
+  const deleted = leaves.splice(index, 1);
+  saveLeaves(leaves);
+  recordAuditLog({ actorId: userId, action: "delete-leave", targetId: id, details: `Deleted pending leave request` });
+  
+  res.status(200).json({ message: "Leave request deleted successfully", request: deleted[0] });
+};
+
+module.exports = {
+  requestLeave,
+  getMyLeaves,
+  getAllLeaves,
+  updateLeaveStatus,
+  getMyBalance,
+  getLeaveTypesHandler,
+  createLeaveType,
+  getLeaveCalendar,
+  getLeaveSummary,
+  bulkUpdateLeaveStatus,
+  checkStaleLeaves,
+  deleteLeaveRequest,
+};

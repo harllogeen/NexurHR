@@ -1,0 +1,390 @@
+<div class="space-y-5">
+  <!-- ── Page header ──────────────────────────────────── -->
+  <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 mb-6">
+    <div>
+      <h1 class="text-xl font-bold text-slate-900 dark:text-white">Leave Policy Management</h1>
+      <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Configure and manage leave policies for your organization</p>
+    </div>
+    <app-button  
+      variant="primary" 
+      size="sm"
+      (clicked)="openCreateModal()">
+      <i class="fas fa-plus mr-1"></i> Create Policy
+    </app-button>
+  </div>
+
+  <!-- Loading State -->
+  <app-spinner *ngIf="loading && policies.length === 0"></app-spinner>
+
+  <!-- Empty State -->
+  <app-empty-state 
+    *ngIf="!loading && policies.length === 0"
+    title="No Leave Policies"
+    message="Get started by creating your first leave policy"
+    actionLabel="Create Policy"
+    (actionClick)="openCreateModal()">
+  </app-empty-state>
+
+  <!-- Policies Grid -->
+  <div class="policies-grid" *ngIf="!loading && policies.length > 0">
+    <div class="policy-card" *ngFor="let policy of policies">
+      <div class="policy-header">
+        <div class="policy-title-section">
+          <h3 class="policy-name">{{ policy.name }}</h3>
+          <span class="policy-code">{{ policy.code }}</span>
+        </div>
+        <app-status-badge [variant]="getStatusBadgeType(policy.isActive)">{{ getStatusLabel(policy.isActive) }}</app-status-badge>
+      </div>
+
+      <p class="policy-description">{{ policy.description }}</p>
+
+      <div class="policy-details">
+        <div class="detail-item">
+          <span class="detail-label">Annual Allowance:</span>
+          <span class="detail-value">{{ policy.daysPerYear }} days</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Type:</span>
+          <span class="detail-value">{{ policy.paidLeave ? 'Paid' : 'Unpaid' }}</span>
+        </div>
+        <div class="detail-item" *ngIf="policy.accrualEnabled">
+          <span class="detail-label">Accrual:</span>
+          <span class="detail-value">{{ policy.accrualRate }} days/{{ policy.accrualFrequency }}</span>
+        </div>
+        <div class="detail-item" *ngIf="policy.carryOverEnabled">
+          <span class="detail-label">Carry Over:</span>
+          <span class="detail-value">Max {{ policy.maxCarryOverDays }} days</span>
+        </div>
+        <div class="detail-item" *ngIf="policy.noticeRequired">
+          <span class="detail-label">Notice Period:</span>
+          <span class="detail-value">{{ policy.noticeDays }} days</span>
+        </div>
+      </div>
+
+      <div class="policy-features">
+        <span class="feature-badge" *ngIf="policy.accrualEnabled">
+          <i class="icon">⚡</i> Accrual
+        </span>
+        <span class="feature-badge" *ngIf="policy.proRateEnabled">
+          <i class="icon">📊</i> Pro-rated
+        </span>
+        <span class="feature-badge" *ngIf="policy.carryOverEnabled">
+          <i class="icon">↗️</i> Carry Over
+        </span>
+        <span class="feature-badge" *ngIf="policy.requireDocumentation">
+          <i class="icon">📄</i> Requires Docs
+        </span>
+      </div>
+
+      <div class="policy-actions">
+        <app-button  
+          variant="secondary" 
+          size="sm"
+          (click)="openEditModal(policy)">Edit</app-button>
+        <app-button  
+          [variant]="policy.isActive ? 'secondary' : 'primary'" 
+          size="sm"
+          (click)="togglePolicyStatus(policy)">{{ policy.isActive ? 'Deactivate' : 'Activate' }}</app-button>
+        <app-button  
+          variant="danger" 
+          size="sm"
+          (click)="openDeleteConfirmModal(policy)">Delete</app-button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Create/Edit Policy Modal -->
+  <div class="modal-overlay" *ngIf="isModalOpen" (click)="closeModal()">
+    <div class="modal-container" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2 class="modal-title">{{ isEditMode ? 'Edit Policy' : 'Create New Policy' }}</h2>
+        <button class="modal-close" (click)="closeModal()">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <form class="policy-form">
+          <!-- Basic Information -->
+          <div class="form-section">
+            <h3 class="section-title">Basic Information</h3>
+            
+            <div class="form-row">
+              <div class="form-col">
+                <app-form-input
+                  label="Policy Name"
+                  [(ngModel)]="policyForm.name"
+                  name="name"
+                  placeholder="e.g., Annual Leave"
+                  [required]="true">
+                </app-form-input>
+              </div>
+              <div class="form-col">
+                <app-form-input
+                  label="Policy Code"
+                  [(ngModel)]="policyForm.code"
+                  name="code"
+                  placeholder="e.g., AL"
+                  [required]="true">
+                </app-form-input>
+              </div>
+            </div>
+
+            <app-form-textarea
+              label="Description"
+              [(ngModel)]="policyForm.description"
+              name="description"
+              placeholder="Describe this leave policy"
+              [rows]="3">
+            </app-form-textarea>
+
+            <div class="form-row">
+              <div class="form-col">
+                <app-form-toggle
+                  label="Paid Leave"
+                  [(ngModel)]="policyForm.paidLeave"
+                  name="paidLeave">
+                </app-form-toggle>
+              </div>
+              <div class="form-col">
+                <app-form-toggle
+                  label="Active"
+                  [(ngModel)]="policyForm.isActive"
+                  name="isActive">
+                </app-form-toggle>
+              </div>
+            </div>
+          </div>
+
+          <!-- Allowance Configuration -->
+          <div class="form-section">
+            <h3 class="section-title">Allowance Configuration</h3>
+            
+            <div class="form-row">
+              <div class="form-col">
+                <app-form-input
+                  label="Days Per Year"
+                  [(ngModel)]="policyForm.daysPerYear"
+                  name="daysPerYear"
+                  type="number"
+                  placeholder="e.g., 20"
+                  [required]="true">
+                </app-form-input>
+              </div>
+              <div class="form-col">
+                <app-form-input
+                  label="Min Days Per Request"
+                  [(ngModel)]="policyForm.minDaysPerRequest"
+                  name="minDaysPerRequest"
+                  type="number"
+                  placeholder="e.g., 1">
+                </app-form-input>
+              </div>
+            </div>
+
+            <app-form-input
+              label="Max Days Per Request"
+              [(ngModel)]="policyForm.maxDaysPerRequest"
+              name="maxDaysPerRequest"
+              type="number"
+              placeholder="Leave empty for no limit">
+            </app-form-input>
+          </div>
+
+          <!-- Accrual Settings -->
+          <div class="form-section">
+            <h3 class="section-title">Accrual Settings</h3>
+            
+            <app-form-toggle
+              label="Enable Accrual"
+              [(ngModel)]="policyForm.accrualEnabled"
+              name="accrualEnabled">
+            </app-form-toggle>
+
+            <div *ngIf="policyForm.accrualEnabled" class="nested-section">
+              <div class="form-row">
+                <div class="form-col">
+                  <app-form-select
+                    label="Accrual Frequency"
+                    [(ngModel)]="policyForm.accrualFrequency"
+                    name="accrualFrequency"
+                    [options]="accrualFrequencies">
+                  </app-form-select>
+                </div>
+                <div class="form-col">
+                  <app-form-input
+                    label="Accrual Rate (days)"
+                    [(ngModel)]="policyForm.accrualRate"
+                    name="accrualRate"
+                    type="number"
+                    step="0.01"
+                    placeholder="e.g., 1.67">
+                  </app-form-input>
+                </div>
+              </div>
+
+              <app-form-toggle
+                label="Pro-rate for New Employees"
+                [(ngModel)]="policyForm.proRateEnabled"
+                name="proRateEnabled">
+              </app-form-toggle>
+            </div>
+          </div>
+
+          <!-- Carry Over Settings -->
+          <div class="form-section">
+            <h3 class="section-title">Carry Over Settings</h3>
+            
+            <app-form-toggle
+              label="Enable Carry Over"
+              [(ngModel)]="policyForm.carryOverEnabled"
+              name="carryOverEnabled">
+            </app-form-toggle>
+
+            <div *ngIf="policyForm.carryOverEnabled" class="nested-section">
+              <app-form-input
+                label="Maximum Carry Over Days"
+                [(ngModel)]="policyForm.maxCarryOverDays"
+                name="maxCarryOverDays"
+                type="number"
+                placeholder="e.g., 5">
+              </app-form-input>
+            </div>
+          </div>
+
+          <!-- Documentation Requirements -->
+          <div class="form-section">
+            <h3 class="section-title">Documentation Requirements</h3>
+            
+            <app-form-toggle
+              label="Require Documentation"
+              [(ngModel)]="policyForm.requireDocumentation"
+              name="requireDocumentation">
+            </app-form-toggle>
+
+            <div *ngIf="policyForm.requireDocumentation" class="nested-section">
+              <app-form-input
+                label="Minimum Days Requiring Documentation"
+                [(ngModel)]="policyForm.minDocumentationDays"
+                name="minDocumentationDays"
+                type="number"
+                placeholder="e.g., 3">
+              </app-form-input>
+            </div>
+          </div>
+
+          <!-- Notice Period -->
+          <div class="form-section">
+            <h3 class="section-title">Notice Period</h3>
+            
+            <app-form-toggle
+              label="Require Advance Notice"
+              [(ngModel)]="policyForm.noticeRequired"
+              name="noticeRequired">
+            </app-form-toggle>
+
+            <div *ngIf="policyForm.noticeRequired" class="nested-section">
+              <app-form-input
+                label="Notice Days"
+                [(ngModel)]="policyForm.noticeDays"
+                name="noticeDays"
+                type="number"
+                placeholder="e.g., 3">
+              </app-form-input>
+            </div>
+          </div>
+
+          <!-- Eligibility Criteria -->
+          <div class="form-section">
+            <h3 class="section-title">Eligibility Criteria</h3>
+            
+            <app-form-input
+              label="Minimum Tenure (months)"
+              [(ngModel)]="policyForm.eligibilityCriteria.minTenureMonths"
+              name="minTenureMonths"
+              type="number"
+              placeholder="0 for immediate eligibility">
+            </app-form-input>
+
+            <div class="checkbox-group">
+              <label class="group-label">Eligible Roles:</label>
+              <div class="checkbox-list">
+                <label class="checkbox-item" *ngFor="let role of roles">
+                  <input 
+                    type="checkbox" 
+                    [checked]="selectedRoles.includes(role)"
+                    (change)="onRoleToggle(role)">
+                  <span>{{ role }}</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="checkbox-group">
+              <label class="group-label">Employment Types:</label>
+              <div class="checkbox-list">
+                <label class="checkbox-item" *ngFor="let type of employmentTypes">
+                  <input 
+                    type="checkbox" 
+                    [checked]="selectedEmploymentTypes.includes(type)"
+                    (change)="onEmploymentTypeToggle(type)">
+                  <span>{{ type }}</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Restrictions -->
+          <div class="form-section">
+            <h3 class="section-title">Restrictions</h3>
+            
+            <app-form-input
+              label="Max Consecutive Days"
+              [(ngModel)]="policyForm.restrictions.maxConsecutiveDays"
+              name="maxConsecutiveDays"
+              type="number"
+              placeholder="Leave empty for no limit">
+            </app-form-input>
+
+            <div class="form-row">
+              <div class="form-col">
+                <app-form-toggle
+                  label="Include Weekends"
+                  [(ngModel)]="policyForm.restrictions.weekendIncluded"
+                  name="weekendIncluded">
+                </app-form-toggle>
+              </div>
+              <div class="form-col">
+                <app-form-toggle
+                  label="Include Public Holidays"
+                  [(ngModel)]="policyForm.restrictions.holidayIncluded"
+                  name="holidayIncluded">
+                </app-form-toggle>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <app-button  
+          variant="secondary"
+          (click)="closeModal()">Cancel</app-button>
+        <app-button  
+          variant="primary"
+          [loading]="loading"
+          (click)="savePolicy()">{{ isEditMode ? 'Update Policy' : 'Create Policy' }}</app-button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <app-confirmation-modal
+    [isOpen]="showDeleteConfirmModal"
+    [title]="deleteConfirmConfig.title"
+    [message]="deleteConfirmConfig.message"
+    [confirmText]="'Delete'"
+    [cancelText]="'Cancel'"
+    [type]="'danger'"
+    [confirmButtonVariant]="'danger'"
+    (confirm)="deleteConfirmConfig.onConfirm()"
+    (cancel)="showDeleteConfirmModal = false">
+  </app-confirmation-modal>
+</div>

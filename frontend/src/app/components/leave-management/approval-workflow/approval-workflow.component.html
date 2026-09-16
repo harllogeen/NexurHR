@@ -1,0 +1,326 @@
+<div class="approval-workflow-container">
+  <!-- Header Section -->
+  <div class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">Approval Workflow Configuration</h1>
+      <p class="page-subtitle">Configure multi-level approval routing rules for leave requests</p>
+    </div>
+    <app-button  
+      variant="primary" 
+      icon="plus"
+      (click)="openCreateModal()">Create Workflow</app-button>
+  </div>
+
+  <!-- Loading State -->
+  <app-spinner *ngIf="loading && workflows.length === 0"></app-spinner>
+
+  <!-- Empty State -->
+  <app-empty-state 
+    *ngIf="!loading && workflows.length === 0"
+    title="No Approval Workflows"
+    message="Create your first approval workflow to define routing rules"
+    actionLabel="Create Workflow"
+    (actionClick)="openCreateModal()">
+  </app-empty-state>
+
+  <!-- Workflows List -->
+  <div class="workflows-list" *ngIf="!loading && workflows.length > 0">
+    <div class="workflow-card" *ngFor="let workflow of workflows">
+      <div class="workflow-header">
+        <div class="workflow-title-section">
+          <h3 class="workflow-name">{{ workflow.name }}</h3>
+          <div class="workflow-badges">
+            <app-status-badge [variant]="getStatusBadgeType(workflow.isActive)">{{ getStatusLabel(workflow.isActive) }}</app-status-badge>
+            <app-status-badge 
+              *ngIf="workflow.isDefault"
+              label="Default" 
+              type="primary">
+            </app-status-badge>
+          </div>
+        </div>
+        <div class="workflow-actions">
+          <app-button  
+            variant="secondary" 
+            size="sm"
+            (click)="openEditModal(workflow)">Edit</app-button>
+          <app-button  
+            [variant]="workflow.isActive ? 'secondary' : 'primary'" 
+            size="sm"
+            (click)="toggleWorkflowStatus(workflow)">{{ workflow.isActive ? 'Deactivate' : 'Activate' }}</app-button>
+          <app-button  
+            variant="danger" 
+            size="sm"
+            [disabled]="workflow.isDefault"
+            (click)="openDeleteConfirmModal(workflow)">Delete</app-button>
+        </div>
+      </div>
+
+      <p class="workflow-description" *ngIf="workflow.description">
+        {{ workflow.description }}
+      </p>
+
+      <div class="workflow-conditions">
+        <div class="conditions-header">
+          <span class="conditions-icon">🎯</span>
+          <span class="conditions-title">Conditions:</span>
+        </div>
+        <p class="conditions-summary">{{ getConditionsSummary(workflow) }}</p>
+      </div>
+
+      <div class="approval-levels-preview">
+        <div class="levels-header">
+          <span class="levels-icon">🔄</span>
+          <span class="levels-title">Approval Flow ({{ workflow.approvalLevels?.length || 0}} levels):</span>
+        </div>
+        <div class="levels-flow">
+          <div class="level-item" *ngFor="let level of workflow.approvalLevels; let last = last">
+            <div class="level-badge">L{{ level.level }}</div>
+            <div class="level-info">
+              <span class="level-type">{{ getApproverTypeLabel(level.approverType) }}</span>
+              <span class="level-detail" *ngIf="level.approverRole">{{ level.approverRole }}</span>
+            </div>
+            <div class="level-arrow" *ngIf="!last">→</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Create/Edit Workflow Modal -->
+  <div class="modal-overlay" *ngIf="isModalOpen" (click)="closeModal()">
+    <div class="modal-container large-modal" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2 class="modal-title">{{ isEditMode ? 'Edit Workflow' : 'Create Approval Workflow' }}</h2>
+        <button class="modal-close" (click)="closeModal()">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <form class="workflow-form">
+          <!-- Basic Information -->
+          <div class="form-section">
+            <h3 class="section-title">Basic Information</h3>
+            
+            <app-form-input
+              label="Workflow Name"
+              [(ngModel)]="workflowForm.name"
+              name="workflowName"
+              placeholder="e.g., Standard Leave Approval"
+              [required]="true">
+            </app-form-input>
+
+            <app-form-textarea
+              label="Description"
+              [(ngModel)]="workflowForm.description"
+              name="description"
+              placeholder="Describe when this workflow applies"
+              [rows]="3">
+            </app-form-textarea>
+
+            <div class="form-row">
+              <div class="form-col">
+                <app-form-toggle
+                  label="Set as Default Workflow"
+                  [(ngModel)]="workflowForm.isDefault"
+                  name="isDefault">
+                </app-form-toggle>
+              </div>
+              <div class="form-col">
+                <app-form-toggle
+                  label="Active"
+                  [(ngModel)]="workflowForm.isActive"
+                  name="isActive">
+                </app-form-toggle>
+              </div>
+            </div>
+          </div>
+
+          <!-- Conditions -->
+          <div class="form-section">
+            <h3 class="section-title">Workflow Conditions</h3>
+            <p class="section-subtitle">Define when this workflow should be used</p>
+
+            <div class="checkbox-group">
+              <label class="group-label">Leave Types:</label>
+              <div class="checkbox-list">
+                <label class="checkbox-item" *ngFor="let type of leaveTypes">
+                  <input 
+                    type="checkbox" 
+                    [checked]="selectedLeaveTypes.includes(type.value)"
+                    (change)="onLeaveTypeToggle(type.value)">
+                  <span>{{ type.label }}</span>
+                </label>
+              </div>
+              <p class="help-text">Leave empty to apply to all leave types</p>
+            </div>
+
+            <div class="checkbox-group">
+              <label class="group-label">Departments:</label>
+              <div class="checkbox-list">
+                <label class="checkbox-item" *ngFor="let dept of departments">
+                  <input 
+                    type="checkbox" 
+                    [checked]="selectedDepartments.includes(dept.value)"
+                    (change)="onDepartmentToggle(dept.value)">
+                  <span>{{ dept.label }}</span>
+                </label>
+              </div>
+              <p class="help-text">Leave empty to apply to all departments</p>
+            </div>
+
+            <div class="checkbox-group">
+              <label class="group-label">Employee Roles:</label>
+              <div class="checkbox-list">
+                <label class="checkbox-item" *ngFor="let role of roles">
+                  <input 
+                    type="checkbox" 
+                    [checked]="selectedRoles.includes(role)"
+                    (change)="onRoleToggle(role)">
+                  <span>{{ role }}</span>
+                </label>
+              </div>
+              <p class="help-text">Leave empty to apply to all roles</p>
+            </div>
+
+            <div class="checkbox-group">
+              <label class="group-label">Employment Types:</label>
+              <div class="checkbox-list">
+                <label class="checkbox-item" *ngFor="let type of employmentTypes">
+                  <input 
+                    type="checkbox" 
+                    [checked]="selectedEmploymentTypes.includes(type)"
+                    (change)="onEmploymentTypeToggle(type)">
+                  <span>{{ type }}</span>
+                </label>
+              </div>
+              <p class="help-text">Leave empty to apply to all employment types</p>
+            </div>
+
+            <div class="form-row">
+              <div class="form-col">
+                <app-form-input
+                  label="Minimum Days"
+                  [(ngModel)]="workflowForm.conditions.minDays"
+                  name="minDays"
+                  type="number"
+                  placeholder="Leave empty for no minimum">
+                </app-form-input>
+              </div>
+              <div class="form-col">
+                <app-form-input
+                  label="Maximum Days"
+                  [(ngModel)]="workflowForm.conditions.maxDays"
+                  name="maxDays"
+                  type="number"
+                  placeholder="Leave empty for no maximum">
+                </app-form-input>
+              </div>
+            </div>
+          </div>
+
+          <!-- Approval Levels -->
+          <div class="form-section">
+            <div class="section-header-with-action">
+              <div>
+                <h3 class="section-title">Approval Levels</h3>
+                <p class="section-subtitle">Define the approval chain for matching requests</p>
+              </div>
+              <app-button  
+                variant="primary" 
+                size="sm"
+                icon="plus"
+                (click)="addApprovalLevel()">Add Level</app-button>
+            </div>
+
+            <div class="approval-levels-builder">
+              <div class="approval-level-card" *ngFor="let level of workflowForm.approvalLevels; let i = index">
+                <div class="level-card-header">
+                  <div class="level-number">Level {{ level.level }}</div>
+                  <div class="level-controls">
+                    <button 
+                      type="button" 
+                      class="control-btn" 
+                      (click)="moveApprovalLevelUp(i)"
+                      [disabled]="i === 0"
+                      title="Move up">
+                      ↑
+                    </button>
+                    <button 
+                      type="button" 
+                      class="control-btn" 
+                      (click)="moveApprovalLevelDown(i)"
+                      [disabled]="i === workflowForm.approvalLevels.length - 1"
+                      title="Move down">
+                      ↓
+                    </button>
+                    <button 
+                      type="button" 
+                      class="control-btn delete" 
+                      (click)="removeApprovalLevel(i)"
+                      [disabled]="workflowForm.approvalLevels.length === 1"
+                      title="Remove">
+                      ×
+                    </button>
+                  </div>
+                </div>
+
+                <div class="level-card-body">
+                  <app-form-select
+                    label="Approver Type"
+                    [(ngModel)]="level.approverType"
+                    [name]="'approverType_' + i"
+                    [options]="approverTypes">
+                  </app-form-select>
+
+                  <app-form-input
+                    *ngIf="level.approverType === 'role'"
+                    label="Approver Role"
+                    [(ngModel)]="level.approverRole"
+                    [name]="'approverRole_' + i"
+                    placeholder="e.g., manager, hr">
+                  </app-form-input>
+
+                  <app-form-input
+                    *ngIf="level.approverType === 'user'"
+                    label="Specific User ID"
+                    [(ngModel)]="level.specificApprover"
+                    [name]="'specificApprover_' + i"
+                    placeholder="Enter user ID">
+                  </app-form-input>
+
+                  <app-form-toggle
+                    label="Require All Approvers"
+                    [(ngModel)]="level.requireAll"
+                    [name]="'requireAll_' + i">
+                  </app-form-toggle>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <app-button  
+          variant="secondary"
+          (click)="closeModal()">Cancel</app-button>
+        <app-button  
+          variant="primary"
+          [loading]="loading"
+          (click)="saveWorkflow()">{{ isEditMode ? 'Update Workflow' : 'Create Workflow' }}</app-button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <app-confirmation-modal
+    [isOpen]="showDeleteConfirmModal"
+    [title]="deleteConfirmConfig.title"
+    [message]="deleteConfirmConfig.message"
+    [confirmText]="'Delete'"
+    [cancelText]="'Cancel'"
+    [type]="'danger'"
+    [confirmButtonVariant]="'danger'"
+    (confirm)="deleteConfirmConfig.onConfirm()"
+    (cancel)="showDeleteConfirmModal = false">
+  </app-confirmation-modal>
+</div>

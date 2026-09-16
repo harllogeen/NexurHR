@@ -1,0 +1,4058 @@
+[
+  {
+    "id": "1783749570819",
+    "timestamp": "2026-07-11T05:59:30.819Z",
+    "actorId": 1783749498192,
+    "action": "login",
+    "targetId": 1783749498192,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1783749982994",
+    "timestamp": "2026-07-11T06:06:22.994Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1783750078145",
+    "timestamp": "2026-07-11T06:07:58.145Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1783750285191",
+    "timestamp": "2026-07-11T06:11:25.191Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1783750391241",
+    "timestamp": "2026-07-11T06:13:11.241Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1783750566796",
+    "timestamp": "2026-07-11T06:16:06.796Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1783751467860",
+    "timestamp": "2026-07-11T06:31:07.860Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1783753662409",
+    "timestamp": "2026-07-11T07:07:42.409Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1783754614868",
+    "timestamp": "2026-07-11T07:23:34.868Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1783880599767",
+    "timestamp": "2026-07-12T18:23:19.767Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1783933635691",
+    "timestamp": "2026-07-13T09:07:15.691Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1783933656614",
+    "timestamp": "2026-07-13T09:07:36.614Z",
+    "actorId": 1783718492655,
+    "action": "clock-in",
+    "targetId": 1783718492655,
+    "details": "Clocked in"
+  },
+  {
+    "id": "1783933711283",
+    "timestamp": "2026-07-13T09:08:31.283Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1783933724670",
+    "timestamp": "2026-07-13T09:08:44.670Z",
+    "actorId": 1783502564401,
+    "action": "clock-in",
+    "targetId": 1783502564401,
+    "details": "Clocked in"
+  },
+  {
+    "id": "1783934110104",
+    "timestamp": "2026-07-13T09:15:10.104Z",
+    "actorId": 1783502564401,
+    "action": "clock-out",
+    "targetId": 1783502564401,
+    "details": "Clocked out"
+  },
+  {
+    "id": "1783934166602",
+    "timestamp": "2026-07-13T09:16:06.602Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1783936556933",
+    "timestamp": "2026-07-13T09:55:56.933Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784019762262",
+    "timestamp": "2026-07-14T09:02:42.262Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784020825845",
+    "timestamp": "2026-07-14T09:20:25.845Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784020939696",
+    "timestamp": "2026-07-14T09:22:19.696Z",
+    "actorId": 1764829332445,
+    "action": "login",
+    "targetId": 1764829332445,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784021115556",
+    "timestamp": "2026-07-14T09:25:15.556Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784021125654",
+    "timestamp": "2026-07-14T09:25:25.654Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784021169811",
+    "timestamp": "2026-07-14T09:26:09.811Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784021299843",
+    "timestamp": "2026-07-14T09:28:19.843Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784021313235",
+    "timestamp": "2026-07-14T09:28:33.235Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784021488682",
+    "timestamp": "2026-07-14T09:31:28.682Z",
+    "actorId": 1783502564401,
+    "action": "clock-in",
+    "targetId": 1783502564401,
+    "details": "Clocked in"
+  },
+  {
+    "id": "1784022650415",
+    "timestamp": "2026-07-14T09:50:50.415Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784024786176",
+    "timestamp": "2026-07-14T10:26:26.176Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784024833396",
+    "timestamp": "2026-07-14T10:27:13.396Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784024884240",
+    "timestamp": "2026-07-14T10:28:04.240Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784024998336",
+    "timestamp": "2026-07-14T10:29:58.336Z",
+    "actorId": 1764829943217,
+    "action": "clock-in",
+    "targetId": 1764829943217,
+    "details": "Clocked in"
+  },
+  {
+    "id": "1784025118818",
+    "timestamp": "2026-07-14T10:31:58.818Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784028088172",
+    "timestamp": "2026-07-14T11:21:28.172Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784030346065",
+    "timestamp": "2026-07-14T11:59:06.065Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784034694747",
+    "timestamp": "2026-07-14T13:11:34.747Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784711722769",
+    "timestamp": "2026-07-22T09:15:22.769Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784711798787",
+    "timestamp": "2026-07-22T09:16:38.787Z",
+    "actorId": 1764829943217,
+    "action": "update-employee",
+    "targetId": "1778155500580",
+    "details": "Updated employee record"
+  },
+  {
+    "id": "1784712286570",
+    "timestamp": "2026-07-22T09:24:46.570Z",
+    "actorId": 1764829943217,
+    "action": "request-leave",
+    "targetId": 1784712286567,
+    "details": "Requested Casual leave"
+  },
+  {
+    "id": "1784712301641",
+    "timestamp": "2026-07-22T09:25:01.641Z",
+    "actorId": 1764829943217,
+    "action": "request-leave",
+    "targetId": 1784712301639,
+    "details": "Requested Sick leave"
+  },
+  {
+    "id": "1784712378419",
+    "timestamp": "2026-07-22T09:26:18.419Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784712401682",
+    "timestamp": "2026-07-22T09:26:41.682Z",
+    "actorId": 1783502564401,
+    "action": "request-leave",
+    "targetId": 1784712401679,
+    "details": "Requested Casual leave"
+  },
+  {
+    "id": "1784712437638",
+    "timestamp": "2026-07-22T09:27:17.638Z",
+    "actorId": 1783502564401,
+    "action": "request-leave",
+    "targetId": 1784712437635,
+    "details": "Requested Sick leave"
+  },
+  {
+    "id": "1784712469264",
+    "timestamp": "2026-07-22T09:27:49.264Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784712494596",
+    "timestamp": "2026-07-22T09:28:14.596Z",
+    "actorId": 1764829943217,
+    "action": "request-leave",
+    "targetId": 1784712494593,
+    "details": "Requested Casual leave"
+  },
+  {
+    "id": "1784712505382",
+    "timestamp": "2026-07-22T09:28:25.382Z",
+    "actorId": 1764829943217,
+    "action": "request-leave",
+    "targetId": 1784712505380,
+    "details": "Requested Annual leave"
+  },
+  {
+    "id": "1784712526591",
+    "timestamp": "2026-07-22T09:28:46.591Z",
+    "actorId": 1764829943217,
+    "action": "request-leave",
+    "targetId": 1784712526589,
+    "details": "Requested Sick leave"
+  },
+  {
+    "id": "1784712978750",
+    "timestamp": "2026-07-22T09:36:18.750Z",
+    "actorId": 1764829943217,
+    "action": "delete-leave",
+    "targetId": "1784712526589",
+    "details": "Deleted pending leave request"
+  },
+  {
+    "id": "1784712985485",
+    "timestamp": "2026-07-22T09:36:25.485Z",
+    "actorId": 1764829943217,
+    "action": "delete-leave",
+    "targetId": "1784712505380",
+    "details": "Deleted pending leave request"
+  },
+  {
+    "id": "1784712994969",
+    "timestamp": "2026-07-22T09:36:34.969Z",
+    "actorId": 1764829943217,
+    "action": "delete-leave",
+    "targetId": "1784712494593",
+    "details": "Deleted pending leave request"
+  },
+  {
+    "id": "1784713004277",
+    "timestamp": "2026-07-22T09:36:44.277Z",
+    "actorId": 1764829943217,
+    "action": "delete-leave",
+    "targetId": "1784712286567",
+    "details": "Deleted pending leave request"
+  },
+  {
+    "id": "1784713008297",
+    "timestamp": "2026-07-22T09:36:48.297Z",
+    "actorId": 1764829943217,
+    "action": "delete-leave",
+    "targetId": "1784712301639",
+    "details": "Deleted pending leave request"
+  },
+  {
+    "id": "1784713056075",
+    "timestamp": "2026-07-22T09:37:36.075Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784713063306",
+    "timestamp": "2026-07-22T09:37:43.306Z",
+    "actorId": 1783502564401,
+    "action": "delete-leave",
+    "targetId": "1784712437635",
+    "details": "Deleted pending leave request"
+  },
+  {
+    "id": "1784713066654",
+    "timestamp": "2026-07-22T09:37:46.654Z",
+    "actorId": 1783502564401,
+    "action": "delete-leave",
+    "targetId": "1784712401679",
+    "details": "Deleted pending leave request"
+  },
+  {
+    "id": "1784713789198",
+    "timestamp": "2026-07-22T09:49:49.198Z",
+    "actorId": 1783502564401,
+    "action": "change-password",
+    "targetId": 1783502564401,
+    "details": "Password changed"
+  },
+  {
+    "id": "1784713829033",
+    "timestamp": "2026-07-22T09:50:29.033Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784714609096",
+    "timestamp": "2026-07-22T10:03:29.096Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784714809623",
+    "timestamp": "2026-07-22T10:06:49.623Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784714893204",
+    "timestamp": "2026-07-22T10:08:13.204Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784714918900",
+    "timestamp": "2026-07-22T10:08:38.900Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784716819129",
+    "timestamp": "2026-07-22T10:40:19.129Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784718206197",
+    "timestamp": "2026-07-22T11:03:26.197Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784719848672",
+    "timestamp": "2026-07-22T11:30:48.672Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784719952192",
+    "timestamp": "2026-07-22T11:32:32.192Z",
+    "actorId": 1764829943217,
+    "action": "create-employee",
+    "targetId": 1784719952189,
+    "details": "Created Jude Okaphor"
+  },
+  {
+    "id": "1784720035244",
+    "timestamp": "2026-07-22T11:33:55.244Z",
+    "actorId": 1784719952190,
+    "action": "login",
+    "targetId": 1784719952190,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784720739154",
+    "timestamp": "2026-07-22T11:45:39.154Z",
+    "actorId": 1784719952190,
+    "action": "login",
+    "targetId": 1784719952190,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784721046689",
+    "timestamp": "2026-07-22T11:50:46.689Z",
+    "actorId": 1784719952190,
+    "action": "login",
+    "targetId": 1784719952190,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784721455154",
+    "timestamp": "2026-07-22T11:57:35.154Z",
+    "actorId": 1784719952190,
+    "action": "login",
+    "targetId": 1784719952190,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784721839173",
+    "timestamp": "2026-07-22T12:03:59.173Z",
+    "actorId": 1784719952190,
+    "action": "login",
+    "targetId": 1784719952190,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784721851723",
+    "timestamp": "2026-07-22T12:04:11.723Z",
+    "actorId": 1784719952190,
+    "action": "login",
+    "targetId": 1784719952190,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784723386722",
+    "timestamp": "2026-07-22T12:29:46.722Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784723513990",
+    "timestamp": "2026-07-22T12:31:53.990Z",
+    "actorId": 1784719952190,
+    "action": "login",
+    "targetId": 1784719952190,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784723879073",
+    "timestamp": "2026-07-22T12:37:59.073Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784724099239",
+    "timestamp": "2026-07-22T12:41:39.239Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784724286521",
+    "timestamp": "2026-07-22T12:44:46.521Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784724627468",
+    "timestamp": "2026-07-22T12:50:27.468Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784724999948",
+    "timestamp": "2026-07-22T12:56:39.948Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784725264021",
+    "timestamp": "2026-07-22T13:01:04.021Z",
+    "actorId": 1764829943217,
+    "action": "create-employee",
+    "targetId": 1784725264014,
+    "details": "Created Oluwaferanmi Praise"
+  },
+  {
+    "id": "1784725338505",
+    "timestamp": "2026-07-22T13:02:18.505Z",
+    "actorId": 1784725264015,
+    "action": "login",
+    "targetId": 1784725264015,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784725433854",
+    "timestamp": "2026-07-22T13:03:53.854Z",
+    "actorId": 1784725264015,
+    "action": "change-password",
+    "targetId": 1784725264015,
+    "details": "Password changed"
+  },
+  {
+    "id": "1784725622469",
+    "timestamp": "2026-07-22T13:07:02.469Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784725806961",
+    "timestamp": "2026-07-22T13:10:06.961Z",
+    "actorId": 1784725264015,
+    "action": "login",
+    "targetId": 1784725264015,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784725963925",
+    "timestamp": "2026-07-22T13:12:43.925Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784726005096",
+    "timestamp": "2026-07-22T13:13:25.096Z",
+    "actorId": 1784719952190,
+    "action": "login",
+    "targetId": 1784719952190,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784726105285",
+    "timestamp": "2026-07-22T13:15:05.285Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784726117734",
+    "timestamp": "2026-07-22T13:15:17.734Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784726157795",
+    "timestamp": "2026-07-22T13:15:57.795Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784726175544",
+    "timestamp": "2026-07-22T13:16:15.544Z",
+    "actorId": 1784719952190,
+    "action": "login",
+    "targetId": 1784719952190,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784726287869",
+    "timestamp": "2026-07-22T13:18:07.869Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784726479293",
+    "timestamp": "2026-07-22T13:21:19.293Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784726675947",
+    "timestamp": "2026-07-22T13:24:35.947Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784726691278",
+    "timestamp": "2026-07-22T13:24:51.278Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784726851575",
+    "timestamp": "2026-07-22T13:27:31.575Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784726868322",
+    "timestamp": "2026-07-22T13:27:48.322Z",
+    "actorId": 1784719952190,
+    "action": "login",
+    "targetId": 1784719952190,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784726902742",
+    "timestamp": "2026-07-22T13:28:22.742Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784727246828",
+    "timestamp": "2026-07-22T13:34:06.828Z",
+    "actorId": 1784719952190,
+    "action": "login",
+    "targetId": 1784719952190,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784727332179",
+    "timestamp": "2026-07-22T13:35:32.179Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784728127415",
+    "timestamp": "2026-07-22T13:48:47.415Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784728175872",
+    "timestamp": "2026-07-22T13:49:35.872Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784728391419",
+    "timestamp": "2026-07-22T13:53:11.419Z",
+    "actorId": 1784725264015,
+    "action": "login",
+    "targetId": 1784725264015,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784728600017",
+    "timestamp": "2026-07-22T13:56:40.017Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784728633918",
+    "timestamp": "2026-07-22T13:57:13.918Z",
+    "actorId": 1770640254746,
+    "action": "login",
+    "targetId": 1770640254746,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784728776431",
+    "timestamp": "2026-07-22T13:59:36.431Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784728932469",
+    "timestamp": "2026-07-22T14:02:12.469Z",
+    "actorId": 1784725264015,
+    "action": "login",
+    "targetId": 1784725264015,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784729394985",
+    "timestamp": "2026-07-22T14:09:54.985Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784729522630",
+    "timestamp": "2026-07-22T14:12:02.630Z",
+    "actorId": 1784725264015,
+    "action": "login",
+    "targetId": 1784725264015,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784729610979",
+    "timestamp": "2026-07-22T14:13:30.979Z",
+    "actorId": 1784725264015,
+    "action": "login",
+    "targetId": 1784725264015,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784730524617",
+    "timestamp": "2026-07-22T14:28:44.617Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784731000888",
+    "timestamp": "2026-07-22T14:36:40.888Z",
+    "actorId": 1784725264015,
+    "action": "login",
+    "targetId": 1784725264015,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784731231034",
+    "timestamp": "2026-07-22T14:40:31.034Z",
+    "actorId": 1770640254746,
+    "action": "login",
+    "targetId": 1770640254746,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784731527013",
+    "timestamp": "2026-07-22T14:45:27.013Z",
+    "actorId": 1770640254746,
+    "action": "login",
+    "targetId": 1770640254746,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784731553508",
+    "timestamp": "2026-07-22T14:45:53.508Z",
+    "actorId": 1770640254746,
+    "action": "login",
+    "targetId": 1770640254746,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784731809977",
+    "timestamp": "2026-07-22T14:50:09.977Z",
+    "actorId": 1770640254746,
+    "action": "login",
+    "targetId": 1770640254746,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784731872948",
+    "timestamp": "2026-07-22T14:51:12.948Z",
+    "actorId": 1770640254746,
+    "action": "login",
+    "targetId": 1770640254746,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784731908065",
+    "timestamp": "2026-07-22T14:51:48.066Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784731959396",
+    "timestamp": "2026-07-22T14:52:39.396Z",
+    "actorId": 1764829943217,
+    "action": "update-employee",
+    "targetId": "1778155500580",
+    "details": "Updated employee record"
+  },
+  {
+    "id": "1784732251488",
+    "timestamp": "2026-07-22T14:57:31.488Z",
+    "actorId": 1764829943217,
+    "action": "update-employee",
+    "targetId": "1778155500580",
+    "details": "Updated employee record"
+  },
+  {
+    "id": "1784732311305",
+    "timestamp": "2026-07-22T14:58:31.305Z",
+    "actorId": 1764829943217,
+    "action": "delete-employee",
+    "targetId": "1778155500580",
+    "details": "Deleted employee record"
+  },
+  {
+    "id": "1784732360849",
+    "timestamp": "2026-07-22T14:59:20.849Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784732806012",
+    "timestamp": "2026-07-22T15:06:46.012Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784733281144",
+    "timestamp": "2026-07-22T15:14:41.144Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784733325332",
+    "timestamp": "2026-07-22T15:15:25.332Z",
+    "actorId": 1784725264015,
+    "action": "login",
+    "targetId": 1784725264015,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784734091680",
+    "timestamp": "2026-07-22T15:28:11.680Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784734151735",
+    "timestamp": "2026-07-22T15:29:11.735Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784734199110",
+    "timestamp": "2026-07-22T15:29:59.110Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784734354601",
+    "timestamp": "2026-07-22T15:32:34.601Z",
+    "actorId": 1764829943217,
+    "action": "update-employee",
+    "targetId": "1784719952189",
+    "details": "Updated employee record"
+  },
+  {
+    "id": "1784735091613",
+    "timestamp": "2026-07-22T15:44:51.613Z",
+    "actorId": 1764829943217,
+    "action": "update-employee",
+    "targetId": "1784719952189",
+    "details": "Updated employee record"
+  },
+  {
+    "id": "1784735170315",
+    "timestamp": "2026-07-22T15:46:10.315Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784735212785",
+    "timestamp": "2026-07-22T15:46:52.785Z",
+    "actorId": 1784719952190,
+    "action": "login",
+    "targetId": 1784719952190,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784736425424",
+    "timestamp": "2026-07-22T16:07:05.424Z",
+    "actorId": 1784719952190,
+    "action": "login",
+    "targetId": 1784719952190,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784736765104",
+    "timestamp": "2026-07-22T16:12:45.104Z",
+    "actorId": 1784719952190,
+    "action": "login",
+    "targetId": 1784719952190,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784736860318",
+    "timestamp": "2026-07-22T16:14:20.318Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784736930194",
+    "timestamp": "2026-07-22T16:15:30.194Z",
+    "actorId": 1764829943217,
+    "action": "update-employee",
+    "targetId": "1784725264014",
+    "details": "Updated employee record"
+  },
+  {
+    "id": "1784736980873",
+    "timestamp": "2026-07-22T16:16:20.873Z",
+    "actorId": 1764829943217,
+    "action": "update-employee",
+    "targetId": "1783502564400",
+    "details": "Updated employee record"
+  },
+  {
+    "id": "1784737013045",
+    "timestamp": "2026-07-22T16:16:53.045Z",
+    "actorId": 1764829943217,
+    "action": "update-employee",
+    "targetId": "1783718492654",
+    "details": "Updated employee record"
+  },
+  {
+    "id": "1784737058588",
+    "timestamp": "2026-07-22T16:17:38.588Z",
+    "actorId": 1764829943217,
+    "action": "update-employee",
+    "targetId": "1783502180173",
+    "details": "Updated employee record"
+  },
+  {
+    "id": "1784737097589",
+    "timestamp": "2026-07-22T16:18:17.589Z",
+    "actorId": 1764829943217,
+    "action": "update-employee",
+    "targetId": "1764829943216",
+    "details": "Updated employee record"
+  },
+  {
+    "id": "1784737254894",
+    "timestamp": "2026-07-22T16:20:54.894Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784737712812",
+    "timestamp": "2026-07-22T16:28:32.812Z",
+    "actorId": 1764829943217,
+    "action": "update-employee",
+    "targetId": "1784725264014",
+    "details": "Updated employee record"
+  },
+  {
+    "id": "1784737811074",
+    "timestamp": "2026-07-22T16:30:11.074Z",
+    "actorId": 1784725264015,
+    "action": "login",
+    "targetId": 1784725264015,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784737861700",
+    "timestamp": "2026-07-22T16:31:01.700Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784737899868",
+    "timestamp": "2026-07-22T16:31:39.868Z",
+    "actorId": 1764829943217,
+    "action": "update-employee",
+    "targetId": "1784719952189",
+    "details": "Updated employee record"
+  },
+  {
+    "id": "1784737949427",
+    "timestamp": "2026-07-22T16:32:29.427Z",
+    "actorId": 1784725264015,
+    "action": "login",
+    "targetId": 1784725264015,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784737994180",
+    "timestamp": "2026-07-22T16:33:14.180Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784738487851",
+    "timestamp": "2026-07-22T16:41:27.851Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784738682046",
+    "timestamp": "2026-07-22T16:44:42.046Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784738729164",
+    "timestamp": "2026-07-22T16:45:29.164Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784738797515",
+    "timestamp": "2026-07-22T16:46:37.515Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784739137655",
+    "timestamp": "2026-07-22T16:52:17.655Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784739150228",
+    "timestamp": "2026-07-22T16:52:30.228Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784739156556",
+    "timestamp": "2026-07-22T16:52:36.556Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784739224340",
+    "timestamp": "2026-07-22T16:53:44.340Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784739343804",
+    "timestamp": "2026-07-22T16:55:43.804Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784739374751",
+    "timestamp": "2026-07-22T16:56:14.751Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784739520508",
+    "timestamp": "2026-07-22T16:58:40.508Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784761427963",
+    "timestamp": "2026-07-22T23:03:47.964Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784761935610",
+    "timestamp": "2026-07-22T23:12:15.610Z",
+    "actorId": 1764829943217,
+    "action": "create-employee",
+    "targetId": 1784761935593,
+    "details": "Created Tosin Ayan"
+  },
+  {
+    "id": "1784762078882",
+    "timestamp": "2026-07-22T23:14:38.882Z",
+    "actorId": 1764829943217,
+    "action": "update-employee",
+    "targetId": "1784761935593",
+    "details": "Updated employee record"
+  },
+  {
+    "id": "1784762312321",
+    "timestamp": "2026-07-22T23:18:32.321Z",
+    "actorId": 1764829943217,
+    "action": "delete-employee",
+    "targetId": "1764829332444",
+    "details": "Deleted employee record"
+  },
+  {
+    "id": "1784762401293",
+    "timestamp": "2026-07-22T23:20:01.293Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784762654921",
+    "timestamp": "2026-07-22T23:24:14.921Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784763264240",
+    "timestamp": "2026-07-22T23:34:24.240Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784763620288",
+    "timestamp": "2026-07-22T23:40:20.288Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784763751968",
+    "timestamp": "2026-07-22T23:42:31.968Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784814713911",
+    "timestamp": "2026-07-23T13:51:53.911Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784814893585",
+    "timestamp": "2026-07-23T13:54:53.585Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784821231055",
+    "timestamp": "2026-07-23T15:40:31.055Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784824037515",
+    "timestamp": "2026-07-23T16:27:17.516Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784824655923",
+    "timestamp": "2026-07-23T16:37:35.923Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784824694268",
+    "timestamp": "2026-07-23T16:38:14.268Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784824790681",
+    "timestamp": "2026-07-23T16:39:50.681Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784825548707",
+    "timestamp": "2026-07-23T16:52:28.707Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784826055861",
+    "timestamp": "2026-07-23T17:00:55.861Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784826321460",
+    "timestamp": "2026-07-23T17:05:21.460Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784826701848",
+    "timestamp": "2026-07-23T17:11:41.848Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784826795682",
+    "timestamp": "2026-07-23T17:13:15.682Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784827250439",
+    "timestamp": "2026-07-23T17:20:50.439Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784827391135",
+    "timestamp": "2026-07-23T17:23:11.135Z",
+    "actorId": 1784719952190,
+    "action": "login",
+    "targetId": 1784719952190,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784827612974",
+    "timestamp": "2026-07-23T17:26:52.974Z",
+    "actorId": 1784725264015,
+    "action": "login",
+    "targetId": 1784725264015,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784828048094",
+    "timestamp": "2026-07-23T17:34:08.094Z",
+    "actorId": 1784725264015,
+    "action": "login",
+    "targetId": 1784725264015,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784828074003",
+    "timestamp": "2026-07-23T17:34:34.003Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784828098499",
+    "timestamp": "2026-07-23T17:34:58.499Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784828194430",
+    "timestamp": "2026-07-23T17:36:34.430Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1784828273566",
+    "timestamp": "2026-07-23T17:37:53.566Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1785001747224",
+    "timestamp": "2026-07-25T17:49:07.224Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1785083061712",
+    "timestamp": "2026-07-26T16:24:21.712Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1785316800475",
+    "timestamp": "2026-07-29T09:20:00.475Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1785317062566",
+    "timestamp": "2026-07-29T09:24:22.566Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1785317452645",
+    "timestamp": "2026-07-29T09:30:52.645Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1785318173337",
+    "timestamp": "2026-07-29T09:42:53.337Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1785321172752",
+    "timestamp": "2026-07-29T10:32:52.752Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1785323896275",
+    "timestamp": "2026-07-29T11:18:16.275Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1785749077389",
+    "timestamp": "2026-08-03T09:24:37.389Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1785749116408",
+    "timestamp": "2026-08-03T09:25:16.408Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1785750331141",
+    "timestamp": "2026-08-03T09:45:31.141Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1785751274932",
+    "timestamp": "2026-08-03T10:01:14.932Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1785751695610",
+    "timestamp": "2026-08-03T10:08:15.610Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1785751814241",
+    "timestamp": "2026-08-03T10:10:14.241Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1785752097029",
+    "timestamp": "2026-08-03T10:14:57.029Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1785752254518",
+    "timestamp": "2026-08-03T10:17:34.518Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1785753388068",
+    "timestamp": "2026-08-03T10:36:28.068Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1785754510019",
+    "timestamp": "2026-08-03T10:55:10.019Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1785755538737",
+    "timestamp": "2026-08-03T11:12:18.737Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1785809418773",
+    "timestamp": "2026-08-04T02:10:18.773Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1785809428919",
+    "timestamp": "2026-08-04T02:10:28.919Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1786027652203",
+    "timestamp": "2026-08-06T14:47:32.203Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1786027758417",
+    "timestamp": "2026-08-06T14:49:18.417Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1786438376738",
+    "timestamp": "2026-08-11T08:52:56.738Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1786438475111",
+    "timestamp": "2026-08-11T08:54:35.111Z",
+    "actorId": 1764829943217,
+    "action": "clock-in",
+    "targetId": 1764829943217,
+    "details": "Clocked in"
+  },
+  {
+    "id": "1786439284286",
+    "timestamp": "2026-08-11T09:08:04.286Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1786439565094",
+    "timestamp": "2026-08-11T09:12:45.094Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1786439585261",
+    "timestamp": "2026-08-11T09:13:05.261Z",
+    "actorId": 1783502564401,
+    "action": "clock-in",
+    "targetId": 1783502564401,
+    "details": "Clocked in"
+  },
+  {
+    "id": "1786439586560",
+    "timestamp": "2026-08-11T09:13:06.560Z",
+    "actorId": 1783502564401,
+    "action": "clock-out",
+    "targetId": 1783502564401,
+    "details": "Clocked out"
+  },
+  {
+    "id": "1786439668192",
+    "timestamp": "2026-08-11T09:14:28.192Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788265373595",
+    "timestamp": "2026-09-01T12:22:53.595Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788274839589",
+    "timestamp": "2026-09-01T15:00:39.589Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788418009304",
+    "timestamp": "2026-09-03T06:46:49.304Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788421290236",
+    "timestamp": "2026-09-03T07:41:30.236Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788422899857",
+    "timestamp": "2026-09-03T08:08:19.857Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788423419645",
+    "timestamp": "2026-09-03T08:16:59.645Z",
+    "actorId": 1764829943217,
+    "action": "clock-in",
+    "targetId": 1764829943217,
+    "details": "Clocked in"
+  },
+  {
+    "id": "1788424087193",
+    "timestamp": "2026-09-03T08:28:07.193Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788424182255",
+    "timestamp": "2026-09-03T08:29:42.255Z",
+    "actorId": 1764829943217,
+    "action": "clock-out",
+    "targetId": 1764829943217,
+    "details": "Clocked out"
+  },
+  {
+    "id": "1788424617222",
+    "timestamp": "2026-09-03T08:36:57.222Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788425752555",
+    "timestamp": "2026-09-03T08:55:52.555Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788426229326",
+    "timestamp": "2026-09-03T09:03:49.326Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788426241914",
+    "timestamp": "2026-09-03T09:04:01.914Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788426655095",
+    "timestamp": "2026-09-03T09:10:55.095Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788427633632",
+    "timestamp": "2026-09-03T09:27:13.632Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788428039137",
+    "timestamp": "2026-09-03T09:33:59.137Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788428053970",
+    "timestamp": "2026-09-03T09:34:13.970Z",
+    "actorId": 1783718492655,
+    "action": "clock-in",
+    "targetId": 1783718492655,
+    "details": "Clocked in at 10:34:13 AM"
+  },
+  {
+    "id": "1788428098573",
+    "timestamp": "2026-09-03T09:34:58.573Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788428365894",
+    "timestamp": "2026-09-03T09:39:25.894Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788428375385",
+    "timestamp": "2026-09-03T09:39:35.385Z",
+    "actorId": 1783502564401,
+    "action": "clock-in",
+    "targetId": 1783502564401,
+    "details": "Clocked in at 10:39:35 AM"
+  },
+  {
+    "id": "1788428570314",
+    "timestamp": "2026-09-03T09:42:50.314Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788428812682",
+    "timestamp": "2026-09-03T09:46:52.682Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788429451115",
+    "timestamp": "2026-09-03T09:57:31.115Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788430214456",
+    "timestamp": "2026-09-03T10:10:14.456Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788430309905",
+    "timestamp": "2026-09-03T10:11:49.905Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788430414689",
+    "timestamp": "2026-09-03T10:13:34.689Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788430763491",
+    "timestamp": "2026-09-03T10:19:23.491Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788431218648",
+    "timestamp": "2026-09-03T10:26:58.648Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788431857184",
+    "timestamp": "2026-09-03T10:37:37.184Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788432576741",
+    "timestamp": "2026-09-03T10:49:36.741Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788432597341",
+    "timestamp": "2026-09-03T10:49:57.341Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788432648640",
+    "timestamp": "2026-09-03T10:50:48.640Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788433486982",
+    "timestamp": "2026-09-03T11:04:46.983Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788433541785",
+    "timestamp": "2026-09-03T11:05:41.785Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788434466130",
+    "timestamp": "2026-09-03T11:21:06.130Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788434518612",
+    "timestamp": "2026-09-03T11:21:58.612Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788434572441",
+    "timestamp": "2026-09-03T11:22:52.441Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788442159834",
+    "timestamp": "2026-09-03T13:29:19.834Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788443975374",
+    "timestamp": "2026-09-03T13:59:35.374Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788443990785",
+    "timestamp": "2026-09-03T13:59:50.785Z",
+    "actorId": 1783502564401,
+    "action": "clock-out",
+    "targetId": 1783502564401,
+    "details": "Clocked out at 2:59:50 PM"
+  },
+  {
+    "id": "1788444013117",
+    "timestamp": "2026-09-03T14:00:13.117Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788444183271",
+    "timestamp": "2026-09-03T14:03:03.271Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788444189013",
+    "timestamp": "2026-09-03T14:03:09.013Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788444210143",
+    "timestamp": "2026-09-03T14:03:30.143Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788447444567",
+    "timestamp": "2026-09-03T14:57:24.567Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788447589546",
+    "timestamp": "2026-09-03T14:59:49.546Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788485363584",
+    "timestamp": "2026-09-04T01:29:23.584Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788485397890",
+    "timestamp": "2026-09-04T01:29:57.890Z",
+    "actorId": 1783502564401,
+    "action": "clock-in",
+    "targetId": 1783502564401,
+    "details": "Clocked in at 2:29:57 AM"
+  },
+  {
+    "id": "1788485868304",
+    "timestamp": "2026-09-04T01:37:48.304Z",
+    "actorId": 1764829579586,
+    "action": "login",
+    "targetId": 1764829579586,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788485882315",
+    "timestamp": "2026-09-04T01:38:02.315Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788486961728",
+    "timestamp": "2026-09-04T01:56:01.728Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788487575026",
+    "timestamp": "2026-09-04T02:06:15.026Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788487816988",
+    "timestamp": "2026-09-04T02:10:16.988Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788490889741",
+    "timestamp": "2026-09-04T03:01:29.741Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788491257444",
+    "timestamp": "2026-09-04T03:07:37.444Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788491406809",
+    "timestamp": "2026-09-04T03:10:06.809Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788491479692",
+    "timestamp": "2026-09-04T03:11:19.692Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788491492377",
+    "timestamp": "2026-09-04T03:11:32.377Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788491570213",
+    "timestamp": "2026-09-04T03:12:50.213Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788491654605",
+    "timestamp": "2026-09-04T03:14:14.605Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788492080631",
+    "timestamp": "2026-09-04T03:21:20.631Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788492569226",
+    "timestamp": "2026-09-04T03:29:29.226Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788493750910",
+    "timestamp": "2026-09-04T03:49:10.910Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788494958684",
+    "timestamp": "2026-09-04T04:09:18.684Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788495036828",
+    "timestamp": "2026-09-04T04:10:36.828Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788495799658",
+    "timestamp": "2026-09-04T04:23:19.658Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788504688768",
+    "timestamp": "2026-09-04T06:51:28.768Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788504848875",
+    "timestamp": "2026-09-04T06:54:08.875Z",
+    "actorId": 1764829943217,
+    "action": "clock-in",
+    "targetId": 1764829943217,
+    "details": "Clocked in at 7:54:08 AM"
+  },
+  {
+    "id": "1788505257263",
+    "timestamp": "2026-09-04T07:00:57.263Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788506716469",
+    "timestamp": "2026-09-04T07:25:16.469Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788513558032",
+    "timestamp": "2026-09-04T09:19:18.032Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788513825436",
+    "timestamp": "2026-09-04T09:23:45.436Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788514778863",
+    "timestamp": "2026-09-04T09:39:38.863Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788515345407",
+    "timestamp": "2026-09-04T09:49:05.407Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788515398901",
+    "timestamp": "2026-09-04T09:49:58.901Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788515464278",
+    "timestamp": "2026-09-04T09:51:04.278Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788515625272",
+    "timestamp": "2026-09-04T09:53:45.272Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788515815543",
+    "timestamp": "2026-09-04T09:56:55.543Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788516056003",
+    "timestamp": "2026-09-04T10:00:56.003Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788516180585",
+    "timestamp": "2026-09-04T10:03:00.585Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788516280601",
+    "timestamp": "2026-09-04T10:04:40.601Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788516752596",
+    "timestamp": "2026-09-04T10:12:32.596Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788517116575",
+    "timestamp": "2026-09-04T10:18:36.575Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788517290236",
+    "timestamp": "2026-09-04T10:21:30.236Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788517325841",
+    "timestamp": "2026-09-04T10:22:05.841Z",
+    "actorId": 1784725264015,
+    "action": "login",
+    "targetId": 1784725264015,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788517381922",
+    "timestamp": "2026-09-04T10:23:01.922Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788517399416",
+    "timestamp": "2026-09-04T10:23:19.416Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788517484497",
+    "timestamp": "2026-09-04T10:24:44.497Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788517607348",
+    "timestamp": "2026-09-04T10:26:47.348Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788517715839",
+    "timestamp": "2026-09-04T10:28:35.840Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788517937882",
+    "timestamp": "2026-09-04T10:32:17.882Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788519040906",
+    "timestamp": "2026-09-04T10:50:40.906Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788520095027",
+    "timestamp": "2026-09-04T11:08:15.027Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788521157958",
+    "timestamp": "2026-09-04T11:25:57.958Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788522324016",
+    "timestamp": "2026-09-04T11:45:24.016Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788522575140",
+    "timestamp": "2026-09-04T11:49:35.140Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788524498103",
+    "timestamp": "2026-09-04T12:21:38.103Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788525171451",
+    "timestamp": "2026-09-04T12:32:51.451Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788550996508",
+    "timestamp": "2026-09-04T19:43:16.508Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788551053684",
+    "timestamp": "2026-09-04T19:44:13.684Z",
+    "actorId": 1783502564401,
+    "action": "clock-out",
+    "targetId": 1783502564401,
+    "details": "Clocked out at 8:44:13 PM"
+  },
+  {
+    "id": "1788551190971",
+    "timestamp": "2026-09-04T19:46:30.971Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788551609871",
+    "timestamp": "2026-09-04T19:53:29.871Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788551616703",
+    "timestamp": "2026-09-04T19:53:36.703Z",
+    "actorId": 1764829943217,
+    "action": "clock-out",
+    "targetId": 1764829943217,
+    "details": "Clocked out at 8:53:36 PM"
+  },
+  {
+    "id": "1788552534358",
+    "timestamp": "2026-09-04T20:08:54.358Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788552729202",
+    "timestamp": "2026-09-04T20:12:09.202Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788552847752",
+    "timestamp": "2026-09-04T20:14:07.752Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788552915784",
+    "timestamp": "2026-09-04T20:15:15.784Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788553271464",
+    "timestamp": "2026-09-04T20:21:11.464Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788553462016",
+    "timestamp": "2026-09-04T20:24:22.016Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788553538934",
+    "timestamp": "2026-09-04T20:25:38.934Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788553771370",
+    "timestamp": "2026-09-04T20:29:31.370Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788554336769",
+    "timestamp": "2026-09-04T20:38:56.769Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788554411506",
+    "timestamp": "2026-09-04T20:40:11.506Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788554592275",
+    "timestamp": "2026-09-04T20:43:12.275Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788555718378",
+    "timestamp": "2026-09-04T21:01:58.378Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788556815092",
+    "timestamp": "2026-09-04T21:20:15.092Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788557088193",
+    "timestamp": "2026-09-04T21:24:48.193Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788557255320",
+    "timestamp": "2026-09-04T21:27:35.320Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788557269114",
+    "timestamp": "2026-09-04T21:27:49.114Z",
+    "actorId": 1783718492655,
+    "action": "clock-in",
+    "targetId": 1783718492655,
+    "details": "Clocked in at 10:27:49 PM"
+  },
+  {
+    "id": "1788557285924",
+    "timestamp": "2026-09-04T21:28:05.924Z",
+    "actorId": 1783718492655,
+    "action": "clock-out",
+    "targetId": 1783718492655,
+    "details": "Clocked out at 10:28:05 PM"
+  },
+  {
+    "id": "1788557358733",
+    "timestamp": "2026-09-04T21:29:18.733Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788557879007",
+    "timestamp": "2026-09-04T21:37:59.007Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788558110105",
+    "timestamp": "2026-09-04T21:41:50.105Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788558268584",
+    "timestamp": "2026-09-04T21:44:28.584Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788558344230",
+    "timestamp": "2026-09-04T21:45:44.230Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788559024438",
+    "timestamp": "2026-09-04T21:57:04.438Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788559242446",
+    "timestamp": "2026-09-04T22:00:42.446Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788559741333",
+    "timestamp": "2026-09-04T22:09:01.333Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788560198203",
+    "timestamp": "2026-09-04T22:16:38.203Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788560339939",
+    "timestamp": "2026-09-04T22:18:59.939Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788560552435",
+    "timestamp": "2026-09-04T22:22:32.435Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788560567102",
+    "timestamp": "2026-09-04T22:22:47.102Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788560683513",
+    "timestamp": "2026-09-04T22:24:43.513Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788560778901",
+    "timestamp": "2026-09-04T22:26:18.901Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788561703955",
+    "timestamp": "2026-09-04T22:41:43.955Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788562777526",
+    "timestamp": "2026-09-04T22:59:37.526Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788563580067",
+    "timestamp": "2026-09-04T23:13:00.067Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788564897649",
+    "timestamp": "2026-09-04T23:34:57.649Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788566309817",
+    "timestamp": "2026-09-04T23:58:29.817Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788567818972",
+    "timestamp": "2026-09-05T00:23:38.972Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788568679543",
+    "timestamp": "2026-09-05T00:37:59.543Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788587803801",
+    "timestamp": "2026-09-05T05:56:43.801Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788587976516",
+    "timestamp": "2026-09-05T05:59:36.516Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788588176403",
+    "timestamp": "2026-09-05T06:02:56.403Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788589209961",
+    "timestamp": "2026-09-05T06:20:09.961Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788590819521",
+    "timestamp": "2026-09-05T06:46:59.521Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788591056418",
+    "timestamp": "2026-09-05T06:50:56.418Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788592835630",
+    "timestamp": "2026-09-05T07:20:35.630Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788593825241",
+    "timestamp": "2026-09-05T07:37:05.241Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788595414764",
+    "timestamp": "2026-09-05T08:03:34.764Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788596409035",
+    "timestamp": "2026-09-05T08:20:09.035Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788596924181",
+    "timestamp": "2026-09-05T08:28:44.181Z",
+    "actorId": 1764829943217,
+    "action": "create-employee",
+    "targetId": 1788596924169,
+    "details": "Created yywtyw whwhhgw"
+  },
+  {
+    "id": "1788597042676",
+    "timestamp": "2026-09-05T08:30:42.676Z",
+    "actorId": 1764829943217,
+    "action": "delete-employee",
+    "targetId": "1788596924169",
+    "details": "Deleted employee record"
+  },
+  {
+    "id": "1788597151041",
+    "timestamp": "2026-09-05T08:32:31.041Z",
+    "actorId": 1764829943217,
+    "action": "delete-employee",
+    "targetId": "1784761935593",
+    "details": "Deleted employee record"
+  },
+  {
+    "id": "1788597488624",
+    "timestamp": "2026-09-05T08:38:08.624Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788599136799",
+    "timestamp": "2026-09-05T09:05:36.800Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788600597818",
+    "timestamp": "2026-09-05T09:29:57.818Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788602296560",
+    "timestamp": "2026-09-05T09:58:16.560Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788603277774",
+    "timestamp": "2026-09-05T10:14:37.774Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788603843392",
+    "timestamp": "2026-09-05T10:24:03.392Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788607801705",
+    "timestamp": "2026-09-05T11:30:01.705Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788607834984",
+    "timestamp": "2026-09-05T11:30:34.984Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788615618063",
+    "timestamp": "2026-09-05T13:40:18.063Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788615761576",
+    "timestamp": "2026-09-05T13:42:41.576Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788615782927",
+    "timestamp": "2026-09-05T13:43:02.927Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788615955663",
+    "timestamp": "2026-09-05T13:45:55.663Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788616418531",
+    "timestamp": "2026-09-05T13:53:38.531Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788619230582",
+    "timestamp": "2026-09-05T14:40:30.582Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788620568685",
+    "timestamp": "2026-09-05T15:02:48.685Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788621366535",
+    "timestamp": "2026-09-05T15:16:06.535Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788621813753",
+    "timestamp": "2026-09-05T15:23:33.753Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788622381213",
+    "timestamp": "2026-09-05T15:33:01.213Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788622384083",
+    "timestamp": "2026-09-05T15:33:04.083Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788622397406",
+    "timestamp": "2026-09-05T15:33:17.406Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788622399335",
+    "timestamp": "2026-09-05T15:33:19.335Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788622732255",
+    "timestamp": "2026-09-05T15:38:52.255Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788622806521",
+    "timestamp": "2026-09-05T15:40:06.521Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788623116267",
+    "timestamp": "2026-09-05T15:45:16.267Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788623468612",
+    "timestamp": "2026-09-05T15:51:08.612Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788623618312",
+    "timestamp": "2026-09-05T15:53:38.312Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788624289786",
+    "timestamp": "2026-09-05T16:04:49.786Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788624617331",
+    "timestamp": "2026-09-05T16:10:17.331Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788624848074",
+    "timestamp": "2026-09-05T16:14:08.074Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788624981648",
+    "timestamp": "2026-09-05T16:16:21.648Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788625335281",
+    "timestamp": "2026-09-05T16:22:15.281Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788625682316",
+    "timestamp": "2026-09-05T16:28:02.316Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788625987546",
+    "timestamp": "2026-09-05T16:33:07.546Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788627004110",
+    "timestamp": "2026-09-05T16:50:04.110Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788627643917",
+    "timestamp": "2026-09-05T17:00:43.917Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788627681627",
+    "timestamp": "2026-09-05T17:01:21.627Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788628347037",
+    "timestamp": "2026-09-05T17:12:27.037Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788628667381",
+    "timestamp": "2026-09-05T17:17:47.381Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788628745242",
+    "timestamp": "2026-09-05T17:19:05.242Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788628782134",
+    "timestamp": "2026-09-05T17:19:42.134Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788629297469",
+    "timestamp": "2026-09-05T17:28:17.469Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788629780522",
+    "timestamp": "2026-09-05T17:36:20.522Z",
+    "actorId": 1783502564401,
+    "action": "request-leave",
+    "targetId": 1788629780517,
+    "details": "Requested Annual Leave leave for 7 days"
+  },
+  {
+    "id": "1788629968058",
+    "timestamp": "2026-09-05T17:39:28.058Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788630249018",
+    "timestamp": "2026-09-05T17:44:09.018Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788630277684",
+    "timestamp": "2026-09-05T17:44:37.684Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788630499039",
+    "timestamp": "2026-09-05T17:48:19.039Z",
+    "actorId": 1784719952190,
+    "action": "login",
+    "targetId": 1784719952190,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788631528139",
+    "timestamp": "2026-09-05T18:05:28.139Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788631545441",
+    "timestamp": "2026-09-05T18:05:45.441Z",
+    "actorId": 1764829943217,
+    "action": "request-leave",
+    "targetId": 1788631545436,
+    "details": "Requested Annual Leave leave for 8 days"
+  },
+  {
+    "id": "1788631604986",
+    "timestamp": "2026-09-05T18:06:44.986Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788632378144",
+    "timestamp": "2026-09-05T18:19:38.144Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788633331946",
+    "timestamp": "2026-09-05T18:35:31.946Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788633495857",
+    "timestamp": "2026-09-05T18:38:15.857Z",
+    "actorId": 1783718492655,
+    "action": "approve-leave-step",
+    "targetId": "1788631545436",
+    "details": "Approved leave request #1788631545436 - Step 1"
+  },
+  {
+    "id": "1788633523140",
+    "timestamp": "2026-09-05T18:38:43.140Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788633556478",
+    "timestamp": "2026-09-05T18:39:16.478Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788633757504",
+    "timestamp": "2026-09-05T18:42:37.504Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788633987415",
+    "timestamp": "2026-09-05T18:46:27.415Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788634026663",
+    "timestamp": "2026-09-05T18:47:06.663Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788634115629",
+    "timestamp": "2026-09-05T18:48:35.629Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788635593694",
+    "timestamp": "2026-09-05T19:13:13.694Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788699505372",
+    "timestamp": "2026-09-06T12:58:25.372Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788699553965",
+    "timestamp": "2026-09-06T12:59:13.965Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788716238165",
+    "timestamp": "2026-09-06T17:37:18.166Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788720782987",
+    "timestamp": "2026-09-06T18:53:02.987Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788720904111",
+    "timestamp": "2026-09-06T18:55:04.111Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788721617211",
+    "timestamp": "2026-09-06T19:06:57.211Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788722529346",
+    "timestamp": "2026-09-06T19:22:09.346Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788723598764",
+    "timestamp": "2026-09-06T19:39:58.764Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788724419642",
+    "timestamp": "2026-09-06T19:53:39.642Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788724496791",
+    "timestamp": "2026-09-06T19:54:56.791Z",
+    "actorId": 1783502564401,
+    "action": "login",
+    "targetId": 1783502564401,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788724519993",
+    "timestamp": "2026-09-06T19:55:19.993Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788725618502",
+    "timestamp": "2026-09-06T20:13:38.502Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788725742271",
+    "timestamp": "2026-09-06T20:15:42.271Z",
+    "actorId": 1764829943217,
+    "action": "create-employee",
+    "targetId": 1788725742263,
+    "details": "Created Oluwaferanmi Praise"
+  },
+  {
+    "id": "1788725773931",
+    "timestamp": "2026-09-06T20:16:13.931Z",
+    "actorId": 1788725742264,
+    "action": "login",
+    "targetId": 1788725742264,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788726065801",
+    "timestamp": "2026-09-06T20:21:05.801Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788726255256",
+    "timestamp": "2026-09-06T20:24:15.256Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788726315908",
+    "timestamp": "2026-09-06T20:25:15.908Z",
+    "actorId": 1764829943217,
+    "action": "update-employee",
+    "targetId": "1783718492654",
+    "details": "Updated employee record"
+  },
+  {
+    "id": "1788726399380",
+    "timestamp": "2026-09-06T20:26:39.380Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788726783266",
+    "timestamp": "2026-09-06T20:33:03.266Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788728049916",
+    "timestamp": "2026-09-06T20:54:09.917Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788728160813",
+    "timestamp": "2026-09-06T20:56:00.813Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788729278525",
+    "timestamp": "2026-09-06T21:14:38.525Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788730120337",
+    "timestamp": "2026-09-06T21:28:40.337Z",
+    "actorId": 1783718492655,
+    "action": "approve-leave",
+    "targetId": "1788631545436",
+    "details": "Approved leave request #1788631545436 - Final approval"
+  },
+  {
+    "id": "1788730394293",
+    "timestamp": "2026-09-06T21:33:14.293Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788730452679",
+    "timestamp": "2026-09-06T21:34:12.679Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788731356902",
+    "timestamp": "2026-09-06T21:49:16.902Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788732440255",
+    "timestamp": "2026-09-06T22:07:20.255Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788733349432",
+    "timestamp": "2026-09-06T22:22:29.432Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788734313550",
+    "timestamp": "2026-09-06T22:38:33.550Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788735236786",
+    "timestamp": "2026-09-06T22:53:56.786Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788735820436",
+    "timestamp": "2026-09-06T23:03:40.436Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788735859382",
+    "timestamp": "2026-09-06T23:04:19.382Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788736036074",
+    "timestamp": "2026-09-06T23:07:16.074Z",
+    "actorId": 1764829943217,
+    "action": "cancel-leave",
+    "targetId": "1788631545436",
+    "details": "Cancelled leave request #1788631545436"
+  },
+  {
+    "id": "1788736062368",
+    "timestamp": "2026-09-06T23:07:42.368Z",
+    "actorId": 1764829943217,
+    "action": "request-leave",
+    "targetId": 1788736062366,
+    "details": "Requested Annual Leave leave for 11 days"
+  },
+  {
+    "id": "1788736071618",
+    "timestamp": "2026-09-06T23:07:51.618Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788737257108",
+    "timestamp": "2026-09-06T23:27:37.108Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788737272100",
+    "timestamp": "2026-09-06T23:27:52.100Z",
+    "actorId": 1783718492655,
+    "action": "approve-leave",
+    "targetId": "1788736062366",
+    "details": "Approved leave request #1788736062366 - Final approval (remaining steps skipped)"
+  },
+  {
+    "id": "1788737303983",
+    "timestamp": "2026-09-06T23:28:23.983Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788737525110",
+    "timestamp": "2026-09-06T23:32:05.111Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788739108738",
+    "timestamp": "2026-09-06T23:58:28.738Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788739257677",
+    "timestamp": "2026-09-07T00:00:57.677Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788761706745",
+    "timestamp": "2026-09-07T06:15:06.745Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788762440397",
+    "timestamp": "2026-09-07T06:27:20.397Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788766628601",
+    "timestamp": "2026-09-07T07:37:08.601Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788766810843",
+    "timestamp": "2026-09-07T07:40:10.843Z",
+    "actorId": 1764829943217,
+    "action": "clock-in",
+    "targetId": 1764829943217,
+    "details": "Clocked in at 8:40:10 AM"
+  },
+  {
+    "id": "1788766991369",
+    "timestamp": "2026-09-07T07:43:11.369Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788767079087",
+    "timestamp": "2026-09-07T07:44:39.087Z",
+    "actorId": 1764829943217,
+    "action": "update-employee",
+    "targetId": "1788725742263",
+    "details": "Updated employee record"
+  },
+  {
+    "id": "1788768735487",
+    "timestamp": "2026-09-07T08:12:15.487Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788769842298",
+    "timestamp": "2026-09-07T08:30:42.298Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788770752968",
+    "timestamp": "2026-09-07T08:45:52.968Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788770949639",
+    "timestamp": "2026-09-07T08:49:09.639Z",
+    "actorId": 1764829943217,
+    "action": "request-leave",
+    "targetId": 1788770949637,
+    "details": "Requested Annual Leave leave for 4 days"
+  },
+  {
+    "id": "1788770974312",
+    "timestamp": "2026-09-07T08:49:34.312Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788771022260",
+    "timestamp": "2026-09-07T08:50:22.260Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788771047849",
+    "timestamp": "2026-09-07T08:50:47.849Z",
+    "actorId": 1783718492655,
+    "action": "approve-leave",
+    "targetId": "1788770949637",
+    "details": "Approved leave request #1788770949637 - Final approval"
+  },
+  {
+    "id": "1788771065191",
+    "timestamp": "2026-09-07T08:51:05.191Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788772088473",
+    "timestamp": "2026-09-07T09:08:08.473Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788773376238",
+    "timestamp": "2026-09-07T09:29:36.238Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788781016435",
+    "timestamp": "2026-09-07T11:36:56.435Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788853742782",
+    "timestamp": "2026-09-08T07:49:02.782Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788853767238",
+    "timestamp": "2026-09-08T07:49:27.238Z",
+    "actorId": 1764829943217,
+    "action": "clock-in",
+    "targetId": 1764829943217,
+    "details": "Clocked in at 8:49:27 AM"
+  },
+  {
+    "id": "1788855585154",
+    "timestamp": "2026-09-08T08:19:45.154Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788856583583",
+    "timestamp": "2026-09-08T08:36:23.583Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788856595498",
+    "timestamp": "2026-09-08T08:36:35.498Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788858774017",
+    "timestamp": "2026-09-08T09:12:54.017Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788858783576",
+    "timestamp": "2026-09-08T09:13:03.576Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788861669308",
+    "timestamp": "2026-09-08T10:01:09.308Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788861687871",
+    "timestamp": "2026-09-08T10:01:27.871Z",
+    "actorId": 1783718492655,
+    "action": "clock-in",
+    "targetId": 1783718492655,
+    "details": "Clocked in at 11:01:27 AM"
+  },
+  {
+    "id": "1788863967770",
+    "timestamp": "2026-09-08T10:39:27.770Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788876724055",
+    "timestamp": "2026-09-08T14:12:04.056Z",
+    "actorId": 1783718492655,
+    "action": "login",
+    "targetId": 1783718492655,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788876737289",
+    "timestamp": "2026-09-08T14:12:17.289Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788877005322",
+    "timestamp": "2026-09-08T14:16:45.322Z",
+    "actorId": 1764829943217,
+    "action": "clock-out",
+    "targetId": 1764829943217,
+    "details": "Clocked out at 3:16:45 PM"
+  },
+  {
+    "id": "1788904110275",
+    "timestamp": "2026-09-08T21:48:30.275Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788906904732",
+    "timestamp": "2026-09-08T22:35:04.733Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788908118267",
+    "timestamp": "2026-09-08T22:55:18.267Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788938095540",
+    "timestamp": "2026-09-09T07:14:55.540Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1788938836370",
+    "timestamp": "2026-09-09T07:27:16.371Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1789387111802",
+    "timestamp": "2026-09-14T11:58:31.802Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1789387908302",
+    "timestamp": "2026-09-14T12:11:48.303Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1789388042429",
+    "timestamp": "2026-09-14T12:14:02.429Z",
+    "actorId": 1764829943217,
+    "action": "clock-in",
+    "targetId": 1764829943217,
+    "details": "Clocked in at 1:14:02 PM"
+  },
+  {
+    "id": "1789475632099",
+    "timestamp": "2026-09-15T12:33:52.099Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1789475705020",
+    "timestamp": "2026-09-15T12:35:05.020Z",
+    "actorId": 1764829943217,
+    "action": "clock-in",
+    "targetId": 1764829943217,
+    "details": "Clocked in at 1:35:04 PM"
+  }
+]

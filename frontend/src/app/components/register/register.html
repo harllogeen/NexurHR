@@ -1,0 +1,196 @@
+<!-- Enterprise Register Page - Premium Animated Design -->
+<div class="register-page">
+  <!-- Dynamic Animated Background -->
+  <div class="bg-layer">
+    <div class="gradient-overlay"></div>
+    <div class="animated-gradient-1"></div>
+    <div class="animated-gradient-2"></div>
+    <div class="mesh-pattern"></div>
+    <div class="cursor-glow"></div>
+  </div>
+
+  <!-- Glass Morphism Shapes -->
+  <div class="glass-shapes">
+    <div class="glass-orb orb-1"></div>
+    <div class="glass-orb orb-2"></div>
+    <div class="glass-orb orb-3"></div>
+    <div class="glass-orb orb-4"></div>
+    <div class="glass-ring ring-1"></div>
+    <div class="glass-ring ring-2"></div>
+  </div>
+
+  <!-- Flowing Light Streaks -->
+  <div class="light-streaks">
+    <div class="streak streak-1"></div>
+    <div class="streak streak-2"></div>
+    <div class="streak streak-3"></div>
+    <div class="streak streak-4"></div>
+  </div>
+
+  <!-- Floating Particles -->
+  <div class="particles">
+    <div class="particle particle-1"></div>
+    <div class="particle particle-2"></div>
+    <div class="particle particle-3"></div>
+    <div class="particle particle-4"></div>
+    <div class="particle particle-5"></div>
+    <div class="particle particle-6"></div>
+    <div class="particle particle-7"></div>
+    <div class="particle particle-8"></div>
+  </div>
+
+  <!-- Geometric Waves -->
+  <div class="geometric-waves">
+    <svg class="wave wave-1" viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <path fill="rgba(59, 130, 246, 0.05)" d="M0,160L48,144C96,128,192,96,288,106.7C384,117,480,171,576,181.3C672,192,768,160,864,154.7C960,149,1056,171,1152,165.3C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+    </svg>
+    <svg class="wave wave-2" viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <path fill="rgba(37, 99, 235, 0.03)" d="M0,224L48,213.3C96,203,192,181,288,186.7C384,192,480,224,576,224C672,224,768,192,864,165.3C960,139,1056,117,1152,133.3C1248,149,1344,203,1392,229.3L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+    </svg>
+  </div>
+
+  <div class="content-wrapper">
+    
+    <!-- Left Side - Branding & Value Proposition -->
+    <div class="left-panel">
+      <div class="branding-content">
+        <!-- Logo -->
+        <a routerLink="/" class="logo-link">
+          <img src="/nexus-logo.png" alt="NexusHR" class="logo">
+        </a>
+
+        <!-- Value Proposition -->
+        <div class="value-prop">
+          <h1 class="main-heading">Enterprise HR Management</h1>
+          <p class="subheading">Streamline your workforce operations with intelligent automation and powerful analytics.</p>
+        </div>
+
+        <!-- Key Benefits -->
+        <div class="benefits-list">
+          <div class="benefit-item">
+            <div class="check-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <span>Centralized employee data management</span>
+          </div>
+          <div class="benefit-item">
+            <div class="check-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <span>Advanced time & attendance tracking</span>
+          </div>
+          <div class="benefit-item">
+            <div class="check-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <span>Comprehensive reporting & insights</span>
+          </div>
+        </div>
+
+        <!-- Trust Badges -->
+        <div class="trust-section">
+          <div class="trust-badge">
+            <div class="badge-value">500+</div>
+            <div class="badge-label">Organizations</div>
+          </div>
+          <div class="divider"></div>
+          <div class="trust-badge">
+            <div class="badge-value">50K+</div>
+            <div class="badge-label">Active Users</div>
+          </div>
+          <div class="divider"></div>
+          <div class="trust-badge">
+            <div class="badge-value">99.9%</div>
+            <div class="badge-label">Uptime</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Side - Registration Card -->
+    <div class="right-panel">
+      <div class="register-card">
+        
+        <!-- Card Header -->
+        <div class="card-header">
+        
+          <h2 class="card-title">Account Registration</h2>
+        </div>
+
+        <!-- Error Message -->
+        <div *ngIf="errorMessage" class="error-alert">
+          <div class="alert-icon">
+            <svg fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <span class="alert-text">{{ errorMessage }}</span>
+        </div>
+
+        <!-- Information Section -->
+        <div class="info-section">
+          <div class="info-icon">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+            </svg>
+          </div>
+          <div class="info-content">
+            <h3 class="info-title">Registration Restricted</h3>
+            <p class="info-text">Employee accounts are provisioned by your organization's HR department. Self-registration is not available for security and compliance reasons.</p>
+          </div>
+        </div>
+
+        <!-- Steps Section -->
+        <div class="steps-section">
+          <h4 class="steps-heading">To obtain access:</h4>
+          <ol class="steps-list">
+            <li class="step-item">
+              <span class="step-marker">1</span>
+              <span class="step-content">Contact your HR department or system administrator</span>
+            </li>
+            <li class="step-item">
+              <span class="step-marker">2</span>
+              <span class="step-content">Provide your official work email address</span>
+            </li>
+            <li class="step-item">
+              <span class="step-marker">3</span>
+              <span class="step-content">Receive credentials via secure email delivery</span>
+            </li>
+            <li class="step-item">
+              <span class="step-marker">4</span>
+              <span class="step-content">Sign in and complete your profile setup</span>
+            </li>
+          </ol>
+        </div>
+
+        <!-- Actions -->
+        <div class="card-actions">
+          <a routerLink="/login" class="btn btn-primary">
+            <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
+            </svg>
+            Sign In to Your Account
+          </a>
+          <a routerLink="/" class="btn btn-secondary">
+            <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+            </svg>
+            Return to Homepage
+          </a>
+        </div>
+
+        <!-- Footer -->
+        <div class="card-footer">
+          <p class="footer-text">Need assistance? Contact <a href="mailto:support@nexushr.com" class="footer-link">support@nexushr.com</a></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

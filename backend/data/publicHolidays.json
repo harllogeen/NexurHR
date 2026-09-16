@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "holidayName": "New Year's Day",
+    "date": "2026-01-01",
+    "calendarId": 1,
+    "isRecurring": true,
+    "applicableToDepartments": [],
+    "createdBy": 1,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": 2,
+    "holidayName": "Independence Day",
+    "date": "2026-07-04",
+    "calendarId": 1,
+    "isRecurring": true,
+    "applicableToDepartments": [],
+    "createdBy": 1,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": 3,
+    "holidayName": "Christmas Day",
+    "date": "2026-12-25",
+    "calendarId": 1,
+    "isRecurring": true,
+    "applicableToDepartments": [],
+    "createdBy": 1,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  }
+]

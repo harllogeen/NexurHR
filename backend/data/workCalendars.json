@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "name": "Default Work Calendar",
+    "calendarCode": "DEFAULT-CAL",
+    "description": "Standard 5-day work week calendar",
+    "workingDays": [1, 2, 3, 4, 5],
+    "weekendDays": [0, 6],
+    "departments": [],
+    "isDefault": true,
+    "isActive": true,
+    "createdBy": 1,
+    "createdAt": "2026-01-01T00:00:00.000Z",
+    "updatedAt": "2026-01-01T00:00:00.000Z"
+  }
+]

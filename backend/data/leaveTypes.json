@@ -1,0 +1,20 @@
+[
+  {
+    "code": "annual",
+    "name": "Annual",
+    "defaultDays": 20,
+    "color": "#2563eb"
+  },
+  {
+    "code": "sick",
+    "name": "Sick",
+    "defaultDays": 10,
+    "color": "#dc2626"
+  },
+  {
+    "code": "casual",
+    "name": "Casual",
+    "defaultDays": 5,
+    "color": "#16a34a"
+  }
+]

@@ -1,0 +1,756 @@
+<div class="font-sans text-slate-900 dark:text-slate-100 antialiased">
+
+  <!-- ═══════════════════════════════════════════════════
+       TOP BAR
+  ════════════════════════════════════════════════════ -->
+  <div class="hidden md:block bg-slate-950 text-slate-400 text-xs py-2.5 border-b border-slate-800/60">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between">
+      <div class="flex items-center gap-6">
+        <a href="mailto:contact@nexushr.com" class="flex items-center gap-1.5 hover:text-slate-200 transition-colors">
+          <svg class="w-3.5 h-3.5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+          contact&#64;nexushr.com
+        </a>
+        <a href="tel:+2349078073945" class="flex items-center gap-1.5 hover:text-slate-200 transition-colors">
+          <svg class="w-3.5 h-3.5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+          </svg>
+          +234 907 807 3945
+        </a>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="text-slate-600 dark:text-slate-400 text-[10px] uppercase tracking-widest font-semibold">Follow us</span>
+        <a href="#" class="w-6 h-6 bg-slate-800 dark:bg-slate-700 hover:bg-indigo-600 dark:hover:bg-indigo-600 rounded flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-white transition-all">
+          <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="#" class="w-6 h-6 bg-slate-800 dark:bg-slate-700 hover:bg-indigo-600 dark:hover:bg-indigo-600 rounded flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-white transition-all">
+          <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="#" class="w-6 h-6 bg-slate-800 dark:bg-slate-700 hover:bg-indigo-600 dark:hover:bg-indigo-600 rounded flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-white transition-all">
+          <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       NAVIGATION
+  ════════════════════════════════════════════════════ -->
+  <nav class="nav-root sticky top-0 z-50"
+       [class.nav-frosted]="isScrolled && !themeService.isDarkMode()"
+       [class.nav-frosted-dark]="isScrolled && themeService.isDarkMode()"
+       [class.nav-transparent]="!isScrolled">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="flex items-center justify-between h-[68px]">
+
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-2.5 flex-shrink-0">
+          <img src="/nexus-logo.png" alt="NexusHR" class="h-16 w-auto rounded-lg dark:brightness-110 dark:contrast-110">
+        </a>
+
+        <!-- Desktop links -->
+        <div class="hidden lg:flex items-center gap-1">
+          <a href="#" class="nav-link" [class.nav-link-light]="!isScrolled">Home</a>
+          <a href="#about" class="nav-link" [class.nav-link-light]="!isScrolled">About</a>
+          <a href="#services" class="nav-link" [class.nav-link-light]="!isScrolled">Services</a>
+          <a href="#features" class="nav-link" [class.nav-link-light]="!isScrolled">Features</a>
+        </div>
+
+        <!-- Actions -->
+        <div class="hidden lg:flex items-center gap-2">
+          <!-- Theme toggle -->
+          <button (click)="themeService.toggleTheme()"
+                  class="w-9 h-9 flex items-center justify-center rounded-lg transition-all"
+                  [class.text-slate-400]="!isScrolled"
+                  [class.hover:bg-white/10]="!isScrolled"
+                  [class.text-slate-500]="isScrolled"
+                  [class.hover:bg-slate-100]="isScrolled && !themeService.isDarkMode()"
+                  [class.dark:hover:bg-slate-800]="isScrolled">
+            <svg *ngIf="themeService.isDarkMode()" class="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg *ngIf="!themeService.isDarkMode()" class="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+            </svg>
+          </button>
+
+          <a routerLink="/login"
+             class="px-4 py-2 rounded-xl text-sm font-semibold transition-all"
+             [class.text-white]="!isScrolled"
+             [class.hover:bg-white/10]="!isScrolled"
+             [class.text-slate-700]="isScrolled && !themeService.isDarkMode()"
+             [class.dark:text-slate-200]="isScrolled"
+             [class.hover:bg-slate-100]="isScrolled && !themeService.isDarkMode()"
+             [class.dark:hover:bg-slate-800]="isScrolled">
+            Sign in
+          </a>
+
+          <a routerLink="/register"
+             class="cta-primary">
+            Get Started
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Mobile hamburger -->
+        <button (click)="toggleMobileMenu()"
+                class="lg:hidden w-9 h-9 flex flex-col items-center justify-center gap-[5px] rounded-xl transition-colors"
+                [class.hover:bg-white/10]="!isScrolled"
+                [class.hover:bg-slate-100]="isScrolled && !themeService.isDarkMode()"
+                [class.dark:hover:bg-slate-800]="isScrolled">
+          <span class="w-[18px] h-0.5 rounded-full transition-all duration-300"
+                [class.bg-white]="!isScrolled"
+                [class.bg-slate-700]="isScrolled && !themeService.isDarkMode()"
+                [class.dark:bg-slate-300]="isScrolled"
+                [class.rotate-45]="isMobileMenuOpen" [class.translate-y-[7px]]="isMobileMenuOpen"></span>
+          <span class="w-[18px] h-0.5 rounded-full transition-all duration-300"
+                [class.bg-white]="!isScrolled"
+                [class.bg-slate-700]="isScrolled && !themeService.isDarkMode()"
+                [class.dark:bg-slate-300]="isScrolled"
+                [class.opacity-0]="isMobileMenuOpen"></span>
+          <span class="w-[18px] h-0.5 rounded-full transition-all duration-300"
+                [class.bg-white]="!isScrolled"
+                [class.bg-slate-700]="isScrolled && !themeService.isDarkMode()"
+                [class.dark:bg-slate-300]="isScrolled"
+                [class.-rotate-45]="isMobileMenuOpen" [class.-translate-y-[7px]]="isMobileMenuOpen"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="lg:hidden overflow-hidden transition-all duration-300 ease-in-out"
+         [style.maxHeight]="isMobileMenuOpen ? '480px' : '0'">
+      <div class="bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 px-6 py-5 space-y-1 shadow-card-lg">
+        <a href="#" (click)="closeMobileMenu()" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">Home</a>
+        <a href="#about" (click)="closeMobileMenu()" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">About</a>
+        <a href="#services" (click)="closeMobileMenu()" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">Services</a>
+        <a href="#features" (click)="closeMobileMenu()" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">Features</a>
+        <div class="pt-4 mt-2 border-t border-slate-100 dark:border-slate-800 space-y-2.5">
+          <!-- Theme toggle mobile -->
+          <button (click)="themeService.toggleTheme()" class="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+            <svg *ngIf="themeService.isDarkMode()" class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+            <svg *ngIf="!themeService.isDarkMode()" class="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+            {{ themeService.isDarkMode() ? 'Light mode' : 'Dark mode' }}
+          </button>
+          <a routerLink="/login" (click)="closeMobileMenu()" class="flex items-center justify-center w-full py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:border-indigo-300 hover:text-indigo-600 transition-all">
+            Sign in
+          </a>
+          <a routerLink="/register" (click)="closeMobileMenu()" class="flex items-center justify-center w-full py-2.5 rounded-xl bg-indigo-600 text-sm font-semibold text-white hover:bg-indigo-700 transition-colors">
+            Get Started Free
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════
+       HERO
+  ════════════════════════════════════════════════════ -->
+  <section class="hero-wrap">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-24 lg:py-32 w-full">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Left: copy -->
+        <div>
+          <!-- Eyebrow -->
+          <div class="hero-badge inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-4 py-1.5 mb-8">
+            <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span>
+            <span class="text-xs font-semibold text-indigo-300 tracking-wide">Trusted by 500+ companies worldwide</span>
+          </div>
+
+          <!-- Heading -->
+          <h1 class="hero-heading text-5xl lg:text-6xl font-bold text-white leading-[1.1] tracking-tight mb-6">
+            Modern HR,<br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-violet-400">
+              built for scale
+            </span>
+          </h1>
+
+          <!-- Subheading -->
+          <p class="hero-sub text-lg text-slate-400 leading-relaxed mb-10 max-w-xl">
+            NexusHR gives growing organisations a unified platform for people management — from onboarding to payroll, leave to performance.
+          </p>
+
+          <!-- CTAs -->
+          <div class="hero-actions flex flex-col sm:flex-row gap-3 mb-12">
+            <a routerLink="/register" class="cta-primary">
+              Start free trial
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+              </svg>
+            </a>
+            <a href="#about" class="cta-outline">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              See how it works
+            </a>
+          </div>
+
+          <!-- Social proof row -->
+          <div class="hero-social-proof flex items-center gap-4">
+            <div class="flex -space-x-2">
+              <div class="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-violet-500 ring-2 ring-slate-900 flex items-center justify-center text-white text-xs font-bold">A</div>
+              <div class="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 ring-2 ring-slate-900 flex items-center justify-center text-white text-xs font-bold">B</div>
+              <div class="w-8 h-8 rounded-full bg-gradient-to-br from-amber-500 to-orange-500 ring-2 ring-slate-900 flex items-center justify-center text-white text-xs font-bold">C</div>
+              <div class="w-8 h-8 rounded-full bg-slate-700 ring-2 ring-slate-900 flex items-center justify-center text-slate-300 text-xs font-bold">+</div>
+            </div>
+            <div>
+              <div class="flex items-center gap-0.5 mb-0.5">
+                <svg *ngFor="let s of [1,2,3,4,5]" class="w-3.5 h-3.5 text-amber-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              </div>
+              <p class="text-xs text-slate-400"><span class="text-white font-semibold">4.9/5</span> from 2,300+ reviews</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: dashboard preview -->
+        <div class="hero-visual hidden lg:block">
+          <!-- Animated HR Dashboard Preview -->
+          <div class="preview-card relative">
+            <!-- Mini dashboard header -->
+            <div class="flex items-center justify-between mb-5">
+              <div>
+                <p class="text-xs font-semibold text-indigo-400 uppercase tracking-widest mb-0.5">HR Command Centre</p>
+                <h3 class="text-white font-bold text-lg">Today's Overview</h3>
+              </div>
+              <span class="flex items-center gap-1.5 text-xs text-emerald-400 bg-emerald-400/10 border border-emerald-400/20 rounded-full px-2.5 py-1">
+                <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span>
+                Live
+              </span>
+            </div>
+
+            <!-- Animated Employee Cards -->
+            <div class="mb-5">
+              <p class="text-slate-400 text-xs mb-3 font-semibold uppercase tracking-widest">Team Overview</p>
+              <div class="grid grid-cols-4 gap-2">
+                <div class="employee-card" style="animation-delay: 0.6s">
+                  <div class="w-full aspect-square rounded-lg bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center text-white text-xs font-bold relative overflow-hidden">
+                    <div class="absolute inset-0 bg-white/20 employee-card-shimmer"></div>
+                    JD
+                    <div class="status-dot status-online"></div>
+                  </div>
+                </div>
+                <div class="employee-card" style="animation-delay: 0.7s">
+                  <div class="w-full aspect-square rounded-lg bg-gradient-to-br from-violet-500 to-violet-600 flex items-center justify-center text-white text-xs font-bold relative overflow-hidden">
+                    <div class="absolute inset-0 bg-white/20 employee-card-shimmer"></div>
+                    SM
+                    <div class="status-dot status-online"></div>
+                  </div>
+                </div>
+                <div class="employee-card" style="animation-delay: 0.8s">
+                  <div class="w-full aspect-square rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center text-white text-xs font-bold relative overflow-hidden">
+                    <div class="absolute inset-0 bg-white/20 employee-card-shimmer"></div>
+                    AK
+                    <div class="status-dot status-away"></div>
+                  </div>
+                </div>
+                <div class="employee-card" style="animation-delay: 0.9s">
+                  <div class="w-full aspect-square rounded-lg bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center text-white text-xs font-bold relative overflow-hidden">
+                    <div class="absolute inset-0 bg-white/20 employee-card-shimmer"></div>
+                    RW
+                    <div class="status-dot status-offline"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Stat row with animations -->
+            <div class="grid grid-cols-3 gap-3 mb-5">
+              <div class="stat-card" style="animation-delay: 1s">
+                <div class="bg-white/5 border border-white/8 rounded-xl p-3 relative overflow-hidden">
+                  <div class="stat-glow stat-glow-green"></div>
+                  <p class="text-slate-400 text-xs mb-1">Headcount</p>
+                  <p class="text-white font-bold text-xl counter-animate">248</p>
+                  <p class="text-emerald-400 text-xs mt-0.5 flex items-center gap-1">
+                    <svg class="w-3 h-3 animate-bounce-subtle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+                    </svg>
+                    ↑ 4 this month
+                  </p>
+                </div>
+              </div>
+              <div class="stat-card" style="animation-delay: 1.1s">
+                <div class="bg-white/5 border border-white/8 rounded-xl p-3 relative overflow-hidden">
+                  <div class="stat-glow stat-glow-amber"></div>
+                  <p class="text-slate-400 text-xs mb-1">On Leave</p>
+                  <div class="flex items-center gap-2">
+                    <p class="text-white font-bold text-xl counter-animate">12</p>
+                    <div class="leave-badge">
+                      <svg class="w-3 h-3 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                      </svg>
+                    </div>
+                  </div>
+                  <p class="text-slate-500 text-xs mt-0.5">3 pending</p>
+                </div>
+              </div>
+              <div class="stat-card" style="animation-delay: 1.2s">
+                <div class="bg-white/5 border border-white/8 rounded-xl p-3 relative overflow-hidden">
+                  <div class="stat-glow stat-glow-indigo"></div>
+                  <p class="text-slate-400 text-xs mb-1">Open Roles</p>
+                  <p class="text-white font-bold text-xl counter-animate">7</p>
+                  <p class="text-amber-400 text-xs mt-0.5">23 applicants</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Activity list with approval workflow -->
+            <div class="space-y-2.5">
+              <p class="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-3">Recent Actions</p>
+              
+              <!-- Approval animation -->
+              <div class="activity-item approval-flow" style="animation-delay: 1.4s">
+                <div class="flex items-start gap-2.5 p-2.5 bg-white/5 border border-emerald-500/20 rounded-lg">
+                  <div class="approval-icon">
+                    <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-white text-xs font-medium">Leave approved — Ada Johnson</p>
+                    <p class="text-slate-500 text-[10px] mt-0.5">3m ago</p>
+                  </div>
+                  <div class="notification-dot bg-emerald-500"></div>
+                </div>
+              </div>
+
+              <!-- Clock in animation -->
+              <div class="activity-item clock-pulse" style="animation-delay: 1.5s">
+                <div class="flex items-start gap-2.5 p-2.5 bg-white/5 border border-indigo-500/20 rounded-lg">
+                  <div class="clock-icon">
+                    <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-white text-xs font-medium">New hire onboarded — Tunde Okafor</p>
+                    <p class="text-slate-500 text-[10px] mt-0.5">1h ago</p>
+                  </div>
+                  <div class="notification-dot bg-indigo-500"></div>
+                </div>
+              </div>
+
+             
+            </div>
+
+            <!-- Floating decorative elements -->
+            <div class="floating-dots">
+              <div class="dot dot-1"></div>
+              <div class="dot dot-2"></div>
+              <div class="dot dot-3"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       TRUSTED BY
+  ════════════════════════════════════════════════════ -->
+  <div class="bg-white dark:bg-slate-900 border-y border-slate-100 dark:border-slate-800 py-10">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <p class="text-center text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] mb-8">
+        Trusted by leading organisations
+      </p>
+      <div class="flex flex-wrap justify-center items-center gap-10 lg:gap-20 opacity-30 dark:opacity-15 grayscale select-none">
+        <span class="text-xl font-black text-slate-900 dark:text-white tracking-tight">Microsoft</span>
+        <span class="text-xl font-black text-slate-900 dark:text-white tracking-tight">Google</span>
+        <span class="text-xl font-black text-slate-900 dark:text-white tracking-tight">Amazon</span>
+        <span class="text-xl font-black text-slate-900 dark:text-white tracking-tight">Meta</span>
+        <span class="text-xl font-black text-slate-900 dark:text-white tracking-tight">Spotify</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       SERVICES
+  ════════════════════════════════════════════════════ -->
+  <section id="services" class="py-24 bg-slate-50 dark:bg-[#0b0f1a]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+      <!-- Header -->
+      <div class="text-center mb-16">
+        <span class="section-eyebrow bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-800/40 mb-4">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          Core Services
+        </span>
+        <h2 class="text-4xl font-bold text-slate-900 dark:text-white mt-4 mb-3 tracking-tight">
+          Everything your HR team needs
+        </h2>
+        <p class="text-slate-500 dark:text-slate-400 text-base max-w-xl mx-auto">
+          One platform that handles the full employee lifecycle — from hire to retire.
+        </p>
+      </div>
+
+      <!-- Cards -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Employee Management -->
+        <div class="service-card accent-indigo">
+          <div class="service-icon w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center mb-5 shadow-brand">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">Employee Management</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">Centralise all employee data. Manage profiles, roles, documents, and org hierarchy from one place.</p>
+          <a href="#" class="inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:gap-2 transition-all">
+            Learn more <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <!-- Performance -->
+        <div class="service-card accent-violet">
+          <div class="service-icon w-12 h-12 bg-violet-600 rounded-xl flex items-center justify-center mb-5 shadow-[0_4px_14px_rgba(124,58,237,0.35)]">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+            </svg>
+          </div>
+          <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">Performance Tracking</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">Set goals, track OKRs, run peer reviews, and surface insights that drive team development.</p>
+          <a href="#" class="inline-flex items-center gap-1.5 text-sm font-semibold text-violet-600 dark:text-violet-400 hover:gap-2 transition-all">
+            Learn more <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <!-- Payroll -->
+        <div class="service-card accent-emerald">
+          <div class="service-icon w-12 h-12 bg-emerald-600 rounded-xl flex items-center justify-center mb-5 shadow-[0_4px_14px_rgba(5,150,105,0.30)]">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">Automated Payroll</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">Automate pay cycles with precision. Generate payslips, manage deductions, and stay compliant.</p>
+          <a href="#" class="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-600 dark:text-emerald-400 hover:gap-2 transition-all">
+            Learn more <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <!-- Recruitment -->
+        <div class="service-card accent-amber">
+          <div class="w-12 h-12 bg-amber-500 rounded-xl flex items-center justify-center mb-5 shadow-[0_4px_14px_rgba(245,158,11,0.30)]">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
+            </svg>
+          </div>
+          <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">Recruitment Pipeline</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">Manage candidates with a visual Kanban pipeline. From application to offer in one streamlined flow.</p>
+          <a href="#" class="inline-flex items-center gap-1.5 text-sm font-semibold text-amber-600 dark:text-amber-400 hover:gap-2 transition-all">
+            Learn more <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <!-- Leave & Attendance -->
+        <div class="service-card accent-indigo">
+          <div class="w-12 h-12 bg-sky-600 rounded-xl flex items-center justify-center mb-5 shadow-[0_4px_14px_rgba(2,132,199,0.30)]">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">Leave & Attendance</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">Handle leave requests, balances, and approvals. Track daily attendance with a clean time-log view.</p>
+          <a href="#" class="inline-flex items-center gap-1.5 text-sm font-semibold text-sky-600 dark:text-sky-400 hover:gap-2 transition-all">
+            Learn more <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <!-- Task Management -->
+        <div class="service-card accent-violet">
+          <div class="w-12 h-12 bg-pink-600 rounded-xl flex items-center justify-center mb-5 shadow-[0_4px_14px_rgba(219,39,119,0.30)]">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 14l2 2 4-4"/>
+            </svg>
+          </div>
+          <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">Task Management</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">Assign tasks, set priorities, track progress, and keep teams aligned across every project.</p>
+          <a href="#" class="inline-flex items-center gap-1.5 text-sm font-semibold text-pink-600 dark:text-pink-400 hover:gap-2 transition-all">
+            Learn more <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       FEATURES
+  ════════════════════════════════════════════════════ -->
+  <section id="features" class="py-24 bg-white dark:bg-slate-900">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+      <div class="text-center mb-16">
+        <span class="section-eyebrow bg-violet-50 dark:bg-violet-900/20 text-violet-600 dark:text-violet-400 border border-violet-100 dark:border-violet-800/40 mb-4">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+          Why NexusHR
+        </span>
+        <h2 class="text-4xl font-bold text-slate-900 dark:text-white mt-4 mb-3 tracking-tight">
+          Built for the way HR teams work
+        </h2>
+        <p class="text-slate-500 dark:text-slate-400 text-base max-w-xl mx-auto">
+          Thoughtfully designed with the features that matter most to HR professionals.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div *ngFor="let feat of [
+          {icon:'shield', title:'Enterprise Security', desc:'256-bit encryption, role-based access, audit trails, and SOC 2 compliance standards.', color:'indigo'},
+          {icon:'cloud', title:'Cloud-Native', desc:'Access HR data from any device, anywhere. Zero infrastructure to maintain.', color:'sky'},
+          {icon:'bolt', title:'Fast & Reliable', desc:'Sub-second load times with 99.9% uptime SLA. Built for high-traffic organisations.', color:'amber'},
+          {icon:'refresh', title:'Smart Automation', desc:'Automate approvals, reminders, and reports so your team focuses on people, not process.', color:'emerald'}
+        ]" class="feature-item">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
+               [ngClass]="{
+                 'bg-indigo-50 dark:bg-indigo-900/30': feat.color === 'indigo',
+                 'bg-sky-50 dark:bg-sky-900/30': feat.color === 'sky',
+                 'bg-amber-50 dark:bg-amber-900/30': feat.color === 'amber',
+                 'bg-emerald-50 dark:bg-emerald-900/30': feat.color === 'emerald'
+               }">
+            <!-- Shield -->
+            <svg *ngIf="feat.icon === 'shield'" class="w-5 h-5" [ngClass]="{'text-indigo-600 dark:text-indigo-400': feat.color === 'indigo'}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            <!-- Cloud -->
+            <svg *ngIf="feat.icon === 'cloud'" class="w-5 h-5 text-sky-600 dark:text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+            <!-- Bolt -->
+            <svg *ngIf="feat.icon === 'bolt'" class="w-5 h-5 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            <!-- Refresh -->
+            <svg *ngIf="feat.icon === 'refresh'" class="w-5 h-5 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          </div>
+          <h4 class="text-sm font-bold text-slate-900 dark:text-white mb-1.5">{{ feat.title }}</h4>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{{ feat.desc }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       ABOUT
+  ════════════════════════════════════════════════════ -->
+  <section id="about" class="py-24 bg-slate-50 dark:bg-[#0b0f1a]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Image side -->
+        <div class="relative">
+          <div class="absolute -inset-4 bg-gradient-to-br from-indigo-100/60 to-violet-100/40 dark:from-indigo-900/10 dark:to-violet-900/10 rounded-3xl blur-xl"></div>
+          <img src="/about-team.png" alt="Our team" class="relative rounded-2xl shadow-card-xl w-full object-cover dark:brightness-90 dark:contrast-110">
+          <!-- Floating badge -->
+          <div class="absolute -bottom-6 -right-6 hidden md:flex items-center gap-4 bg-white dark:bg-slate-800 rounded-2xl shadow-card-xl px-5 py-4 border border-slate-100 dark:border-slate-700">
+            <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+            </div>
+            <div>
+              <p class="text-xl font-bold text-slate-900 dark:text-white leading-none">10+</p>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 font-medium">Years in HR tech</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Copy side -->
+        <div>
+          <span class="section-eyebrow bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-800/40 mb-6 inline-flex">
+            About NexusHR
+          </span>
+          <h2 class="text-4xl font-bold text-slate-900 dark:text-white mb-5 tracking-tight leading-tight">
+            We make HR feel<br>less like admin
+          </h2>
+          <p class="text-slate-500 dark:text-slate-400 leading-relaxed mb-5">
+            NexusHR was founded with one idea in mind — HR departments deserve tools that are as powerful as they are pleasant to use. We built a platform that reduces friction, surfaces the right information at the right time, and helps HR teams do the work that actually matters.
+          </p>
+          <p class="text-slate-500 dark:text-slate-400 leading-relaxed mb-8">
+            From a 10-person startup to a 5,000-person enterprise, NexusHR scales with your organisation without ever losing its simplicity.
+          </p>
+          <div class="grid grid-cols-2 gap-5 mb-8">
+            <div *ngFor="let s of [
+              {value:'500+', label:'Companies'},
+              {value:'10k+', label:'Employees managed'},
+              {value:'98%', label:'Customer satisfaction'},
+              {value:'24/7', label:'Support coverage'}
+            ]">
+              <p class="text-3xl font-bold text-slate-900 dark:text-white">{{ s.value }}</p>
+              <p class="text-sm text-slate-500 dark:text-slate-400 mt-0.5">{{ s.label }}</p>
+            </div>
+          </div>
+          <a routerLink="/register" class="cta-primary inline-flex">
+            Start your free trial
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       TESTIMONIALS
+  ════════════════════════════════════════════════════ -->
+  <section class="py-24 bg-white dark:bg-slate-900">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+      <div class="text-center mb-16">
+        <span class="section-eyebrow bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-800/40 mb-4">
+          Testimonials
+        </span>
+        <h2 class="text-4xl font-bold text-slate-900 dark:text-white mt-4 tracking-tight">
+          What HR leaders say
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div *ngFor="let t of [
+          {
+            quote:'NexusHR cut our onboarding time in half. The employee management module is exactly what we needed — clean, fast, and no training required.',
+            name:'Sarah Adeyemi',
+            role:'Head of HR, Flutterwave',
+            initials:'SA',
+            grad:'from-indigo-500 to-violet-500'
+          },
+          {
+            quote:'Finally a platform that doesn\'t feel like it was designed in 2010. The leave and attendance module alone saved us hours every month.',
+            name:'Chidi Okeke',
+            role:'People Operations, Paystack',
+            initials:'CO',
+            grad:'from-emerald-500 to-teal-500'
+          },
+          {
+            quote:'The recruitment pipeline is brilliant. Drag-and-drop candidates from applied to offer without a single email thread. Absolute game changer.',
+            name:'Aisha Ibrahim',
+            role:'Talent Manager, Andela',
+            initials:'AI',
+            grad:'from-amber-500 to-orange-500'
+          }
+        ]" class="testimonial-card flex flex-col">
+          <!-- Stars -->
+          <div class="flex items-center gap-0.5 mb-4">
+            <svg *ngFor="let s of [1,2,3,4,5]" class="w-4 h-4 text-amber-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <blockquote class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed flex-1 mb-6">
+            "{{ t.quote }}"
+          </blockquote>
+          <div class="flex items-center gap-3 pt-5 border-t border-slate-100 dark:border-slate-800">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br flex items-center justify-center text-white text-sm font-bold flex-shrink-0" [ngClass]="t.grad">
+              {{ t.initials }}
+            </div>
+            <div>
+              <p class="text-base font-bold text-slate-900 dark:text-white">{{ t.name }}</p>
+              <p class="text-xs text-slate-500 dark:text-slate-400">{{ t.role }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       CTA BAND
+  ════════════════════════════════════════════════════ -->
+  <section class="py-20 bg-[#0b0f1a] relative overflow-hidden">
+    <div class="absolute inset-0">
+      <div class="absolute top-0 left-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-violet-500/10 rounded-full blur-3xl"></div>
+    </div>
+    <div class="relative max-w-3xl mx-auto px-6 text-center">
+      <p class="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-4">Get started today</p>
+      <h2 class="text-4xl lg:text-5xl font-bold text-white mb-5 tracking-tight">
+        Ready to modernise<br>your HR operations?
+      </h2>
+      <p class="text-slate-400 mb-10 text-base">
+        Join hundreds of organisations already using NexusHR to manage their people better.
+        Free to start, no credit card required.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a routerLink="/register" class="cta-primary">
+          Start free trial — no card needed
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+        </a>
+        <a routerLink="/login" class="cta-outline">
+          Sign in to your account
+        </a>
+      </div>
+      <p class="mt-6 text-xs text-slate-600 dark:text-slate-500">14-day free trial · Full feature access · Cancel anytime</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════════════ -->
+  <footer class="bg-slate-950 border-t border-slate-800/60 pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+      <div class="grid grid-cols-2 lg:grid-cols-5 gap-8 pb-12 border-b border-slate-800/60">
+
+        <!-- Brand col -->
+        <div class="col-span-2 lg:col-span-2">
+          <img src="/nexus-logo.png" alt="NexusHR" class="h-16 w-auto rounded-lg mb-4 dark:brightness-110 dark:contrast-110">
+          <p class="text-sm text-slate-400 leading-relaxed max-w-xs mb-6">
+            A modern HR platform that helps organisations manage their people with clarity, efficiency, and care.
+          </p>
+          <div class="flex items-center gap-2">
+            <a *ngFor="let s of ['fb','tw','li','ig']" href="#"
+               class="w-8 h-8 bg-slate-800 dark:bg-slate-800 hover:bg-indigo-600 dark:hover:bg-indigo-600 rounded-lg flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-white transition-all">
+              <svg *ngIf="s === 'fb'" class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              <svg *ngIf="s === 'tw'" class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              <svg *ngIf="s === 'li'" class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              <svg *ngIf="s === 'ig'" class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Links -->
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-600 mb-4">Product</p>
+          <ul class="space-y-2.5">
+            <li><a href="#services" class="footer-link">Features</a></li>
+            <li><a href="#" class="footer-link">Pricing</a></li>
+            <li><a href="#" class="footer-link">Integrations</a></li>
+            <li><a href="#" class="footer-link">Changelog</a></li>
+            <li><a href="#" class="footer-link">Roadmap</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-600 mb-4">Company</p>
+          <ul class="space-y-2.5">
+            <li><a href="#about" class="footer-link">About</a></li>
+            <li><a href="#" class="footer-link">Blog</a></li>
+            <li><a href="#" class="footer-link">Careers</a></li>
+            <li><a href="#" class="footer-link">Press</a></li>
+            <li><a href="#" class="footer-link">Partners</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-600 mb-4">Support</p>
+          <ul class="space-y-2.5">
+            <li><a href="#" class="footer-link">Documentation</a></li>
+            <li><a href="#" class="footer-link">Help Center</a></li>
+            <li><a href="#" class="footer-link">Status</a></li>
+            <li><a href="mailto:contact@nexushr.com" class="footer-link">Contact Us</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-xs text-slate-600 dark:text-slate-500">
+          © {{ currentYear }} NexusHR. All rights reserved.
+        </p>
+        <div class="flex items-center gap-5">
+          <a href="#" class="text-xs text-slate-600 dark:text-slate-500 hover:text-slate-400 dark:hover:text-slate-300 transition-colors">Privacy Policy</a>
+          <a href="#" class="text-xs text-slate-600 dark:text-slate-500 hover:text-slate-400 dark:hover:text-slate-300 transition-colors">Terms of Service</a>
+          <a href="#" class="text-xs text-slate-600 dark:text-slate-500 hover:text-slate-400 dark:hover:text-slate-300 transition-colors">Cookie Policy</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+</div>

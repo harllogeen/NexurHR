@@ -1,0 +1,282 @@
+[
+  {
+    "id": 1765236211008,
+    "title": "Frontend Engineer",
+    "department": "Technology",
+    "grade": "Senior",
+    "createdAt": "2025-12-08T23:23:31.008Z"
+  },
+  {
+    "id": 1765237555825,
+    "title": "Backend Engineer",
+    "department": "Technology",
+    "grade": "Senior",
+    "createdAt": "2025-12-08T23:45:55.825Z"
+  },
+  {
+    "id": 1765237555826,
+    "title": "Full Stack Developer",
+    "department": "Technology",
+    "grade": "Senior",
+    "createdAt": "2025-12-08T23:46:00.000Z"
+  },
+  {
+    "id": 1765237555827,
+    "title": "DevOps Engineer",
+    "department": "Technology",
+    "grade": "Mid-Level",
+    "createdAt": "2025-12-08T23:46:01.000Z"
+  },
+  {
+    "id": 1765237555828,
+    "title": "QA Engineer",
+    "department": "Quality Assurance",
+    "grade": "Mid-Level",
+    "createdAt": "2025-12-08T23:46:02.000Z"
+  },
+  {
+    "id": 1765237555829,
+    "title": "UI/UX Designer",
+    "department": "Technology",
+    "grade": "Senior",
+    "createdAt": "2025-12-08T23:46:03.000Z"
+  },
+  {
+    "id": 1765237555830,
+    "title": "Data Analyst",
+    "department": "Technology",
+    "grade": "Mid-Level",
+    "createdAt": "2025-12-08T23:46:04.000Z"
+  },
+  {
+    "id": 1765237555831,
+    "title": "IT Support Specialist",
+    "department": "Technology",
+    "grade": "Junior",
+    "createdAt": "2025-12-08T23:46:05.000Z"
+  },
+  {
+    "id": 1765237555832,
+    "title": "Technical Lead",
+    "department": "Technology",
+    "grade": "Lead",
+    "createdAt": "2025-12-08T23:46:06.000Z"
+  },
+  {
+    "id": 1765237555833,
+    "title": "Software Architect",
+    "department": "Technology",
+    "grade": "Principal",
+    "createdAt": "2025-12-08T23:46:07.000Z"
+  },
+  {
+    "id": 1765237555834,
+    "title": "Mobile Developer",
+    "department": "Technology",
+    "grade": "Mid-Level",
+    "createdAt": "2025-12-08T23:46:08.000Z"
+  },
+  {
+    "id": 1765237555835,
+    "title": "Cloud Engineer",
+    "department": "Technology",
+    "grade": "Senior",
+    "createdAt": "2025-12-08T23:46:09.000Z"
+  },
+  {
+    "id": 1765237555850,
+    "title": "HR Manager",
+    "department": "Human Resources",
+    "grade": "Manager",
+    "createdAt": "2025-12-08T23:47:00.000Z"
+  },
+  {
+    "id": 1765237555851,
+    "title": "HR Officer",
+    "department": "Human Resources",
+    "grade": "Mid-Level",
+    "createdAt": "2025-12-08T23:47:01.000Z"
+  },
+  {
+    "id": 1765237555852,
+    "title": "Assistant HR",
+    "department": "Human Resources",
+    "grade": "Junior",
+    "createdAt": "2025-12-08T23:47:02.000Z"
+  },
+  {
+    "id": 1765237555853,
+    "title": "Recruitment Specialist",
+    "department": "Human Resources",
+    "grade": "Mid-Level",
+    "createdAt": "2025-12-08T23:47:03.000Z"
+  },
+  {
+    "id": 1765237555854,
+    "title": "Talent Acquisition Lead",
+    "department": "Human Resources",
+    "grade": "Senior",
+    "createdAt": "2025-12-08T23:47:04.000Z"
+  },
+  {
+    "id": 1765237555855,
+    "title": "Compensation & Benefits Analyst",
+    "department": "Human Resources",
+    "grade": "Mid-Level",
+    "createdAt": "2025-12-08T23:47:05.000Z"
+  },
+  {
+    "id": 1765237555856,
+    "title": "HR Admin",
+    "department": "Human Resources",
+    "grade": "Senior",
+    "createdAt": "2025-12-08T23:47:06.000Z"
+  },
+  {
+    "id": 1765237555857,
+    "title": "Training & Development Coordinator",
+    "department": "Human Resources",
+    "grade": "Mid-Level",
+    "createdAt": "2025-12-08T23:47:07.000Z"
+  },
+  {
+    "id": 1765237555858,
+    "title": "Payroll Specialist",
+    "department": "Human Resources",
+    "grade": "Mid-Level",
+    "createdAt": "2025-12-08T23:47:08.000Z"
+  },
+  {
+    "id": 1765237555859,
+    "title": "Employee Relations Officer",
+    "department": "Human Resources",
+    "grade": "Senior",
+    "createdAt": "2025-12-08T23:47:09.000Z"
+  },
+  {
+    "id": 1765237555870,
+    "title": "Chief Financial Officer",
+    "department": "Account Department",
+    "grade": "Executive",
+    "createdAt": "2025-12-08T23:48:00.000Z"
+  },
+  {
+    "id": 1765237555871,
+    "title": "Finance Manager",
+    "department": "Account Department",
+    "grade": "Manager",
+    "createdAt": "2025-12-08T23:48:01.000Z"
+  },
+  {
+    "id": 1765237555872,
+    "title": "Senior Accountant",
+    "department": "Account Department",
+    "grade": "Senior",
+    "createdAt": "2025-12-08T23:48:02.000Z"
+  },
+  {
+    "id": 1765237555873,
+    "title": "Accountant",
+    "department": "Account Department",
+    "grade": "Mid-Level",
+    "createdAt": "2025-12-08T23:48:03.000Z"
+  },
+  {
+    "id": 1765237555874,
+    "title": "Junior Accountant",
+    "department": "Account Department",
+    "grade": "Junior",
+    "createdAt": "2025-12-08T23:48:04.000Z"
+  },
+  {
+    "id": 1765237555875,
+    "title": "Accounts Payable Specialist",
+    "department": "Account Department",
+    "grade": "Mid-Level",
+    "createdAt": "2025-12-08T23:48:05.000Z"
+  },
+  {
+    "id": 1765237555876,
+    "title": "Accounts Receivable Specialist",
+    "department": "Account Department",
+    "grade": "Mid-Level",
+    "createdAt": "2025-12-08T23:48:06.000Z"
+  },
+  {
+    "id": 1765237555877,
+    "title": "Financial Analyst",
+    "department": "Account Department",
+    "grade": "Senior",
+    "createdAt": "2025-12-08T23:48:07.000Z"
+  },
+  {
+    "id": 1765237555878,
+    "title": "Budget Analyst",
+    "department": "Account Department",
+    "grade": "Mid-Level",
+    "createdAt": "2025-12-08T23:48:08.000Z"
+  },
+  {
+    "id": 1765237555879,
+    "title": "Tax Specialist",
+    "department": "Account Department",
+    "grade": "Senior",
+    "createdAt": "2025-12-08T23:48:09.000Z"
+  },
+  {
+    "id": 1765237555880,
+    "title": "Audit Officer",
+    "department": "Account Department",
+    "grade": "Mid-Level",
+    "createdAt": "2025-12-08T23:48:10.000Z"
+  },
+  {
+    "id": 1765237555881,
+    "title": "Treasury Officer",
+    "department": "Account Department",
+    "grade": "Senior",
+    "createdAt": "2025-12-08T23:48:11.000Z"
+  },
+  {
+    "id": 1784732234840,
+    "title": "CEO",
+    "department": "Manager",
+    "grade": "N/A",
+    "createdAt": "2026-07-22T14:57:14.840Z"
+  },
+  {
+    "id": 1784734276370,
+    "title": "Frontend Engineer",
+    "department": "Technology",
+    "grade": "SUPERVISOR",
+    "createdAt": "2026-07-22T15:31:16.370Z"
+  },
+  {
+    "id": 1784734300111,
+    "title": "Backend Engineer",
+    "department": "Technology",
+    "grade": "SUPERVISOR",
+    "createdAt": "2026-07-22T15:31:40.111Z"
+  },
+  {
+    "id": 1784761628261,
+    "title": "Tester",
+    "department": "Quality Assurance",
+    "grade": "Senior",
+    "createdAt": "2026-07-22T23:07:08.261Z"
+  },
+  {
+    "id": 1784762044395,
+    "title": "PM",
+    "department": "Project Management ",
+    "grade": "Senior",
+    "createdAt": "2026-07-22T23:14:04.395Z"
+  },
+  {
+    "id": 1788726607808,
+    "title": "Admin",
+    "department": "Admin",
+    "grade": "N/A",
+    "createdAt": "2026-09-06T20:30:07.808Z"
+  }
+]

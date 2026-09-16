@@ -1,0 +1,103 @@
+[
+  {
+    "id": "1784726262845",
+    "title": "Landing Page",
+    "description": "Design a landing page",
+    "assignedTo": 1783502564401,
+    "assignedToName": "Austin Agbara",
+    "assignedBy": 1784719952190,
+    "assignedByName": "Jude Okaphor",
+    "department": "Technology",
+    "projectId": "proj-1784723477737",
+    "projectName": "Smart HR",
+    "priority": "high",
+    "category": "General",
+    "dueDate": "2026-07-31",
+    "subtasks": [],
+    "status": "completed",
+    "progress": 69,
+    "comments": [
+      {
+        "id": "c-1784726322796",
+        "userId": 1783502564401,
+        "username": "harllogeen2020@gmail.com",
+        "message": "still in progress",
+        "createdAt": "2026-07-22T13:18:42.796Z"
+      }
+    ],
+    "attachments": [],
+    "createdAt": "2026-07-22T13:17:42.845Z",
+    "updatedAt": "2026-09-05T10:25:12.121Z",
+    "completedAt": "2026-07-22T15:19:51.706Z"
+  },
+  {
+    "id": "1784727316518",
+    "title": "authentication issue",
+    "description": "Fix an authentication issue",
+    "assignedTo": [
+      1764829332445
+    ],
+    "assignedToName": "newadminuser@gmail.com",
+    "assignedBy": 1784719952190,
+    "assignedByName": "Jude Okaphor",
+    "department": "Technology",
+    "projectId": "proj-1784723477737",
+    "projectName": "Smart HR",
+    "priority": "high",
+    "category": "Development",
+    "dueDate": "2026-07-21",
+    "subtasks": [],
+    "status": "overdue",
+    "progress": 64,
+    "comments": [],
+    "attachments": [],
+    "createdAt": "2026-07-22T13:35:16.518Z",
+    "updatedAt": "2026-07-22T16:07:29.952Z",
+    "completedAt": null
+  },
+  {
+    "id": "1784730200507",
+    "title": "TEST",
+    "description": "Kindly test this to see if working fine",
+    "assignedTo": [
+      1770640254746,
+      1783502180174,
+      1783502564401,
+      1764829332445,
+      1764829943217,
+      1784719952190,
+      1784725264015
+    ],
+    "assignedToName": "Oluwaseyi Alugbin, Faith Clement, Austin Agbara, Admin User, Brian Susan, Jude Okaphor, Oluwaferanmi Praise",
+    "assignedBy": 1784725264015,
+    "assignedByName": "Oluwaferanmi Praise",
+    "department": "",
+    "projectId": "proj-1784724983380",
+    "projectName": "KOODI MAHONEY ",
+    "priority": "urgent",
+    "category": "General",
+    "dueDate": "2026-07-23",
+    "subtasks": [
+      {
+        "id": "sub-1784730200506-0",
+        "title": "test this well",
+        "completed": true
+      }
+    ],
+    "status": "completed",
+    "progress": 100,
+    "comments": [
+      {
+        "id": "c-1788603897648",
+        "userId": 1783502564401,
+        "username": "harllogeen2020@gmail.com",
+        "message": "I have completed this task",
+        "createdAt": "2026-09-05T10:24:57.648Z"
+      }
+    ],
+    "attachments": [],
+    "createdAt": "2026-07-22T14:23:20.507Z",
+    "updatedAt": "2026-09-05T10:24:57.650Z",
+    "completedAt": "2026-07-22T14:38:46.233Z"
+  }
+]

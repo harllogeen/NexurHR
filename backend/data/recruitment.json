@@ -1,0 +1,61 @@
+[
+  {
+    "id": 1780483804879,
+    "name": "Joseph Ayoade",
+    "email": "omoalugbin@gmail.com",
+    "role": "Frontend Developer",
+    "stage": "Offer",
+    "skills": [
+      "Angular",
+      "Typscript",
+      "Tailwind css"
+    ],
+    "matchScore": 14,
+    "appliedDate": "2026-06-03T10:50:04.879Z"
+  },
+  {
+    "id": 1783502859339,
+    "name": "John Wike",
+    "email": "omoalugbin@gmail.com",
+    "role": "Backend Developer",
+    "stage": "Offer",
+    "skills": [
+      ".NET",
+      "C#"
+    ],
+    "matchScore": 0,
+    "appliedDate": "2026-07-08T09:27:39.339Z"
+  },
+  {
+    "id": 1783752690269,
+    "name": "Test Candidate",
+    "email": "candidate@example.com",
+    "role": "Frontend Developer",
+    "stage": "Interview",
+    "skills": [
+      "Angular",
+      "TypeScript"
+    ],
+    "matchScore": 29,
+    "notes": "Reviewed via API",
+    "rating": "4",
+    "resumeText": "",
+    "appliedDate": "2026-07-11T06:51:30.269Z"
+  },
+  {
+    "id": 1783753978286,
+    "name": "Build Prompt",
+    "email": "asabialugbin@gmail.com",
+    "role": "Backend Developer",
+    "stage": "Screening",
+    "skills": [
+      ".NET",
+      "C#"
+    ],
+    "matchScore": 0,
+    "notes": "",
+    "rating": "5",
+    "resumeText": "hrms-build-prompt.md",
+    "appliedDate": "2026-07-11T07:12:58.286Z"
+  }
+]

@@ -1,0 +1,40 @@
+<div *ngIf="isVisible" class="modal-overlay" [class.modal-closing]="isClosing" (click)="onBackdropClick($event)">
+  <div class="modal-container" [class.modal-closing]="isClosing" (click)="$event.stopPropagation()">
+    <!-- Icon -->
+    <div class="modal-icon-wrapper" [ngClass]="getIconClass()">
+      <span class="modal-icon-text">{{ getIcon() }}</span>
+    </div>
+
+    <!-- Content -->
+    <div class="modal-content">
+      <h2 class="modal-title">{{ modal?.title }}</h2>
+      <p class="modal-message">{{ modal?.message }}</p>
+    </div>
+
+    <!-- Actions -->
+    <div class="modal-actions">
+      <button 
+        *ngIf="modal?.showCancel"
+        class="modal-btn modal-btn-secondary"
+        (click)="cancel()"
+        type="button"
+      >
+        {{ modal?.cancelText || 'Cancel' }}
+      </button>
+      
+      <button 
+        class="modal-btn"
+        [ngClass]="{
+          'modal-btn-primary': modal?.type !== 'delete' && modal?.type !== 'error',
+          'modal-btn-danger': modal?.type === 'delete' || modal?.type === 'error',
+          'modal-btn-success': modal?.type === 'success',
+          'modal-btn-warning': modal?.type === 'warning'
+        }"
+        (click)="confirm()"
+        type="button"
+      >
+        {{ modal?.confirmText || 'OK' }}
+      </button>
+    </div>
+  </div>
+</div>

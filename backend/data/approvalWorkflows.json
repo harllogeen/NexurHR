@@ -1,0 +1,65 @@
+[
+  {
+    "id": 1,
+    "workflowName": "Standard Leave Approval",
+    "workflowCode": "STD-APPROVAL",
+    "description": "Standard approval workflow for leaves up to 5 days",
+    "stages": [
+      {
+        "stage": 1,
+        "approverRole": "manager",
+        "approverLevel": "immediate",
+        "isRequired": true,
+        "timeoutHours": 48
+      }
+    ],
+    "conditions": {
+      "maxDays": 5,
+      "leaveTypes": ["annual", "casual", "sick"],
+      "departments": [],
+      "roles": [],
+      "grades": []
+    },
+    "isActive": true,
+    "isDefault": true,
+    "priority": 1,
+    "createdBy": 1,
+    "createdAt": "2026-01-01T00:00:00.000Z",
+    "updatedAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": 2,
+    "workflowName": "Extended Leave Approval",
+    "workflowCode": "EXT-APPROVAL",
+    "description": "Multi-stage approval for leaves over 5 days",
+    "stages": [
+      {
+        "stage": 1,
+        "approverRole": "manager",
+        "approverLevel": "immediate",
+        "isRequired": true,
+        "timeoutHours": 48
+      },
+      {
+        "stage": 2,
+        "approverRole": "hr",
+        "approverLevel": "department",
+        "isRequired": true,
+        "timeoutHours": 24
+      }
+    ],
+    "conditions": {
+      "minDays": 6,
+      "leaveTypes": ["annual"],
+      "departments": [],
+      "roles": [],
+      "grades": []
+    },
+    "isActive": true,
+    "isDefault": false,
+    "priority": 2,
+    "createdBy": 1,
+    "createdAt": "2026-01-01T00:00:00.000Z",
+    "updatedAt": "2026-01-01T00:00:00.000Z"
+  }
+]

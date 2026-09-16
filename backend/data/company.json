@@ -1,0 +1,79 @@
+{
+  "name": "HARLLOGEEN GROUP LIMITED",
+  "address": "Rock city estate, mabuchi",
+  "email": "harllogeen2020@gmail.com",
+  "phone": "09133046108",
+  "website": "",
+  "logo": "",
+  "timezone": "Africa/Lagos",
+  "fiscalYearStart": "01-01",
+  "currency": "NGN",
+  
+  "organizationSettings": {
+    "workingPattern": "standard",
+    "defaultWorkingDays": [1, 2, 3, 4, 5],
+    "scheduleType": "fixed",
+    
+    "defaultWorkingHours": {
+      "start": "08:00",
+      "end": "17:00",
+      "breakDuration": 60,
+      "totalHoursPerDay": 8
+    },
+    
+    "attendanceSettings": {
+      "defaultGracePeriod": 5,
+      "lateThreshold": 15,
+      "earlyLeaveThreshold": 15,
+      "overtimeThreshold": 30,
+      "halfDayThreshold": 4,
+      "requireCheckInLocation": false,
+      "allowRemoteCheckIn": true,
+      "autoApproveOvertime": false,
+      "trackBreakTime": true,
+      "allowMultipleCheckIns": false
+    },
+    
+    "scheduleSettings": {
+      "autoGenerateEnabled": true,
+      "advanceScheduleDays": 14,
+      "allowEmployeeSwaps": true,
+      "requireSwapApproval": true,
+      "scheduleChangeNoticePeriod": 24,
+      "preferredShiftPriority": true
+    },
+    
+    "leaveSettings": {
+      "leaveTypes": [
+        "Annual",
+        "Sick",
+        "Unpaid",
+        "Maternity",
+        "Paternity"
+      ],
+      "requireApproval": true,
+      "allowNegativeBalance": false,
+      "carryOverEnabled": true,
+      "maxCarryOverDays": 5
+    }
+  },
+  
+  "policies": {
+    "workingDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "workingHours": {
+      "start": "08:00",
+      "end": "17:00"
+    },
+    "leaveTypes": [
+      "Annual",
+      "Sick",
+      "Unpaid"
+    ]
+  }
+}

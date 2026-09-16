@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1765234843800,
+    "name": "Technology",
+    "head": "Damilare",
+    "createdAt": "2025-12-08T23:00:43.800Z"
+  },
+  {
+    "id": 1765236024818,
+    "name": "Human Resources",
+    "head": "Miss Kaayang",
+    "createdAt": "2025-12-08T23:20:24.818Z"
+  },
+  {
+    "id": 1765236396077,
+    "name": "Account Department",
+    "head": "Grace Oyekan",
+    "createdAt": "2025-12-08T23:26:36.077Z"
+  },
+  {
+    "id": 1783686301812,
+    "name": "Business Management",
+    "head": "Dare Clement",
+    "createdAt": "2026-07-10T12:25:01.812Z"
+  },
+  {
+    "id": 1783718449615,
+    "name": "Manager",
+    "head": "San Grace",
+    "createdAt": "2026-07-10T21:20:49.615Z"
+  },
+  {
+    "id": 1784762018715,
+    "name": "Project Management ",
+    "head": "Dele Giwa",
+    "createdAt": "2026-07-22T23:13:38.715Z"
+  },
+  {
+    "id": 1788726558717,
+    "name": "Admin",
+    "head": "James Doyle",
+    "createdAt": "2026-09-06T20:29:18.717Z"
+  }
+]

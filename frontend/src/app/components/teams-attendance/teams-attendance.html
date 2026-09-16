@@ -1,0 +1,323 @@
+<div class="space-y-6 lg:space-y-8">
+  
+  <!-- Page Header -->
+  <div class="flex items-center justify-between">
+    <div>
+      <h1 class="text-3xl font-bold text-gray-900 dark:text-white tracking-tight">Teams Attendance</h1>
+      <p class="text-gray-600 dark:text-slate-400 mt-2">Monitor and manage employee attendance across your organization</p>
+    </div>
+  </div>
+
+  <!-- Date Filter -->
+  <div class="bg-white dark:bg-slate-900 rounded-xl border border-gray-100 dark:border-slate-800 p-6">
+    <div class="flex flex-wrap items-end gap-3">
+      <div class="w-10 h-10 bg-indigo-100 dark:bg-indigo-900/30 rounded-xl flex items-center justify-center flex-shrink-0">
+        <svg class="w-5 h-5 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+        </svg>
+      </div>
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 dark:text-slate-300 mb-2">Filter by Date</label>
+        <input type="date" 
+               [(ngModel)]="filterDate"
+               class="input w-auto">
+      </div>
+      <button (click)="applyDateFilter()" 
+              class="btn btn-primary flex items-center gap-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/>
+        </svg>
+        Filter
+      </button>
+      <button (click)="setToday()" 
+              class="btn btn-secondary flex items-center gap-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+        </svg>
+        Today
+      </button>
+      <button (click)="clearDateFilter()" 
+              *ngIf="appliedFilterDate"
+              class="btn btn-ghost flex items-center gap-2 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+        Clear
+      </button>
+    </div>
+    <div *ngIf="appliedFilterDate" class="mt-4 flex items-center gap-2 text-sm">
+      <span class="text-gray-600 dark:text-slate-400">Viewing attendance for:</span>
+      <span class="font-semibold text-indigo-600 dark:text-indigo-400">{{ appliedFilterDate | date:'EEEE, MMMM d, yyyy' }}</span>
+    </div>
+  </div>
+
+  <!-- Team Stats Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="bg-white dark:bg-slate-900 rounded-xl border border-gray-100 dark:border-slate-800 p-6 hover:shadow-lg transition-shadow">
+      <div class="flex items-center justify-between mb-3">
+        <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-xl flex items-center justify-center">
+          <svg class="w-6 h-6 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+        </div>
+        <span class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20 px-2 py-1 rounded-full">{{ getDateLabel() }}</span>
+      </div>
+      <div class="text-3xl font-bold text-gray-900 dark:text-white mb-1">{{ getTeamStats().present }}</div>
+      <div class="text-sm text-gray-500 dark:text-slate-400">Present Today</div>
+    </div>
+
+    <div class="bg-white dark:bg-slate-900 rounded-xl border border-gray-100 dark:border-slate-800 p-6 hover:shadow-lg transition-shadow">
+      <div class="flex items-center justify-between mb-3">
+        <div class="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-xl flex items-center justify-center">
+          <svg class="w-6 h-6 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+        </div>
+        <span class="text-xs font-semibold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/20 px-2 py-1 rounded-full">{{ getDateLabel() }}</span>
+      </div>
+      <div class="text-3xl font-bold text-gray-900 dark:text-white mb-1">{{ getTeamStats().late }}</div>
+      <div class="text-sm text-gray-500 dark:text-slate-400">Late Arrivals</div>
+    </div>
+
+    <div class="bg-white dark:bg-slate-900 rounded-xl border border-gray-100 dark:border-slate-800 p-6 hover:shadow-lg transition-shadow">
+      <div class="flex items-center justify-between mb-3">
+        <div class="w-12 h-12 bg-red-100 dark:bg-red-900/30 rounded-xl flex items-center justify-center">
+          <svg class="w-6 h-6 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </div>
+        <span class="text-xs font-semibold text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 px-2 py-1 rounded-full">{{ getDateLabel() }}</span>
+      </div>
+      <div class="text-3xl font-bold text-gray-900 dark:text-white mb-1">{{ getTeamStats().absent }}</div>
+      <div class="text-sm text-gray-500 dark:text-slate-400">Absent</div>
+    </div>
+
+    <div class="bg-white dark:bg-slate-900 rounded-xl border border-gray-100 dark:border-slate-800 p-6 hover:shadow-lg transition-shadow">
+      <div class="flex items-center justify-between mb-3">
+        <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/30 rounded-xl flex items-center justify-center">
+          <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+          </svg>
+        </div>
+        <span class="text-xs font-semibold text-gray-600 dark:text-slate-400 bg-gray-100 dark:bg-slate-800 px-2 py-1 rounded-full">Total</span>
+      </div>
+      <div class="text-3xl font-bold text-gray-900 dark:text-white mb-1">{{ getTeamStats().total }}</div>
+      <div class="text-sm text-gray-500 dark:text-slate-400">Total Employees</div>
+    </div>
+  </div>
+
+  <!-- Team Attendance Table -->
+  <div class="card overflow-hidden p-0">
+    <div class="p-6 border-b border-gray-100 dark:border-slate-800">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        <div>
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white">All Employee Records</h3>
+          <p class="text-sm text-gray-500 dark:text-slate-400 mt-1">Complete team attendance overview</p>
+        </div>
+        
+        <div class="flex flex-wrap items-center gap-3">
+          <div class="relative flex-1 min-w-[200px]">
+            <svg class="w-5 h-5 text-gray-400 dark:text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+            <input type="text" 
+                   [(ngModel)]="searchTerm"
+                   (ngModelChange)="onSearch()"
+                   placeholder="Search by name or department..."
+                   class="input pl-10 py-2 text-sm w-full">
+          </div>
+          
+          <select [(ngModel)]="selectedStatus" (ngModelChange)="onFilterChange()" class="input py-2 text-sm w-auto">
+            <option value="">All Status</option>
+            <option value="Present">Present</option>
+            <option value="Late">Late</option>
+            <option value="Left Early">Left Early</option>
+            <option value="Late & Left Early">Late & Left Early</option>
+          </select>
+          
+          <button class="btn btn-secondary py-2 text-sm flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            Export
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full">
+        <thead class="bg-gray-50 dark:bg-slate-900/50 border-b border-gray-200 dark:border-slate-800">
+          <tr>
+            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 dark:text-slate-300 uppercase tracking-wider">
+              S/N
+            </th>
+            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 dark:text-slate-300 uppercase tracking-wider">
+              Employee ID
+            </th>
+            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 dark:text-slate-300 uppercase tracking-wider">
+              Employee Name
+            </th>
+            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 dark:text-slate-300 uppercase tracking-wider">
+              Department
+            </th>
+            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 dark:text-slate-300 uppercase tracking-wider">
+              Date
+            </th>
+            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 dark:text-slate-300 uppercase tracking-wider">
+              Clock In / Out
+            </th>
+            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 dark:text-slate-300 uppercase tracking-wider">
+              Work Hours
+            </th>
+            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 dark:text-slate-300 uppercase tracking-wider">
+              Status
+            </th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100 dark:divide-slate-800">
+          <tr *ngFor="let log of paginatedAttendance; let i = index" 
+              class="hover:bg-gray-50 dark:hover:bg-slate-900/50 transition-colors group">
+            <td class="px-6 py-4">
+              <span class="text-sm text-gray-600 dark:text-slate-400">
+                {{ (currentPage - 1) * pageSize + i + 1 }}
+              </span>
+            </td>
+            <td class="px-6 py-4">
+              <span class="text-sm font-semibold text-indigo-600 dark:text-indigo-400">
+                {{ log.employee?.employeeId || log.employee?.id || 'N/A' }}
+              </span>
+            </td>
+            <td class="px-6 py-4">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-100 to-indigo-50 dark:from-indigo-900/40 dark:to-indigo-900/20 flex items-center justify-center text-indigo-700 dark:text-indigo-300 font-bold text-sm flex-shrink-0">
+                  {{ log.employee?.firstName?.charAt(0) || 'U' }}{{ log.employee?.lastName?.charAt(0) || '' }}
+                </div>
+                <div>
+                  <div class="font-semibold text-gray-900 dark:text-white">
+                    {{ log.employee?.firstName || 'N/A' }} {{ log.employee?.lastName || '' }}
+                  </div>
+                  <div class="text-xs text-gray-500 dark:text-slate-400">{{ log.employee?.email || 'N/A' }}</div>
+                </div>
+              </div>
+            </td>
+            <td class="px-6 py-4">
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-slate-300">
+                {{ log.employee?.department || 'N/A' }}
+              </span>
+            </td>
+            <td class="px-6 py-4">
+              <div class="text-sm text-gray-900 dark:text-white font-medium">{{ log.date | date:'MMM d, y' }}</div>
+              <div class="text-xs text-gray-500 dark:text-slate-400">{{ log.date | date:'EEEE' }}</div>
+            </td>
+            <td class="px-6 py-4">
+              <div class="space-y-2">
+                <div class="flex items-center gap-2">
+                  <div class="w-2 h-2 bg-emerald-500 rounded-full flex-shrink-0"></div>
+                  <div>
+                    <div class="text-sm font-mono text-gray-900 dark:text-white font-semibold">
+                      {{ log.clockIn | date:'h:mm a' }}
+                    </div>
+                    <div *ngIf="isLate(log.clockIn)" class="text-xs text-red-600 dark:text-red-400 font-medium">
+                      Late by {{ getLateMinutes(log.clockIn) }}
+                    </div>
+                    <div *ngIf="!isLate(log.clockIn)" class="text-xs text-emerald-600 dark:text-emerald-400">
+                      On time
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="log.clockOut" class="flex items-center gap-2">
+                  <div class="w-2 h-2 bg-red-500 rounded-full flex-shrink-0"></div>
+                  <div>
+                    <div class="text-sm font-mono text-gray-900 dark:text-white font-semibold">
+                      {{ log.clockOut | date:'h:mm a' }}
+                    </div>
+                    <div *ngIf="isEarlyDeparture(log.clockOut)" class="text-xs text-amber-600 dark:text-amber-400 font-medium">
+                      Left {{ getEarlyMinutes(log.clockOut) }} early
+                    </div>
+                    <div *ngIf="!isEarlyDeparture(log.clockOut)" class="text-xs text-emerald-600 dark:text-emerald-400">
+                      Full time
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="!log.clockOut" class="flex items-center gap-2">
+                  <div class="w-2 h-2 bg-amber-500 rounded-full animate-pulse flex-shrink-0"></div>
+                  <div class="text-xs text-amber-600 dark:text-amber-400 font-medium">
+                    Currently working
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td class="px-6 py-4">
+              <div class="text-sm font-semibold text-gray-900 dark:text-white">
+                {{ calculateDuration(log.clockIn, log.clockOut) }}
+              </div>
+              <div class="text-xs text-gray-500 dark:text-slate-400">
+                Expected: 9h
+              </div>
+            </td>
+            <td class="px-6 py-4">
+              <span [ngClass]="{
+                'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300': getStatusText(log.clockIn, log.clockOut) === 'On Time',
+                'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300': getStatusText(log.clockIn, log.clockOut) === 'Late Arrival' || getStatusText(log.clockIn, log.clockOut) === 'Left Early',
+                'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300': getStatusText(log.clockIn, log.clockOut) === 'Late & Left Early'
+              }" class="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-bold">
+                {{ getStatusText(log.clockIn, log.clockOut) }}
+              </span>
+            </td>
+          </tr>
+
+          <!-- Empty State -->
+          <tr *ngIf="allAttendanceLogs.length === 0">
+            <td colspan="8" class="px-6 py-16">
+              <div class="text-center">
+                <div class="w-20 h-20 bg-gray-100 dark:bg-slate-900 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <svg class="w-10 h-10 text-gray-400 dark:text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                  </svg>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">No records found</h3>
+                <p class="text-gray-500 dark:text-slate-400 text-sm">Team attendance data will appear here</p>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div *ngIf="allAttendanceLogs.length > pageSize" class="px-6 py-4 border-t border-gray-100 dark:border-slate-800 bg-gray-50 dark:bg-slate-900/50">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-sm text-gray-600 dark:text-slate-400">
+          Showing <span class="font-semibold text-gray-900 dark:text-white">{{ (currentPage - 1) * pageSize + 1 }}</span>
+          to <span class="font-semibold text-gray-900 dark:text-white">{{ currentPage * pageSize > allAttendanceLogs.length ? allAttendanceLogs.length : currentPage * pageSize }}</span>
+          of <span class="font-semibold text-gray-900 dark:text-white">{{ totalRecords }}</span> records
+        </p>
+        <div class="flex items-center gap-2">
+          <button (click)="goToPage(currentPage - 1)" 
+                  [disabled]="currentPage === 1"
+                  class="px-4 py-2 text-sm font-medium rounded-lg border border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-gray-700 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
+            Previous
+          </button>
+          <div class="hidden sm:flex items-center gap-1">
+            <button *ngFor="let p of getPageNumbers()" 
+                    (click)="goToPage(p)"
+                    [ngClass]="{
+                      'bg-indigo-600 text-white shadow-sm': p === currentPage,
+                      'bg-white dark:bg-slate-800 text-gray-700 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-700': p !== currentPage
+                    }"
+                    class="w-10 h-10 rounded-lg font-semibold text-sm transition-colors border border-gray-300 dark:border-slate-700">
+              {{ p }}
+            </button>
+          </div>
+          <button (click)="goToPage(currentPage + 1)" 
+                  [disabled]="currentPage === totalPages"
+                  class="px-4 py-2 text-sm font-medium rounded-lg border border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-gray-700 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
+            Next
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

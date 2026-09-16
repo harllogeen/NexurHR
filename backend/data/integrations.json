@@ -1,0 +1,9 @@
+[
+  {
+    "id": "1783752644655",
+    "url": "https://example.com/hook",
+    "event": "employee.created",
+    "provider": "custom",
+    "createdAt": "2026-07-11T06:50:44.655Z"
+  }
+]

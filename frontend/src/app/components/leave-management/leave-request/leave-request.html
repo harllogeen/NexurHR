@@ -1,0 +1,315 @@
+<div class="space-y-5">
+  <!-- ── Page header ──────────────────────────────────── -->
+  <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 mb-6">
+    <div>
+      <h1 class="text-xl font-bold text-slate-900 dark:text-white">My Leave</h1>
+      <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Request leave and track your applications</p>
+    </div>
+    <app-button  
+      variant="primary" 
+      size="sm"
+      (clicked)="isModalOpen = true">
+      <i class="fas fa-plus mr-1"></i> Request Leave
+    </app-button>
+  </div>
+
+  <!-- Leave Balance Cards -->
+  <div class="balance-cards" *ngIf="!loadingBalance">
+    <app-spinner *ngIf="loadingBalance"></app-spinner>
+    
+    <div class="balance-card" *ngFor="let balance of leaveBalance">
+      <div class="balance-header">
+        <span class="balance-icon">📅</span>
+        <h3 class="balance-title">{{ balance.leaveType }}</h3>
+      </div>
+      <div class="balance-stats">
+        <div class="stat-item">
+          <span class="stat-label">Available</span>
+          <span class="stat-value available">{{ balance.available || 0 }}</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-label">Used</span>
+          <span class="stat-value used">{{ balance.used || 0 }}</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-label">Total</span>
+          <span class="stat-value total">{{ balance.total || 0 }}</span>
+        </div>
+      </div>
+      <div class="balance-progress">
+        <div 
+          class="balance-progress-bar" 
+          [style.width.%]="balance.total > 0 ? (balance.used / balance.total * 100) : 0">
+        </div>
+      </div>
+    </div>
+
+    <app-empty-state 
+      *ngIf="!loadingBalance && (!leaveBalance || leaveBalance.length === 0)"
+      title="No Leave Balance"
+      message="Your leave balance will appear here once initialized">
+    </app-empty-state>
+  </div>
+
+  <!-- My Leave Applications -->
+  <div class="table-container overflow-hidden mt-6">
+    <div class="card-header">
+      <div>
+        <h2 class="text-sm font-bold text-slate-900 dark:text-white">My Applications</h2>
+        <p class="text-xs text-slate-400 dark:text-slate-500 mt-0.5">{{ filteredMyLeaves.length }} application{{ filteredMyLeaves.length === 1 ? '' : 's' }}</p>
+      </div>
+      <app-form-input
+        [(ngModel)]="searchTerm"
+        name="search"
+        placeholder="Search…"
+        prefixIcon="search"
+        (ngModelChange)="onSearch()">
+      </app-form-input>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="loading" class="flex items-center justify-center py-12">
+      <div class="flex flex-col items-center gap-3">
+        <i class="fas fa-spinner fa-spin text-2xl text-indigo-500"></i>
+        <p class="text-sm text-slate-500">Loading applications...</p>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="!loading && filteredMyLeaves.length === 0" class="py-0">
+      <div class="empty-state">
+        <div class="empty-state-icon">
+          <svg class="w-7 h-7 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+        </div>
+        <p class="text-sm font-semibold text-slate-900 dark:text-white">No Leave Applications</p>
+        <p class="text-xs text-slate-400 mt-1">You haven't submitted any leave requests yet</p>
+        <button class="mt-4 text-sm text-indigo-600 hover:text-indigo-700 font-medium" (click)="isModalOpen = true">
+          Request Leave →
+        </button>
+      </div>
+    </div>
+
+    <!-- Applications Table -->
+    <div class="overflow-x-auto" *ngIf="!loading && filteredMyLeaves.length > 0">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="w-10">SN</th>
+            <th>Employee ID</th>
+            <th>Leave Type</th>
+            <th>Duration</th>
+            <th>Reason</th>
+            <th>Status</th>
+            <th>Applied</th>
+            <th class="text-right">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let leave of paginatedMyLeaves; let i = index">
+            <td class="text-xs text-slate-400 font-medium">{{ (myLeavesPage - 1) * pageSize + i + 1 }}</td>
+            <td>
+              <span class="text-sm font-semibold text-slate-900 dark:text-white">{{ leave.employeeId || leave.userId || '-' }}</span>
+            </td>
+            <td>
+              <app-status-badge variant="info" size="sm">
+                {{ leave.leaveType }}
+              </app-status-badge>
+            </td>
+            <td class="text-sm">
+              <p class="text-slate-900 dark:text-white font-medium">{{ leave.startDate | date:'mediumDate' }}</p>
+              <p class="text-xs text-slate-400 dark:text-slate-500">to {{ leave.endDate | date:'mediumDate' }} ({{ leave.days || calculateLeaveDuration(leave.startDate, leave.endDate) }} days)</p>
+            </td>
+            <td>
+              <span class="text-sm text-slate-500 dark:text-slate-400 truncate max-w-xs block">{{ leave.reason || 'No reason provided' }}</span>
+            </td>
+            <td>
+              <app-status-badge
+                [variant]="leave.status === 'Approved' ? 'success' : leave.status === 'Rejected' ? 'danger' : 'warning'"
+              >
+                {{ leave.status }}
+              </app-status-badge>
+            </td>
+            <td class="text-xs text-slate-400 dark:text-slate-500 whitespace-nowrap">{{ (leave.appliedAt || leave.createdAt) | date:'mediumDate' }}</td>
+            <td class="text-right">
+              <div class="flex items-center justify-end gap-2">
+                <app-button *ngIf="canCancelLeave(leave)"
+                  variant="secondary" 
+                  size="sm"
+                  (clicked)="openCancelModal(leave)">Cancel</app-button>
+                <app-button *ngIf="canDeleteLeave(leave)"
+                  variant="danger" 
+                  size="sm"
+                  (clicked)="openDeleteModal(leave)">Delete</app-button>
+                <span *ngIf="!canDeleteLeave(leave) && !canCancelLeave(leave)" class="text-xs text-slate-400">—</span>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div *ngIf="!loading && filteredMyLeaves.length > pageSize"
+         class="card-footer flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-xs text-slate-500 dark:text-slate-400">
+        {{ (myLeavesPage - 1) * pageSize + 1 }}–{{ myLeavesPage * pageSize > filteredMyLeaves.length ? filteredMyLeaves.length : myLeavesPage * pageSize }}
+        of {{ filteredMyLeaves.length }}
+      </p>
+      <div class="pagination">
+        <button (click)="goToPage(myLeavesPage - 1)" [disabled]="myLeavesPage === 1" class="page-btn">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <button *ngFor="let p of getPageNumbers(myLeavesTotalPages)" (click)="goToPage(p)"
+                [ngClass]="p === myLeavesPage ? 'page-btn-active' : 'page-btn'">{{ p }}</button>
+        <button (click)="goToPage(myLeavesPage + 1)" [disabled]="myLeavesPage === myLeavesTotalPages" class="page-btn">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Request Leave Modal -->
+  <div class="modal-overlay" *ngIf="isModalOpen" (click)="isModalOpen = false">
+    <div class="modal-container" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2 class="modal-title">Request Leave</h2>
+        <button class="modal-close" (click)="isModalOpen = false">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <form class="leave-form">
+          <app-form-select
+            label="Leave Type"
+            [(ngModel)]="newLeave.policyCode"
+            name="leaveType"
+            [options]="leaveTypeOptions"
+            (ngModelChange)="onPolicyChange()"
+            [required]="true">
+          </app-form-select>
+
+          <!-- Policy Info -->
+          <div class="policy-info" *ngIf="selectedPolicy">
+            <div class="info-item">
+              <span class="info-label">Available Balance:</span>
+              <span class="info-value">{{ getBalanceForPolicy(selectedPolicy.code) }} days</span>
+            </div>
+            <div class="info-item" *ngIf="selectedPolicy.noticeRequired">
+              <span class="info-label">Notice Required:</span>
+              <span class="info-value">{{ selectedPolicy.noticeDays }} days</span>
+            </div>
+            <div class="info-item" *ngIf="selectedPolicy.maxDaysPerRequest">
+              <span class="info-label">Max Per Request:</span>
+              <span class="info-value">{{ selectedPolicy.maxDaysPerRequest }} days</span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-col">
+              <app-form-input
+                label="Start Date"
+                [(ngModel)]="newLeave.startDate"
+                name="startDate"
+                type="date"
+                (ngModelChange)="onDateChange()"
+                [required]="true">
+              </app-form-input>
+            </div>
+            <div class="form-col">
+              <app-form-input
+                label="End Date"
+                [(ngModel)]="newLeave.endDate"
+                name="endDate"
+                type="date"
+                (ngModelChange)="onDateChange()"
+                [required]="true">
+              </app-form-input>
+            </div>
+          </div>
+
+          <!-- Calculated Days -->
+          <div class="calculated-days" *ngIf="calculatedDays !== null">
+            <div class="days-display">
+              <span class="days-icon">📊</span>
+              <div class="days-info">
+                <span class="days-label">Working Days:</span>
+                <span class="days-value">{{ calculatedDays }} days</span>
+              </div>
+            </div>
+            <p class="days-note">Excludes weekends and public holidays</p>
+          </div>
+
+          <div class="calculating-indicator" *ngIf="calculatingDays">
+            <span class="spinner-small"></span>
+            <span>Calculating working days...</span>
+          </div>
+
+          <app-form-textarea
+            label="Reason (Optional)"
+            [(ngModel)]="newLeave.reason"
+            name="reason"
+            placeholder="Please provide a reason for your leave request"
+            [rows]="4"
+            [required]="false">
+          </app-form-textarea>
+
+          <!-- Documentation Requirement -->
+          <app-form-input
+            *ngIf="isPolicyRequiringDocumentation()"
+            label="Supporting Document URL"
+            [(ngModel)]="newLeave.documentUrl"
+            name="documentUrl"
+            placeholder="https://..."
+            [required]="true">
+          </app-form-input>
+
+          <!-- Warnings -->
+          <div class="form-warning" *ngIf="selectedPolicy && calculatedDays && getBalanceForPolicy(selectedPolicy.code) < calculatedDays">
+            <span class="warning-icon">⚠️</span>
+            <div class="warning-content">
+              <span class="warning-title">Insufficient Balance</span>
+              <span class="warning-message">You only have {{ getBalanceForPolicy(selectedPolicy.code) }} days available, but requesting {{ calculatedDays }} days.</span>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <app-button  
+          variant="secondary"
+          (click)="isModalOpen = false">Cancel</app-button>
+        <app-button  
+          variant="primary"
+          [loading]="loading"
+          (click)="submitLeave()">Submit Request</app-button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <app-confirmation-modal
+    [isOpen]="showDeleteConfirmModal"
+    [title]="deleteConfirmConfig.title"
+    [message]="deleteConfirmConfig.message"
+    [confirmText]="'Delete'"
+    [cancelText]="'Cancel'"
+    [type]="'danger'"
+    [confirmButtonVariant]="'danger'"
+    (confirm)="deleteConfirmConfig.onConfirm()"
+    (cancel)="showDeleteConfirmModal = false">
+  </app-confirmation-modal>
+
+  <!-- Cancel Confirmation Modal -->
+  <app-confirmation-modal
+    [isOpen]="showCancelConfirmModal"
+    [title]="cancelConfirmConfig.title"
+    [message]="cancelConfirmConfig.message"
+    [confirmText]="'Cancel Leave'"
+    [cancelText]="'Keep Leave'"
+    [type]="'warning'"
+    [confirmButtonVariant]="'danger'"
+    (confirm)="cancelConfirmConfig.onConfirm()"
+    (cancel)="showCancelConfirmModal = false">
+  </app-confirmation-modal>
+</div>

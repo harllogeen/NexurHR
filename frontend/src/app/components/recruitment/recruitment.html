@@ -1,0 +1,496 @@
+<div class="space-y-5">
+
+  <!-- ── Page header ──────────────────────────────────── -->
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Recruitment</h1>
+      <p class="page-subtitle">Manage candidates and track your hiring pipeline.</p>
+    </div>
+    <app-button
+      variant="primary"
+      icon="plus"
+      (clicked)="openAddModal()"
+    >
+      Add Candidate
+    </app-button>
+  </div>
+
+  <!-- ── Search & filter bar ───────────────────────────── -->
+  <div class="card p-4">
+    <div class="flex flex-col sm:flex-row gap-3">
+      <!-- Search -->
+      <app-form-input
+        [(ngModel)]="searchTerm"
+        placeholder="Search by name or skills…"
+        prefixIcon="search"
+        customClass="flex-1"
+      ></app-form-input>
+      <!-- Filters toggle -->
+      <button (click)="toggleFilters()"
+              class="btn-secondary flex items-center gap-2 flex-shrink-0"
+              [ngClass]="showFilters ? 'ring-2 ring-indigo-500 border-indigo-300 dark:border-indigo-600' : ''">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg>
+        Filters
+        <span *ngIf="filterRole || filterStage" class="badge badge-blue text-[10px] py-0">
+          {{ (filterRole ? 1 : 0) + (filterStage ? 1 : 0) }}
+        </span>
+      </button>
+    </div>
+
+    <!-- Collapsible filter panel -->
+    <div *ngIf="showFilters" class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div class="form-group">
+        <label class="label">Role</label>
+        <app-form-select
+          [(ngModel)]="filterRole"
+          [options]="roleOptionsWithAll"
+          placeholder="All Roles"
+        ></app-form-select>
+      </div>
+      <div class="form-group">
+        <label class="label">Stage</label>
+        <app-form-select
+          [(ngModel)]="filterStage"
+          [options]="stageOptionsWithAll"
+          placeholder="All Stages"
+        ></app-form-select>
+      </div>
+      <div class="flex items-end">
+        <app-button
+          variant="secondary"
+          icon="x"
+          customClass="w-full text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 hover:bg-red-100 dark:hover:bg-red-900/30 border-red-200 dark:border-red-800/40"
+          (clicked)="clearFilters()"
+        >
+          Clear Filters
+        </app-button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Kanban Board ──────────────────────────────────── -->
+  <div class="flex gap-4 overflow-x-auto pb-4 no-scrollbar" cdkDropListGroup>
+
+    <!-- ─── Applied ─── -->
+    <div class="kanban-col kanban-col-applied p-3 flex-shrink-0"
+         [class.hidden]="filterStage && filterStage !== 'Applied'">
+      <div class="flex items-center justify-between px-1 mb-3">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-slate-400"></span>
+          <h3 class="text-xs font-bold text-slate-600 dark:text-slate-300 uppercase tracking-wider">Applied</h3>
+        </div>
+        <span class="badge badge-slate text-[10px]">{{ getCandidatesByStage('Applied').length }}</span>
+      </div>
+      <cdk-virtual-scroll-viewport itemSize="160" class="flex-1 overflow-y-auto"
+                                   cdkDropList
+                                   [cdkDropListData]="getCandidatesByStage('Applied')"
+                                   (cdkDropListDropped)="drop($event, 'Applied')">
+        <div *cdkVirtualFor="let c of getCandidatesByStage('Applied')"
+             cdkDrag class="candidate-card group">
+          <!-- Card header -->
+          <div class="flex items-start justify-between gap-2 mb-2">
+            <div class="min-w-0 flex-1">
+              <p class="text-sm font-semibold text-slate-900 dark:text-white truncate">{{ c.name }}</p>
+              <p class="text-xs text-slate-400 dark:text-slate-500 truncate">{{ c.role }}</p>
+            </div>
+            <div class="flex items-center gap-0.5 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
+              <button (click)="openEditModal(c)" class="btn-icon btn-ghost text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 w-7 h-7" title="Edit">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+              </button>
+              <button (click)="deleteCandidate(c)" class="btn-icon btn-ghost text-slate-400 hover:text-red-500 w-7 h-7" title="Delete">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+              </button>
+              <button (click)="updateStage(c, 'Screening')" class="btn-icon btn-ghost text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 w-7 h-7" title="Move to Screening">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+          <!-- Match score + rating -->
+          <div class="flex items-center gap-1.5 flex-wrap">
+            <span class="badge text-[9px] font-bold"
+                  [ngClass]="{
+                    'badge-green':  c.matchScore >= 70,
+                    'badge-amber':  c.matchScore >= 40 && c.matchScore < 70,
+                    'badge-red':    c.matchScore < 40
+                  }">
+              {{ c.matchScore || 0 }}% match
+            </span>
+            <span *ngIf="c.rating" class="badge badge-amber text-[9px]">★ {{ c.rating }}</span>
+          </div>
+          <!-- Notes preview -->
+          <p *ngIf="c.notes" class="mt-2 text-2xs text-slate-400 dark:text-slate-500 line-clamp-2">{{ c.notes }}</p>
+          <!-- Footer -->
+          <div class="mt-2.5 flex items-center justify-between">
+            <span class="text-2xs text-slate-400 dark:text-slate-500 flex items-center gap-1">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              {{ c.appliedDate | date:'shortDate' }}
+            </span>
+            <div *ngIf="c.resumeFilename" class="flex gap-2">
+              <button (click)="previewResume(c)" class="text-2xs text-indigo-600 dark:text-indigo-400 hover:underline font-medium">Preview</button>
+              <button (click)="downloadResume(c)" class="text-2xs text-slate-400 dark:text-slate-500 hover:underline">Download</button>
+            </div>
+          </div>
+        </div>
+      </cdk-virtual-scroll-viewport>
+    </div>
+
+    <!-- ─── Screening ─── -->
+    <div class="kanban-col kanban-col-screening p-3 flex-shrink-0"
+         [class.hidden]="filterStage && filterStage !== 'Screening'">
+      <div class="flex items-center justify-between px-1 mb-3">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-sky-500"></span>
+          <h3 class="text-xs font-bold text-sky-700 dark:text-sky-400 uppercase tracking-wider">Screening</h3>
+        </div>
+        <span class="badge badge-blue text-[10px]">{{ getCandidatesByStage('Screening').length }}</span>
+      </div>
+      <cdk-virtual-scroll-viewport itemSize="160" class="flex-1 overflow-y-auto"
+                                   cdkDropList
+                                   [cdkDropListData]="getCandidatesByStage('Screening')"
+                                   (cdkDropListDropped)="drop($event, 'Screening')">
+        <div *cdkVirtualFor="let c of getCandidatesByStage('Screening')"
+             cdkDrag class="candidate-card group">
+          <div class="flex items-start justify-between gap-2 mb-2">
+            <div class="min-w-0 flex-1">
+              <p class="text-sm font-semibold text-slate-900 dark:text-white truncate">{{ c.name }}</p>
+              <p class="text-xs text-slate-400 dark:text-slate-500 truncate">{{ c.role }}</p>
+            </div>
+            <div class="flex items-center gap-0.5 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
+              <button (click)="openScheduleModal(c)" class="btn-icon btn-ghost text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 w-7 h-7" title="Schedule Interview">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              </button>
+              <button (click)="openEditModal(c)" class="btn-icon btn-ghost text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 w-7 h-7" title="Edit">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+              </button>
+              <button (click)="deleteCandidate(c)" class="btn-icon btn-ghost text-slate-400 hover:text-red-500 w-7 h-7" title="Delete">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+              </button>
+              <button (click)="updateStage(c, 'Interview')" class="btn-icon btn-ghost text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 w-7 h-7" title="Move to Interview">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="flex items-center gap-1.5 flex-wrap">
+            <span class="badge text-[9px] font-bold"
+                  [ngClass]="{
+                    'badge-green': c.matchScore >= 70,
+                    'badge-amber': c.matchScore >= 40 && c.matchScore < 70,
+                    'badge-red':   c.matchScore < 40
+                  }">
+              {{ c.matchScore || 0 }}% match
+            </span>
+          </div>
+          <div class="mt-2.5 flex items-center justify-between">
+            <span class="text-2xs text-slate-400 dark:text-slate-500 flex items-center gap-1">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              {{ c.appliedDate | date:'shortDate' }}
+            </span>
+            <div *ngIf="c.resumeFilename" class="flex gap-2">
+              <button (click)="previewResume(c)" class="text-2xs text-indigo-600 dark:text-indigo-400 hover:underline font-medium">Preview</button>
+              <button (click)="downloadResume(c)" class="text-2xs text-slate-400 dark:text-slate-500 hover:underline">Download</button>
+            </div>
+          </div>
+        </div>
+      </cdk-virtual-scroll-viewport>
+    </div>
+
+    <!-- ─── Interview ─── -->
+    <div class="kanban-col kanban-col-interview p-3 flex-shrink-0"
+         [class.hidden]="filterStage && filterStage !== 'Interview'">
+      <div class="flex items-center justify-between px-1 mb-3">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-violet-500"></span>
+          <h3 class="text-xs font-bold text-violet-700 dark:text-violet-400 uppercase tracking-wider">Interview</h3>
+        </div>
+        <span class="badge badge-purple text-[10px]">{{ getCandidatesByStage('Interview').length }}</span>
+      </div>
+      <cdk-virtual-scroll-viewport itemSize="160" class="flex-1 overflow-y-auto"
+                                   cdkDropList
+                                   [cdkDropListData]="getCandidatesByStage('Interview')"
+                                   (cdkDropListDropped)="drop($event, 'Interview')">
+        <div *cdkVirtualFor="let c of getCandidatesByStage('Interview')"
+             cdkDrag class="candidate-card group">
+          <div class="flex items-start justify-between gap-2 mb-2">
+            <div class="min-w-0 flex-1">
+              <p class="text-sm font-semibold text-slate-900 dark:text-white truncate">{{ c.name }}</p>
+              <p class="text-xs text-slate-400 dark:text-slate-500 truncate">{{ c.role }}</p>
+            </div>
+            <div class="flex items-center gap-0.5 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
+              <button *ngIf="c.interviewStatus !== 'Completed'" (click)="openEditModal(c)" class="btn-icon btn-ghost text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 w-7 h-7" title="Edit">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+              </button>
+              <button (click)="deleteCandidate(c)" class="btn-icon btn-ghost text-slate-400 hover:text-red-500 w-7 h-7" title="Delete">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+              </button>
+              <button *ngIf="c.interviewStatus === 'Completed'"
+                      (click)="updateStage(c, 'Offer')"
+                      class="btn-icon w-7 h-7 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 rounded-lg transition-colors"
+                      title="Move to Offer">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </button>
+              <button *ngIf="c.interviewStatus !== 'Completed'"
+                      (click)="updateStage(c, 'Offer')" class="btn-icon btn-ghost text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 w-7 h-7" title="Move to Offer">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+          <!-- Interview date / status -->
+          <div class="flex flex-col gap-1 mb-2">
+            <span *ngIf="c.interviewDate" class="badge badge-purple text-[9px]">
+              Interview: {{ c.interviewDate | date:'short' }}
+            </span>
+            <span *ngIf="c.interviewStatus === 'Completed'" class="badge badge-green text-[9px] gap-1">
+              <svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+              Completed
+            </span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-2xs text-slate-400 dark:text-slate-500 flex items-center gap-1">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              {{ c.appliedDate | date:'shortDate' }}
+            </span>
+          </div>
+        </div>
+      </cdk-virtual-scroll-viewport>
+    </div>
+
+    <!-- ─── Offer ─── -->
+    <div class="kanban-col kanban-col-offer p-3 flex-shrink-0"
+         [class.hidden]="filterStage && filterStage !== 'Offer'">
+      <div class="flex items-center justify-between px-1 mb-3">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+          <h3 class="text-xs font-bold text-emerald-700 dark:text-emerald-400 uppercase tracking-wider">Offer</h3>
+        </div>
+        <span class="badge badge-green text-[10px]">{{ getCandidatesByStage('Offer').length }}</span>
+      </div>
+      <cdk-virtual-scroll-viewport itemSize="160" class="flex-1 overflow-y-auto"
+                                   cdkDropList
+                                   [cdkDropListData]="getCandidatesByStage('Offer')"
+                                   (cdkDropListDropped)="drop($event, 'Offer')">
+        <div *cdkVirtualFor="let c of getCandidatesByStage('Offer')"
+             cdkDrag class="candidate-card group">
+          <div class="flex items-start justify-between gap-2 mb-2">
+            <div class="min-w-0 flex-1">
+              <p class="text-sm font-semibold text-slate-900 dark:text-white truncate">{{ c.name }}</p>
+              <p class="text-xs text-slate-400 dark:text-slate-500 truncate">{{ c.role }}</p>
+            </div>
+            <div class="flex items-center gap-0.5 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
+              <button (click)="openEditModal(c)" class="btn-icon btn-ghost text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 w-7 h-7" title="Edit">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+              </button>
+              <button (click)="deleteCandidate(c)" class="btn-icon btn-ghost text-slate-400 hover:text-red-500 w-7 h-7" title="Delete">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+              </button>
+              <button (click)="updateStage(c, 'Hired')" class="btn-icon btn-ghost text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 w-7 h-7" title="Mark Hired">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-2xs text-slate-400 dark:text-slate-500 flex items-center gap-1">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              {{ c.appliedDate | date:'shortDate' }}
+            </span>
+          </div>
+        </div>
+      </cdk-virtual-scroll-viewport>
+    </div>
+
+  </div><!-- end kanban -->
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     ADD / EDIT CANDIDATE MODAL
+════════════════════════════════════════════════════ -->
+<div *ngIf="showAddModal" class="modal-overlay" (click)="closeAddModal()">
+  <div class="modal-md" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
+        </div>
+        <h3 class="text-base font-bold text-slate-900 dark:text-white">{{ isEditing ? 'Edit Candidate' : 'Add New Candidate' }}</h3>
+      </div>
+      <app-button
+        variant="ghost"
+        icon="x"
+        [iconOnly]="true"
+        customClass="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+        (clicked)="closeAddModal()"
+      ></app-button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="label">Full Name</label>
+        <app-form-input
+          [(ngModel)]="newCandidate.name"
+          type="text"
+          placeholder="Jane Doe"
+        ></app-form-input>
+      </div>
+      <div class="form-group">
+        <label class="label">Email</label>
+        <app-form-input
+          [(ngModel)]="newCandidate.email"
+          type="email"
+          placeholder="jane@example.com"
+        ></app-form-input>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="form-group">
+          <label class="label">Role Applied For</label>
+          <app-form-select
+            [(ngModel)]="newCandidate.role"
+            [options]="roleOptions"
+            placeholder="Select a role…"
+          ></app-form-select>
+        </div>
+        <div class="form-group">
+          <label class="label">Initial Stage</label>
+          <app-form-select
+            [(ngModel)]="newCandidate.stage"
+            [options]="stageOptions"
+          ></app-form-select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="label">Skills <span class="text-slate-400 normal-case font-normal">(comma-separated)</span></label>
+        <app-form-input
+          [(ngModel)]="newCandidate.skills"
+          type="text"
+          placeholder="e.g. Angular, Node.js, TypeScript"
+        ></app-form-input>
+      </div>
+      <div class="form-group">
+        <label class="label">Resume <span class="text-slate-400 normal-case font-normal">(.txt or .md)</span></label>
+        <label class="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl border-2 border-dashed border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 hover:border-indigo-400 dark:hover:border-indigo-600 p-3 transition-colors">
+          <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+          <span class="text-xs text-slate-500 dark:text-slate-400">
+            <span *ngIf="!resumeFile">Click to upload resume</span>
+            <span *ngIf="resumeFile" class="text-indigo-600 dark:text-indigo-400 font-medium">{{ resumeFile.name }}</span>
+          </span>
+          <input type="file" accept=".txt,.md" (change)="onResumeSelected($event)" class="hidden">
+        </label>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="form-group">
+          <label class="label">Rating <span class="text-slate-400 normal-case font-normal">(1–5)</span></label>
+          <app-form-input
+            [(ngModel)]="newCandidate.rating"
+            type="number"
+            [min]="1"
+            [max]="5"
+          ></app-form-input>
+        </div>
+        <div class="form-group">
+          <label class="label">Notes</label>
+          <app-form-textarea
+            [(ngModel)]="newCandidate.notes"
+            [rows]="2"
+          ></app-form-textarea>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <app-button
+        variant="secondary"
+        (clicked)="closeAddModal()"
+      >
+        Cancel
+      </app-button>
+      <app-button
+        variant="primary"
+        (clicked)="saveCandidate()"
+      >
+        {{ isEditing ? 'Update Candidate' : 'Add Candidate' }}
+      </app-button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SCHEDULE INTERVIEW MODAL
+════════════════════════════════════════════════════ -->
+<div *ngIf="showScheduleModal" class="modal-overlay" (click)="closeScheduleModal()">
+  <div class="modal-sm" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-violet-50 dark:bg-violet-900/30 flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-violet-600 dark:text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        </div>
+        <h3 class="text-base font-bold text-slate-900 dark:text-white">Schedule Interview</h3>
+      </div>
+      <app-button
+        variant="ghost"
+        icon="x"
+        [iconOnly]="true"
+        customClass="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+        (clicked)="closeScheduleModal()"
+      ></app-button>
+    </div>
+    <div class="modal-body">
+      <p class="text-sm text-slate-500 dark:text-slate-400">
+        Schedule an interview with <span class="font-semibold text-slate-900 dark:text-white">{{ selectedCandidate?.name }}</span>.
+      </p>
+      <div class="form-group">
+        <label class="label">Interview Date &amp; Time</label>
+        <app-form-input
+          [(ngModel)]="interviewDate"
+          type="datetime-local"
+        ></app-form-input>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <app-button
+        variant="secondary"
+        (clicked)="closeScheduleModal()"
+      >
+        Cancel
+      </app-button>
+      <app-button
+        variant="primary"
+        (clicked)="scheduleInterview()"
+      >
+        Schedule Interview
+      </app-button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     RESUME PREVIEW MODAL
+════════════════════════════════════════════════════ -->
+<div *ngIf="showPreviewModal" class="modal-overlay" (click)="showPreviewModal = false">
+  <div class="modal-lg" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <div>
+        <h3 class="text-base font-bold text-slate-900 dark:text-white">Resume Preview</h3>
+        <p class="text-xs text-slate-400 dark:text-slate-500 mt-0.5">{{ previewCandidate?.name }}</p>
+      </div>
+      <div class="flex items-center gap-2">
+        <app-button
+          variant="secondary"
+          size="sm"
+          (clicked)="downloadResume(previewCandidate)"
+        >
+          Download
+        </app-button>
+        <app-button
+          variant="ghost"
+          icon="x"
+          [iconOnly]="true"
+          customClass="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+          (clicked)="showPreviewModal = false"
+        ></app-button>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="bg-slate-50 dark:bg-slate-950 rounded-xl p-4 max-h-[55vh] overflow-y-auto">
+        <pre *ngIf="previewContent" class="text-sm text-slate-700 dark:text-slate-300 whitespace-pre-wrap font-mono leading-relaxed">{{ previewContent }}</pre>
+        <p *ngIf="!previewContent" class="text-sm text-slate-400 dark:text-slate-500">Loading preview…</p>
+      </div>
+    </div>
+  </div>
+</div>

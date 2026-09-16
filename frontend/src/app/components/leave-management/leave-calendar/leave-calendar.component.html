@@ -1,0 +1,208 @@
+<div class="leave-calendar-container">
+  <div class="page-header">
+    <div>
+      <h2>Leave Calendar</h2>
+      <p class="subtitle">Visual overview of team leaves and availability</p>
+    </div>
+    <div class="header-stats">
+      <div class="stat-card">
+        <span class="stat-label">On Leave Today</span>
+        <span class="stat-value">{{ getEmployeesOnLeaveToday() }}</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Total Leaves This Month</span>
+        <span class="stat-value">{{ getTotalLeavesCount() }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filters Section -->
+  <div class="filters-section card">
+    <div class="filters-grid">
+      <div class="filter-item">
+        <label>Department</label>
+        <app-form-select
+          [(ngModel)]="departmentFilter"
+          (selectionChange)="onFilterChange()"
+          [options]="departmentOptions"
+        ></app-form-select>
+      </div>
+
+      <div class="filter-item">
+        <label>Leave Type</label>
+        <app-form-select
+          [(ngModel)]="leaveTypeFilter"
+          (selectionChange)="onFilterChange()"
+          [options]="leaveTypeOptions"
+        ></app-form-select>
+      </div>
+
+      <div class="filter-item">
+        <label>Status</label>
+        <app-form-select
+          [(ngModel)]="statusFilter"
+          (selectionChange)="onFilterChange()"
+          [options]="statusOptions"
+        ></app-form-select>
+      </div>
+
+      <div class="filter-actions">
+        <app-button variant="ghost" size="sm" (clicked)="clearFilters()">
+          Clear Filters
+        </app-button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Calendar Navigation -->
+  <div class="calendar-header card">
+    <app-button variant="ghost" size="sm" (clicked)="previousMonth()">
+      <i class="fas fa-chevron-left"></i> Previous
+    </app-button>
+    
+    <h3 class="current-month">{{ getMonthYear() }}</h3>
+    
+    <div class="nav-actions">
+      <app-button variant="secondary" size="sm" (clicked)="goToToday()">
+        Today
+      </app-button>
+      <app-button variant="ghost" size="sm" (clicked)="nextMonth()">
+        Next <i class="fas fa-chevron-right"></i>
+      </app-button>
+    </div>
+  </div>
+
+  <!-- Calendar Grid -->
+  <div class="calendar-grid card">
+    <div *ngIf="loading" class="loading-overlay">
+      <i class="fas fa-spinner fa-spin"></i>
+      <p>Loading calendar...</p>
+    </div>
+
+    <!-- Week Day Headers -->
+    <div class="calendar-weekdays">
+      <div *ngFor="let day of weekDays" class="weekday-header">
+        {{ day }}
+      </div>
+    </div>
+
+    <!-- Calendar Days -->
+    <div class="calendar-days">
+      <div
+        *ngFor="let day of calendarDays"
+        class="calendar-day"
+        [class.other-month]="!day.isCurrentMonth"
+        [class.today]="day.isToday"
+        [class.weekend]="day.isWeekend"
+        [class.has-leaves]="day.leaves.length > 0"
+        (click)="openDayModal(day)"
+      >
+        <div class="day-header">
+          <span class="day-number">{{ day.dayNumber }}</span>
+          <span *ngIf="day.leaves.length > 0" class="leave-count-badge">
+            {{ day.leaves.length }}
+          </span>
+        </div>
+
+        <div class="day-leaves">
+          <div
+            *ngFor="let leave of day.leaves.slice(0, 3)"
+            class="leave-indicator"
+            [style.background-color]="getLeaveTypeColor(leave.leaveType)"
+            [title]="leave.employeeName + ' - ' + leave.leaveTypeLabel"
+          >
+            <span class="leave-name">{{ leave.employeeName }}</span>
+          </div>
+          <div *ngIf="day.leaves.length > 3" class="more-leaves">
+            +{{ day.leaves.length - 3 }} more
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="calendar-legend card">
+    <h4>Leave Types</h4>
+    <div class="legend-items">
+      <div class="legend-item">
+        <span class="legend-color" style="background-color: #3b82f6;"></span>
+        <span>Annual Leave</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-color" style="background-color: #ef4444;"></span>
+        <span>Sick Leave</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-color" style="background-color: #8b5cf6;"></span>
+        <span>Casual Leave</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-color" style="background-color: #ec4899;"></span>
+        <span>Maternity Leave</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-color" style="background-color: #06b6d4;"></span>
+        <span>Paternity Leave</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-color" style="background-color: #6b7280;"></span>
+        <span>Unpaid Leave</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Day Details Modal -->
+<div class="modal-overlay" *ngIf="showDayModal && selectedDay" (click)="closeDayModal()">
+  <div class="modal-container" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2 class="modal-title">{{ formatDate(selectedDay.date) }}</h2>
+      <button class="modal-close" (click)="closeDayModal()">&times;</button>
+    </div>
+
+    <div class="modal-body">
+      <div class="day-modal-content">
+        <h4>{{ selectedDay.leaves.length }} employee(s) on leave</h4>
+        
+        <div class="leave-list">
+          <div *ngFor="let leave of selectedDay.leaves" class="leave-item">
+            <div class="leave-item-header">
+              <div class="employee-info">
+                <div class="avatar">{{ leave.employeeName.charAt(0) }}</div>
+                <div>
+                  <h5>{{ leave.employeeName }}</h5>
+                  <span class="department-badge">{{ leave.department }}</span>
+                </div>
+              </div>
+              <app-status-badge [variant]="getStatusBadgeType(leave.status)">
+                {{ leave.status | titlecase }}
+              </app-status-badge>
+            </div>
+
+            <div class="leave-item-details">
+              <div class="detail-row">
+                <span class="label">Leave Type:</span>
+                <span class="value" [style.color]="getLeaveTypeColor(leave.leaveType)">
+                  {{ leave.leaveTypeLabel }}
+                </span>
+              </div>
+              <div class="detail-row" *ngIf="leave.isStartDate">
+                <span class="badge-info">Start Date</span>
+              </div>
+              <div class="detail-row" *ngIf="leave.isEndDate">
+                <span class="badge-info">End Date</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <app-button variant="secondary" (clicked)="closeDayModal()">
+            Close
+          </app-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

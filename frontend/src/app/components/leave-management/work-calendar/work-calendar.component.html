@@ -1,0 +1,343 @@
+<div class="work-calendar-container">
+  <!-- Header Section -->
+  <div class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">Work Calendar Management</h1>
+      <p class="page-subtitle">Manage work calendars and public holidays</p>
+    </div>
+  </div>
+
+  <!-- Tab Navigation -->
+  <div class="tab-navigation">
+    <button 
+      class="tab-button"
+      [class.active]="activeTab === 'calendars'"
+      (click)="switchTab('calendars')">
+      <span class="tab-icon">📅</span>
+      Work Calendars
+    </button>
+    <button 
+      class="tab-button"
+      [class.active]="activeTab === 'holidays'"
+      (click)="switchTab('holidays')">
+      <span class="tab-icon">🎉</span>
+      Public Holidays
+    </button>
+  </div>
+
+  <!-- ========================================
+       WORK CALENDARS TAB
+       ======================================== -->
+  <div *ngIf="activeTab === 'calendars'" class="tab-content">
+    <div class="section-header">
+      <h2 class="section-title">Work Calendars</h2>
+      <app-button  
+        variant="primary" 
+        icon="plus"
+        (click)="openCreateCalendarModal()">Create Calendar</app-button>
+    </div>
+
+    <!-- Loading State -->
+    <app-spinner *ngIf="loadingCalendars && calendars.length === 0"></app-spinner>
+
+    <!-- Empty State -->
+    <app-empty-state 
+      *ngIf="!loadingCalendars && calendars.length === 0"
+      title="No Work Calendars"
+      message="Create your first work calendar to define working days"
+      actionLabel="Create Calendar"
+      (actionClick)="openCreateCalendarModal()">
+    </app-empty-state>
+
+    <!-- Calendars List -->
+    <div class="calendars-list" *ngIf="!loadingCalendars && calendars.length > 0">
+      <div class="calendar-card" *ngFor="let calendar of calendars">
+        <div class="calendar-header">
+          <div class="calendar-title-section">
+            <h3 class="calendar-name">{{ calendar.name }}</h3>
+            <app-status-badge 
+              *ngIf="calendar.isDefault"
+              label="Default" 
+              type="primary">
+            </app-status-badge>
+          </div>
+          <div class="calendar-actions">
+            <app-button  
+              variant="secondary" 
+              size="sm"
+              (click)="openEditCalendarModal(calendar)">Edit</app-button>
+            <app-button  
+              variant="danger" 
+              size="sm"
+              [disabled]="calendar.isDefault"
+              (click)="openDeleteCalendarModal(calendar)">Delete</app-button>
+          </div>
+        </div>
+
+        <p class="calendar-description" *ngIf="calendar.description">
+          {{ calendar.description }}
+        </p>
+
+        <div class="calendar-details">
+          <div class="detail-row">
+            <span class="detail-label">Working Hours/Day:</span>
+            <span class="detail-value">{{ calendar.workingHoursPerDay }} hours</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Weekend Days:</span>
+            <span class="detail-value">{{ getWeekendDaysLabel(calendar.weekendDays) }}</span>
+          </div>
+          <div class="detail-row" *ngIf="calendar.department">
+            <span class="detail-label">Department:</span>
+            <span class="detail-value">{{ calendar.department }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================
+       PUBLIC HOLIDAYS TAB
+       ======================================== -->
+  <div *ngIf="activeTab === 'holidays'" class="tab-content">
+    <div class="section-header">
+      <div class="section-title-with-filter">
+        <h2 class="section-title">Public Holidays</h2>
+        <app-form-select
+          label=""
+          [(ngModel)]="selectedYear"
+          name="yearFilter"
+          [options]="yearOptions"
+          (ngModelChange)="onYearChange()"
+          >
+        </app-form-select>
+      </div>
+      <app-button  
+        variant="primary" 
+        icon="plus"
+        (click)="openCreateHolidayModal()">Add Holiday</app-button>
+    </div>
+
+    <!-- Loading State -->
+    <app-spinner *ngIf="loadingHolidays && holidays.length === 0"></app-spinner>
+
+    <!-- Empty State -->
+    <app-empty-state 
+      *ngIf="!loadingHolidays && holidays.length === 0"
+      title="No Holidays"
+      message="Add public holidays for this year"
+      actionLabel="Add Holiday"
+      (actionClick)="openCreateHolidayModal()">
+    </app-empty-state>
+
+    <!-- Holidays List -->
+    <div class="holidays-list" *ngIf="!loadingHolidays && holidays.length > 0">
+      <div class="holiday-card" *ngFor="let holiday of holidays">
+        <div class="holiday-date-section">
+          <div class="date-display">
+            <span class="date-day">{{ formatDate(holiday.date).split(' ')[1] }}</span>
+            <span class="date-month">{{ formatDate(holiday.date).split(' ')[0] }}</span>
+          </div>
+          <div class="day-of-week">{{ getDayOfWeek(holiday.date) }}</div>
+        </div>
+
+        <div class="holiday-info">
+          <div class="holiday-header">
+            <h3 class="holiday-name">{{ holiday.name }}</h3>
+            <div class="holiday-badges">
+              <app-status-badge 
+                *ngIf="holiday.recurring"
+                label="Recurring" 
+                type="info">
+              </app-status-badge>
+              <app-status-badge 
+                *ngIf="holiday.department"
+                variant="default">
+                {{ holiday.department }}
+              </app-status-badge>
+            </div>
+          </div>
+          <p class="holiday-description" *ngIf="holiday.description">
+            {{ holiday.description }}
+          </p>
+        </div>
+
+        <div class="holiday-actions">
+          <app-button  
+            variant="secondary" 
+            size="sm"
+            (click)="openEditHolidayModal(holiday)">Edit</app-button>
+          <app-button  
+            variant="danger" 
+            size="sm"
+            (click)="openDeleteHolidayModal(holiday)">Delete</app-button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================
+       CALENDAR MODAL
+       ======================================== -->
+  <div class="modal-overlay" *ngIf="isCalendarModalOpen" (click)="closeCalendarModal()">
+    <div class="modal-container" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2 class="modal-title">{{ isEditCalendarMode ? 'Edit Calendar' : 'Create Work Calendar' }}</h2>
+        <button class="modal-close" (click)="closeCalendarModal()">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <form class="calendar-form">
+          <app-form-input
+            label="Calendar Name"
+            [(ngModel)]="calendarForm.name"
+            name="calendarName"
+            placeholder="e.g., Standard Work Calendar"
+            [required]="true">
+          </app-form-input>
+
+          <app-form-textarea
+            label="Description"
+            [(ngModel)]="calendarForm.description"
+            name="calendarDescription"
+            placeholder="Describe this work calendar"
+            [rows]="3">
+          </app-form-textarea>
+
+          <app-form-input
+            label="Working Hours Per Day"
+            [(ngModel)]="calendarForm.workingHoursPerDay"
+            name="workingHours"
+            type="number"
+            placeholder="e.g., 8">
+          </app-form-input>
+
+          <app-form-input
+            label="Department (Optional)"
+            [(ngModel)]="calendarForm.department"
+            name="department"
+            placeholder="Leave empty for all departments">
+          </app-form-input>
+
+          <div class="form-section">
+            <label class="section-label">Weekend Days:</label>
+            <div class="checkbox-grid">
+              <label class="checkbox-item" *ngFor="let day of weekDays">
+                <input 
+                  type="checkbox" 
+                  [checked]="calendarForm.weekendDays.includes(day.value)"
+                  (change)="onWeekendDayToggle(day.value)">
+                <span>{{ day.label }}</span>
+              </label>
+            </div>
+          </div>
+
+          <app-form-toggle
+            label="Set as Default Calendar"
+            [(ngModel)]="calendarForm.isDefault"
+            name="isDefault">
+          </app-form-toggle>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <app-button  
+          variant="secondary"
+          (click)="closeCalendarModal()">Cancel</app-button>
+        <app-button  
+          variant="primary"
+          [loading]="loadingCalendars"
+          (click)="saveCalendar()">{{ isEditCalendarMode ? 'Update Calendar' : 'Create Calendar' }}</app-button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================
+       HOLIDAY MODAL
+       ======================================== -->
+  <div class="modal-overlay" *ngIf="isHolidayModalOpen" (click)="closeHolidayModal()">
+    <div class="modal-container" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2 class="modal-title">{{ isEditHolidayMode ? 'Edit Holiday' : 'Add Public Holiday' }}</h2>
+        <button class="modal-close" (click)="closeHolidayModal()">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <form class="holiday-form">
+          <app-form-input
+            label="Holiday Name"
+            [(ngModel)]="holidayForm.name"
+            name="holidayName"
+            placeholder="e.g., New Year's Day"
+            [required]="true">
+          </app-form-input>
+
+          <app-form-input
+            label="Date"
+            [(ngModel)]="holidayForm.date"
+            name="holidayDate"
+            type="date"
+            [required]="true">
+          </app-form-input>
+
+          <app-form-textarea
+            label="Description"
+            [(ngModel)]="holidayForm.description"
+            name="holidayDescription"
+            placeholder="Optional description"
+            [rows]="3">
+          </app-form-textarea>
+
+          <app-form-input
+            label="Department (Optional)"
+            [(ngModel)]="holidayForm.department"
+            name="holidayDepartment"
+            placeholder="Leave empty for all departments">
+          </app-form-input>
+
+          <app-form-toggle
+            label="Recurring Holiday"
+            [(ngModel)]="holidayForm.recurring"
+            name="recurring">
+          </app-form-toggle>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <app-button  
+          variant="secondary"
+          (click)="closeHolidayModal()">Cancel</app-button>
+        <app-button  
+          variant="primary"
+          [loading]="loadingHolidays"
+          (click)="saveHoliday()">{{ isEditHolidayMode ? 'Update Holiday' : 'Add Holiday' }}</app-button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Calendar Confirmation Modal -->
+  <app-confirmation-modal
+    [isOpen]="showDeleteCalendarModal"
+    [title]="deleteCalendarConfig.title"
+    [message]="deleteCalendarConfig.message"
+    [confirmText]="'Delete'"
+    [cancelText]="'Cancel'"
+    [type]="'danger'"
+    [confirmButtonVariant]="'danger'"
+    (confirm)="deleteCalendarConfig.onConfirm()"
+    (cancel)="showDeleteCalendarModal = false">
+  </app-confirmation-modal>
+
+  <!-- Delete Holiday Confirmation Modal -->
+  <app-confirmation-modal
+    [isOpen]="showDeleteHolidayModal"
+    [title]="deleteHolidayConfig.title"
+    [message]="deleteHolidayConfig.message"
+    [confirmText]="'Delete'"
+    [cancelText]="'Cancel'"
+    [type]="'danger'"
+    [confirmButtonVariant]="'danger'"
+    (confirm)="deleteHolidayConfig.onConfirm()"
+    (cancel)="showDeleteHolidayModal = false">
+  </app-confirmation-modal>
+</div>

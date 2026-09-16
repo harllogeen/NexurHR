@@ -1,0 +1,576 @@
+<div class="min-h-screen bg-slate-50 dark:bg-[#0b0f1a] transition-colors duration-300 flex relative">
+
+  <!-- ═══════════════════════════════════════════════════
+       MOBILE OVERLAY
+  ════════════════════════════════════════════════════ -->
+  <div *ngIf="isSidebarOpen"
+       (click)="toggleSidebar()"
+       class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-40 md:hidden"></div>
+
+  <!-- ═══════════════════════════════════════════════════
+       SIDEBAR
+  ════════════════════════════════════════════════════ -->
+  <aside class="fixed md:sticky top-0 left-0 z-50 h-screen
+                bg-[#0f172a] flex flex-col
+                transition-all duration-300 ease-in-out
+                shadow-[1px_0_0_0_rgba(255,255,255,0.04)]"
+         [class.-translate-x-full]="!isSidebarOpen"
+         [class.translate-x-0]="isSidebarOpen"
+         [class.w-64]="!isCollapsed"
+         [class.w-[72px]]="isCollapsed">
+
+    <!-- ── Logo bar ── -->
+    <div class="flex-none h-16 flex items-center justify-between px-4 border-b border-slate-800/60">
+      <div class="flex items-center gap-3 overflow-hidden min-w-0"
+           [class.justify-center]="isCollapsed" [class.w-full]="isCollapsed">
+        <img src="/nexus-logo.png" alt="NexusHR" class="w-8 h-8 rounded-lg flex-shrink-0 object-contain">
+        <span *ngIf="!isCollapsed" class="text-sm font-bold text-white tracking-tight truncate">NexusHR</span>
+      </div>
+      <button *ngIf="!isCollapsed" (click)="toggleCollapse()"
+              class="hidden md:flex w-7 h-7 items-center justify-center rounded-lg text-slate-500 hover:text-slate-300 hover:bg-slate-800 transition-all flex-shrink-0">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Expand button when collapsed -->
+    <div *ngIf="isCollapsed" class="flex-none hidden md:flex justify-center py-2.5 border-b border-slate-800/60">
+      <button (click)="toggleCollapse()"
+              class="w-7 h-7 flex items-center justify-center rounded-lg text-slate-500 hover:text-slate-300 hover:bg-slate-800 transition-all">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- ── Navigation ── -->
+    <nav class="flex-1 overflow-y-auto overflow-x-hidden py-4 px-3 space-y-0.5 no-scrollbar">
+
+      <ng-container *ngIf="!isCollapsed">
+        <p class="nav-section-label px-3 pb-2">Main</p>
+      </ng-container>
+
+      <!-- Dashboard -->
+      <a [routerLink]="['/dashboard', (user$ | async)?.role === 'staff' ? 'employee' : (user$ | async)?.role]"
+         routerLinkActive="nav-item-active"
+         [routerLinkActiveOptions]="{exact: false}"
+         class="nav-item group"
+         [class.justify-center]="isCollapsed"
+         [class.px-0]="isCollapsed">
+        <svg class="w-[18px] h-[18px] flex-shrink-0" [class.mx-auto]="isCollapsed" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+        </svg>
+        <span *ngIf="!isCollapsed">Dashboard</span>
+        <span *ngIf="isCollapsed" class="nav-tooltip">Dashboard</span>
+      </a>
+
+      <ng-container *ngIf="user$ | async as user">
+
+        <!-- ── HR / Admin section ── -->
+        <ng-container *ngIf="user.role === 'hr' || user.role === 'super-admin' || user.role === 'cto'">
+
+          <ng-container *ngIf="!isCollapsed">
+            <p class="nav-section-label px-3 pt-4 pb-2">People</p>
+          </ng-container>
+          <div *ngIf="isCollapsed" class="h-px bg-slate-800/60 mx-2 my-3"></div>
+
+          <!-- Employees dropdown -->
+          <div class="relative" routerLinkActive="active-parent" #empRla="routerLinkActive">
+            <button (click)="toggleEmployeesMenu()"
+                    class="nav-item group w-full"
+                    [class.nav-item-active]="isEmployeesMenuOpen || empRla.isActive"
+                    [class.justify-center]="isCollapsed"
+                    [class.px-0]="isCollapsed">
+              <svg class="w-[18px] h-[18px] flex-shrink-0" [class.mx-auto]="isCollapsed" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+              </svg>
+              <span *ngIf="!isCollapsed" class="flex-1 text-left">Employees</span>
+              <svg *ngIf="!isCollapsed" class="w-3.5 h-3.5 flex-shrink-0 transition-transform duration-200"
+                   [class.rotate-180]="isEmployeesMenuOpen" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+              <span *ngIf="isCollapsed" class="nav-tooltip">Employees</span>
+            </button>
+            <div *ngIf="isEmployeesMenuOpen && !isCollapsed" class="submenu-wrap">
+              <a routerLink="/dashboard/employees/all" routerLinkActive="submenu-item-active" class="submenu-item">All Employees</a>
+              <a routerLink="/dashboard/employees/departments" routerLinkActive="submenu-item-active" class="submenu-item">Departments</a>
+              <a routerLink="/dashboard/employees/designations" routerLinkActive="submenu-item-active" class="submenu-item">Designations</a>
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- ── HR-specific links ── -->
+        <ng-container *ngIf="user.role === 'hr'">
+
+          <ng-container *ngIf="!isCollapsed">
+            <p class="nav-section-label px-3 pt-4 pb-2">HR Operations</p>
+          </ng-container>
+          <div *ngIf="isCollapsed" class="h-px bg-slate-800/60 mx-2 my-3"></div>
+
+          <a routerLink="/dashboard/hr/recruitment" routerLinkActive="nav-item-active"
+             class="nav-item group" [class.justify-center]="isCollapsed" [class.px-0]="isCollapsed">
+            <svg class="w-[18px] h-[18px] flex-shrink-0" [class.mx-auto]="isCollapsed" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
+            </svg>
+            <span *ngIf="!isCollapsed">Recruitment</span>
+            <span *ngIf="isCollapsed" class="nav-tooltip">Recruitment</span>
+          </a>
+
+          <a routerLink="/dashboard/my-payroll" routerLinkActive="nav-item-active"
+             class="nav-item group" [class.justify-center]="isCollapsed" [class.px-0]="isCollapsed">
+            <svg class="w-[18px] h-[18px] flex-shrink-0" [class.mx-auto]="isCollapsed" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <span *ngIf="!isCollapsed">Payroll</span>
+            <span *ngIf="isCollapsed" class="nav-tooltip">Payroll</span>
+          </a>
+
+          <a routerLink="/dashboard/hr/training" routerLinkActive="nav-item-active"
+             class="nav-item group" [class.justify-center]="isCollapsed" [class.px-0]="isCollapsed">
+            <svg class="w-[18px] h-[18px] flex-shrink-0" [class.mx-auto]="isCollapsed" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+            </svg>
+            <span *ngIf="!isCollapsed">Training</span>
+            <span *ngIf="isCollapsed" class="nav-tooltip">Training</span>
+          </a>
+
+          <a routerLink="/dashboard/hr/reports" routerLinkActive="nav-item-active"
+             class="nav-item group" [class.justify-center]="isCollapsed" [class.px-0]="isCollapsed">
+            <svg class="w-[18px] h-[18px] flex-shrink-0" [class.mx-auto]="isCollapsed" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+            </svg>
+            <span *ngIf="!isCollapsed">Reports</span>
+            <span *ngIf="isCollapsed" class="nav-tooltip">Reports</span>
+          </a>
+
+          <a routerLink="/dashboard/hr/settings" routerLinkActive="nav-item-active"
+             class="nav-item group" [class.justify-center]="isCollapsed" [class.px-0]="isCollapsed">
+            <svg class="w-[18px] h-[18px] flex-shrink-0" [class.mx-auto]="isCollapsed" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            <span *ngIf="!isCollapsed">Settings</span>
+            <span *ngIf="isCollapsed" class="nav-tooltip">Settings</span>
+          </a>
+        </ng-container>
+
+        <!-- ── Workspace section (all roles) ── -->
+        <ng-container *ngIf="!isCollapsed">
+          <p class="nav-section-label px-3 pt-4 pb-2">Workspace</p>
+        </ng-container>
+        <div *ngIf="isCollapsed" class="h-px bg-slate-800/60 mx-2 my-3"></div>
+
+        <!-- My Profile -->
+        <a routerLink="/dashboard/employee-profile" routerLinkActive="nav-item-active"
+           class="nav-item group" [class.justify-center]="isCollapsed" [class.px-0]="isCollapsed">
+          <svg class="w-[18px] h-[18px] flex-shrink-0" [class.mx-auto]="isCollapsed" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+          </svg>
+          <span *ngIf="!isCollapsed">My Profile</span>
+          <span *ngIf="isCollapsed" class="nav-tooltip">My Profile</span>
+        </a>
+
+        <!-- Tasks & Projects dropdown -->
+        <div class="relative" routerLinkActive="active-parent" #tasksRla="routerLinkActive">
+          <button (click)="toggleTasksMenu()"
+                  class="nav-item group w-full"
+                  [class.nav-item-active]="isTasksMenuOpen || tasksRla.isActive"
+                  [class.justify-center]="isCollapsed" [class.px-0]="isCollapsed">
+            <svg class="w-[18px] h-[18px] flex-shrink-0" [class.mx-auto]="isCollapsed" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+            </svg>
+            <span *ngIf="!isCollapsed" class="flex-1 text-left">Tasks & Projects</span>
+            <svg *ngIf="!isCollapsed" class="w-3.5 h-3.5 flex-shrink-0 transition-transform duration-200"
+                 [class.rotate-180]="isTasksMenuOpen" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+            <span *ngIf="isCollapsed" class="nav-tooltip">Tasks & Projects</span>
+          </button>
+          <div *ngIf="isTasksMenuOpen && !isCollapsed" class="submenu-wrap">
+            <a *ngIf="user.role !== 'manager'"
+               routerLink="/dashboard/my-tasks" routerLinkActive="submenu-item-active" class="submenu-item">My Tasks</a>
+            <a *ngIf="['hr','manager','supervisor','cto'].includes(user.role)"
+               routerLink="/dashboard/tasks" routerLinkActive="submenu-item-active" class="submenu-item">Task Management</a>
+            <a *ngIf="user.role !== 'manager'"
+               routerLink="/dashboard/projects" [queryParams]="{view:'my'}"
+               routerLinkActive="submenu-item-active" class="submenu-item">My Projects</a>
+            <a *ngIf="user.role !== 'employee'"
+               routerLink="/dashboard/projects" [queryParams]="{view:'all'}"
+               routerLinkActive="submenu-item-active" class="submenu-item">All Projects</a>
+          </div>
+        </div>
+
+        <!-- Leave dropdown -->
+        <div class="relative" routerLinkActive="active-parent" #leaveRla="routerLinkActive">
+          <button (click)="toggleLeaveMenu()"
+                  class="nav-item group w-full"
+                  [class.nav-item-active]="isLeaveMenuOpen || leaveRla.isActive"
+                  [class.justify-center]="isCollapsed" [class.px-0]="isCollapsed">
+            <svg class="w-[18px] h-[18px] flex-shrink-0" [class.mx-auto]="isCollapsed" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+            <span *ngIf="!isCollapsed" class="flex-1 text-left">Leave</span>
+            <svg *ngIf="!isCollapsed" class="w-3.5 h-3.5 flex-shrink-0 transition-transform duration-200"
+                 [class.rotate-180]="isLeaveMenuOpen" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+            <span *ngIf="isCollapsed" class="nav-tooltip">Leave</span>
+          </button>
+          <div *ngIf="isLeaveMenuOpen && !isCollapsed" class="submenu-wrap">
+            <!-- All users can see their own leave requests -->
+            <a routerLink="/dashboard/leave/request" routerLinkActive="submenu-item-active" class="submenu-item">My Leaves</a>
+            
+            <!-- Manager Actions -->
+            <ng-container *ngIf="['manager','supervisor','hr','super-admin'].includes(user.role)">
+              <a routerLink="/dashboard/leave/team-approvals" routerLinkActive="submenu-item-active" class="submenu-item">Team Approvals</a>
+            </ng-container>
+            
+            <!-- Leave Calendar - Management Roles -->
+            <ng-container *ngIf="['manager','supervisor','hr','super-admin'].includes(user.role)">
+              <a routerLink="/dashboard/leave/calendar" routerLinkActive="submenu-item-active" class="submenu-item">Leave Calendar</a>
+            </ng-container>
+            
+            <a *ngIf="user.role === 'hr' || user.role === 'super-admin'"
+               routerLink="/dashboard/leave/all-applications" routerLinkActive="submenu-item-active" class="submenu-item">All Applications</a>
+          </div>
+        </div>
+
+        <!-- Time & Attendance dropdown -->
+        <div class="relative" routerLinkActive="active-parent" #attendanceRla2="routerLinkActive">
+          <button (click)="toggleAttendanceMenu()"
+                  class="nav-item group w-full"
+                  [class.nav-item-active]="isAttendanceMenuOpen || attendanceRla2.isActive"
+                  [class.justify-center]="isCollapsed"
+                  [class.px-0]="isCollapsed">
+            <svg class="w-[18px] h-[18px] flex-shrink-0" [class.mx-auto]="isCollapsed" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <span *ngIf="!isCollapsed" class="flex-1 text-left">Time &amp; Attendance</span>
+            <svg *ngIf="!isCollapsed" class="w-3.5 h-3.5 flex-shrink-0 transition-transform duration-200"
+                 [class.rotate-180]="isAttendanceMenuOpen" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+            <span *ngIf="isCollapsed" class="nav-tooltip">Time &amp; Attendance</span>
+          </button>
+          <div *ngIf="isAttendanceMenuOpen && !isCollapsed" class="submenu-wrap">
+            <a routerLink="/dashboard/my-attendance" routerLinkActive="submenu-item-active" class="submenu-item">My Attendance</a>
+            <a routerLink="/dashboard/my-schedule" routerLinkActive="submenu-item-active" class="submenu-item">My Schedule</a>
+            <a *ngIf="user.role === 'hr'" routerLink="/dashboard/teams-attendance" routerLinkActive="submenu-item-active" class="submenu-item">Teams Attendance</a>
+            <a *ngIf="user.role === 'hr'" routerLink="/dashboard/shift-management" routerLinkActive="submenu-item-active" class="submenu-item">Shift Management</a>
+            <a *ngIf="user.role === 'hr' || user.role === 'manager' || user.role === 'supervisor'" routerLink="/dashboard/schedule-builder" routerLinkActive="submenu-item-active" class="submenu-item">Schedule Builder</a>
+          </div>
+        </div>
+
+        <!-- Performance dropdown -->
+        <div class="relative" routerLinkActive="active-parent" #perfRla="routerLinkActive">
+          <button (click)="togglePerformanceMenu()"
+                  class="nav-item group w-full"
+                  [class.nav-item-active]="isPerformanceMenuOpen || perfRla.isActive"
+                  [class.justify-center]="isCollapsed" [class.px-0]="isCollapsed">
+            <svg class="w-[18px] h-[18px] flex-shrink-0" [class.mx-auto]="isCollapsed" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+            </svg>
+            <span *ngIf="!isCollapsed" class="flex-1 text-left">Performance</span>
+            <svg *ngIf="!isCollapsed" class="w-3.5 h-3.5 flex-shrink-0 transition-transform duration-200"
+                 [class.rotate-180]="isPerformanceMenuOpen" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+            <span *ngIf="isCollapsed" class="nav-tooltip">Performance</span>
+          </button>
+          <div *ngIf="isPerformanceMenuOpen && !isCollapsed" class="submenu-wrap">
+            <a routerLink="/dashboard/performance" [queryParams]="{view:'my'}"
+               routerLinkActive="submenu-item-active" [routerLinkActiveOptions]="{exact:true}" class="submenu-item">My Performance</a>
+            <a *ngIf="['hr','manager','supervisor','cto','super-admin'].includes(user.role)"
+               routerLink="/dashboard/performance" [queryParams]="{view:'team'}"
+               routerLinkActive="submenu-item-active" class="submenu-item">Team Reviews</a>
+            <a *ngIf="user.role === 'hr' || user.role === 'manager' || user.role === 'super-admin'"
+               routerLink="/dashboard/performance" [queryParams]="{view:'all'}"
+               routerLinkActive="submenu-item-active" class="submenu-item">All Reviews</a>
+          </div>
+        </div>
+
+        <!-- Configuration dropdown (HR/Admin only) -->
+        <ng-container *ngIf="user.role === 'hr' || user.role === 'super-admin'">
+
+          <ng-container *ngIf="!isCollapsed">
+            <p class="nav-section-label px-3 pt-4 pb-2">Administration</p>
+          </ng-container>
+          <div *ngIf="isCollapsed" class="h-px bg-slate-800/60 mx-2 my-3"></div>
+
+          <div class="relative" routerLinkActive="active-parent" #configRla="routerLinkActive">
+            <button (click)="toggleConfigMenu()"
+                    class="nav-item group w-full"
+                    [class.nav-item-active]="isConfigMenuOpen || configRla.isActive"
+                    [class.justify-center]="isCollapsed" [class.px-0]="isCollapsed">
+              <svg class="w-[18px] h-[18px] flex-shrink-0" [class.mx-auto]="isCollapsed" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+              </svg>
+              <span *ngIf="!isCollapsed" class="flex-1 text-left">Configuration</span>
+              <svg *ngIf="!isCollapsed" class="w-3.5 h-3.5 flex-shrink-0 transition-transform duration-200"
+                   [class.rotate-180]="isConfigMenuOpen" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+              <span *ngIf="isCollapsed" class="nav-tooltip">Configuration</span>
+            </button>
+            <div *ngIf="isConfigMenuOpen && !isCollapsed" class="submenu-wrap">
+              <a routerLink="/dashboard/leave/policies" routerLinkActive="submenu-item-active" class="submenu-item">Leave Policies</a>
+              <a routerLink="/dashboard/leave/work-calendar" routerLinkActive="submenu-item-active" class="submenu-item">Work Calendar</a>
+              <a routerLink="/dashboard/leave/approval-workflows" routerLinkActive="submenu-item-active" class="submenu-item">Approval Workflow</a>
+              <a routerLink="/dashboard/leave/balance-management" routerLinkActive="submenu-item-active" class="submenu-item">Balance Management</a>
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- My Team (supervisor / cto / accountant / staff) -->
+        <ng-container *ngIf="!['employee','manager','hr','super-admin'].includes(user.role)">
+          <a routerLink="/dashboard/team" routerLinkActive="nav-item-active"
+             class="nav-item group" [class.justify-center]="isCollapsed" [class.px-0]="isCollapsed">
+            <svg class="w-[18px] h-[18px] flex-shrink-0" [class.mx-auto]="isCollapsed" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+            </svg>
+            <span *ngIf="!isCollapsed">My Team</span>
+            <span *ngIf="isCollapsed" class="nav-tooltip">My Team</span>
+          </a>
+        </ng-container>
+
+        <!-- Manager links -->
+        <ng-container *ngIf="user.role === 'manager' || user.role === 'supervisor'">
+          <a href="#" class="nav-item group" [class.justify-center]="isCollapsed" [class.px-0]="isCollapsed">
+            <svg class="w-[18px] h-[18px] flex-shrink-0" [class.mx-auto]="isCollapsed" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+            </svg>
+            <span *ngIf="!isCollapsed">Reports</span>
+            <span *ngIf="isCollapsed" class="nav-tooltip">Reports</span>
+          </a>
+        </ng-container>
+
+        <!-- Accountant links -->
+        <ng-container *ngIf="user.role === 'accountant'">
+          <a href="#" class="nav-item group" [class.justify-center]="isCollapsed" [class.px-0]="isCollapsed">
+            <svg class="w-[18px] h-[18px] flex-shrink-0" [class.mx-auto]="isCollapsed" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <span *ngIf="!isCollapsed">Payroll</span>
+            <span *ngIf="isCollapsed" class="nav-tooltip">Payroll</span>
+          </a>
+          <a href="#" class="nav-item group" [class.justify-center]="isCollapsed" [class.px-0]="isCollapsed">
+            <svg class="w-[18px] h-[18px] flex-shrink-0" [class.mx-auto]="isCollapsed" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+            <span *ngIf="!isCollapsed">Expenses</span>
+            <span *ngIf="isCollapsed" class="nav-tooltip">Expenses</span>
+          </a>
+        </ng-container>
+
+        <!-- CTO links -->
+        <ng-container *ngIf="user.role === 'cto'">
+          <a href="#" class="nav-item group" [class.justify-center]="isCollapsed" [class.px-0]="isCollapsed">
+            <svg class="w-[18px] h-[18px] flex-shrink-0" [class.mx-auto]="isCollapsed" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+            </svg>
+            <span *ngIf="!isCollapsed">Reports</span>
+            <span *ngIf="isCollapsed" class="nav-tooltip">Reports</span>
+          </a>
+        </ng-container>
+
+      </ng-container><!-- end user$ -->
+    </nav>
+
+    <!-- ── Sidebar footer ── -->
+    <div class="flex-none border-t border-slate-800/60 p-3 space-y-1">
+
+      <!-- Theme toggle -->
+      <button (click)="themeService.toggleTheme()"
+              class="nav-item group w-full"
+              [class.justify-center]="isCollapsed" [class.px-0]="isCollapsed">
+        <svg *ngIf="themeService.isDarkMode()" class="w-[18px] h-[18px] flex-shrink-0 text-amber-400" [class.mx-auto]="isCollapsed" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+        </svg>
+        <svg *ngIf="!themeService.isDarkMode()" class="w-[18px] h-[18px] flex-shrink-0 text-slate-400" [class.mx-auto]="isCollapsed" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+        </svg>
+        <span *ngIf="!isCollapsed" class="text-sm">{{ themeService.isDarkMode() ? 'Light mode' : 'Dark mode' }}</span>
+        <span *ngIf="isCollapsed" class="nav-tooltip">Toggle theme</span>
+      </button>
+
+      <!-- Notifications -->
+      <button (click)="toggleNotifications()"
+              class="nav-item group w-full relative"
+              [class.justify-center]="isCollapsed" [class.px-0]="isCollapsed">
+        <span class="relative flex-shrink-0" [class.mx-auto]="isCollapsed">
+          <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+          </svg>
+          <span *ngIf="notificationService.getUnreadCount() > 0"
+                class="notif-badge absolute -top-1 -right-1 w-4 h-4 flex items-center justify-center rounded-full bg-indigo-600 text-[9px] font-bold text-white ring-2 ring-[#0f172a]">
+            {{ notificationService.getUnreadCount() }}
+          </span>
+        </span>
+        <span *ngIf="!isCollapsed" class="flex-1 text-left text-sm">Notifications</span>
+        <span *ngIf="isCollapsed" class="nav-tooltip">Notifications</span>
+      </button>
+
+      <!-- User row -->
+      <div *ngIf="user$ | async as user" class="pt-1">
+        <div class="flex items-center gap-3 px-3 py-2"
+             [class.justify-center]="isCollapsed">
+          <div class="w-8 h-8 min-w-[2rem] rounded-full bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center text-white text-xs font-bold flex-shrink-0 shadow-brand">
+            {{ user.username.charAt(0).toUpperCase() }}
+          </div>
+          <div *ngIf="!isCollapsed" class="flex-1 min-w-0">
+            <p class="text-sm font-semibold text-white truncate leading-tight">{{ user.username }}</p>
+            <p class="text-2xs text-slate-500 uppercase tracking-widest truncate mt-0.5">{{ user.designation || user.role }}</p>
+          </div>
+          <button (click)="logout()"
+                  *ngIf="!isCollapsed"
+                  class="p-1.5 rounded-lg text-slate-600 hover:text-red-400 hover:bg-red-500/10 transition-all flex-shrink-0"
+                  title="Sign out">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
+            </svg>
+          </button>
+        </div>
+        <!-- Collapsed logout -->
+        <button *ngIf="isCollapsed" (click)="logout()"
+                class="nav-item group w-full justify-center px-0 text-slate-600 hover:text-red-400 hover:bg-red-500/10">
+          <svg class="w-[18px] h-[18px] mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
+          </svg>
+          <span class="nav-tooltip">Sign out</span>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ═══════════════════════════════════════════════════
+       MAIN CONTENT AREA
+  ════════════════════════════════════════════════════ -->
+  <div class="flex-1 flex flex-col min-w-0 overflow-hidden">
+
+    <!-- Mobile top bar -->
+    <header class="md:hidden flex-none h-14 bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between px-4 sticky top-0 z-30 transition-colors">
+      <div class="flex items-center gap-3">
+        <button (click)="toggleSidebar()"
+                class="w-8 h-8 flex items-center justify-center rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+        <span class="text-sm font-bold text-slate-900 dark:text-white">Nexus<span class="text-indigo-600">HR</span></span>
+      </div>
+      <div *ngIf="user$ | async as user"
+           class="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center text-white text-xs font-bold">
+        {{ user.username.charAt(0).toUpperCase() }}
+      </div>
+    </header>
+
+    <!-- Page content -->
+    <main class="flex-1 overflow-y-auto">
+      <div class="p-5 sm:p-6 lg:p-8 max-w-[1400px] mx-auto">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     NOTIFICATION SLIDE-OVER
+════════════════════════════════════════════════════ -->
+<div *ngIf="showNotifications"
+     class="fixed inset-0 z-50 overflow-hidden"
+     role="dialog" aria-modal="true">
+
+  <!-- Backdrop -->
+  <div class="absolute inset-0 bg-slate-900/50 backdrop-blur-sm"
+       (click)="closeNotifications()"></div>
+
+  <!-- Panel -->
+  <div class="absolute inset-y-0 right-0 flex max-w-full"
+       (click)="$event.stopPropagation()">
+    <div class="w-screen max-w-md flex flex-col bg-white dark:bg-slate-900 shadow-card-xl border-l border-slate-100 dark:border-slate-800 transition-colors">
+
+      <!-- Header -->
+      <div class="flex-none px-6 py-5 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <h2 class="text-base font-bold text-slate-900 dark:text-white">Notifications</h2>
+          <span *ngIf="notificationService.getUnreadCount() > 0"
+                class="badge badge-blue">
+            {{ notificationService.getUnreadCount() }} new
+          </span>
+        </div>
+        <button (click)="closeNotifications()"
+                class="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Tab bar -->
+      <div class="flex-none px-6 pt-4 pb-0 border-b border-slate-100 dark:border-slate-800">
+        <div class="flex gap-1">
+          <button *ngFor="let tab of ['all','unread','read']"
+                  (click)="activeNotificationTab = $any(tab)"
+                  class="px-3 py-2 text-sm font-semibold rounded-t-lg border-b-2 transition-all capitalize"
+                  [ngClass]="activeNotificationTab === tab
+                    ? 'border-indigo-600 text-indigo-600 dark:text-indigo-400'
+                    : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'">
+            {{ tab }}
+          </button>
+        </div>
+      </div>
+
+      <!-- List -->
+      <div class="flex-1 overflow-y-auto p-4 space-y-2 bg-slate-50/50 dark:bg-slate-950/40">
+
+        <!-- Empty state -->
+        <div *ngIf="filteredNotifications.length === 0" class="empty-state">
+          <div class="empty-state-icon">
+            <svg class="w-7 h-7 text-slate-400 dark:text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+            </svg>
+          </div>
+          <p class="text-sm font-semibold text-slate-900 dark:text-white">No notifications</p>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 max-w-[220px]">Updates about tasks, leaves, and projects will appear here.</p>
+        </div>
+
+        <!-- Items -->
+        <div *ngFor="let notif of filteredNotifications"
+             (click)="markAsRead(notif)"
+             class="rounded-xl p-4 cursor-pointer border transition-all duration-150"
+             [ngClass]="notif.read
+               ? 'bg-white dark:bg-slate-900 border-slate-100 dark:border-slate-800 hover:border-slate-200 dark:hover:border-slate-700'
+               : 'bg-indigo-50/60 dark:bg-indigo-900/20 border-indigo-100 dark:border-indigo-800/40 hover:border-indigo-200 dark:hover:border-indigo-700'">
+          <div class="flex gap-3">
+            <!-- Icon -->
+            <div class="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center"
+                 [ngClass]="notif.read
+                   ? 'bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500'
+                   : 'bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400'">
+              <svg *ngIf="notif.type === 'success'" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <svg *ngIf="notif.type === 'warning'" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
+              <svg *ngIf="!notif.type || notif.type === 'info'" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <!-- Content -->
+            <div class="flex-1 min-w-0">
+              <div class="flex items-start justify-between gap-2 mb-0.5">
+                <p class="text-sm font-semibold text-slate-900 dark:text-white truncate">{{ notif.title }}</p>
+                <span class="text-2xs flex-shrink-0 mt-0.5"
+                      [ngClass]="notif.read ? 'text-slate-400 dark:text-slate-500' : 'text-indigo-500 dark:text-indigo-400 font-medium'">
+                  {{ formatDate(notif.createdAt) }}
+                </span>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2">{{ notif.message }}</p>
+            </div>
+            <!-- Unread dot -->
+            <div *ngIf="!notif.read" class="flex-shrink-0 mt-1.5">
+              <span class="w-2 h-2 bg-indigo-600 rounded-full block"></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,1594 @@
+[
+  {
+    "id": 1788429899053,
+    "userId": 1783502564401,
+    "description": "I am working on admin dashboard",
+    "timestamp": "2026-09-03T10:04:59.053Z"
+  },
+  {
+    "id": 1788492972955,
+    "userId": 1764829943217,
+    "action": "schedule_created",
+    "category": "schedule",
+    "description": "Assigned Austin Agbara to Morning Shift on 2026-09-04",
+    "metadata": {
+      "scheduleId": "1788492972943"
+    },
+    "timestamp": "2026-09-04T03:36:12.955Z"
+  },
+  {
+    "id": 1788493019507,
+    "userId": 1764829943217,
+    "action": "schedule_deleted",
+    "category": "schedule",
+    "description": "Deleted schedule for 2026-09-04",
+    "metadata": {
+      "scheduleId": "1788492972943"
+    },
+    "timestamp": "2026-09-04T03:36:59.507Z"
+  },
+  {
+    "id": 1788493067284,
+    "userId": 1764829943217,
+    "action": "schedule_created",
+    "category": "schedule",
+    "description": "Assigned Austin Agbara to Morning Shift on 2026-09-03",
+    "metadata": {
+      "scheduleId": "1788493067266"
+    },
+    "timestamp": "2026-09-04T03:37:47.284Z"
+  },
+  {
+    "id": 1788495078608,
+    "userId": 1764829943217,
+    "action": "shift_updated",
+    "category": "shift",
+    "description": "Updated shift: Morning Shift",
+    "metadata": {
+      "shiftId": "shift_001"
+    },
+    "timestamp": "2026-09-04T04:11:18.608Z"
+  },
+  {
+    "id": 1788495124278,
+    "userId": 1764829943217,
+    "action": "shift_updated",
+    "category": "shift",
+    "description": "Updated shift: Afternoon Shift",
+    "metadata": {
+      "shiftId": "shift_002"
+    },
+    "timestamp": "2026-09-04T04:12:04.278Z"
+  },
+  {
+    "id": 1788495198845,
+    "userId": 1764829943217,
+    "action": "schedule_created",
+    "category": "schedule",
+    "description": "Assigned Brian Susan to Morning Shift on 2026-09-03",
+    "metadata": {
+      "scheduleId": "1788495198840"
+    },
+    "timestamp": "2026-09-04T04:13:18.845Z"
+  },
+  {
+    "id": 1788514207736,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 2 schedules from 2026-08-30 to 2026-09-05",
+    "metadata": {
+      "deletedCount": 2,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-05"
+    },
+    "timestamp": "2026-09-04T09:30:07.736Z"
+  },
+  {
+    "id": 1788514219823,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 0 schedules from 2026-08-30 to 2026-09-05",
+    "metadata": {
+      "deletedCount": 0,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-05"
+    },
+    "timestamp": "2026-09-04T09:30:19.823Z"
+  },
+  {
+    "id": 1788515381974,
+    "userId": 1764829943217,
+    "action": "weekly_availability_updated",
+    "category": "availability",
+    "description": "Updated weekly availability preferences",
+    "metadata": {
+      "employeeId": 1764829943216,
+      "count": 7
+    },
+    "timestamp": "2026-09-04T09:49:41.974Z"
+  },
+  {
+    "id": 1788515686010,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 0 schedules from 2026-10-11 to 2026-10-17",
+    "metadata": {
+      "deletedCount": 0,
+      "startDate": "2026-10-11",
+      "endDate": "2026-10-17"
+    },
+    "timestamp": "2026-09-04T09:54:46.010Z"
+  },
+  {
+    "id": 1788516090415,
+    "userId": 1783502564401,
+    "action": "weekly_availability_updated",
+    "category": "availability",
+    "description": "Updated weekly availability preferences",
+    "metadata": {
+      "employeeId": 1783502564400,
+      "count": 7
+    },
+    "timestamp": "2026-09-04T10:01:30.415Z"
+  },
+  {
+    "id": 1788516127718,
+    "userId": 1783502564401,
+    "action": "weekly_availability_updated",
+    "category": "availability",
+    "description": "Updated weekly availability preferences",
+    "metadata": {
+      "employeeId": 1783502564400,
+      "count": 7
+    },
+    "timestamp": "2026-09-04T10:02:07.718Z"
+  },
+  {
+    "id": 1788516166841,
+    "userId": 1783502564401,
+    "action": "weekly_availability_updated",
+    "category": "availability",
+    "description": "Updated weekly availability preferences",
+    "metadata": {
+      "employeeId": 1783502564400,
+      "count": 7
+    },
+    "timestamp": "2026-09-04T10:02:46.841Z"
+  },
+  {
+    "id": 1788516197541,
+    "userId": 1764829943217,
+    "action": "schedule_created",
+    "category": "schedule",
+    "description": "Assigned Austin Agbara to Morning Shift on 2026-09-04",
+    "metadata": {
+      "scheduleId": "1788516197530"
+    },
+    "timestamp": "2026-09-04T10:03:17.541Z"
+  },
+  {
+    "id": 1788516227294,
+    "userId": 1764829943217,
+    "action": "schedule_deleted",
+    "category": "schedule",
+    "description": "Deleted schedule for 2026-09-04",
+    "metadata": {
+      "scheduleId": "1788516197530"
+    },
+    "timestamp": "2026-09-04T10:03:47.294Z"
+  },
+  {
+    "id": 1788516241297,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 0 schedules from 2026-08-30 to 2026-09-05",
+    "metadata": {
+      "deletedCount": 0,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-05"
+    },
+    "timestamp": "2026-09-04T10:04:01.297Z"
+  },
+  {
+    "id": 1788516266512,
+    "userId": 1764829943217,
+    "action": "schedule_created",
+    "category": "schedule",
+    "description": "Assigned Austin Agbara to Morning Shift on 2026-09-04",
+    "metadata": {
+      "scheduleId": "1788516266501"
+    },
+    "timestamp": "2026-09-04T10:04:26.512Z"
+  },
+  {
+    "id": 1788516391633,
+    "userId": 1783502564401,
+    "action": "weekly_availability_updated",
+    "category": "availability",
+    "description": "Updated weekly availability preferences",
+    "metadata": {
+      "employeeId": 1783502564400,
+      "count": 7
+    },
+    "timestamp": "2026-09-04T10:06:31.633Z"
+  },
+  {
+    "id": 1788516604450,
+    "userId": 1783502564401,
+    "action": "weekly_availability_updated",
+    "category": "availability",
+    "description": "Updated weekly availability preferences",
+    "metadata": {
+      "employeeId": 1783502564400,
+      "count": 7
+    },
+    "timestamp": "2026-09-04T10:10:04.450Z"
+  },
+  {
+    "id": 1788517025666,
+    "userId": 1764829943217,
+    "action": "schedule_created",
+    "category": "schedule",
+    "description": "Assigned Austin Agbara to Morning Shift on 2026-09-02",
+    "metadata": {
+      "scheduleId": "1788517025649"
+    },
+    "timestamp": "2026-09-04T10:17:05.666Z"
+  },
+  {
+    "id": 1788517026650,
+    "userId": 1764829943217,
+    "action": "schedule_created",
+    "category": "schedule",
+    "description": "Assigned Austin Agbara to Morning Shift on 2026-09-03",
+    "metadata": {
+      "scheduleId": "1788517026632"
+    },
+    "timestamp": "2026-09-04T10:17:06.650Z"
+  },
+  {
+    "id": 1788517028165,
+    "userId": 1764829943217,
+    "action": "schedule_created",
+    "category": "schedule",
+    "description": "Assigned Austin Agbara to Morning Shift on 2026-09-01",
+    "metadata": {
+      "scheduleId": "1788517028143"
+    },
+    "timestamp": "2026-09-04T10:17:08.165Z"
+  },
+  {
+    "id": 1788517029337,
+    "userId": 1764829943217,
+    "action": "schedule_created",
+    "category": "schedule",
+    "description": "Assigned Austin Agbara to Morning Shift on 2026-08-31",
+    "metadata": {
+      "scheduleId": "1788517029315"
+    },
+    "timestamp": "2026-09-04T10:17:09.337Z"
+  },
+  {
+    "id": 1788517030064,
+    "userId": 1764829943217,
+    "action": "schedule_created",
+    "category": "schedule",
+    "description": "Assigned Austin Agbara to Morning Shift on 2026-08-30",
+    "metadata": {
+      "scheduleId": "1788517030048"
+    },
+    "timestamp": "2026-09-04T10:17:10.065Z"
+  },
+  {
+    "id": 1788517650680,
+    "userId": 1764829943217,
+    "action": "schedule_deleted",
+    "category": "schedule",
+    "description": "Deleted schedule for 2026-09-04",
+    "metadata": {
+      "scheduleId": "1788516266501"
+    },
+    "timestamp": "2026-09-04T10:27:30.680Z"
+  },
+  {
+    "id": 1788518202628,
+    "userId": 1783502564401,
+    "action": "weekly_availability_updated",
+    "category": "availability",
+    "description": "Updated weekly availability preferences",
+    "metadata": {
+      "employeeId": 1783502564400,
+      "count": 7
+    },
+    "timestamp": "2026-09-04T10:36:42.628Z"
+  },
+  {
+    "id": 1788518617753,
+    "userId": 1783502564401,
+    "action": "weekly_availability_updated",
+    "category": "availability",
+    "description": "Updated weekly availability preferences",
+    "metadata": {
+      "employeeId": 1783502564400,
+      "count": 7
+    },
+    "timestamp": "2026-09-04T10:43:37.753Z"
+  },
+  {
+    "id": 1788518684701,
+    "userId": 1783502564401,
+    "action": "weekly_availability_updated",
+    "category": "availability",
+    "description": "Updated weekly availability preferences",
+    "metadata": {
+      "employeeId": 1783502564400,
+      "count": 7
+    },
+    "timestamp": "2026-09-04T10:44:44.701Z"
+  },
+  {
+    "id": 1788518699409,
+    "userId": 1783502564401,
+    "action": "weekly_availability_updated",
+    "category": "availability",
+    "description": "Updated weekly availability preferences",
+    "metadata": {
+      "employeeId": 1783502564400,
+      "count": 7
+    },
+    "timestamp": "2026-09-04T10:44:59.409Z"
+  },
+  {
+    "id": 1788519055744,
+    "userId": 1783502564401,
+    "action": "weekly_availability_updated",
+    "category": "availability",
+    "description": "Updated weekly availability preferences",
+    "metadata": {
+      "employeeId": 1783502564400,
+      "count": 7
+    },
+    "timestamp": "2026-09-04T10:50:55.744Z"
+  },
+  {
+    "id": 1788519065083,
+    "userId": 1783502564401,
+    "action": "weekly_availability_updated",
+    "category": "availability",
+    "description": "Updated weekly availability preferences",
+    "metadata": {
+      "employeeId": 1783502564400,
+      "count": 7
+    },
+    "timestamp": "2026-09-04T10:51:05.083Z"
+  },
+  {
+    "id": 1788519075600,
+    "userId": 1783502564401,
+    "action": "weekly_availability_updated",
+    "category": "availability",
+    "description": "Updated weekly availability preferences",
+    "metadata": {
+      "employeeId": 1783502564400,
+      "count": 7
+    },
+    "timestamp": "2026-09-04T10:51:15.600Z"
+  },
+  {
+    "id": 1788519130824,
+    "userId": 1783502564401,
+    "action": "weekly_availability_updated",
+    "category": "availability",
+    "description": "Updated weekly availability preferences",
+    "metadata": {
+      "employeeId": 1783502564400,
+      "count": 7
+    },
+    "timestamp": "2026-09-04T10:52:10.824Z"
+  },
+  {
+    "id": 1788519297430,
+    "userId": 1783502564401,
+    "action": "weekly_availability_updated",
+    "category": "availability",
+    "description": "Updated weekly availability preferences",
+    "metadata": {
+      "employeeId": 1783502564400,
+      "count": 7
+    },
+    "timestamp": "2026-09-04T10:54:57.430Z"
+  },
+  {
+    "id": 1788520441474,
+    "userId": 1783502564401,
+    "action": "weekly_availability_updated",
+    "category": "availability",
+    "description": "Updated weekly availability preferences",
+    "metadata": {
+      "employeeId": 1783502564400,
+      "count": 7
+    },
+    "timestamp": "2026-09-04T11:14:01.474Z"
+  },
+  {
+    "id": 1788521180827,
+    "userId": 1783502564401,
+    "action": "weekly_availability_updated",
+    "category": "availability",
+    "description": "Updated weekly availability preferences",
+    "metadata": {
+      "employeeId": 1783502564400,
+      "count": 7
+    },
+    "timestamp": "2026-09-04T11:26:20.827Z"
+  },
+  {
+    "id": 1788522892839,
+    "userId": 1783502564401,
+    "action": "time_off_requested",
+    "category": "time_off",
+    "description": "Requested time off from 2026-09-05 to 2026-09-06",
+    "metadata": {
+      "requestId": "1788522892834"
+    },
+    "timestamp": "2026-09-04T11:54:52.839Z"
+  },
+  {
+    "id": 1788522921630,
+    "userId": 1783502564401,
+    "action": "time_off_requested",
+    "category": "time_off",
+    "description": "Requested time off from 2026-09-08 to 2026-09-09",
+    "metadata": {
+      "requestId": "1788522921626"
+    },
+    "timestamp": "2026-09-04T11:55:21.630Z"
+  },
+  {
+    "id": 1788522931590,
+    "userId": 1783502564401,
+    "action": "time_off_requested",
+    "category": "time_off",
+    "description": "Requested time off from 2026-09-08 to 2026-09-09",
+    "metadata": {
+      "requestId": "1788522931588"
+    },
+    "timestamp": "2026-09-04T11:55:31.590Z"
+  },
+  {
+    "id": 1788551238419,
+    "userId": 1764829943217,
+    "action": "weekly_availability_updated",
+    "category": "availability",
+    "description": "Updated weekly availability preferences",
+    "metadata": {
+      "employeeId": 1764829943216,
+      "count": 7
+    },
+    "timestamp": "2026-09-04T19:47:18.419Z"
+  },
+  {
+    "id": 1788551446870,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 5 schedules from 2026-08-30 to 2026-09-05",
+    "metadata": {
+      "deletedCount": 5,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-05"
+    },
+    "timestamp": "2026-09-04T19:50:46.870Z"
+  },
+  {
+    "id": 1788551774967,
+    "userId": 1764829943217,
+    "action": "schedules_auto_generated",
+    "category": "schedule",
+    "description": "Auto-generated 5 schedules from 2026-08-30 to 2026-09-05",
+    "metadata": {
+      "count": 5,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-05",
+      "errors": 12,
+      "conflicts": 0
+    },
+    "timestamp": "2026-09-04T19:56:14.967Z"
+  },
+  {
+    "id": 1788552036561,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 5 schedules from 2026-08-30 to 2026-09-05",
+    "metadata": {
+      "deletedCount": 5,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-05"
+    },
+    "timestamp": "2026-09-04T20:00:36.561Z"
+  },
+  {
+    "id": 1788552426673,
+    "userId": 1764829943217,
+    "action": "schedules_auto_generated",
+    "category": "schedule",
+    "description": "Auto-generated 5 schedules from 2026-08-30 to 2026-09-05",
+    "metadata": {
+      "count": 5,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-05",
+      "errors": 12,
+      "conflicts": 0
+    },
+    "timestamp": "2026-09-04T20:07:06.673Z"
+  },
+  {
+    "id": 1788552501210,
+    "userId": 1764829943217,
+    "action": "weekly_availability_updated",
+    "category": "availability",
+    "description": "Updated weekly availability preferences",
+    "metadata": {
+      "employeeId": 1764829943216,
+      "count": 7
+    },
+    "timestamp": "2026-09-04T20:08:21.210Z"
+  },
+  {
+    "id": 1788552545322,
+    "userId": 1764829943217,
+    "action": "schedules_auto_generated",
+    "category": "schedule",
+    "description": "Auto-generated 6 schedules from 2026-08-30 to 2026-09-05",
+    "metadata": {
+      "count": 6,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-05",
+      "errors": 11,
+      "conflicts": 0
+    },
+    "timestamp": "2026-09-04T20:09:05.322Z"
+  },
+  {
+    "id": 1788552856004,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 11 schedules from 2026-08-30 to 2026-09-05",
+    "metadata": {
+      "deletedCount": 11,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-05"
+    },
+    "timestamp": "2026-09-04T20:14:16.004Z"
+  },
+  {
+    "id": 1788552864256,
+    "userId": 1764829943217,
+    "action": "schedules_auto_generated",
+    "category": "schedule",
+    "description": "Auto-generated 2 schedules from 2026-08-30 to 2026-09-05",
+    "metadata": {
+      "count": 2,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-05",
+      "errors": 2,
+      "conflicts": 0
+    },
+    "timestamp": "2026-09-04T20:14:24.256Z"
+  },
+  {
+    "id": 1788553344254,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 2 schedules from 2026-08-30 to 2026-09-05",
+    "metadata": {
+      "deletedCount": 2,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-05"
+    },
+    "timestamp": "2026-09-04T20:22:24.254Z"
+  },
+  {
+    "id": 1788553436763,
+    "userId": 1764829943217,
+    "action": "schedules_auto_generated",
+    "category": "schedule",
+    "description": "Auto-generated 1 schedules from 2026-08-30 to 2026-09-05",
+    "metadata": {
+      "count": 1,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-05",
+      "errors": 3,
+      "conflicts": 0
+    },
+    "timestamp": "2026-09-04T20:23:56.763Z"
+  },
+  {
+    "id": 1788553521608,
+    "userId": 1783502564401,
+    "action": "weekly_availability_updated",
+    "category": "availability",
+    "description": "Updated weekly availability preferences",
+    "metadata": {
+      "employeeId": 1783502564400,
+      "count": 7
+    },
+    "timestamp": "2026-09-04T20:25:21.608Z"
+  },
+  {
+    "id": 1788553548691,
+    "userId": 1764829943217,
+    "action": "schedules_auto_generated",
+    "category": "schedule",
+    "description": "Auto-generated 0 schedules from 2026-08-30 to 2026-09-05",
+    "metadata": {
+      "count": 0,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-05",
+      "errors": 4,
+      "conflicts": 0
+    },
+    "timestamp": "2026-09-04T20:25:48.691Z"
+  },
+  {
+    "id": 1788553590489,
+    "userId": 1764829943217,
+    "action": "schedules_auto_generated",
+    "category": "schedule",
+    "description": "Auto-generated 1 schedules from 2026-08-30 to 2026-09-06",
+    "metadata": {
+      "count": 1,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-06",
+      "errors": 4,
+      "conflicts": 0
+    },
+    "timestamp": "2026-09-04T20:26:30.489Z"
+  },
+  {
+    "id": 1788553624294,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 1 schedules from 2026-08-30 to 2026-09-05",
+    "metadata": {
+      "deletedCount": 1,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-05"
+    },
+    "timestamp": "2026-09-04T20:27:04.294Z"
+  },
+  {
+    "id": 1788553636759,
+    "userId": 1764829943217,
+    "action": "schedules_auto_generated",
+    "category": "schedule",
+    "description": "Auto-generated 1 schedules from 2026-08-30 to 2026-09-06",
+    "metadata": {
+      "count": 1,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-06",
+      "errors": 4,
+      "conflicts": 0
+    },
+    "timestamp": "2026-09-04T20:27:16.759Z"
+  },
+  {
+    "id": 1788553777364,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 1 schedules from 2026-08-30 to 2026-09-05",
+    "metadata": {
+      "deletedCount": 1,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-05"
+    },
+    "timestamp": "2026-09-04T20:29:37.364Z"
+  },
+  {
+    "id": 1788553786612,
+    "userId": 1764829943217,
+    "action": "schedules_auto_generated",
+    "category": "schedule",
+    "description": "Auto-generated 1 schedules from 2026-08-30 to 2026-09-06",
+    "metadata": {
+      "count": 1,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-06",
+      "errors": 4,
+      "conflicts": 0
+    },
+    "timestamp": "2026-09-04T20:29:46.612Z"
+  },
+  {
+    "id": 1788554196359,
+    "userId": 1764829943217,
+    "action": "shift_updated",
+    "category": "shift",
+    "description": "Updated shift: Morning Shift",
+    "metadata": {
+      "shiftId": "shift_001"
+    },
+    "timestamp": "2026-09-04T20:36:36.359Z"
+  },
+  {
+    "id": 1788554220443,
+    "userId": 1764829943217,
+    "action": "shift_updated",
+    "category": "shift",
+    "description": "Updated shift: Morning Shift",
+    "metadata": {
+      "shiftId": "shift_001"
+    },
+    "timestamp": "2026-09-04T20:37:00.443Z"
+  },
+  {
+    "id": 1788554254304,
+    "userId": 1764829943217,
+    "action": "shift_updated",
+    "category": "shift",
+    "description": "Updated shift: Afternoon Shift",
+    "metadata": {
+      "shiftId": "shift_002"
+    },
+    "timestamp": "2026-09-04T20:37:34.304Z"
+  },
+  {
+    "id": 1788554293980,
+    "userId": 1764829943217,
+    "action": "shift_updated",
+    "category": "shift",
+    "description": "Updated shift: Night Shift",
+    "metadata": {
+      "shiftId": "shift_003"
+    },
+    "timestamp": "2026-09-04T20:38:13.980Z"
+  },
+  {
+    "id": 1788554304334,
+    "userId": 1764829943217,
+    "action": "shift_updated",
+    "category": "shift",
+    "description": "Updated shift: Weekend Day Shift",
+    "metadata": {
+      "shiftId": "shift_004"
+    },
+    "timestamp": "2026-09-04T20:38:24.334Z"
+  },
+  {
+    "id": 1788554345473,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 1 schedules from 2026-08-30 to 2026-09-05",
+    "metadata": {
+      "deletedCount": 1,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-05"
+    },
+    "timestamp": "2026-09-04T20:39:05.473Z"
+  },
+  {
+    "id": 1788554350085,
+    "userId": 1764829943217,
+    "action": "schedules_auto_generated",
+    "category": "schedule",
+    "description": "Auto-generated 1 schedules from 2026-08-30 to 2026-09-05",
+    "metadata": {
+      "count": 1,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-05",
+      "errors": 6,
+      "conflicts": 0
+    },
+    "timestamp": "2026-09-04T20:39:10.085Z"
+  },
+  {
+    "id": 1788554483074,
+    "userId": 1783502564401,
+    "action": "weekly_availability_updated",
+    "category": "availability",
+    "description": "Updated weekly availability preferences",
+    "metadata": {
+      "employeeId": 1783502564400,
+      "count": 7
+    },
+    "timestamp": "2026-09-04T20:41:23.074Z"
+  },
+  {
+    "id": 1788554600810,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 1 schedules from 2026-08-30 to 2026-09-05",
+    "metadata": {
+      "deletedCount": 1,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-05"
+    },
+    "timestamp": "2026-09-04T20:43:20.810Z"
+  },
+  {
+    "id": 1788554614708,
+    "userId": 1764829943217,
+    "action": "schedules_auto_generated",
+    "category": "schedule",
+    "description": "Auto-generated 1 schedules from 2026-08-30 to 2026-09-06",
+    "metadata": {
+      "count": 1,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-06",
+      "errors": 10,
+      "conflicts": 0
+    },
+    "timestamp": "2026-09-04T20:43:34.708Z"
+  },
+  {
+    "id": 1788554869998,
+    "userId": 1764829943217,
+    "action": "schedules_auto_generated",
+    "category": "schedule",
+    "description": "Auto-generated 0 schedules from 2026-08-30 to 2026-09-06",
+    "metadata": {
+      "count": 0,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-06",
+      "errors": 11,
+      "conflicts": 0
+    },
+    "timestamp": "2026-09-04T20:47:49.998Z"
+  },
+  {
+    "id": 1788554877965,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 1 schedules from 2026-08-30 to 2026-09-05",
+    "metadata": {
+      "deletedCount": 1,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-05"
+    },
+    "timestamp": "2026-09-04T20:47:57.965Z"
+  },
+  {
+    "id": 1788554883393,
+    "userId": 1764829943217,
+    "action": "schedules_auto_generated",
+    "category": "schedule",
+    "description": "Auto-generated 1 schedules from 2026-08-30 to 2026-09-06",
+    "metadata": {
+      "count": 1,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-06",
+      "errors": 10,
+      "conflicts": 0
+    },
+    "timestamp": "2026-09-04T20:48:03.393Z"
+  },
+  {
+    "id": 1788555725225,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 1 schedules from 2026-08-30 to 2026-09-05",
+    "metadata": {
+      "deletedCount": 1,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-05"
+    },
+    "timestamp": "2026-09-04T21:02:05.225Z"
+  },
+  {
+    "id": 1788555734277,
+    "userId": 1764829943217,
+    "action": "schedules_auto_generated",
+    "category": "schedule",
+    "description": "Auto-generated 1 schedules from 2026-08-30 to 2026-09-06",
+    "metadata": {
+      "count": 1,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-06",
+      "errors": 10,
+      "conflicts": 0
+    },
+    "timestamp": "2026-09-04T21:02:14.277Z"
+  },
+  {
+    "id": 1788556842263,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 1 schedules from 2026-08-30 to 2026-09-05",
+    "metadata": {
+      "deletedCount": 1,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-05"
+    },
+    "timestamp": "2026-09-04T21:20:42.263Z"
+  },
+  {
+    "id": 1788556846916,
+    "userId": 1764829943217,
+    "action": "schedules_auto_generated",
+    "category": "schedule",
+    "description": "Auto-generated 1 schedules from 2026-08-30 to 2026-09-05",
+    "metadata": {
+      "count": 1,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-05",
+      "errors": 6,
+      "conflicts": 0
+    },
+    "timestamp": "2026-09-04T21:20:46.916Z"
+  },
+  {
+    "id": 1788557096517,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 1 schedules from 2026-08-30 to 2026-09-05",
+    "metadata": {
+      "deletedCount": 1,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-05"
+    },
+    "timestamp": "2026-09-04T21:24:56.517Z"
+  },
+  {
+    "id": 1788557186870,
+    "userId": 1764829943217,
+    "action": "schedules_auto_generated",
+    "category": "schedule",
+    "description": "Auto-generated 3 schedules from 2026-08-30 to 2026-09-14",
+    "metadata": {
+      "count": 3,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-14",
+      "errors": 35,
+      "conflicts": 0
+    },
+    "timestamp": "2026-09-04T21:26:26.870Z"
+  },
+  {
+    "id": 1788557208887,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 2 schedules from 2026-09-06 to 2026-09-12",
+    "metadata": {
+      "deletedCount": 2,
+      "startDate": "2026-09-06",
+      "endDate": "2026-09-12"
+    },
+    "timestamp": "2026-09-04T21:26:48.887Z"
+  },
+  {
+    "id": 1788557339582,
+    "userId": 1783718492655,
+    "action": "weekly_availability_updated",
+    "category": "availability",
+    "description": "Updated weekly availability preferences",
+    "metadata": {
+      "employeeId": 1783718492654,
+      "count": 7
+    },
+    "timestamp": "2026-09-04T21:28:59.582Z"
+  },
+  {
+    "id": 1788557402008,
+    "userId": 1764829943217,
+    "action": "schedules_auto_generated",
+    "category": "schedule",
+    "description": "Auto-generated 1 schedules from 2026-08-30 to 2026-09-05",
+    "metadata": {
+      "count": 1,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-05",
+      "errors": 6,
+      "conflicts": 0
+    },
+    "timestamp": "2026-09-04T21:30:02.008Z"
+  },
+  {
+    "id": 1788557974638,
+    "userId": 1783502564401,
+    "action": "weekly_availability_updated",
+    "category": "availability",
+    "description": "Updated weekly availability preferences",
+    "metadata": {
+      "employeeId": 1783502564400,
+      "count": 7
+    },
+    "timestamp": "2026-09-04T21:39:34.638Z"
+  },
+  {
+    "id": 1788558040851,
+    "userId": 1783502564401,
+    "action": "weekly_availability_updated",
+    "category": "availability",
+    "description": "Updated weekly availability preferences",
+    "metadata": {
+      "employeeId": 1783502564400,
+      "count": 7
+    },
+    "timestamp": "2026-09-04T21:40:40.851Z"
+  },
+  {
+    "id": 1788558119066,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 2 schedules from 2026-08-30 to 2026-09-05",
+    "metadata": {
+      "deletedCount": 2,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-05"
+    },
+    "timestamp": "2026-09-04T21:41:59.066Z"
+  },
+  {
+    "id": 1788558129987,
+    "userId": 1764829943217,
+    "action": "schedules_auto_generated",
+    "category": "schedule",
+    "description": "Auto-generated 3 schedules from 2026-08-30 to 2026-09-07",
+    "metadata": {
+      "count": 3,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-07",
+      "errors": 13,
+      "conflicts": 0
+    },
+    "timestamp": "2026-09-04T21:42:09.987Z"
+  },
+  {
+    "id": 1788558354133,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 0 schedules from 2026-08-30 to 2026-09-05",
+    "metadata": {
+      "deletedCount": 0,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-05"
+    },
+    "timestamp": "2026-09-04T21:45:54.133Z"
+  },
+  {
+    "id": 1788558392999,
+    "userId": 1764829943217,
+    "action": "schedules_auto_generated",
+    "category": "schedule",
+    "description": "Auto-generated 3 schedules from 2026-08-30 to 2026-09-06",
+    "metadata": {
+      "count": 3,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-06",
+      "errors": 10,
+      "conflicts": 0
+    },
+    "timestamp": "2026-09-04T21:46:32.999Z"
+  },
+  {
+    "id": 1788558417570,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 2 schedules from 2026-09-06 to 2026-09-12",
+    "metadata": {
+      "deletedCount": 2,
+      "startDate": "2026-09-06",
+      "endDate": "2026-09-12"
+    },
+    "timestamp": "2026-09-04T21:46:57.570Z"
+  },
+  {
+    "id": 1788558696393,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 1 schedules from 2026-08-30 to 2026-09-05",
+    "metadata": {
+      "deletedCount": 1,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-05"
+    },
+    "timestamp": "2026-09-04T21:51:36.393Z"
+  },
+  {
+    "id": 1788558706559,
+    "userId": 1764829943217,
+    "action": "schedules_auto_generated",
+    "category": "schedule",
+    "description": "Auto-generated 3 schedules from 2026-08-30 to 2026-09-07",
+    "metadata": {
+      "count": 3,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-07",
+      "errors": 13,
+      "conflicts": 0
+    },
+    "timestamp": "2026-09-04T21:51:46.559Z"
+  },
+  {
+    "id": 1788558814904,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 1 schedules from 2026-08-30 to 2026-09-05",
+    "metadata": {
+      "deletedCount": 1,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-05"
+    },
+    "timestamp": "2026-09-04T21:53:34.904Z"
+  },
+  {
+    "id": 1788558820752,
+    "userId": 1764829943217,
+    "action": "schedules_auto_generated",
+    "category": "schedule",
+    "description": "Auto-generated 1 schedules from 2026-08-30 to 2026-09-07",
+    "metadata": {
+      "count": 1,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-07",
+      "errors": 13,
+      "conflicts": 0
+    },
+    "timestamp": "2026-09-04T21:53:40.752Z"
+  },
+  {
+    "id": 1788559252642,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 1 schedules from 2026-08-30 to 2026-09-05",
+    "metadata": {
+      "deletedCount": 1,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-05"
+    },
+    "timestamp": "2026-09-04T22:00:52.642Z"
+  },
+  {
+    "id": 1788559261725,
+    "userId": 1764829943217,
+    "action": "schedules_auto_generated",
+    "category": "schedule",
+    "description": "Auto-generated 1 schedules from 2026-08-30 to 2026-09-06",
+    "metadata": {
+      "count": 1,
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-06",
+      "errors": 10,
+      "conflicts": 0
+    },
+    "timestamp": "2026-09-04T22:01:01.725Z"
+  },
+  {
+    "id": 1788559705742,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 3 schedules from 2026-08-31 to 2026-09-06",
+    "metadata": {
+      "deletedCount": 3,
+      "startDate": "2026-08-31",
+      "endDate": "2026-09-06"
+    },
+    "timestamp": "2026-09-04T22:08:25.742Z"
+  },
+  {
+    "id": 1788559715898,
+    "userId": 1764829943217,
+    "action": "schedules_auto_generated",
+    "category": "schedule",
+    "description": "Auto-generated 3 schedules from 2026-08-31 to 2026-09-06",
+    "metadata": {
+      "count": 3,
+      "startDate": "2026-08-31",
+      "endDate": "2026-09-06",
+      "errors": 10,
+      "conflicts": 0
+    },
+    "timestamp": "2026-09-04T22:08:35.898Z"
+  },
+  {
+    "id": 1788560223958,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 3 schedules from 2026-08-31 to 2026-09-06",
+    "metadata": {
+      "deletedCount": 3,
+      "startDate": "2026-08-31",
+      "endDate": "2026-09-06"
+    },
+    "timestamp": "2026-09-04T22:17:03.958Z"
+  },
+  {
+    "id": 1788560232270,
+    "userId": 1764829943217,
+    "action": "schedules_auto_generated",
+    "category": "schedule",
+    "description": "Auto-generated 2 schedules from 2026-08-31 to 2026-09-06",
+    "metadata": {
+      "count": 2,
+      "startDate": "2026-08-31",
+      "endDate": "2026-09-06",
+      "errors": 10,
+      "conflicts": 0
+    },
+    "timestamp": "2026-09-04T22:17:12.270Z"
+  },
+  {
+    "id": 1788560650543,
+    "userId": 1783502564401,
+    "action": "weekly_availability_updated",
+    "category": "availability",
+    "description": "Updated weekly availability preferences",
+    "metadata": {
+      "employeeId": 1783502564400,
+      "count": 7
+    },
+    "timestamp": "2026-09-04T22:24:10.543Z"
+  },
+  {
+    "id": 1788560690453,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 2 schedules from 2026-08-31 to 2026-09-06",
+    "metadata": {
+      "deletedCount": 2,
+      "startDate": "2026-08-31",
+      "endDate": "2026-09-06"
+    },
+    "timestamp": "2026-09-04T22:24:50.453Z"
+  },
+  {
+    "id": 1788560703727,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 0 schedules from 2026-08-31 to 2026-09-06",
+    "metadata": {
+      "deletedCount": 0,
+      "startDate": "2026-08-31",
+      "endDate": "2026-09-06"
+    },
+    "timestamp": "2026-09-04T22:25:03.727Z"
+  },
+  {
+    "id": 1788560785085,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 0 schedules from 2026-08-31 to 2026-09-06",
+    "metadata": {
+      "deletedCount": 0,
+      "startDate": "2026-08-31",
+      "endDate": "2026-09-06"
+    },
+    "timestamp": "2026-09-04T22:26:25.085Z"
+  },
+  {
+    "id": 1788560987691,
+    "userId": 1764829943217,
+    "action": "schedules_auto_generated",
+    "category": "schedule",
+    "description": "Auto-generated 2 schedules from 2026-08-31 to 2026-09-06",
+    "metadata": {
+      "count": 2,
+      "startDate": "2026-08-31",
+      "endDate": "2026-09-06",
+      "errors": 1,
+      "conflicts": 0
+    },
+    "timestamp": "2026-09-04T22:29:47.691Z"
+  },
+  {
+    "id": 1788564322718,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 2 schedules from 2026-08-31 to 2026-09-06",
+    "metadata": {
+      "deletedCount": 2,
+      "startDate": "2026-08-31",
+      "endDate": "2026-09-06"
+    },
+    "timestamp": "2026-09-04T23:25:22.718Z"
+  },
+  {
+    "id": 1788564332199,
+    "userId": 1764829943217,
+    "action": "schedules_auto_generated",
+    "category": "schedule",
+    "description": "Auto-generated 2 schedules from 2026-08-31 to 2026-09-06",
+    "metadata": {
+      "count": 2,
+      "startDate": "2026-08-31",
+      "endDate": "2026-09-06",
+      "errors": 1,
+      "conflicts": 0
+    },
+    "timestamp": "2026-09-04T23:25:32.199Z"
+  },
+  {
+    "id": 1788564375054,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 2 schedules from 2026-08-31 to 2026-09-06",
+    "metadata": {
+      "deletedCount": 2,
+      "startDate": "2026-08-31",
+      "endDate": "2026-09-06"
+    },
+    "timestamp": "2026-09-04T23:26:15.054Z"
+  },
+  {
+    "id": 1788564383700,
+    "userId": 1764829943217,
+    "action": "schedules_auto_generated",
+    "category": "schedule",
+    "description": "Auto-generated 2 schedules from 2026-08-31 to 2026-09-06",
+    "metadata": {
+      "count": 2,
+      "startDate": "2026-08-31",
+      "endDate": "2026-09-06",
+      "errors": 1,
+      "conflicts": 0
+    },
+    "timestamp": "2026-09-04T23:26:23.700Z"
+  },
+  {
+    "id": 1788564913666,
+    "userId": 1764829943217,
+    "action": "schedule_created",
+    "category": "schedule",
+    "description": "Assigned San Grace to Afternoon Shift on 2026-09-06",
+    "metadata": {
+      "scheduleId": "1788564913659"
+    },
+    "timestamp": "2026-09-04T23:35:13.666Z"
+  },
+  {
+    "id": 1788564921898,
+    "userId": 1764829943217,
+    "action": "schedule_created",
+    "category": "schedule",
+    "description": "Assigned Tosin Ayan to Afternoon Shift on 2026-09-06",
+    "metadata": {
+      "scheduleId": "1788564921888"
+    },
+    "timestamp": "2026-09-04T23:35:21.898Z"
+  },
+  {
+    "id": 1788564933062,
+    "userId": 1764829943217,
+    "action": "schedule_created",
+    "category": "schedule",
+    "description": "Assigned Oluwaferanmi Praise to Afternoon Shift on 2026-09-06",
+    "metadata": {
+      "scheduleId": "1788564933053"
+    },
+    "timestamp": "2026-09-04T23:35:33.062Z"
+  },
+  {
+    "id": 1788564942779,
+    "userId": 1764829943217,
+    "action": "schedule_created",
+    "category": "schedule",
+    "description": "Assigned Faith Clement to Afternoon Shift on 2026-09-06",
+    "metadata": {
+      "scheduleId": "1788564942768"
+    },
+    "timestamp": "2026-09-04T23:35:42.779Z"
+  },
+  {
+    "id": 1788567827976,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 6 schedules from 2026-08-31 to 2026-09-06",
+    "metadata": {
+      "deletedCount": 6,
+      "startDate": "2026-08-31",
+      "endDate": "2026-09-06"
+    },
+    "timestamp": "2026-09-05T00:23:47.976Z"
+  },
+  {
+    "id": 1788568672674,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 0 schedules from 2026-08-31 to 2026-09-06",
+    "metadata": {
+      "deletedCount": 0,
+      "startDate": "2026-08-31",
+      "endDate": "2026-09-06"
+    },
+    "timestamp": "2026-09-05T00:37:52.674Z"
+  },
+  {
+    "id": 1788568689495,
+    "userId": 1764829943217,
+    "action": "schedules_auto_generated",
+    "category": "schedule",
+    "description": "Auto-generated 2 schedules from 2026-08-31 to 2026-09-06",
+    "metadata": {
+      "count": 2,
+      "startDate": "2026-08-31",
+      "endDate": "2026-09-06",
+      "errors": 1,
+      "conflicts": 0
+    },
+    "timestamp": "2026-09-05T00:38:09.495Z"
+  },
+  {
+    "id": 1788568814912,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 2 schedules from 2026-08-31 to 2026-09-06",
+    "metadata": {
+      "deletedCount": 2,
+      "startDate": "2026-08-31",
+      "endDate": "2026-09-06"
+    },
+    "timestamp": "2026-09-05T00:40:14.912Z"
+  },
+  {
+    "id": 1788568819872,
+    "userId": 1764829943217,
+    "action": "schedules_auto_generated",
+    "category": "schedule",
+    "description": "Auto-generated 2 schedules from 2026-08-31 to 2026-09-06",
+    "metadata": {
+      "count": 2,
+      "startDate": "2026-08-31",
+      "endDate": "2026-09-06",
+      "errors": 1,
+      "conflicts": 0
+    },
+    "timestamp": "2026-09-05T00:40:19.872Z"
+  },
+  {
+    "id": 1788588537664,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 2 schedules from 2026-08-31 to 2026-09-06",
+    "metadata": {
+      "deletedCount": 2,
+      "startDate": "2026-08-31",
+      "endDate": "2026-09-06"
+    },
+    "timestamp": "2026-09-05T06:08:57.664Z"
+  },
+  {
+    "id": 1788588547315,
+    "userId": 1764829943217,
+    "action": "schedules_auto_generated",
+    "category": "schedule",
+    "description": "Auto-generated 2 schedules from 2026-08-31 to 2026-09-06",
+    "metadata": {
+      "count": 2,
+      "startDate": "2026-08-31",
+      "endDate": "2026-09-06",
+      "errors": 1,
+      "conflicts": 0
+    },
+    "timestamp": "2026-09-05T06:09:07.315Z"
+  },
+  {
+    "id": 1788734575465,
+    "userId": 1764829943217,
+    "action": "shift_updated",
+    "category": "shift",
+    "description": "Updated shift: Morning Shift",
+    "metadata": {
+      "shiftId": "shift_001"
+    },
+    "timestamp": "2026-09-06T22:42:55.465Z"
+  },
+  {
+    "id": 1788734655660,
+    "userId": 1764829943217,
+    "action": "schedules_auto_generated",
+    "category": "schedule",
+    "description": "Auto-generated 0 schedules from 2026-08-31 to 2026-09-06",
+    "metadata": {
+      "count": 0,
+      "startDate": "2026-08-31",
+      "endDate": "2026-09-06",
+      "errors": 0,
+      "conflicts": 0
+    },
+    "timestamp": "2026-09-06T22:44:15.660Z"
+  },
+  {
+    "id": 1788734683827,
+    "userId": 1764829943217,
+    "action": "schedules_auto_generated",
+    "category": "schedule",
+    "description": "Auto-generated 1 schedules from 2026-09-07 to 2026-09-13",
+    "metadata": {
+      "count": 1,
+      "startDate": "2026-09-07",
+      "endDate": "2026-09-13",
+      "errors": 1,
+      "conflicts": 0
+    },
+    "timestamp": "2026-09-06T22:44:43.827Z"
+  },
+  {
+    "id": 1788856294000,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 1 schedules from 2026-09-07 to 2026-09-13",
+    "metadata": {
+      "deletedCount": 1,
+      "startDate": "2026-09-07",
+      "endDate": "2026-09-13"
+    },
+    "timestamp": "2026-09-08T08:31:34.000Z"
+  },
+  {
+    "id": 1788856308981,
+    "userId": 1764829943217,
+    "action": "schedules_cleared",
+    "category": "schedule",
+    "description": "Cleared 0 schedules from 2026-09-07 to 2026-09-13",
+    "metadata": {
+      "deletedCount": 0,
+      "startDate": "2026-09-07",
+      "endDate": "2026-09-13"
+    },
+    "timestamp": "2026-09-08T08:31:48.981Z"
+  },
+  {
+    "id": 1788877016783,
+    "userId": 1764829943217,
+    "action": "schedules_auto_generated",
+    "category": "schedule",
+    "description": "Auto-generated 2 schedules from 2026-09-07 to 2026-09-13",
+    "metadata": {
+      "count": 2,
+      "startDate": "2026-09-07",
+      "endDate": "2026-09-13",
+      "errors": 1,
+      "conflicts": 0
+    },
+    "timestamp": "2026-09-08T14:16:56.783Z"
+  },
+  {
+    "id": 1789388082196,
+    "userId": 1764829943217,
+    "action": "schedules_auto_generated",
+    "category": "schedule",
+    "description": "Auto-generated 2 schedules from 2026-09-14 to 2026-09-20",
+    "metadata": {
+      "count": 2,
+      "startDate": "2026-09-14",
+      "endDate": "2026-09-20",
+      "errors": 1,
+      "conflicts": 0
+    },
+    "timestamp": "2026-09-14T12:14:42.196Z"
+  }
+]

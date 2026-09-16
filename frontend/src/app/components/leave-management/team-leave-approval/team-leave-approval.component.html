@@ -1,0 +1,145 @@
+<div class="space-y-5">
+
+  <!-- ── Page header ──────────────────────────────────── -->
+  <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 mb-6">
+    <div>
+      <h1 class="text-xl font-bold text-slate-900 dark:text-white">Team Leave Approvals</h1>
+      <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Review and approve leave requests from your team</p>
+    </div>
+    <div class="flex items-center gap-3">
+      <app-button variant="secondary" size="sm" (click)="loadPendingApprovals()">
+        <i class="fas fa-sync-alt mr-1"></i> Refresh
+      </app-button>
+    </div>
+  </div>
+
+  <!-- ── Main table ─────────────────────────────────────── -->
+  <div class="table-container overflow-hidden">
+    <div class="card-header">
+      <div>
+        <h2 class="text-sm font-bold text-slate-900 dark:text-white">Pending Approvals</h2>
+        <p class="text-xs text-slate-400 dark:text-slate-500 mt-0.5">{{ filteredApprovals.length }} request{{ filteredApprovals.length === 1 ? '' : 's' }} awaiting action</p>
+      </div>
+      <div class="flex items-center gap-2">
+        <app-form-input
+          [(ngModel)]="searchQuery"
+          (ngModelChange)="onFilterChange()"
+          placeholder="Search…"
+          prefixIcon="search"
+        ></app-form-input>
+      </div>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="w-10">SN</th>
+            <th>Employee ID</th>
+            <th>Employee</th>
+            <th>Department</th>
+            <th>Leave Type</th>
+            <th>Duration</th>
+            <th>Applied</th>
+            <th>Status</th>
+            <th class="text-right">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let request of filteredApprovals; let i = index">
+            <td class="text-xs text-slate-400 font-medium">{{ i + 1 }}</td>
+            <td>
+              <span class="text-sm font-semibold text-slate-900 dark:text-white">{{ request.employeeId }}</span>
+            </td>
+            <td>
+              <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-full bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center flex-shrink-0">
+                  <svg class="w-4 h-4 text-indigo-500 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                </div>
+                <span class="text-sm font-semibold text-slate-900 dark:text-white">{{ request.employeeName }}</span>
+              </div>
+            </td>
+            <td class="text-sm text-slate-500 dark:text-slate-400">{{ request.department }}</td>
+            <td>
+              <app-status-badge variant="info" size="sm">
+                {{ request.leaveTypeLabel }}
+              </app-status-badge>
+            </td>
+            <td class="text-sm">
+              <p class="text-slate-900 dark:text-white font-medium">{{ formatDate(request.startDate) }}</p>
+              <p class="text-xs text-slate-400 dark:text-slate-500">to {{ formatDate(request.endDate) }} ({{ getDaysLabel(request.days) }})</p>
+            </td>
+            <td class="text-xs text-slate-400 dark:text-slate-500 whitespace-nowrap">{{ formatDate(request.appliedDate) }}</td>
+            <td>
+              <app-status-badge [variant]="getStatusBadgeType(request.status)">
+                {{ request.status | titlecase }}
+              </app-status-badge>
+            </td>
+            <td class="text-right">
+              <div class="flex items-center justify-end gap-1.5" *ngIf="request.status.toLowerCase() === 'pending'">
+                <app-button
+                  variant="danger"
+                  size="sm"
+                  (clicked)="openActionModal(request, 'reject')"
+                >
+                  <i class="fas fa-times mr-1"></i> Reject
+                </app-button>
+                <app-button
+                  variant="success"
+                  size="sm"
+                  (clicked)="openActionModal(request, 'approve')"
+                >
+                  <i class="fas fa-check mr-1"></i> Approve
+                </app-button>
+              </div>
+              <span *ngIf="request.status.toLowerCase() !== 'pending'" class="text-xs text-slate-400">
+                {{ request.status | titlecase }}
+              </span>
+            </td>
+          </tr>
+
+          <!-- Empty state -->
+          <tr *ngIf="!loading && filteredApprovals.length === 0">
+            <td colspan="9" class="py-0">
+              <div class="empty-state">
+                <div class="empty-state-icon">
+                  <svg class="w-7 h-7 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-white">All caught up!</p>
+                <p class="text-xs text-slate-400 mt-1">No pending requests to action right now.</p>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Loading state -->
+    <div *ngIf="loading" class="flex items-center justify-center py-12">
+      <div class="flex flex-col items-center gap-3">
+        <i class="fas fa-spinner fa-spin text-2xl text-indigo-500"></i>
+        <p class="text-sm text-slate-500">Loading approvals...</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Action Confirmation Modal -->
+<app-approval-modal
+  [isOpen]="showActionModal"
+  [title]="actionType === 'approve' ? 'Approve Leave Request' : 'Reject Leave Request'"
+  [showSummary]="true"
+  [summaryTitle]="selectedRequest?.employeeName || ''"
+  [summaryContent]="getSummaryContent()"
+  [(comments)]="actionComments"
+  [commentsLabel]="actionType === 'reject' ? 'Comments (Required)' : 'Comments (Optional)'"
+  [commentsPlaceholder]="actionType === 'approve' ? 'Add any comments or instructions...' : 'Please provide a reason for rejection...'"
+  [requireComments]="actionType === 'reject'"
+  [confirmText]="actionType === 'approve' ? 'Confirm Approval' : 'Confirm Rejection'"
+  [confirmVariant]="actionType === 'approve' ? 'success' : 'danger'"
+  [confirmIcon]="actionType === 'approve' ? 'fas fa-check' : 'fas fa-times'"
+  [loading]="processingAction"
+  (confirm)="confirmAction()"
+  (cancel)="closeActionModal()"
+></app-approval-modal>

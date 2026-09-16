@@ -1,0 +1,70 @@
+[
+  {
+    "id": 1788629780517,
+    "userId": 1783502564401,
+    "employeeId": 1783502564400,
+    "department": "Technology",
+    "leaveType": "annual",
+    "leaveName": "Annual Leave",
+    "startDate": "2026-09-07",
+    "endDate": "2026-09-15",
+    "workingDays": 7,
+    "days": 7,
+    "halfDay": false,
+    "reason": "No reason provided",
+    "attachments": [],
+    "workflowId": 2,
+    "workflowName": "Extended Leave Approval",
+    "currentApprovalStep": 1,
+    "currentApproverId": 1784719952190,
+    "approvalHistory": [
+      {
+        "step": 1,
+        "approverId": 1784719952190,
+        "action": "approve",
+        "comments": "Approved by supervisor",
+        "timestamp": "2026-09-05T17:45:00.000Z"
+      }
+    ],
+    "calendarId": 1,
+    "status": "Approved",
+    "approvedBy": 1784719952190,
+    "approvedAt": "2026-09-05T17:45:00.000Z",
+    "appliedAt": "2026-09-05T17:36:20.517Z",
+    "updatedAt": "2026-09-05T17:45:00.000Z"
+  },
+  {
+    "id": 1788770949637,
+    "userId": 1764829943217,
+    "employeeId": 1764829943216,
+    "department": "Human Resources",
+    "leaveType": "annual",
+    "leaveName": "Annual Leave",
+    "startDate": "2026-09-07",
+    "endDate": "2026-09-10",
+    "workingDays": 4,
+    "days": 4,
+    "halfDay": false,
+    "reason": "No reason provided",
+    "attachments": [],
+    "workflowId": 1,
+    "workflowName": "Standard Leave Approval",
+    "currentApprovalStep": 1,
+    "currentApproverId": 1783718492655,
+    "approvalHistory": [
+      {
+        "step": 1,
+        "approverId": 1783718492655,
+        "action": "approve",
+        "comments": "",
+        "timestamp": "2026-09-07T08:50:47.842Z"
+      }
+    ],
+    "calendarId": 1,
+    "status": "Approved",
+    "appliedAt": "2026-09-07T08:49:09.637Z",
+    "updatedAt": "2026-09-07T08:50:47.848Z",
+    "approvedBy": 1783718492655,
+    "approvedAt": "2026-09-07T08:50:47.847Z"
+  }
+]

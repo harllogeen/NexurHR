@@ -1,0 +1,131 @@
+<div class="space-y-5">
+
+  <!-- ── Page header ──────────────────────────────────── -->
+  <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 mb-6">
+    <div>
+      <h1 class="text-xl font-bold text-slate-900 dark:text-white">All Leave Applications</h1>
+      <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">View and manage leave applications across the organisation.</p>
+    </div>
+    <div class="flex items-center gap-3">
+      <app-button variant="secondary" size="sm" (click)="loadAllLeaves()">
+        <i class="fas fa-sync-alt mr-1"></i> Refresh
+      </app-button>
+    </div>
+  </div>
+
+  <!-- ── Status filter tabs ────────────────────────────── -->
+  <div class="flex flex-wrap items-center gap-2">
+    <button *ngFor="let f of [
+      {key:'all',      label:'All',      cls:'bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900'},
+      {key:'Pending',  label:'Pending',  cls:'bg-amber-500 text-white'},
+      {key:'Approved', label:'Approved', cls:'bg-emerald-500 text-white'},
+      {key:'Rejected', label:'Rejected', cls:'bg-red-500 text-white'}
+    ]"
+            (click)="allAppsFilter = f.key; onFilterChange()"
+            class="px-4 py-2 text-xs font-bold rounded-xl transition-all duration-150"
+            [ngClass]="allAppsFilter === f.key
+              ? f.cls + ' shadow-card-md'
+              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800'">
+      {{ f.label }}
+    </button>
+  </div>
+
+  <!-- ── Main table ─────────────────────────────────────── -->
+  <div class="table-container overflow-hidden">
+    <div class="card-header">
+      <div>
+        <h2 class="text-sm font-bold text-slate-900 dark:text-white">Leave Applications</h2>
+        <p class="text-xs text-slate-400 dark:text-slate-500 mt-0.5">{{ filteredAllLeaves.length }} records</p>
+      </div>
+      <app-form-input
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="onSearch()"
+        placeholder="Search by name, dept…"
+        prefixIcon="search"
+        
+      ></app-form-input>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="w-10">SN</th>
+            <th>Employee ID</th>
+            <th>Employee</th>
+            <th>Department</th>
+            <th>Leave Type</th>
+            <th>Duration</th>
+            <th>Applied</th>
+            <th class="text-right">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let leave of paginatedAllLeaves; let i = index">
+            <td class="text-xs text-slate-400 font-medium">{{ (allAppsPage - 1) * pageSize + i + 1 }}</td>
+            <td>
+              <span class="text-sm font-semibold text-slate-900 dark:text-white">{{ leave.employeeId || leave.userId }}</span>
+            </td>
+            <td>
+              <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-full bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center flex-shrink-0">
+                  <svg class="w-4 h-4 text-indigo-500 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                </div>
+                <span class="text-sm font-semibold text-slate-900 dark:text-white">{{ leave.userName || leave.employeeName || 'Unknown' }}</span>
+              </div>
+            </td>
+            <td class="text-sm text-slate-500 dark:text-slate-400">{{ leave.department }}</td>
+            <td>
+              <app-status-badge variant="info" size="sm" >
+                {{ leave.leaveType }}
+              </app-status-badge>
+            </td>
+            <td class="text-sm">
+              <p class="text-slate-900 dark:text-white font-medium">{{ leave.startDate | date:'mediumDate' }}</p>
+              <p class="text-xs text-slate-400 dark:text-slate-500">to {{ leave.endDate | date:'mediumDate' }}</p>
+            </td>
+            <td class="text-xs text-slate-400 dark:text-slate-500 whitespace-nowrap">{{ leave.appliedAt | date:'mediumDate' }}</td>
+            <td class="text-right">
+              <app-status-badge
+                [variant]="getStatusVariant(leave.status)"
+              >
+                {{ leave.status }}
+              </app-status-badge>
+            </td>
+          </tr>
+          <tr *ngIf="filteredAllLeaves.length === 0">
+            <td colspan="8" class="py-0">
+              <div class="empty-state">
+                <div class="empty-state-icon">
+                  <svg class="w-7 h-7 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                </div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-white">No applications found</p>
+                <p class="text-xs text-slate-400 mt-1">Try a different filter or search term.</p>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div *ngIf="filteredAllLeaves.length > pageSize"
+         class="card-footer flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-xs text-slate-500 dark:text-slate-400">
+        {{ (allAppsPage - 1) * pageSize + 1 }}–{{ allAppsPage * pageSize > filteredAllLeaves.length ? filteredAllLeaves.length : allAppsPage * pageSize }}
+        of {{ filteredAllLeaves.length }}
+      </p>
+      <div class="pagination">
+        <button (click)="goToPage(allAppsPage - 1)" [disabled]="allAppsPage === 1" class="page-btn">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <button *ngFor="let p of getPageNumbers(allLeavesTotalPages)" (click)="goToPage(p)"
+                [ngClass]="p === allAppsPage ? 'page-btn-active' : 'page-btn'">{{ p }}</button>
+        <button (click)="goToPage(allAppsPage + 1)" [disabled]="allAppsPage === allLeavesTotalPages" class="page-btn">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>

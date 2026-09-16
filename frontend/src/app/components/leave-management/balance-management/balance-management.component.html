@@ -1,0 +1,342 @@
+<div class="balance-management-container">
+  <div class="page-header">
+    <div>
+      <h2>Leave Balance Management</h2>
+      <p class="subtitle">Manage employee leave balances and adjustments</p>
+    </div>
+    <div class="header-actions">
+      <app-button variant="secondary" size="sm" (click)="openInitializeModal()">
+        <i class="fas fa-plus"></i> Initialize Balance
+      </app-button>
+      <app-button variant="primary" size="sm" (click)="openAccrualModal()">
+        <i class="fas fa-sync-alt"></i> Process Accruals
+      </app-button>
+    </div>
+  </div>
+
+  <!-- View Switcher -->
+  <div class="view-switcher card">
+    <button
+      class="view-tab"
+      [class.active]="activeView === 'balances'"
+      (click)="switchView('balances')"
+    >
+      <i class="fas fa-balance-scale"></i>
+      Employee Balances
+    </button>
+    <button
+      class="view-tab"
+      [class.active]="activeView === 'history'"
+      (click)="switchView('history')"
+    >
+      <i class="fas fa-history"></i>
+      Adjustment History
+    </button>
+  </div>
+
+  <!-- Balances View -->
+  <div *ngIf="activeView === 'balances'">
+    <!-- Filters -->
+    <div class="filters-section card">
+      <div class="filters-grid">
+        <div class="filter-item">
+          <label>Department</label>
+          <app-form-select
+            [(ngModel)]="departmentFilter"
+            (selectionChange)="onFilterChange()"
+            [options]="departmentOptions"
+          ></app-form-select>
+        </div>
+
+        <div class="filter-item">
+          <label>Leave Type</label>
+          <app-form-select
+            [(ngModel)]="leaveTypeFilter"
+            (selectionChange)="onFilterChange()"
+            [options]="leaveTypeOptions"
+          ></app-form-select>
+        </div>
+
+        <div class="filter-item">
+          <label>Search</label>
+          <app-form-input
+            [(ngModel)]="searchQuery"
+            (ngModelChange)="onFilterChange()"
+            placeholder="Search by name or email..."
+          ></app-form-input>
+        </div>
+
+        <div class="filter-actions">
+          <app-button variant="ghost" size="sm" (click)="clearFilters()">
+            Clear Filters
+          </app-button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Balances List -->
+    <div class="balances-list">
+      <div *ngIf="loading" class="loading-state">
+        <i class="fas fa-spinner fa-spin"></i>
+        <p>Loading balances...</p>
+      </div>
+
+      <div *ngIf="!loading && filteredBalances.length === 0" class="empty-state">
+        <i class="fas fa-inbox"></i>
+        <h3>No employee balances found</h3>
+        <p>Try adjusting your filters or initialize balances for new employees.</p>
+      </div>
+
+      <div *ngIf="!loading && filteredBalances.length > 0" class="balance-cards">
+        <div *ngFor="let employee of filteredBalances" class="balance-card">
+          <div class="card-header">
+            <div class="employee-info">
+              <div class="avatar">{{ employee.employeeName.charAt(0) }}</div>
+              <div>
+                <h4>{{ employee.employeeName }}</h4>
+                <p class="email">{{ employee.email }}</p>
+                <span class="department-badge">{{ employee.department }}</span>
+              </div>
+            </div>
+            <div class="joining-date">
+              <span class="label">Joined:</span>
+              <span class="value">{{ formatDate(employee.joiningDate) }}</span>
+            </div>
+          </div>
+
+          <div class="card-body">
+            <div class="balance-grid">
+              <div *ngFor="let balance of employee.balances" class="balance-item">
+                <div class="balance-header">
+                  <span class="leave-type">{{ balance.leaveTypeLabel }}</span>
+                  <app-status-badge [variant]="getBalanceStatus(balance)">
+                    {{ balance.balance }} days
+                  </app-status-badge>
+                </div>
+
+                <div class="balance-details">
+                  <div class="detail">
+                    <span class="detail-label">Accrued:</span>
+                    <span class="detail-value">{{ balance.accrued }}</span>
+                  </div>
+                  <div class="detail">
+                    <span class="detail-label">Used:</span>
+                    <span class="detail-value">{{ balance.used }}</span>
+                  </div>
+                  <div class="detail">
+                    <span class="detail-label">Pending:</span>
+                    <span class="detail-value">{{ balance.pending }}</span>
+                  </div>
+                </div>
+
+                <app-button
+                  variant="secondary"
+                  size="sm"
+                  (click)="openAdjustModal(employee, balance.leaveType)"
+                >
+                  <i class="fas fa-edit"></i> Adjust
+                </app-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- History View -->
+  <div *ngIf="activeView === 'history'">
+    <div class="history-section card">
+      <div *ngIf="loadingHistory" class="loading-state">
+        <i class="fas fa-spinner fa-spin"></i>
+        <p>Loading adjustment history...</p>
+      </div>
+
+      <div *ngIf="!loadingHistory && adjustmentHistory.length === 0" class="empty-state">
+        <i class="fas fa-history"></i>
+        <h3>No adjustment history</h3>
+        <p>Balance adjustments will appear here once they are made.</p>
+      </div>
+
+      <div *ngIf="!loadingHistory && adjustmentHistory.length > 0" class="history-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Employee</th>
+              <th>Leave Type</th>
+              <th>Previous Balance</th>
+              <th>New Balance</th>
+              <th>Adjusted By</th>
+              <th>Reason</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let adjustment of adjustmentHistory">
+              <td>{{ formatDate(adjustment.adjustedAt) }}</td>
+              <td>{{ adjustment.employeeName }}</td>
+              <td>{{ adjustment.leaveTypeLabel }}</td>
+              <td>{{ adjustment.previousBalance }}</td>
+              <td>
+                <strong [class.positive]="adjustment.newBalance > adjustment.previousBalance"
+                        [class.negative]="adjustment.newBalance < adjustment.previousBalance">
+                  {{ adjustment.newBalance }}
+                </strong>
+              </td>
+              <td>{{ adjustment.adjustedBy }}</td>
+              <td>{{ adjustment.reason }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Adjust Balance Modal -->
+<app-modal
+  *ngIf="showAdjustModal && selectedEmployee"
+  title="Adjust Leave Balance"
+  (close)="closeAdjustModal()"
+>
+  <div class="modal-content">
+    <div class="employee-summary">
+      <h4>{{ selectedEmployee.employeeName }}</h4>
+      <p>{{ selectedEmployee.email }}</p>
+    </div>
+
+    <div class="form-group">
+      <label>Leave Type <span class="required">*</span></label>
+      <app-form-select
+        [(ngModel)]="adjustmentForm.leaveType"
+        [options]="getLeaveTypeOptionsForEmployee(selectedEmployee)"
+        placeholder="Select leave type"
+      ></app-form-select>
+    </div>
+
+    <div class="form-group" *ngIf="adjustmentForm.leaveType">
+      <label>Current Balance</label>
+      <div class="current-balance">
+        {{ getCurrentBalance(selectedEmployee, adjustmentForm.leaveType) }} days
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>New Balance <span class="required">*</span></label>
+      <app-form-input
+        [(ngModel)]="adjustmentForm.newBalance"
+        type="number"
+        placeholder="Enter new balance"
+        [min]="0"
+      ></app-form-input>
+    </div>
+
+    <div class="form-group">
+      <label>Reason for Adjustment <span class="required">*</span></label>
+      <textarea
+        [(ngModel)]="adjustmentForm.reason"
+        placeholder="Explain why this adjustment is being made..."
+        rows="4"
+        class="form-control"
+        required
+      ></textarea>
+    </div>
+
+    <div class="modal-actions">
+      <app-button variant="ghost" (click)="closeAdjustModal()" [disabled]="adjusting">
+        Cancel
+      </app-button>
+      <app-button
+        variant="primary"
+        (click)="confirmAdjustment()"
+        [disabled]="adjusting || !adjustmentForm.leaveType || !adjustmentForm.reason.trim()"
+      >
+        <i *ngIf="adjusting" class="fas fa-spinner fa-spin"></i>
+        <i *ngIf="!adjusting" class="fas fa-check"></i>
+        Confirm Adjustment
+      </app-button>
+    </div>
+  </div>
+</app-modal>
+
+<!-- Initialize Balance Modal -->
+<app-modal
+  *ngIf="showInitializeModal"
+  title="Initialize Leave Balance"
+  (close)="closeInitializeModal()"
+>
+  <div class="modal-content">
+    <p class="modal-description">
+      Initialize leave balances for a new employee. This will set up all leave types based on their joining date and applicable policies.
+    </p>
+
+    <div class="form-group">
+      <label>Employee <span class="required">*</span></label>
+      <app-form-select
+        [(ngModel)]="initializeForm.userId"
+        [options]="getEmployeeOptions()"
+        placeholder="Select employee"
+      ></app-form-select>
+    </div>
+
+    <div class="form-group">
+      <label>Joining Date (Optional)</label>
+      <app-form-input
+        [(ngModel)]="initializeForm.joiningDate"
+        type="date"
+        placeholder="Leave blank to use employee's joining date"
+      ></app-form-input>
+    </div>
+
+    <div class="modal-actions">
+      <app-button variant="ghost" (click)="closeInitializeModal()" [disabled]="initializing">
+        Cancel
+      </app-button>
+      <app-button
+        variant="primary"
+        (click)="confirmInitialize()"
+        [disabled]="initializing || !initializeForm.userId"
+      >
+        <i *ngIf="initializing" class="fas fa-spinner fa-spin"></i>
+        <i *ngIf="!initializing" class="fas fa-check"></i>
+        Initialize Balance
+      </app-button>
+    </div>
+  </div>
+</app-modal>
+
+<!-- Process Accruals Modal -->
+<app-modal
+  *ngIf="showAccrualModal"
+  title="Process Leave Accruals"
+  (close)="closeAccrualModal()"
+>
+  <div class="modal-content">
+    <p class="modal-description">
+      This will process leave accruals for all employees based on their policies and accrual schedules. This is typically done monthly or as configured in the leave policies.
+    </p>
+
+    <div class="warning-box">
+      <i class="fas fa-exclamation-triangle"></i>
+      <div>
+        <strong>Warning:</strong>
+        <p>This action will calculate and add accrued leave days for all employees. Make sure this hasn't been run already for the current period.</p>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <app-button variant="ghost" (click)="closeAccrualModal()" [disabled]="processingAccrual">
+        Cancel
+      </app-button>
+      <app-button
+        variant="primary"
+        (click)="processBulkAccruals()"
+        [disabled]="processingAccrual"
+      >
+        <i *ngIf="processingAccrual" class="fas fa-spinner fa-spin"></i>
+        <i *ngIf="!processingAccrual" class="fas fa-cog"></i>
+        Process Accruals
+      </app-button>
+    </div>
+  </div>
+</app-modal>

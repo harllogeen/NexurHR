@@ -1,0 +1,361 @@
+<div class="my-schedule-container">
+  <!-- Header -->
+  <div class="page-header">
+    <div class="header-content">
+      <div class="header-text">
+        <h1 class="page-title">My Schedule</h1>
+        <p class="page-subtitle">View your upcoming shifts and manage availability</p>
+      </div>
+      <button class="btn btn-primary" (click)="openAvailabilityModal()">
+        <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        Set Availability
+      </button>
+    </div>
+  </div>
+
+  <!-- Success/Error Messages -->
+  <div *ngIf="successMessage" class="alert alert-success">
+    <svg class="alert-icon" fill="currentColor" viewBox="0 0 20 20">
+      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+    </svg>
+    {{ successMessage }}
+  </div>
+
+  <div *ngIf="error" class="alert alert-error">
+    <svg class="alert-icon" fill="currentColor" viewBox="0 0 20 20">
+      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+    </svg>
+    {{ error }}
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon" style="background-color: rgba(59, 130, 246, 0.1); color: #3b82f6;">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+        </svg>
+      </div>
+      <div class="stat-content">
+        <div class="stat-label">Upcoming Shifts</div>
+        <div class="stat-value">{{ upcomingSchedules.length }}</div>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon" style="background-color: rgba(16, 185, 129, 0.1); color: #10b981;">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+      </div>
+      <div class="stat-content">
+        <div class="stat-label">This Week</div>
+        <div class="stat-value">{{ currentWeekSchedules.length }} shifts</div>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon" style="background-color: rgba(245, 158, 11, 0.1); color: #f59e0b;">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+        </svg>
+      </div>
+      <div class="stat-content">
+        <div class="stat-label">Hours This Week</div>
+        <div class="stat-value">{{ getTotalHoursThisWeek() }}h</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs-container">
+    <button 
+      class="tab-btn" 
+      [class.active]="activeTab === 'upcoming'"
+      (click)="switchTab('upcoming')"
+    >
+      <svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+      </svg>
+      Upcoming Shifts
+    </button>
+    <button 
+      class="tab-btn" 
+      [class.active]="activeTab === 'availability'"
+      (click)="switchTab('availability')"
+    >
+      <svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      </svg>
+      My Availability
+    </button>
+  </div>
+
+  <!-- Tab Content -->
+  <div class="tab-content">
+    <!-- Upcoming Shifts Tab -->
+    <div *ngIf="activeTab === 'upcoming'" class="upcoming-tab">
+      <!-- Loading State -->
+      <div *ngIf="loading" class="loading-state">
+        <div class="spinner"></div>
+        <p>Loading your schedule...</p>
+      </div>
+
+      <!-- Empty State -->
+      <div *ngIf="!loading && upcomingSchedules.length === 0" class="empty-state">
+        <svg class="empty-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+        </svg>
+        <h3>No upcoming shifts</h3>
+        <p>You don't have any scheduled shifts yet. Contact your manager for schedule assignments.</p>
+      </div>
+
+      <!-- Schedules List -->
+      <div *ngIf="!loading && upcomingSchedules.length > 0" class="schedules-list">
+        <div 
+          *ngFor="let schedule of upcomingSchedules" 
+          class="schedule-card"
+          [class.today]="isToday(schedule.date)"
+        >
+          <!-- Color Indicator -->
+          <div class="schedule-color" [style.background-color]="schedule.shift?.color"></div>
+
+          <!-- Content -->
+          <div class="schedule-content">
+            <div class="schedule-header">
+              <div class="schedule-date-section">
+                <div class="schedule-date">{{ getRelativeDate(schedule.date) }}</div>
+                <div class="schedule-day">{{ getDayName(schedule.date) }}</div>
+              </div>
+              <span 
+                *ngIf="schedule.shift" 
+                class="shift-badge"
+                [style.background-color]="schedule.shift.color + '20'"
+                [style.color]="schedule.shift.color"
+              >
+                {{ getShiftTypeLabel(schedule.shift.shiftType) }}
+              </span>
+            </div>
+
+            <div class="schedule-details">
+              <div class="detail-row">
+                <svg class="detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <div class="detail-text">
+                  <span class="detail-label">Shift</span>
+                  <span class="detail-value">{{ schedule.shift?.name || 'Unknown Shift' }}</span>
+                </div>
+              </div>
+
+              <div class="detail-row">
+                <svg class="detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <div class="detail-text">
+                  <span class="detail-label">Time</span>
+                  <span class="detail-value">{{ formatTime(schedule.startTime) }} - {{ formatTime(schedule.endTime) }}</span>
+                </div>
+              </div>
+
+              <div class="detail-row">
+                <svg class="detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+                <div class="detail-text">
+                  <span class="detail-label">Duration</span>
+                  <span class="detail-value">{{ getShiftDuration(schedule) }}</span>
+                </div>
+              </div>
+
+              <div *ngIf="schedule.shift?.breakDuration" class="detail-row">
+                <svg class="detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                </svg>
+                <div class="detail-text">
+                  <span class="detail-label">Break</span>
+                  <span class="detail-value">{{ schedule.shift?.breakDuration }} minutes</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Availability Tab -->
+    <div *ngIf="activeTab === 'availability'" class="availability-tab">
+      <!-- Help Banner -->
+      <div class="info-banner">
+        <svg class="info-icon" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+        </svg>
+        <div class="info-content">
+          <h4 class="info-title">About Your Weekly Availability</h4>
+          <p class="info-text">
+            Your availability is a <strong>recurring weekly pattern</strong> - you only need to set it once! 
+            It will automatically apply to all future weeks. Update it anytime your schedule changes, 
+            or use "Request Time Off" for temporary absences.
+          </p>
+        </div>
+      </div>
+
+      <div class="availability-intro">
+        <p>Your availability preferences help managers schedule you for shifts that match your preferred working hours.</p>
+      </div>
+
+      <div class="availability-list">
+        <div *ngFor="let day of dayNames; let i = index" class="availability-card">
+          <div class="availability-header">
+            <h3 class="availability-day">{{ day }}</h3>
+            <span 
+              class="availability-status"
+              [class.available]="getAvailabilityForDay(i)?.isAvailable === true"
+              [class.unavailable]="getAvailabilityForDay(i)?.isAvailable === false"
+            >
+              {{ getAvailabilityForDay(i)?.isAvailable === true ? 'Available' : 
+                 getAvailabilityForDay(i)?.isAvailable === false ? 'Not Available' : 
+                 'Not Set' }}
+            </span>
+          </div>
+
+          <!-- Available - Show details -->
+          <div *ngIf="getAvailabilityForDay(i)?.isAvailable === true" class="availability-details">
+            <div class="availability-time">
+              <svg class="availability-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              <span>
+                {{ formatTime(getAvailabilityForDay(i)!.availableFrom) }} - 
+                {{ formatTime(getAvailabilityForDay(i)!.availableTo) }}
+              </span>
+            </div>
+
+            <div *ngIf="getAvailabilityForDay(i)!.notes" class="availability-notes">
+              <svg class="availability-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/>
+              </svg>
+              <span>{{ getAvailabilityForDay(i)!.notes }}</span>
+            </div>
+          </div>
+
+          <!-- Not Available -->
+          <div *ngIf="getAvailabilityForDay(i)?.isAvailable === false" class="availability-unavailable">
+            <p>You've marked yourself as not available on this day.</p>
+          </div>
+
+          <!-- Not Set Yet -->
+          <div *ngIf="!getAvailabilityForDay(i)" class="availability-not-set">
+            <p>You haven't set your availability for this day yet. Click "Set Availability" to configure your weekly schedule.</p>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary update-btn" (click)="openAvailabilityModal()">
+        Update Availability
+      </button>
+    </div>
+  </div>
+
+  <!-- Availability Modal -->
+  <div *ngIf="showAvailabilityModal" class="modal-overlay" (click)="closeAvailabilityModal()">
+    <div class="modal-content modal-lg" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2 class="modal-title">Set Your Weekly Availability</h2>
+        <button class="modal-close" (click)="closeAvailabilityModal()">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Help Text -->
+        <div class="modal-help">
+          <svg class="help-icon" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+          </svg>
+          <p>Set your typical weekly schedule. This pattern repeats automatically - you don't need to update it every week unless your availability changes.</p>
+        </div>
+
+        <form (ngSubmit)="saveAvailability()" class="availability-form">
+          <div class="availability-days">
+            <div *ngFor="let day of availabilityForm; let i = index" class="day-availability">
+              <div class="day-header">
+                <h4 class="day-title">{{ dayNames[i] }}</h4>
+                <label class="toggle-label">
+                  <input 
+                    type="checkbox" 
+                    [(ngModel)]="day.isAvailable" 
+                    [name]="'isAvailable' + i"
+                    class="toggle-checkbox"
+                  />
+                  <span class="toggle-text">{{ day.isAvailable ? 'Available' : 'Not Available' }}</span>
+                </label>
+              </div>
+
+              <div *ngIf="day.isAvailable" class="day-details">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label">Available From</label>
+                    <input 
+                      type="time" 
+                      [(ngModel)]="day.availableFrom" 
+                      [name]="'availableFrom' + i"
+                      class="form-input"
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">Available To</label>
+                    <input 
+                      type="time" 
+                      [(ngModel)]="day.availableTo" 
+                      [name]="'availableTo' + i"
+                      class="form-input"
+                    />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Preferred Shifts (Optional)</label>
+                  <div class="shifts-checkboxes">
+                    <label *ngFor="let shift of shifts" class="shift-checkbox">
+                      <input 
+                        type="checkbox" 
+                        [checked]="isShiftPreferred(i, shift.id)"
+                        (change)="toggleShiftPreference(i, shift.id)"
+                      />
+                      <span class="shift-indicator" [style.background-color]="shift.color"></span>
+                      <span>{{ shift.name }}</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Notes (Optional)</label>
+                  <input 
+                    type="text" 
+                    [(ngModel)]="day.notes" 
+                    [name]="'notes' + i"
+                    class="form-input"
+                    placeholder="Any additional notes..."
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-secondary" (click)="closeAvailabilityModal()">Cancel</button>
+            <button type="submit" class="btn btn-primary" [disabled]="loading">
+              {{ loading ? 'Saving...' : 'Save Availability' }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

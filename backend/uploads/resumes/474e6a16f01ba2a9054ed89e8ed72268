@@ -1,0 +1,115 @@
+# HRMS Build Prompt (for AI coding tools — Claude Code, Cursor, Bolt, etc.)
+
+Copy everything below into your AI coding tool as the initial project prompt. Adjust the tech stack section if you have a preference; otherwise the tool can pick sensible defaults.
+
+---
+
+## Project Overview
+
+Build a **Human Resources Management System (HRMS)** — a web application that lets a company manage employees, leave, attendance, payroll, and recruitment in one place. Prioritize a clean, working MVP first (Phase 1), then layer on advanced features (Phase 2+). Use simple, maintainable patterns over clever ones.
+
+## Tech Stack (suggested — adjust if you have a preference)
+
+- **Frontend:** React + TypeScript, Tailwind CSS
+- **Backend:** Node.js (Express) or a framework of your choice — expose a REST API
+- **Database:** PostgreSQL
+- **Auth:** JWT-based auth with role-based access control (RBAC)
+- **File storage:** local/disk for MVP, pluggable to S3-compatible storage later
+
+## User Roles
+
+Build the system around four roles from day one so permissions aren't bolted on later:
+
+1. **Employee** — self-service: view/edit own profile, apply for leave, view payslips, clock in/out
+2. **Manager** — everything an Employee can do, plus: approve/reject leave and timesheets for direct reports, view team attendance
+3. **HR Admin** — manage all employees, all leave policies, payroll runs, recruitment, company-wide reports
+4. **Super Admin** — system configuration, roles/permissions, integrations
+
+Every module below should respect these roles — build a single `hasPermission(user, action, resource)` check used everywhere rather than scattering role checks through the code.
+
+---
+
+## Phase 1 — Core Modules (build first)
+
+### 1. Employee Management
+- Employee profile: name, contact info, department, designation, reporting manager, date of joining, employment type (full-time/contract/intern), status (active/inactive/terminated)
+- Org chart derived from the "reporting manager" field — don't hardcode hierarchy separately
+- Document storage per employee (ID proof, contracts) — file upload + list view
+
+### 2. Leave Management
+- Leave types: Sick, Casual, Annual (configurable by HR Admin — don't hardcode types in code, store as a table)
+- Leave balance per employee per leave type, auto-accrued monthly or annually per policy
+- Apply for leave: employee selects type + date range + optional reason
+- Approval routing: **single-level manager approval by default**; auto-escalate to HR Admin if no action in 3 days
+- On approval: deduct balance, block those dates on the attendance calendar
+- On rejection: notify employee, no balance change
+- Leave calendar view: "who's out this week" for managers and HR
+
+### 3. Attendance
+- Clock in/out (manual entry acceptable for MVP; biometric/integration is Phase 2+)
+- Daily attendance status: Present, Absent, On Leave, Half-day, Holiday
+- Monthly attendance summary per employee, exportable as CSV
+
+### 4. Authentication & Roles
+- Login, JWT sessions, password reset
+- Role assignment by Super Admin
+- Audit log of key actions (leave approvals, payroll runs, role changes)
+
+---
+
+## Phase 2 — Add After Core Works
+
+### 5. Payroll
+- Salary structure per employee (basic, allowances, deductions)
+- Monthly payroll run: calculate net pay factoring in unpaid leave/absences
+- Payslip generation (PDF) per employee, viewable in employee self-service
+- Do NOT attempt tax-law-specific calculations without confirming the target country's rules — flag this as a config input, not hardcoded logic
+
+### 6. Recruitment (ATS-lite)
+- Job postings, candidate pipeline (Applied → Screening → Interview → Offer → Hired/Rejected)
+- Basic resume upload and note-taking per candidate
+
+### 7. Performance
+- Simple review cycles: self-review + manager review, rating + comments
+- Goal tracking (optional, simple free-text goals with status)
+
+### 8. Reports & Analytics
+- Headcount, attrition rate, leave utilization, department-wise breakdowns
+- Simple dashboard with charts (use a lightweight charting library)
+
+---
+
+## Data Model Guidance
+
+Give the AI tool this minimum schema to start from (expand as needed):
+
+- `users` (id, email, password_hash, role, employee_id)
+- `employees` (id, name, department_id, designation, manager_id, date_of_joining, status)
+- `departments` (id, name)
+- `leave_types` (id, name, days_per_year, carry_forward_allowed)
+- `leave_balances` (employee_id, leave_type_id, balance, year)
+- `leave_requests` (id, employee_id, leave_type_id, start_date, end_date, reason, status, approver_id)
+- `attendance` (id, employee_id, date, status, check_in, check_out)
+- `payroll_runs` (id, month, year, status)
+- `payslips` (id, employee_id, payroll_run_id, gross, deductions, net, pdf_url)
+
+## Non-Functional Requirements
+
+- Responsive UI (must work well on mobile for employee self-service)
+- All list views must support pagination — don't load full tables into the frontend
+- Every write action (leave approval, payroll run) must be logged with actor + timestamp
+- Environment variables for all secrets — no hardcoded credentials
+- Seed script with sample data (5-10 employees, a few departments) so the app is testable immediately after setup
+
+## Build Order (tell the AI tool to follow this sequence)
+
+1. Auth + roles + employee CRUD
+2. Leave management end-to-end (apply → approve → balance update)
+3. Attendance tracking
+4. Payroll (basic)
+5. Recruitment + Performance (only if time/scope allows)
+6. Reports/dashboard last, once data exists to visualize
+
+---
+
+**Instruction to the AI tool:** Build Phase 1 completely and confirm it works (including a working leave approval flow end-to-end) before starting Phase 2. Ask me before making architecture decisions that would be expensive to reverse later (e.g., database choice, auth strategy).
