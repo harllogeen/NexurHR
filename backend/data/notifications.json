@@ -1974,5 +1974,37 @@
     },
     "read": false,
     "createdAt": "2026-09-14T12:14:42.170Z"
+  },
+  {
+    "id": "1790152995938",
+    "userId": 1783718492655,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Weekend Day Shift on Saturday, September 26 from 09:00 to 17:00",
+    "data": {
+      "scheduleId": "1790152995934",
+      "shiftName": "Weekend Day Shift",
+      "date": "2026-09-26",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-23T08:43:15.938Z"
+  },
+  {
+    "id": "1790152995952",
+    "userId": 1783502564401,
+    "type": "schedule",
+    "title": "New Shift Assignment",
+    "message": "You have been scheduled for Afternoon Shift on Sunday, September 27 from 14:00 to 22:00",
+    "data": {
+      "scheduleId": "1790152995949",
+      "shiftName": "Afternoon Shift",
+      "date": "2026-09-27",
+      "startTime": "14:00",
+      "endTime": "22:00"
+    },
+    "read": false,
+    "createdAt": "2026-09-23T08:43:15.952Z"
   }
 ]

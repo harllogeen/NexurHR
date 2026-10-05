@@ -4054,5 +4054,29 @@
     "action": "clock-in",
     "targetId": 1764829943217,
     "details": "Clocked in at 1:35:04 PM"
+  },
+  {
+    "id": "1790152832276",
+    "timestamp": "2026-09-23T08:40:32.276Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
+  },
+  {
+    "id": "1790152882365",
+    "timestamp": "2026-09-23T08:41:22.365Z",
+    "actorId": 1764829943217,
+    "action": "clock-in",
+    "targetId": 1764829943217,
+    "details": "Clocked in at 9:41:22 AM"
+  },
+  {
+    "id": "1790154932866",
+    "timestamp": "2026-09-23T09:15:32.866Z",
+    "actorId": 1764829943217,
+    "action": "login",
+    "targetId": 1764829943217,
+    "details": "Signed in successfully"
   }
 ]

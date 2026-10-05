@@ -14,9 +14,9 @@
     "password": "$2b$08$hW01UvvPSMCOb6eoXPtA3OOJx.DZJtQW.zCR6AFo/yZHYqf8g/X4W",
     "role": "hr",
     "employeeId": 1764829943216,
-    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTc2NDgyOTk0MzIxNywicm9sZSI6ImhyIiwiZW1wbG95ZWVJZCI6MTc2NDgyOTk0MzIxNiwiaWF0IjoxNzg5NDc1NjMyLCJleHAiOjE3OTAwODA0MzJ9.ZlMu1CeMPvUllK0hvX-J3YvEbDQb--deBybc1tc6ee0",
-    "refreshTokenVersion": 222,
-    "lastLoginAt": "2026-09-15T12:33:52.085Z"
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTc2NDgyOTk0MzIxNywicm9sZSI6ImhyIiwiZW1wbG95ZWVJZCI6MTc2NDgyOTk0MzIxNiwiaWF0IjoxNzkwMTU0OTMyLCJleHAiOjE3OTA3NTk3MzJ9.x1CbGgmK0QQ6smG7Nk-ZHn6PpXLRhH3Le5so9gn8--o",
+    "refreshTokenVersion": 224,
+    "lastLoginAt": "2026-09-23T09:15:32.858Z"
   },
   {
     "id": 1764830815579,

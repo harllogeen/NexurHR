@@ -39,7 +39,7 @@ interface LeaveEntry {
     FormSelectComponent,
     ButtonComponent,
     StatusBadgeComponent,
-    ModalComponent
+    // ModalComponent
   ],
   templateUrl: './leave-calendar.component.html',
   styleUrls: ['./leave-calendar.component.css']
