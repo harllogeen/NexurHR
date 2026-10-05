@@ -151,5 +151,19 @@
     "location": null,
     "scheduleId": null,
     "shiftId": null
+  },
+  {
+    "id": 1791199777066,
+    "userId": 1764829943217,
+    "employeeId": 1764829943216,
+    "date": "2026-10-05",
+    "clockIn": "2026-10-05T11:29:37.056Z",
+    "clockOut": null,
+    "status": "Late",
+    "lateBy": 269,
+    "earlyDeparture": 0,
+    "location": null,
+    "scheduleId": null,
+    "shiftId": null
   }
 ]
